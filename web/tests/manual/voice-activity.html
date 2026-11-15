@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ARES voice state preview</title></head><body class="ui-orbit">
+<main id="assistant-panel" style="position:relative!important;inset:auto!important;margin:40px auto;width:354px;max-width:calc(100% - 32px);padding:24px">
+<h2>ARES voice preview</h2><p>Visual state preview only. This page does not access a microphone or play speech.</p>
+<div role="tablist" aria-label="ARES sections"><button role="tab" aria-selected="true">Conversation</button><button role="tab" aria-selected="false">Command guide</button></div>
+<div class="assistant-audio-box"><div class="assistant-waveform" id="assistant-waveform"></div><div class="assistant-audio-controls"><button>Push to Talk</button><button>Voice ON</button></div></div>
+<div id="preview-controls"><button data-state="idle">Idle</button><button data-state="listening">Preview listening</button><button data-state="speaking">Preview ARES speaking</button></div>
+</main><script type="module">
+import '../../src/style.css';import '../../src/interface.css';import '../../src/voice-activity.css';import '../../src/mission-tools.css';
+import {mountVoiceActivity} from '../../src/voice-activity.js';
+const root=document.getElementById('assistant-waveform');mountVoiceActivity(root);
+for(const button of document.querySelectorAll('[data-state]'))button.onclick=()=>{root.classList.toggle('active',button.dataset.state==='listening');root.classList.toggle('speaking',button.dataset.state==='speaking');};
+</script></body></html>

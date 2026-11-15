@@ -1,0 +1,14 @@
+<!doctype html><meta charset="UTF-8"><title>Context orientation regression check</title>
+<h1>Context orientation regression check</h1><p id="result">Running…</p><div id="images"></div>
+<script type="module">
+import {contextCanvas} from '../src/context-display.js';
+const fixture=document.createElement('canvas');fixture.width=fixture.height=2;
+const c=fixture.getContext('2d');c.fillStyle='rgb(240,240,240)';c.fillRect(0,0,2,1);c.fillStyle='rgb(16,16,16)';c.fillRect(0,1,2,1);
+const bitmap=await createImageBitmap(fixture,{imageOrientation:'flipY'});
+const output=contextCanvas(bitmap,{x:0,y:0,z:0},{grayscale:true});
+const pixels=output.getContext('2d').getImageData(0,0,2,2).data;
+document.querySelector('#images').append(output);
+const passed=pixels[0]===240&&pixels[8]===16;
+document.querySelector('#result').textContent=(passed?'PASS':'FAIL')+`: north=${pixels[0]}, south=${pixels[8]}`;
+document.querySelector('#result').dataset.passed=String(passed);
+</script>
