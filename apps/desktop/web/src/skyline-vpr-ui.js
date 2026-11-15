@@ -51,6 +51,7 @@ export class SkylineVPRUI {
 
   initDOM() {
     if (!this.panel) return;
+    const close = this.panel.querySelector('#skyline-close');
     this.panel.innerHTML = `
       <div class="skyline-wrap">
         <header class="skyline-header">
@@ -193,7 +194,7 @@ export class SkylineVPRUI {
           </p>
           <p>
             <strong>Compass-Free Circular Matching</strong><br>
-            Slides observed curve m(φ) circularly across 360° candidate candidate headings α ∈ [0°, 359°]. Finds exact geographic location p and camera compass heading simultaneously.
+            Slides observed curve m(φ) circularly across 360° candidate candidate headings α ∈ [0°, 359°]. Ranks the sampled candidates and estimates a heading offset.
           </p>
           <p style="color:#38bdf8;">
             References: Cozman & Krotkov (CMU, 1995); Babacic, Lu, & Stachniss (Univ. of Bonn, 2022).
@@ -202,6 +203,10 @@ export class SkylineVPRUI {
       </div>
     `;
 
+    if (close) {
+      this.panel.prepend(close);
+      close.onclick = () => this.open(false);
+    }
     this.bindEvents();
   }
 
@@ -677,16 +682,6 @@ export class SkylineVPRUI {
     this.layers.forEach(layer => {
       layer.clearLayers();
 
-      // Illustrative candidate search context
-      L.circle([loc.lat, loc.lon], {
-        radius: 15000,
-        color: '#0284c7',
-        fillColor: '#0284c7',
-        fillOpacity: 0.12,
-        weight: 1.5,
-        dashArray: '5, 5',
-      }).bindTooltip(`${loc.name} · Candidate region guide`).addTo(layer);
-
       // Distinctive Skyline Pin
       L.circleMarker([loc.lat, loc.lon], {
         radius: 8,
@@ -695,7 +690,7 @@ export class SkylineVPRUI {
         fillOpacity: 0.95,
         weight: 2.5,
       }).bindPopup(`
-        <strong>Mars Skyline Geolocalized</strong><br>
+        <strong>Mars skyline candidate</strong><br>
         Basin: ${loc.name}<br>
         Coordinates: ${loc.lat.toFixed(4)}°, ${loc.lon.toFixed(4)}°<br>
         Estimated Heading: ${match.matchedHeadingDeg}°<br>
