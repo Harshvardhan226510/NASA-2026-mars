@@ -1,0 +1,62 @@
+{
+  "type": "FeatureCollection",
+  "name": "valles_marineris_sample_minerals",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [283.15, -9.80, -2100.0]
+      },
+      "properties": {
+        "id": "MIN-001",
+        "name": "Polyhydrated Sulfate",
+        "category": "evaporite",
+        "science_value": 90,
+        "hazard_risk": "low"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [283.38, -9.60, -2350.0]
+      },
+      "properties": {
+        "id": "MIN-002",
+        "name": "Hematite Ridge",
+        "category": "iron_oxide",
+        "science_value": 75,
+        "hazard_risk": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [283.48, -9.55, -2700.0]
+      },
+      "properties": {
+        "id": "MIN-003",
+        "name": "Smectite Clay Deposit",
+        "category": "phyllosilicate",
+        "science_value": 95,
+        "hazard_risk": "low"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [283.65, -9.35, -2800.0]
+      },
+      "properties": {
+        "id": "MIN-004",
+        "name": "Jarosite Formation",
+        "category": "sulfate",
+        "science_value": 80,
+        "hazard_risk": "low"
+      }
+    }
+  ]
+}
