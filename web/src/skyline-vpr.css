@@ -1,0 +1,371 @@
+#skyline-panel {
+  width: 410px;
+  max-height: calc(100dvh - 110px);
+  overflow-y: auto;
+}
+
+.skyline-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #d1e2ec;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.skyline-header {
+  border-bottom: 1px solid #3d586940;
+  padding-bottom: 10px;
+}
+
+.skyline-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #38bdf8;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skyline-close-btn {
+  background: transparent;
+  border: none;
+  color: #9cb5c4;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.skyline-close-btn:hover {
+  color: #ffffff;
+  background: #253947;
+}
+
+.skyline-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.skyline-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #0f2738;
+  color: #7ce3f5;
+  border: 1px solid #1e5675;
+}
+
+.skyline-badge.gold {
+  background: #2e230f;
+  color: #f7ca6d;
+  border-color: #6d5420;
+}
+
+.skyline-badge.green {
+  background: #112a1f;
+  color: #65e2a2;
+  border-color: #1e5c3c;
+}
+
+.skyline-section {
+  background: #132029;
+  border: 1px solid #273b47;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skyline-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #8bbcd6;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skyline-dropzone {
+  border: 2px dashed #345266;
+  border-radius: 6px;
+  padding: 16px 12px;
+  text-align: center;
+  background: #0d171e;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.skyline-dropzone:hover,
+.skyline-dropzone.drag-over {
+  border-color: #38bdf8;
+  background: #12222d;
+}
+
+.skyline-dropzone svg {
+  width: 28px;
+  height: 28px;
+  stroke: #38bdf8;
+}
+
+.skyline-dropzone p {
+  margin: 0;
+  font-size: 12px;
+  color: #b1cad8;
+}
+
+.skyline-file-input {
+  display: none;
+}
+
+.skyline-preset-select {
+  background: #0d171e;
+  color: #e2f1f8;
+  border: 1px solid #2d4554;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.skyline-canvas-box {
+  background: #080f14;
+  border: 1px solid #1f3542;
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skyline-canvas-box span {
+  font-size: 10px;
+  font-weight: 600;
+  color: #7da0b3;
+  text-transform: uppercase;
+}
+
+.skyline-canvas {
+  width: 100%;
+  aspect-ratio: 2.2;
+  border-radius: 4px;
+  background: #04080b;
+  display: block;
+}
+
+.skyline-chart-canvas {
+  width: 100%;
+  height: 110px;
+  border-radius: 4px;
+  background: #050a0d;
+  display: block;
+}
+
+.skyline-chart-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #8da9ba;
+  padding: 0 4px;
+}
+
+.skyline-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.skyline-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.skyline-telemetry-box {
+  background: #09131a;
+  border: 1px solid #1e3a4d;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skyline-telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  border-bottom: 1px dashed #172d3b;
+  padding-bottom: 4px;
+}
+
+.skyline-telemetry-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.skyline-telemetry-label {
+  color: #7e9fb0;
+}
+
+.skyline-telemetry-val {
+  font-family: monospace;
+  font-weight: 600;
+  color: #d8edf7;
+}
+
+.skyline-telemetry-val.highlight {
+  color: #38bdf8;
+}
+
+.skyline-telemetry-val.green {
+  color: #4ade80;
+}
+
+.skyline-telemetry-val.accent {
+  color: #f7ca6d;
+}
+
+.skyline-candidates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.skyline-cand-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  background: #0c1820;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #182e3b;
+}
+
+.skyline-cand-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #b0cad6;
+}
+
+.skyline-cand-bar {
+  height: 4px;
+  background: #142833;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skyline-cand-fill {
+  height: 100%;
+  background: #38bdf8;
+  border-radius: 2px;
+}
+
+.skyline-cand-fill.top {
+  background: #4ade80;
+}
+
+.skyline-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.skyline-btn-run {
+  background: #0284c7;
+  color: #f0f9ff;
+  border: 1px solid #38bdf8;
+  border-radius: 6px;
+  padding: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.skyline-btn-run:hover {
+  background: #0369a1;
+}
+
+.skyline-btn-secondary {
+  background: #11202a;
+  color: #b5d5e6;
+  border: 1px solid #2c495c;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.skyline-btn-secondary:hover {
+  background: #1a3242;
+  color: #ffffff;
+}
+
+.ground-capture-btn {
+  background: #0369a1;
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  vertical-align: middle;
+  transition: background 0.2s;
+}
+
+.ground-capture-btn:hover {
+  background: #0284c7;
+}
+
+.skyline-details {
+  font-size: 11px;
+  color: #8da9ba;
+  background: #0b151c;
+  border-radius: 6px;
+  padding: 8px;
+  border: 1px solid #1c2e39;
+}
+
+.skyline-details summary {
+  cursor: pointer;
+  color: #38bdf8;
+  font-weight: 600;
+  padding: 2px 0;
+}
+
+.skyline-details p {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
