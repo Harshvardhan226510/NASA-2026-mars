@@ -11,7 +11,10 @@ import { distanceKm, signedLongitude } from './place-context.js';
 import { marsSun, solarAt } from './solar-geometry.js';
 import { ORBITERS } from './orbiter-data.js';
 import { nasaHybridRAG } from './nasa-hybrid-rag.js';
-import { calculateTraverseRiskIndex } from './route-profile.js';
+import {routeRisk} from './route-risk.js';
+import {answerMissionQuestion,parseMissionQuestion} from './tars-mission.js';
+
+const riskPercent=risk=>risk?`${risk.partial?'≈':''}${risk.score}%`:'unknown';
 
 function extractActionJSON(text) {
  if (!text) return null;
@@ -674,7 +677,7 @@ export class EVAssistant {
   msgDiv.append(senderTag, textP);
 
   if (!sender.startsWith('Astronaut')) {
-   const trace = traceData || this.generateDefaultTrace(text, isAction);
+   const trace = traceData ?? this.generateDefaultTrace(text, isAction);
    if (trace) {
     const drawer = this.buildTraceDrawer(trace);
     if (drawer) msgDiv.append(drawer);
@@ -683,6 +686,41 @@ export class EVAssistant {
 
   history.append(msgDiv);
   if (history.scrollHeight) history.scrollTop = history.scrollHeight;
+  return msgDiv;
+ }
+
+ openMarswalk(tab){
+  const workbench=this.routePlanner?.workbench;
+  if(!workbench)return;
+  this.open(false);workbench.open(true);workbench.showTab(tab);
+ }
+
+ async explainMission(question){
+  this.missionRequest?.abort();
+  if(question.type==='open'){this.missionRequest=null;this.openMarswalk(question.tab);return;}
+  const controller=this.missionRequest=new AbortController();
+  this.setStatus(question.type==='omit'?'Comparing stop omissions on the current terrain…':'Reading the calculated Marswalk plan…');
+  try{
+   const answer=await answerMissionQuestion(this.routePlanner,question,{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(180000)])});
+   if(controller.signal.aborted)return;
+   const message=this.addMessage('ARES',answer.text,false,false);
+   if(message){
+    const links=document.createElement('div');links.className='tars-mission-sources';
+    for(const [label,url] of answer.sources){
+     const a=document.createElement('a');a.textContent=label;a.href=url;a.target='_blank';a.rel='noopener';links.append(a);
+    }
+    const review=document.createElement('button');review.type='button';review.textContent='Review in Marswalk';review.onclick=()=>this.openMarswalk(answer.tab);
+    message.append(links,review);
+    const history=$('assistant-history');history.scrollTop=Math.max(0,message.offsetTop-history.offsetTop);
+   }
+   this.setStatus(question.type==='omit'?'Deterministic comparison complete.':'Marswalk results read.');
+   this.speak(answer.text.split('\n').slice(0,3).join(' '));
+  }catch(error){
+   if(controller.signal.aborted)return;
+   const detail=error.name==='TimeoutError'||error.message==='Failed to fetch'?'The route service is unavailable. Restore access to Pyxis’s planner and try the comparison again.':error.message;
+   this.addMessage('ARES',detail,false,false);
+   this.setStatus('Mission inputs or route calculation needed.');
+  }finally{if(this.missionRequest===controller)this.missionRequest=null;}
  }
 
  getCurrentPosition() {
@@ -1217,6 +1255,9 @@ export class EVAssistant {
    this.setStatus("ARES analyzing tactical request…");
 
    const q = query.toLowerCase().trim();
+   const mission=parseMissionQuestion(query);
+   if(mission&&(mission.type!=='status'||this.routePlanner?.workbench||!isPathSafetyQuery(q)))return this.explainMission(mission);
+   this.missionRequest?.abort();
    const command=parseAtlasCommand(query);if(command&&this.atlas){try{const response=await runAtlasCommand(command,this.atlas);this.addMessage('ARES',response,true);this.setStatus(response);this.speak(response);}catch(e){this.addMessage('ARES',e.message);}return;}
    if(this.atlas&&/what.*(?:data|layer|conditions|wind|slope|temperature|pressure|abundance)|loaded data|data sources|explain.*(?:layer|overlay)/.test(q)){this.addMessage('ARES',await this.atlas.context(query));this.setStatus('Loaded data described.');return;}
 
@@ -1459,7 +1500,7 @@ export class EVAssistant {
    const peakSlope = r.validation?.max_sampled_slope_deg ?? s.max_slope_deg ?? null;
    const isSafe = Number.isFinite(peakSlope) && peakSlope <= 15.0;
 
-   const tri = calculateTraverseRiskIndex(r, this.routePlanner?.result?.metadata || {});
+   const risk=this.routePlanner.risks?.()[key]?.risk??routeRisk(r,this.routePlanner.result.metadata);
    summaries.push({
     key,
     name: def.name,
@@ -1471,14 +1512,13 @@ export class EVAssistant {
     elevText: `+${s.elevation_gain_m || 0}m / -${s.elevation_loss_m || 0}m`,
     peakSlope,
     isSafe,
-    score: s.total_science_score || 0,
-    tri
+    score: s.total_science_score || 0
    });
 
    report += `${def.name}:\n` +
     `   • Distance: ${distKm.toFixed(2)} km\n` +
     `   • Estimated Traversal Time: ${hours}h ${minutes}m (at ${walkSpeedKmH} km/h)\n` +
-    `   • Traverse Risk Index: ${tri.risk_index}/100 (${tri.rating}) · Safety Rating: ⚡ ${tri.safety_percentage}%\n` +
+    `   • Traverse risk index: ${riskPercent(risk)}\n` +
     `   • O₂ Consumed: ${o2Liters ?? 'unknown'} Liters (legacy scenario including 25% margin: ${o2Liters===null?'unknown':o2Buffer} L; configure Missions)\n` +
     `   • Metabolic Energy (Minetti): ${energyKj?.toLocaleString() ?? 'unknown'} kJ (~${energyKj===null?'unknown':Math.round(energyKj / 4.184)} kcal)\n` +
     `   • Elevation Change: +${s.elevation_gain_m || 0}m climb / -${s.elevation_loss_m || 0}m descent\n` +
@@ -1490,34 +1530,35 @@ export class EVAssistant {
   const trace = {
    goal: 'Comparative consumables and traverse risk index audit across all 3 routes',
    intent: 'MISSION_ROUTE_AUDIT',
-   rag: 'NASA HLS2 Flight Rules & Minetti Bioenergetics (Corpus ID: hls2_slope_bioenergetics)',
-   tool: 'calculateTraverseRiskIndex() & RoutePlanner.allRoutes',
-   flightRule: 'Max slope cutoff: 22° barrier, nominal ≤15°. Minetti metabolic limit ≤6,000 kJ.',
-   telemetry: `Origin: ${startCoord} ➔ Dest: ${goalCoord}. 3 profiles audited on HiRISE/HRSC terrain.`,
+   rag: this.routePlanner.result.metadata?.source?.label??'Loaded route profiles',
+   tool: 'Pyxis route risk index and RoutePlanner',
+   flightRule: 'Comparative terrain and walking-effort index. Review Marswalk for the configured mission limits.',
+   telemetry: `Origin: ${startCoord} ➔ Dest: ${goalCoord}. ${summaries.length} outbound profiles audited.`,
    status: 'AUDIT COMPLETE',
    statusColor: '#78d7a3',
-   citations: ['[1] NASA HLS2: Extravehicular Activity Metabolic and Slope Limitations']
+   citations: ['Minetti et al. (2002), walking energy measurements']
   };
   this.addMessage('ARES',report,true,trace);this.setStatus(summaries.length?'Route profiles compared.':'No completed profiles available.');
  }
 
  executePathSafetyQuery() {
   const planner=this.routePlanner,route=planner?.result?.routes?.[planner.shown] || planner?.result?.routes?.direct_safe;
+  const source=planner?.result?.metadata?.source;
   const max=route?.validation?.max_sampled_slope_deg ?? route?.summary?.max_slope_deg;
   const limit=planner?.result?.metadata?.max_slope_deg ?? Number($('route-slope')?.value || 22);
   if(!Number.isFinite(max)) { this.addMessage('ARES','Sampled slope is unknown. Calculate a route with terrain coverage before reviewing it.'); return; }
-  const tri = calculateTraverseRiskIndex(route, planner?.result?.metadata || {});
-  const text=`TERRAIN REVIEW: ${max>limit?'SELECTED SLOPE LIMIT EXCEEDED':'SAMPLED SLOPES WITHIN SELECTED LIMIT'}\nPeak sampled slope: ${max.toFixed(1)}° · selected limit: ${limit}°.\nTraverse Risk Index: ${tri.risk_index}/100 (${tri.rating}) · Safety Rating: ⚡ ${tri.safety_percentage}%\n${route.notice ?? ''}\nThis reviews sampled terrain only. It does not establish traction, rollover probability, life-support feasibility or astronaut safety. Inspect coverage and unsupported hazards in Missions.`;
+  const risk=planner?.risks?.()[planner.shown]?.risk??routeRisk(route,planner?.result?.metadata);
+  const text=`TERRAIN REVIEW: ${max>limit?'SELECTED SLOPE LIMIT EXCEEDED':'SAMPLED SLOPES WITHIN SELECTED LIMIT'}\nPeak sampled slope: ${max.toFixed(1)}° · selected limit: ${limit}°.\nTraverse risk index: ${riskPercent(risk)}\n${route.notice ?? ''}\nThis reviews sampled terrain only. It does not establish traction, rollover probability, life-support feasibility or astronaut safety. Inspect coverage and unsupported hazards in Missions.`;
   const trace = {
-   goal: 'Audit path slope safety and rollover limits against NASA flight rules',
+   goal: 'Compare sampled terrain with the configured slope limit',
    intent: 'PATH_SAFETY_AUDIT',
-   rag: 'NASA HLS2 Slope and Bioenergetic Flight Rules (Corpus ID: hls2_slope_bioenergetics)',
-   tool: 'calculateTraverseRiskIndex() & RoutePlanner.routeProfile',
-   flightRule: `Peak slope ${max.toFixed(1)}° vs ${limit}° limit. Safety: ${tri.safety_percentage}% (${tri.rating})`,
-   telemetry: `Traverse Risk: ${tri.risk_index}/100 [Slope: ${tri.components.slope_hazard}/40, Energy: ${tri.components.metabolic_strain}/30]`,
+   rag: source?.label??'Loaded elevation profile',
+   tool: 'Pyxis route risk index and RoutePlanner',
+   flightRule: `Peak slope ${max.toFixed(1)}° against the selected ${limit}° limit.`,
+   telemetry: `Traverse risk index: ${riskPercent(risk)}`,
    status: max > limit ? 'HAZARD EXCEEDED' : 'NOMINAL LIMIT',
    statusColor: max > limit ? '#f87171' : '#4ade80',
-   citations: ['[1] NASA HLS2: Extravehicular Activity Metabolic and Slope Limitations']
+   citations: source?.url?[`${source.label} · ${source.url}`]:[]
   };
   this.addMessage('ARES',text,true,trace);this.speak(text);this.setStatus('Sampled terrain reviewed.');
  }
@@ -1957,6 +1998,12 @@ export class EVAssistant {
  }
 
  async queryEdgeSLM(query) {
+  const q=query.toLowerCase().trim();
+  if(isPathSafetyQuery(q))return this.executePathSafetyQuery();
+  if(/\b(eva|mission|route|path|traverse|return|camp|habitat)\b/i.test(query)&&/\b(reserves?|consumables?|oxygen|o2|safety|safe|hazards?|risk|go.no.go|turnaround|enough|life support)\b/i.test(q.replace(/o₂/g,'o2').replace(/direct safe/g,'direct'))){
+   return this.explainMission({type:'status'});
+  }
+  if(/\b(time|duration|how long|hours|difference)\b/.test(q)&&/\b(routes?|paths?|direct safe|deep science|apf)\b/.test(q))return this.executeOfflineFallback(query);
   if (this.offline || !$('assistant-local-model')?.checked || (typeof process !== 'undefined' && (process.env?.NODE_TEST_CONTEXT || process.env?.npm_lifecycle_event === 'test'))) {
    return this.executeOfflineFallback(query);
   }
@@ -1979,8 +2026,7 @@ export class EVAssistant {
     if (r?.summary) {
      const s = r.summary;
      const maxSlope = r.validation?.max_sampled_slope_deg ?? s.max_slope_deg ?? null;
-     const estTimeH = (s.total_distance_km / 2.7).toFixed(1);
-     routesContext += `• ${label}: Distance: ${s.total_distance_km} km | Baseline Duration: ${estTimeH}h (at 2.7 km/h) | O2 Consumed: ${s.est_o2_consumed_liters ?? 'unknown'} L | Energy: ${s.minetti_energy_kj} kJ | Peak Slope: ${maxSlope}° (sampled terrain only) | Elev: +${s.elevation_gain_m}m / -${s.elevation_loss_m}m\n`;
+     routesContext += `• ${label}: Distance: ${s.total_distance_km} km | Modeled walking energy: ${s.minetti_energy_kj} kJ | Peak Slope: ${maxSlope}° (sampled terrain only) | Elev: +${s.elevation_gain_m}m / -${s.elevation_loss_m}m\n`;
     }
    }
   }
@@ -2204,16 +2250,19 @@ Supported actions:
   if (isTimeQuery && this.routePlanner?.result?.routes) {
    const routes = this.routePlanner.result.routes;
    const speedMatch = q.match(/(\d+(?:\.\d+)?)\s*(?:km\/?h|kph)/i);
-   const speed = speedMatch ? parseFloat(speedMatch[1]) : 2.7;
-
-   const dDirect = routes.direct_safe?.summary?.total_distance_km ?? 40.79;
-   const dApf = routes.apf_survey?.summary?.total_distance_km ?? 42.33;
-   const dDeep = routes.deep_science?.summary?.total_distance_km ?? 49.42;
+   const config=this.routePlanner.workbench?.state.config;
+   const speed=speedMatch?Number(speedMatch[1]):config?.speed_kmh*config?.speed_factor;
+   const dDirect=routes.direct_safe?.summary?.total_distance_km;
+   const dDeep=routes.deep_science?.summary?.total_distance_km;
 
    const isDeep = q.includes('deep');
    const isDirect = q.includes('direct') || q.includes('safe');
    const isApf = q.includes('apf') || q.includes('potential');
    const isDiff = q.includes('difference') || q.includes('delta') || q.includes('faster') || q.includes('slower');
+   if(!(speed>0)||isDiff&&![dDeep,dDirect].every(Number.isFinite)||isDeep&&!Number.isFinite(dDeep)||isDirect&&!Number.isFinite(dDirect)){
+    this.addMessage('ARES','A calculated route distance and positive walking speed are needed for a travel-time estimate.');
+    return;
+   }
 
    if (isDiff && ((isDeep && isDirect) || q.includes('between'))) {
     const tDeep = dDeep / speed;

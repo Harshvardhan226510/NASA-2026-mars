@@ -25,6 +25,47 @@ def position(point, name):
     return [number(point[0], -180, 180, name + ' longitude'), number(point[1], -90, 90, name + ' latitude')]
 
 
+def describe_route(route, grid, engine, start, goal, profile=None):
+    route['terrain_profile'] = terrain_profile(route, grid, engine)
+    if route.get('grid_path'):
+        route['endpoint_adjustments_m'] = {
+            label: round(math.dist(grid.project(*point), grid.project(*grid.grid_to_geo(*cell)[:2])), 2)
+            for label, point, cell in [('start', start, route['grid_path'][0]), ('goal', goal, route['grid_path'][-1])]}
+    if profile is not None:
+        route['requested_profile'] = profile
+        if profile == 'deep_science' and route.get('profile') == 'direct_safe':
+            route['notice'] = 'No reachable science checkpoints; the partner engine returned its direct-route fallback.'
+    return route
+
+
+def compare_stop_omissions(payload, grid, engine, start, goal, features, minerals):
+    profile = payload['scenario_profile']
+    omitted = payload.get('omit_targets')
+    ids = {feature['properties']['id'] for feature in features}
+    if profile not in PROFILES or not isinstance(omitted, list) or not 1 <= len(omitted) <= 6:
+        raise ValueError('Choose a route profile and one to six science stops to compare.')
+    if any(not isinstance(ident, str) or ident not in ids for ident in omitted) or len(set(omitted)) != len(omitted):
+        raise ValueError('Scenarios must omit distinct stops from the planned mission.')
+    a, b = tuple(start), tuple(goal)
+    results = []
+    direct = None
+    for ident in omitted:
+        stops = [feature for feature in features if feature['properties']['id'] != ident]
+        if profile == 'direct_safe':
+            if direct is None:
+                direct = describe_route(engine.plan_direct_safe_route(a, b), grid, engine, start, goal, profile)
+            route = direct
+        elif profile == 'apf_survey':
+            stop_ids = {f['properties']['id'] for f in stops}
+            attractions = [m for m in minerals if m['properties']['id'] not in stop_ids
+                           and m['properties']['id'].removeprefix('site:') != ident.removeprefix('site:')]
+            route = describe_route(engine.plan_apf_survey_route(a, b, stops + attractions), grid, engine, start, goal, profile)
+        else:
+            route = describe_route(engine.plan_deep_science_route(a, b, stops), grid, engine, start, goal, profile)
+        results.append({'omitted': ident, 'route': route})
+    return {'schema': 'mars-stop-scenarios/1', 'profile': profile, 'scenarios': results}
+
+
 def plan_request(payload):
     if not isinstance(payload, dict) or payload.get('schema') != 'mars-route-request/1':
         raise ValueError('Unsupported route request.')
@@ -116,6 +157,10 @@ def plan_request(payload):
             except (ValueError, TypeError):
                 continue
 
+    engine = AtlasPathfinder(grid, allow_slope_traverse=allow_traverse, astronaut_mass_kg=mass, gravity_ratio=gravity, apf_attraction_pull=pull, apf_sensor_radius_m=sensor)
+    if 'scenario_profile' in payload:
+        return compare_stop_omissions(payload, grid, engine, start, goal, features, mineral_features)
+
     apf_features = list(features)
     for mf in mineral_features:
         if not any(f['properties']['id'] == mf['properties']['id'] for f in apf_features):
@@ -136,28 +181,16 @@ def plan_request(payload):
         sorted_minerals = sorted(mineral_features, key=corridor_penalty)
         deep_science_features = sorted_minerals[:2]
 
-    engine = AtlasPathfinder(grid, allow_slope_traverse=allow_traverse, astronaut_mass_kg=mass, gravity_ratio=gravity, apf_attraction_pull=pull, apf_sensor_radius_m=sensor)
     started = time.monotonic()
     results = {'direct_safe': engine.plan_direct_safe_route(tuple(start), tuple(goal)),
                'apf_survey': engine.plan_apf_survey_route(tuple(start), tuple(goal), apf_features),
                'deep_science': engine.plan_deep_science_route(tuple(start), tuple(goal), deep_science_features)}
     return_route = engine.plan_direct_safe_route(tuple(goal), tuple(return_to)) if round_trip else None
     if return_route is not None:
-        return_route['terrain_profile'] = terrain_profile(return_route, grid, engine)
+        describe_route(return_route, grid, engine, goal, return_to)
         return_route['role'] = 'return_to_habitat'
-        if return_route.get('grid_path'):
-            return_route['endpoint_adjustments_m'] = {
-                label: round(math.dist(grid.project(*point), grid.project(*grid.grid_to_geo(*cell)[:2])), 2)
-                for label, point, cell in [('start', goal, return_route['grid_path'][0]), ('goal', return_to, return_route['grid_path'][-1])]}
     for name, route in results.items():
-        route['requested_profile'] = name
-        route['terrain_profile'] = terrain_profile(route, grid, engine)
-        if route.get('grid_path'):
-            route['endpoint_adjustments_m'] = {
-                label: round(math.dist(grid.project(*point), grid.project(*grid.grid_to_geo(*cell)[:2])), 2)
-                for label, point, cell in [('start', start, route['grid_path'][0]), ('goal', goal, route['grid_path'][-1])]}
-        if name == 'deep_science' and route.get('profile') == 'direct_safe':
-            route['notice'] = 'No reachable science checkpoints; the partner engine returned its direct-route fallback.'
+        describe_route(route, grid, engine, start, goal, name)
     feasibility = return_field(engine, return_to) if round_trip and include_return_field else None
     return {'schema': 'mars-route-result/1', 'status': 'success', 'routes': results,
             **({'return_field': feasibility} if feasibility is not None else {}),

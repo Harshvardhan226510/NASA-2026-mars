@@ -159,6 +159,28 @@ class RoutingTests(unittest.TestCase):
         for route in plan_request(request)['routes'].values():
             self.assertEqual(route['status'], 'failed')
 
+    def test_stop_comparison_replans_the_selected_profile_without_replacing_omitted_targets(self):
+        request = self.request()
+        grid = self.grid(21)
+        point = list(grid.grid_to_geo(3, 9)[:2])
+        request.update(start=list(grid.grid_to_geo(10, 2)[:2]), goal=list(grid.grid_to_geo(10, 18)[:2]),
+                       round_trip=True,
+                       targets=[{'id': 'site:ridge', 'name': 'Ridge survey', 'point': point, 'score': 90}],
+                       minerals=[{'id': 'ridge', 'point': point, 'score': 100}])
+        current = plan_request(request)
+        current_path = current['routes']['deep_science']['grid_path']
+        for profile in ['deep_science', 'apf_survey']:
+            compared = plan_request({**request, 'scenario_profile': profile, 'omit_targets': ['site:ridge']})
+            self.assertEqual(compared['schema'], 'mars-stop-scenarios/1')
+            scenario = compared['scenarios'][0]
+            self.assertEqual(scenario['omitted'], 'site:ridge')
+            self.assertEqual(scenario['route']['status'], 'success')
+            self.assertEqual(scenario['route']['requested_profile'], profile)
+            self.assertNotIn((3, 9), [tuple(cell) for cell in scenario['route']['grid_path']])
+        self.assertIn((3, 9), [tuple(cell) for cell in current_path])
+        with self.assertRaisesRegex(ValueError, 'distinct stops'):
+            plan_request({**request, 'scenario_profile': 'deep_science', 'omit_targets': ['unlisted-stop']})
+
     def test_return_is_independently_planned_with_directional_energy_and_declared_home(self):
         request = self.request(); grid = self.grid(21)
         request.update(start=list(grid.grid_to_geo(10, 2)[:2]), goal=list(grid.grid_to_geo(10, 18)[:2]), round_trip=True)

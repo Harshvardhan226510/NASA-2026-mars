@@ -94,10 +94,10 @@ test('EVAssistant renders Agentic Execution Trace Drawer and answers with authen
  const dummyPlanner = {
   shown: 'direct_safe',
   result: {
-   metadata: { max_slope_deg: 22 },
+   metadata: { max_slope_deg: 22, source: { label: 'Mars 2020 Jezero CTX DTM', url: 'https://www.usgs.gov/data/mars-2020-terrain-relative-navigation-ctx-dtm-mosaic' } },
    routes: {
     direct_safe: {
-     waypoints: [{ lon: 77.40, lat: 18.45 }, { lon: 77.45, lat: 18.48 }],
+     waypoints: [{ lon: 77.40, lat: 18.45, elevation_m: 0 }, { lon: 77.45, lat: 18.48, elevation_m: 10 }],
      summary: { total_distance_km: 8.5, minetti_energy_kj: 2200, max_slope_deg: 9.4, est_o2_consumed_liters: 140, total_science_score: 90 }
     }
    }
@@ -121,12 +121,12 @@ test('EVAssistant renders Agentic Execution Trace Drawer and answers with authen
  await assistant.handleQuery('Is the calculated path safe for an astronaut?');
  assert.equal(capturedSender, 'ARES');
  assert.ok(capturedText.includes('TERRAIN REVIEW: SAMPLED SLOPES WITHIN SELECTED LIMIT'));
- assert.ok(capturedText.includes('Traverse Risk Index:'));
- assert.ok(capturedText.includes('Safety Rating: ⚡'));
+ assert.match(capturedText, /Traverse risk index: ≈\d+%/);
+ assert.doesNotMatch(capturedText, /Safety Rating/);
  assert.ok(capturedTrace, 'Must provide execution trace data');
  assert.equal(capturedTrace.intent, 'PATH_SAFETY_AUDIT');
- assert.ok(capturedTrace.flightRule.includes('Safety:'));
- assert.ok(capturedTrace.citations.length > 0, 'Must include authentic citations');
+ assert.match(capturedTrace.flightRule, /selected 22° limit/);
+ assert.match(capturedTrace.citations[0], /www\.usgs\.gov\/data\/mars-2020/);
 
  // Test trace drawer DOM creation
  const drawer = assistant.buildTraceDrawer(capturedTrace);

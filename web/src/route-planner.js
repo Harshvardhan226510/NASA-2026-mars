@@ -7,13 +7,17 @@ import {RETURN_ROUTE,returnRouteEntry} from './return-route.js';
 import {addTerrainRoute,ROUTE_WIDTHS,ROUTE_PRIORITY,routeVisible,orderedRouteKeys,routePane} from './route-display.js';
 import {routeTerrain} from './route-terrain.js';
 import {routeGeoJSON,wrapRouteLongitude,routeRenderLegs} from './route-geometry.js';
-import {routeProfile,profileChartPath,calculateTraverseRiskIndex,walkingTimeText} from './route-profile.js';
+import {routeProfile,profileChartPath,walkingTimeText} from './route-profile.js';
+import {routeRisk,ROUTE_RISK_METHOD} from './route-risk.js';
+import {positionAtDistance} from './eva-replay-model.js';
 import {measurementRenderLegs,flatMeasurementPath} from './measurement-geometry.js';
 import {nearbyRouteSites,routeSiteSettings,ROUTE_SITE_CATEGORIES,routeAttractors} from './route-sites.js';
 const $=id=>document.getElementById(id);
 const profiles={direct_safe:{name:'Direct safe',color:'#78d7a3',description:'Minimum modeled walking energy on the strict grid. Experimental slope fallback, if enabled, is separately flagged.'},apf_survey:{name:'APF survey',color:'#f0bd60',description:'The partner A* model, drawn toward high-priority checkpoints across the regional mission window.'},deep_science:{name:'Deep science',color:'#73cde3',description:'Exact checkpoint-order search by grid distance, followed by A* for each leg.'}};
 const coord=p=>`${p[1].toFixed(5)}°, ${p[0].toFixed(5)}°E`;
 const distance=m=>m>=1000?`${(m/1000).toFixed(2)} km`:`${m.toFixed(0)} m`;
+const riskLabel=r=>r?`Risk ${r.partial?'≈':''}${r.score}%`:'Risk unknown';
+const riskAnchors={direct_safe:[.27,-17,-73,-65],apf_survey:[.50,-33,0,-76],deep_science:[.73,-17,73,-65]};
 function element(tag,text,className){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;}
 export class RoutePlanner{
  constructor(viewer,map,mini,{catalog,dataset,sites,view,onOpen,navigation,onExample,radio,surface=()=>null}={}){
@@ -113,24 +117,17 @@ export class RoutePlanner{
     const card=element('section',undefined,'route-card');card.style.setProperty('--route-color',definition.color);const title=element('button',definition.name),hint=element('span',this.shown===key?'Showing only this route':'Show only this route','route-title-action');title.type='button';title.append(hint);title.setAttribute('aria-pressed',String(this.shown===key));title.setAttribute('aria-label','Show only '+definition.name);title.disabled=!route.waypoints?.length;title.onclick=()=>{this.shown=key;this.render();};card.append(title,element('p',definition.description));
     if(key==='return_route'){card.classList.add('return-route-card');card.append(element('p',`From B ${coord(this.result.goal)} → return point ${coord(this.result.return_to??this.result.start)}. The dashed line is the return journey, not another outbound profile.`,'tool-note'));if(route.search?.optimal_on_strict_grid===true)card.append(element('p','Minimum modeled energy on the walkable grid. This does not establish real-world safety.','tool-note'));else if(route.waypoints?.length)card.append(element('p','Saved or experimental result: minimum grid energy is not certified. Recalculate to refresh.','route-warning'));}
     if(route.summary){
-     const s=route.summary,data=routeProfile(route,this.result.metadata),stats=element('dl',undefined,'route-stats'),tri=calculateTraverseRiskIndex(route,this.result.metadata);
-     const triBadge=element('div',undefined,'route-tri-badge');
-     const triHeader=element('div',undefined,'tri-header');
-     if(triHeader.style)triHeader.style.setProperty('--tri-color',tri.color);
-     const triPill=element('span',`TRAVERSE RISK: ${tri.risk_index}/100 · ${tri.rating}`,'tri-pill');
-     if(triPill.style){triPill.style.borderColor=tri.color;triPill.style.color=tri.color;}
-     const triSafety=element('span',`⚡ ${tri.safety_percentage}% SAFE`,'route-safety-blink');
-     if(triSafety.style){triSafety.style.setProperty('--tri-color',tri.color);triSafety.style.borderColor=definition.color;triSafety.style.color=tri.color;}
-     triHeader.append(triPill,triSafety);
-     triBadge.append(triHeader);
-     card.append(triBadge);
+     const s=route.summary,data=routeProfile(route,this.result.metadata),stats=element('dl',undefined,'route-stats');
      const walking=element('dd','—');
      if(route.waypoints?.length)walking.dataset.walkingKm=String(data.distance_m>0?data.distance_m/1000:s.total_distance_km);
      stats.append(element('dt','Distance'),element('dd',`${s.total_distance_km} km`),element('dt','Walking time'),walking);
-     for(const [label,value] of [['Energy',`${s.minetti_energy_kj} kJ`],['Safety rating',`${tri.safety_percentage}% (${tri.rating})`],['O₂ estimate',`${s.est_o2_consumed_liters??'—'} L`],['Profile climb / descent',`${data.ascent_m.toFixed(0)} / ${data.descent_m.toFixed(0)} m`],['Sampled slope',`${route.validation?.max_sampled_slope_deg??s.max_slope_deg}°`],['Priority credit',`${s.total_science_score}`]])stats.append(element('dt',label),element('dd',value));
+     for(const [label,value] of [['Energy',`${s.minetti_energy_kj} kJ`],['O₂ estimate',`${s.est_o2_consumed_liters??'—'} L`],['Profile climb / descent',`${data.ascent_m.toFixed(0)} / ${data.descent_m.toFixed(0)} m`],['Sampled slope',`${route.validation?.max_sampled_slope_deg??s.max_slope_deg}°`],['Priority credit',`${s.total_science_score}`]])stats.append(element('dt',label),element('dd',value));
      card.append(stats);
     }
-    if(route.waypoints?.length)card.append(this.profileView(route,this.result.metadata,definition));
+    if(route.waypoints?.length){
+     if(key!=='return_route')card.append(this.riskView(key));
+     card.append(this.profileView(route,this.result.metadata,definition));
+    }
     if(route.status!=='success'||route.reason)card.append(element('p',`${route.status}: ${route.reason??'Some checkpoints were not reached.'}`,'route-warning'));
     if(route.notice)card.append(element('p',route.notice,'route-warning'));
     if(route.unreached_targets?.length)card.append(element('p','Unreached: '+route.unreached_targets.map(id=>this.result.targets?.find(t=>t.id===id)?.name??id).join('; '),'route-warning'));
@@ -142,6 +139,44 @@ export class RoutePlanner{
    if(m.projection_max_scale_error>.01)$('route-results').append(element('p',`Broad-area estimate: the metre grid’s scale distortion can reach ${(m.projection_max_scale_error*100).toFixed(1)}% at its outer corners. Refine sections for local terrain decisions.`,'route-warning'));
   }
   for(const id of ['route-json','route-geojson'])$(id).disabled=!this.result;$('route-fit').disabled=!this.start&&!this.goal;this.draw();this.workbench?.update();document.dispatchEvent(new Event('atlas-mission-change'));
+ }
+ risks(){
+  const result=this.result,w=this.workbench;
+  if(!result)return {};
+  const grid=w&&w.resultId===result.metadata.mission_id?w.grid:null;
+  const reports=w?.obstacles()??[],obstacles=JSON.stringify(reports);
+  if(this.riskCache?.result!==result||this.riskCache.grid!==grid||this.riskCache.obstacles!==obstacles){
+   const entries=Object.keys(profiles).map(key=>{
+    const route=result.routes[key],profile=routeProfile(route,result.metadata),[fraction,offset,compactX,compactY]=riskAnchors[key];
+    return [key,{risk:route?.waypoints?.length?routeRisk(route,result.metadata,grid,reports):null,
+     point:positionAtDistance(profile.samples,profile.distance_m*fraction),offset,compactX,compactY}];
+   });
+   this.riskCache={result,grid,obstacles,entries:Object.fromEntries(entries)};
+  }
+  return this.riskCache.entries;
+ }
+ riskView(key){
+  const risk=this.risks()[key]?.risk,box=element('details',undefined,'route-risk-details');
+  box.dataset.riskProfile=key;
+  box.append(element('summary',`${riskLabel(risk)} · terrain evidence`));
+  if(risk){
+   const n=(value,digits)=>Number.isFinite(value)?value.toFixed(digits):'unknown';
+   box.append(element('p',`Peak slope ${n(risk.peakSlope,1)}° · ${risk.peakRoughness===null?'roughness unresolved':`peak local roughness ${n(risk.peakRoughness,2)} m`} · walking effort ${n(risk.effort,2)}× model flat ground.`),
+    element('p',`${Math.round(risk.coverage*100)}% measured slope coverage · ${Math.round(risk.roughnessCoverage*100)}% fine roughness coverage · ${risk.spacing?distance(risk.spacing):'unknown'} effective spacing.`));
+   if(risk.limitExceeded)box.append(element('p','Slope limit, obstacle report or incomplete route requires review.','route-warning'));
+  }else box.append(element('p','A measured elevation profile is needed to score this route.'));
+  box.append(element('p',ROUTE_RISK_METHOD));
+  return box;
+ }
+ refreshRiskReadouts(){
+  if(!this.result||!this.riskCache)return;
+  const before=this.riskCache;
+  this.risks();
+  if(before===this.riskCache)return;
+  for(const card of $('route-results').querySelectorAll('[data-risk-profile]')){
+   const updated=this.riskView(card.dataset.riskProfile);updated.open=card.open;card.replaceWith(updated);
+  }
+  this.draw();
  }
  updateWalkingEstimates({speed_kmh,speed_factor}){
   const speed=speed_kmh*speed_factor;
@@ -175,60 +210,52 @@ export class RoutePlanner{
   const dots=routeMarkers(this.result,this.start,this.goal,this.allTargets(),profiles[this.shown]?this.shown:this.workbench?.state.profile);
   for(const {point,label} of dots){const position=measurementPositions(C,this.viewer.scene,[point],this.surface);this.source.entities.add({position:new C.CallbackPositionProperty(()=>position()[0],false),point:{pixelSize:9,color:C.Color.fromCssColorString('#ffe3b4'),outlineColor:C.Color.BLACK,outlineWidth:2},label:{text:label,font:'bold 13px sans-serif',fillColor:C.Color.WHITE,outlineColor:C.Color.BLACK,outlineWidth:3,style:C.LabelStyle.FILL_AND_OUTLINE,pixelOffset:new C.Cartesian2(0,-18)}});}
 
-  orderedRouteKeys(Object.keys(profiles)).forEach((key,i)=>{
-   const d=profiles[key],r=this.result?.routes[key];
-   if(!r?.waypoints?.length||!routeVisible(this.shown,key))return;
+  orderedRouteKeys(Object.keys(profiles)).forEach(key=>{
+   const d=profiles[key],r=this.result?.routes[key];if(!r?.waypoints?.length||!routeVisible(this.shown,key))return;
    addTerrainRoute(C,this.viewer,this.source,r.waypoints.map(p=>[p.lon,p.lat]),{surface:this.surface,color:d.color,width:3,priority:ROUTE_PRIORITY[key]});
-   const tri=calculateTraverseRiskIndex(r,this.result.metadata);
-   const midIdx=Math.floor(r.waypoints.length/2);
-   const midWp=r.waypoints[midIdx];
-   if(midWp){
-    this.source.entities.add({
-     position:C.Cartesian3.fromDegrees(midWp.lon,midWp.lat,0,this.viewer.scene.globe.ellipsoid),
-     label:{
-      text:`⚡ ${tri.safety_percentage}% SAFE`,
-      font:'bold 12px monospace',
-      fillColor:C.Color.fromCssColorString(tri.color),
-      outlineColor:C.Color.BLACK,
-      outlineWidth:3,
-      style:C.LabelStyle.FILL_AND_OUTLINE,
-      pixelOffset:new C.Cartesian2(0,-24-(i*14)),
-      heightReference:C.HeightReference.CLAMP_TO_GROUND,
-      disableDepthTestDistance:Number.POSITIVE_INFINITY
-     }
-    });
-   }
+   const label=this.risks()[key];if(!label?.point)return;
+   const scene=this.viewer.scene,ellipsoid=scene.globe.ellipsoid;
+   const position=measurementPositions(C,scene,[label.point],this.surface,2.5);
+   const ends=measurementPositions(C,scene,[this.result.start,this.result.goal],this.surface);
+   const normal=ellipsoid.geodeticSurfaceNormalCartographic(C.Cartographic.fromDegrees(...label.point));
+   const pixelOffset=new C.CallbackProperty(()=>{
+    const [a,b]=ends().map(p=>C.SceneTransforms.worldToWindowCoordinates(scene,p));
+    const compact=this.shown==='all'&&a&&b&&C.Cartesian2.distance(a,b)<140;
+    return compact?new C.Cartesian2(label.compactX,label.compactY):new C.Cartesian2(0,label.offset);
+   },false);
+   this.source.entities.add({position:new C.CallbackPositionProperty(()=>position()[0],false),label:{
+    show:new C.CallbackProperty(()=>C.Cartesian3.dot(normal,scene.camera.positionWC)>ellipsoid.minimumRadius-15000,false),
+    text:riskLabel(label.risk),font:'600 13px sans-serif',fillColor:C.Color.fromCssColorString(d.color),showBackground:true,
+    backgroundColor:C.Color.fromCssColorString('#142029ed'),backgroundPadding:new C.Cartesian2(6,4),
+    pixelOffset,disableDepthTestDistance:Number.POSITIVE_INFINITY
+   }});
   });
  }this.drawFlat();this.viewer.scene.requestRender();}
  drawLegend(){
   if(!this.legend){this.legend=element('aside',undefined,'route-map-legend');this.legend.setAttribute('aria-label','Route line legend');($('pyxis-location')??$('workspace')).append(this.legend);}
   this.legend.replaceChildren();this.legend.hidden=!this.visible||!this.result;if(this.legend.hidden)return;
-  for(const [key,d] of Object.entries(profiles)){if(!this.result.routes[key]?.waypoints?.length||!routeVisible(this.shown,key))continue;const row=element('div'),swatch=element('span',undefined,'route-line-swatch');swatch.style.borderColor=d.color;row.append(swatch,element('span',d.name+' · A → B'));this.legend.append(row);}
+  for(const [key,d] of Object.entries(profiles)){
+   if(!this.result.routes[key]?.waypoints?.length||!routeVisible(this.shown,key))continue;
+   const row=element('div'),swatch=element('span',undefined,'route-line-swatch'),label=riskLabel(this.risks()[key]?.risk);
+   const risk=element('strong',label.replace(/^Risk /,''),'route-legend-risk');risk.setAttribute('aria-label',label);risk.title=label;
+   swatch.style.borderColor=d.color;row.append(swatch,element('span',d.name+' · A → B'),risk);this.legend.append(row);
+  }
   if(this.workbench?.state.config.round_trip&&this.result.return_route?.waypoints?.length&&routeVisible(this.shown,'return_route')){const row=element('div'),swatch=element('span',undefined,'route-line-swatch return-line-swatch');swatch.style.borderColor=RETURN_ROUTE.color;row.append(swatch,element('span','Return · B → return point'));this.legend.append(row);}
   this.legend.hidden=!this.legend.childElementCount;
  }
  drawFlat(){for(const [index,layer] of this.layers.entries()){
   layer.clearLayers();if(!this.visible)continue;const map=[this.map,this.mini][index],near=map.getCenter().lng;
-  orderedRouteKeys(Object.keys(profiles)).forEach((key,i)=>{
-   const d=profiles[key],route=this.result?.routes[key];
-   if(!route?.waypoints?.length||!routeVisible(this.shown,key))return;
-   const linePath=flatMeasurementPath(route.waypoints.map(p=>[p.lon,p.lat]),near);
-   L.polyline(linePath,{pane:routePane(map,key),color:d.color,weight:3,interactive:false}).addTo(layer);
-   const tri=calculateTraverseRiskIndex(route,this.result?.metadata||{});
-   if(linePath&&linePath.length>0){
-    const midCoord=linePath[Math.floor(linePath.length/2)];
-    if(midCoord){
-     L.marker(midCoord,{
-      interactive:false,
-      icon:L.divIcon({
-       className:'route-safety-badge-wrapper',
-       html:`<span class="route-safety-blink" style="border-color:${d.color};color:${tri.color};">⚡ ${tri.safety_percentage}% SAFE</span>`,
-       iconSize:[84,22],
-       iconAnchor:[42,11+(i*18)]
-      })
-     }).addTo(layer);
-    }
-   }
+  orderedRouteKeys(Object.keys(profiles)).forEach(key=>{
+   const d=profiles[key],route=this.result?.routes[key];if(!route?.waypoints?.length||!routeVisible(this.shown,key))return;
+   L.polyline(flatMeasurementPath(route.waypoints.map(p=>[p.lon,p.lat]),near),{pane:routePane(map,key),color:d.color,weight:3,interactive:false}).addTo(layer);
+   const label=this.risks()[key];if(!label?.point||map===this.mini)return;
+   const wrap=([lon,lat])=>[lat,lon+360*Math.round((near-lon)/360)];
+   const a=map.latLngToContainerPoint(wrap(this.result.start)),b=map.latLngToContainerPoint(wrap(this.result.goal));
+   const compact=this.shown==='all'&&a.distanceTo(b)<140,badge=element('span',riskLabel(label.risk));badge.style.color=d.color;
+   L.marker(wrap(label.point),{interactive:false,keyboard:false,
+    icon:L.divIcon({className:'route-risk-marker',html:badge,iconSize:[88,20],
+     iconAnchor:[44-(compact?label.compactX:0),16-(compact?label.compactY:label.offset)]})
+   }).addTo(layer);
   });
   for(const {point,label} of routeMarkers(this.result,this.start,this.goal,this.allTargets(),profiles[this.shown]?this.shown:this.workbench?.state.profile))L.marker([point[1],point[0]+360*Math.round((near-point[0])/360)],{interactive:false,icon:L.divIcon({className:'route-pin',html:`<span>${label}</span>`,iconSize:[24,24],iconAnchor:[12,12]})}).addTo(layer);
  }}
