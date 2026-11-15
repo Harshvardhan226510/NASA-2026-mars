@@ -53,7 +53,8 @@
       "!web/data/space-weather/raw/**/*",
       "runtime/*.json",
       "THIRD_PARTY_NOTICES.md",
-      "web/src/**/*.json"
+      "web/src/**/*.json",
+      "!web/data/value-sources/**/*"
     ],
     "win": {
       "target": [
