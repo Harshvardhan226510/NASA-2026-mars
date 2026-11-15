@@ -1,0 +1,50 @@
+{
+  "schema": "ares-desktop-config/1",
+  "name": "ARES",
+  "alias": "ares-mars",
+  "aliases": [
+    "ares-mars",
+    "mars-ares"
+  ],
+  "preferredBase": "Qwen/Qwen2.5-1.5B-Instruct",
+  "alternativeBase": "meta-llama/Llama-3.2-1B-Instruct",
+  "contextTokens": 2048,
+  "maximumContextTokens": 32768,
+  "temperature": 0.3,
+  "maxTokens": 350,
+  "stop": [
+    "<|im_end|>",
+    "<|endoftext|>"
+  ],
+  "chatTemplate": "chatml",
+  "threads": 4,
+  "allowedQuantizations": {
+    "7": "Q8_0",
+    "15": "Q4_K_M"
+  },
+  "training": {
+    "method": "QLoRA",
+    "baseQuantization": "NF4",
+    "compute": "float16",
+    "rank": 16,
+    "alpha": 16,
+    "dropout": 0,
+    "modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "optimizer": "adamw_8bit",
+    "fallbackOptimizer": "paged_adamw_8bit",
+    "learningRate": 0.0002,
+    "schedule": "cosine",
+    "batchSize": 4,
+    "accumulation": 4,
+    "epochs": 1
+  },
+  "validation": "Configuration targets from user specification; no claim that training or domain validation has already completed."
+}

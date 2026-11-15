@@ -1,0 +1,257 @@
+{
+  "schema": "mars-value-research/1",
+  "reviewed": "2026-10-15",
+  "total": 2494,
+  "categories": {
+    "science": 522,
+    "minerals": 1912,
+    "resources": 60
+  },
+  "validationScope": "Source-record integrity, coordinates, duplicate source rows and evidence taxonomy checked. Independent spectral reprocessing, ground truth, ore reserves, water extraction and absolute registration are not certified.",
+  "landingOrigin": {
+    "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf",
+    "meaning": "SpaceX Starship study candidates with NASA/JPL participation; not NASA-selected human landing sites or a probability ranking"
+  },
+  "landings": [
+    {
+      "id": "AP1",
+      "name": "AP1",
+      "center": [
+        -157.9,
+        39.79431678965193
+      ],
+      "within100Km": {
+        "science": 354,
+        "minerals": 0,
+        "resources": 26
+      },
+      "within300Km": {
+        "science": 358,
+        "minerals": 0,
+        "resources": 26
+      }
+    },
+    {
+      "id": "AP9",
+      "name": "AP9",
+      "center": [
+        -156.64999999999998,
+        40.01427269500623
+      ],
+      "within100Km": {
+        "science": 128,
+        "minerals": 0,
+        "resources": 23
+      },
+      "within300Km": {
+        "science": 357,
+        "minerals": 0,
+        "resources": 26
+      }
+    },
+    {
+      "id": "AP8",
+      "name": "AP8",
+      "center": [
+        -158.7,
+        40.74412440728981
+      ],
+      "within100Km": {
+        "science": 313,
+        "minerals": 0,
+        "resources": 19
+      },
+      "within300Km": {
+        "science": 358,
+        "minerals": 0,
+        "resources": 26
+      }
+    },
+    {
+      "id": "EM16",
+      "name": "EM16",
+      "center": [
+        -167.97000000000003,
+        39.88429878362466
+      ],
+      "within100Km": {
+        "science": 4,
+        "minerals": 0,
+        "resources": 1
+      },
+      "within300Km": {
+        "science": 7,
+        "minerals": 0,
+        "resources": 1
+      }
+    },
+    {
+      "id": "PM1",
+      "name": "PM1",
+      "center": [
+        163.95,
+        35.22517715465901
+      ],
+      "within100Km": {
+        "science": 3,
+        "minerals": 0,
+        "resources": 1
+      },
+      "within300Km": {
+        "science": 6,
+        "minerals": 0,
+        "resources": 3
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "PDS_HYDROUS",
+      "url": "https://pds-geosciences.wustl.edu/mex/mex-m-omega-5-ddr-global-maps-v1/mexomg_2000/data/hydrous/hydrous_sites_geo_map.lbl",
+      "sourceRows": 1855,
+      "uniqueCoordinates": 1847,
+      "duplicateCoordinateRowsMerged": 8
+    },
+    {
+      "id": "AP_GEOMORPHIC",
+      "url": "https://zenodo.org/records/13647425",
+      "license": "CC BY 4.0",
+      "features": 377,
+      "unitCounts": {
+        "AP1": {
+          "Expanded secondary crater": 27,
+          "Polygonized terrain B": 10,
+          "Hummocky": 3,
+          "Pingo-like": 13,
+          "Mound": 13,
+          "Polygonized terrain A": 4
+        },
+        "AP8": {
+          "Brain terrain": 1,
+          "Terrace": 1,
+          "Crater floor": 1,
+          "Crater wall": 1,
+          "Pingo-like feature": 3,
+          "Hummocky Unit": 5,
+          "Expanded secondary crater": 210,
+          "Mound": 9,
+          "Smooth Unit": 1,
+          "Ejecta": 1,
+          "Knobby Unit": 1
+        },
+        "AP9": {
+          "Expanded secondary crater": 40,
+          "Domical Polygonized Terrain": 1,
+          "Mound": 23,
+          "Inverted expanded secondary crater": 1,
+          "Pingo-like feature": 8
+        }
+      },
+      "bounds": {
+        "AP1": [
+          -157.9918128,
+          39.6771967,
+          -157.83713107,
+          39.93739503
+        ],
+        "AP8": [
+          -158.79687557,
+          40.66973983,
+          -158.63948253,
+          40.81612816
+        ],
+        "AP9": [
+          -156.73737417,
+          39.8957017,
+          -156.58218388,
+          40.15599061
+        ]
+      }
+    },
+    {
+      "id": "HIRISE_DTM",
+      "url": "https://www.uahirise.org/hiwish/maps/dtms.jsp",
+      "sourceRecords": 1338,
+      "retainedResearchTargets": 223
+    },
+    {
+      "id": "PHLEGRA_SHARAD",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024JE008830",
+      "iceAssessmentPins": 7,
+      "mixedOrNullSciencePins": 2
+    }
+  ],
+  "checksums": {
+    "hydrous_sites_geo_map.csv": "e1ca76b883057f2dbc0fcc8b5d51da541834cdb8b45dbc9d83d2bcfd42c5f797",
+    "hydrous_sites_geo_map.lbl": "927e9f65b93c4894f365983f132957d5ba7e56ada0837ac666492f0c2c0d8dee",
+    "landing_maps.zip": "41bd6340a7aadb112e4c263baf02141e3a1d758cab66cf81ebe2c18ba8b2a6bb",
+    "dtm_catalogue.json": "7e240dcf04b6e0815840fea9b3fd2a46ca1621c52be42458e70c20cc9f2e4d5c"
+  },
+  "coordinateChecks": [
+    {
+      "landing": "AP1",
+      "product": "ESP_052490_2200_RED",
+      "bbox": [
+        -157.995,
+        39.6708,
+        -157.828,
+        39.9484
+      ],
+      "source": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/uncontrolled/ESP_052490_2200_RED/ESP_052490_2200_RED.tif",
+      "metadataBasis": "Previously obtained USGS Astrogeology STAC source footprint; approximate geographic consistency check only",
+      "mappedBounds": [
+        -157.9918128,
+        39.6771967,
+        -157.83713107,
+        39.93739503
+      ],
+      "result": "Numerical map/footprint vicinity consistent within 0.025 degrees; absolute registration unvalidated"
+    },
+    {
+      "landing": "AP8",
+      "product": "ESP_043220_2210_RED",
+      "bbox": [
+        -158.797,
+        40.6644,
+        -158.646,
+        40.8071
+      ],
+      "source": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/uncontrolled/ESP_043220_2210_RED/ESP_043220_2210_RED.tif",
+      "metadataBasis": "Previously obtained USGS Astrogeology STAC source footprint; approximate geographic consistency check only",
+      "mappedBounds": [
+        -158.79687557,
+        40.66973983,
+        -158.63948253,
+        40.81612816
+      ],
+      "result": "Numerical map/footprint vicinity consistent within 0.025 degrees; absolute registration unvalidated"
+    },
+    {
+      "landing": "AP9",
+      "product": "ESP_060811_2205_RED",
+      "bbox": [
+        -156.742,
+        39.8937,
+        -156.583,
+        40.1556
+      ],
+      "source": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/uncontrolled/ESP_060811_2205_RED/ESP_060811_2205_RED.tif",
+      "metadataBasis": "Previously obtained USGS Astrogeology STAC source footprint; approximate geographic consistency check only",
+      "mappedBounds": [
+        -156.73737417,
+        39.8957017,
+        -156.58218388,
+        40.15599061
+      ],
+      "result": "Numerical map/footprint vicinity consistent within 0.025 degrees; absolute registration unvalidated"
+    }
+  ],
+  "exclusions": [
+    "Generic spectral occurrences have no assigned mineral species, ore grade or nuclear-fuel claim.",
+    "Pingo-like forms are candidates, not confirmed water deposits; mixed/null radar sites are science only.",
+    "Repeated terrain-product versions of the same caption/centre are merged.",
+    "No sites of confirmed ancient forests or life are claimed.",
+    "Research windows and image centres do not guarantee usable HiRISE pixels."
+  ],
+  "coverageNote": "High-resolution acquisition/preparation must follow coverage and storage audits. This expansion imports metadata and feature polygons, not bulk imagery."
+}

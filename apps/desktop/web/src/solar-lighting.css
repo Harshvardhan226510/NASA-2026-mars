@@ -1,0 +1,202 @@
+#solar-panel {
+ width: 360px;
+ max-height: calc(100dvh - 120px);
+ overflow-y: auto;
+}
+
+.solar-intro {
+ color: #b8cbc2;
+ font-size: 12px;
+ line-height: 1.6;
+ margin-bottom: 12px;
+}
+
+.solar-card {
+ padding: 14px;
+ margin: 12px 0;
+ background: #15232b;
+ border: 1px solid #91aab54a;
+ border-radius: 8px;
+}
+
+.solar-card-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 10px;
+}
+
+.solar-card-header h3 {
+ font-size: 14px;
+ font-weight: 650;
+ color: #ffe0b7;
+ margin: 0;
+}
+
+.solar-state-badge {
+ padding: 3px 8px;
+ font-size: 11px;
+ font-weight: 600;
+ border-radius: 4px;
+ background: #263836;
+ color: #a4ebd0;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+}
+
+.solar-state-badge[data-state="day"] {
+ background: #3d351b;
+ color: #ffd666;
+ border: 1px solid #735e23;
+}
+
+.solar-state-badge[data-state="twilight"] {
+ background: #37232e;
+ color: #f59dc6;
+ border: 1px solid #6b3554;
+}
+
+.solar-state-badge[data-state="night"] {
+ background: #131d27;
+ color: #8bbce5;
+ border: 1px solid #233e5c;
+}
+
+.solar-metrics-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 10px;
+ margin-top: 10px;
+}
+
+.solar-metric {
+ display: flex;
+ flex-direction: column;
+ gap: 2px;
+}
+
+.solar-metric small {
+ font-size: 10px;
+ color: #9bb0be;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+}
+
+.solar-metric strong {
+ font-size: 14px;
+ color: #fff2df;
+ font-variant-numeric: tabular-nums;
+}
+
+.solar-controls-group {
+ margin: 14px 0;
+}
+
+.solar-option {
+ display: flex !important;
+ align-items: center;
+ justify-content: space-between;
+ gap: 12px;
+ margin: 10px 0;
+ font-size: 12px !important;
+ color: #dce7e2;
+ cursor: pointer;
+}
+
+.solar-option input[type="checkbox"] {
+ width: 16px !important;
+ height: 16px;
+ accent-color: #efae7d;
+ cursor: pointer;
+}
+
+.solar-mode-tabs {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 6px;
+ margin: 12px 0;
+}
+
+.solar-mode-tabs button {
+ padding: 8px 10px;
+ font-size: 11px;
+ font-weight: 600;
+ background: #15222b;
+ border: 1px solid #8ba1ae33;
+ border-radius: 5px;
+ color: #c0d1d6;
+ cursor: pointer;
+ transition: all 0.15s ease;
+}
+
+.solar-mode-tabs button[aria-pressed="true"] {
+ background: #2f4340;
+ border-color: #efae7d;
+ color: #ffe6c7;
+}
+
+.solar-presets {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 5px;
+ margin: 8px 0 12px;
+}
+
+.solar-presets button {
+ padding: 6px 4px;
+ font-size: 10px;
+ font-weight: 600;
+ background: #101a22;
+ border: 1px solid #8ba1ae33;
+ border-radius: 4px;
+ color: #c4d7de;
+ cursor: pointer;
+}
+
+.solar-presets button:hover {
+ background: #1f303d;
+ border-color: #efae7d;
+ color: #fff;
+}
+
+#solar-hour-slider {
+ width: 100%;
+ margin: 8px 0;
+ accent-color: #efae7d;
+ cursor: pointer;
+}
+
+.solar-slider-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ font-size: 11px;
+ color: #b7c8ce;
+ margin-top: 6px;
+}
+
+#solar-hour-value {
+ color: #efae7d;
+ font-weight: 600;
+ font-variant-numeric: tabular-nums;
+}
+
+.solar-offline-pill {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ padding: 6px 10px;
+ margin: 12px 0 4px;
+ background: #142a23;
+ border: 1px solid #71b8964d;
+ border-radius: 4px;
+ font-size: 10px;
+ color: #8cdbb5;
+ font-weight: 600;
+}
+
+.solar-offline-pill::before {
+ content: '●';
+ font-size: 8px;
+ color: #62d79a;
+}

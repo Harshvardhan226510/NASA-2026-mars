@@ -1,0 +1,43 @@
+#atlas-point-inspector {
+  position: fixed;
+  z-index: 1500;
+  top: 130px;
+  right: calc(var(--pyxis-inset, 16px) + var(--pyxis-control, 48px) + 10px);
+  width: min(360px, 38vw);
+  max-height: calc(100dvh - 192px - var(--pyxis-overview-height, 0px));
+  display: flex;
+  flex-direction: column;
+  color: #e5edf6;
+  background: #101b26f5;
+  border: 1px solid #526579;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px #0005;
+  font-size: 13px;
+}
+#atlas-point-inspector[hidden], #atlas-point-inspector [hidden] { display: none !important; }
+#atlas-point-inspector header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px 4px;
+}
+#atlas-point-inspector h2 { margin: 0 auto 0 0; font-size: 16px; }
+#atlas-point-inspector p { margin: 4px 0; line-height: 1.42; }
+#atlas-point-inspector .point-inspector-coordinates { padding: 0 12px 8px; color: #a7dfd1; }
+#atlas-point-inspector .point-inspector-scroll { overflow: auto; overscroll-behavior: contain; padding: 0 12px 12px; }
+#atlas-point-inspector button { padding: 5px 7px; border: 1px solid #566b7c; border-radius: 6px; background: #243745; color: inherit; }
+#atlas-point-inspector .point-inspector-actions { display: flex; flex-wrap: wrap; gap: 5px; padding: 8px 0; }
+#atlas-point-inspector form { display: grid; gap: 6px; margin-bottom: 8px; }
+#atlas-point-inspector input { display: block; width: 100%; }
+#atlas-point-inspector summary { cursor: pointer; font-weight: 700; padding: 8px 0; border-top: 1px solid #435566; }
+#atlas-point-inspector article { padding: 6px 0; border-top: 1px solid #2c3b49; }
+#atlas-point-inspector article > div { display: flex; gap: 6px; justify-content: space-between; align-items: baseline; }
+#atlas-point-inspector small { color: #aec0d1; font-size: 11px; }
+#atlas-point-inspector article > div small { color: #a7dfd1; }
+#atlas-point-inspector a { display: inline-block; color: #a7dfd1; margin-left: 4px; }
+#atlas-point-inspector img { width: 100%; max-height: 145px; object-fit: contain; margin: 5px 0; background: #19232d; }
+.point-inspector-picking :is(#globe canvas,#map2d) { cursor: crosshair; }
+@media (max-width: 780px) {
+  #atlas-point-inspector { top: 110px; width: min(332px, 45vw); }
+  #atlas-point-inspector header { flex-wrap: wrap; }
+}

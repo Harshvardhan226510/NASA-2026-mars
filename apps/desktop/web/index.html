@@ -1,0 +1,295 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mars Atlas | Orbit</title><meta name="description" content="Explore verified Martian imagery and terrain in 3D and 2D, streamed from the Mars Drive archive."><link rel="stylesheet" href="/vendor/cesium/Widgets/widgets.css"><script defer src="/vendor/cesium/Cesium.js"></script></head><body data-interface="orbit" class="ui-orbit">
+<header><button id="home" class="brand" aria-label="Return to Mars globe"><span class="planet-mark">◉</span> MARS <b>FIELD ATLAS</b></button><span class="edition">SURFACE EXPLORER</span><a href="https://drive.google.com/drive/folders/130glERGlm6jsqIwdYg_MKGZ0kLkphfjD" target="_blank" rel="noopener">Archive ↗</a></header>
+<aside id="sidebar"><span class="eyebrow" id="category">ONE PLANET. MANY FRONTIERS.</span><h1 id="title">Explore the<br>red planet.</h1><p id="description">Follow real orbital observations from a whole-planet view down to their available surface detail.</p>
+<div id="directory"><label for="place-type">EXPLORE</label><select id="place-type"><option value="regions">Regions &amp; landmarks ◇</option><option value="values">Sites of value · pins</option><option value="more">More places</option><option value="spacecraft">Spacecraft · rovers &amp; landers</option></select><section id="region-menu"><label for="search">FIND A PLACE</label><input id="search" placeholder="Place name or 18.44, 77.43" aria-describedby="coordinate-search-help"><p id="coordinate-search-help" class="detail-legend">Enter latitude first, then longitude (east positive). Use a comma or a space.</p><nav class="filters" aria-label="Region filters"><button data-filter="All" aria-pressed="true">All</button><button data-filter="Featured">Featured</button><button data-filter="Science">Science</button><button data-filter="Landing studies">Landing</button><button data-filter="High detail">High detail</button></nav><p class="detail-legend">High-detail badges mark prepared footprints inside a place, not complete regional coverage.</p><div id="regions"></div></section><section id="value-menu" hidden><label for="value-category">SITES OF VALUE</label><select id="value-category"><option value="all">All value sites</option><option value="science">Scientific interest · S</option><option value="minerals">Mineral prospects · M</option><option value="resources">Crew resource candidates · W</option></select><label for="value-landing">LANDING-STUDY PRIORITY</label><select id="value-landing"><option value="all">Across Mars</option></select><label for="value-radius">SURROUNDING RADIUS</label><select id="value-radius"><option value="100">100 km · nearby</option><option value="300">300 km · wider surroundings</option></select><label for="value-evidence-filter">EVIDENCE BASIS</label><select id="value-evidence-filter"><option value="all">All evidence levels</option><option value="measurements">Instrument detections / assessments</option><option value="targets">Mapped features / study targets</option></select><input id="value-search" aria-label="Search sites of value" placeholder="Water, silica, ancient rivers…"><p id="value-count" class="value-count" role="status"></p><p id="value-scope" class="detail-legend"></p><a class="research-report" href="/value-site-research.json" target="_blank" rel="noopener">Research audit &amp; source inventory ↗</a><nav class="value-pages" aria-label="Research result pages"><button id="value-prev" disabled>Previous</button><span id="value-page"></span><button id="value-next">Next</button></nav><div id="value-list"></div></section><section id="more-menu" hidden><label for="more-search">MORE PLACES</label><input id="more-search" placeholder="Search 2,052 named places…"><label for="more-type">FEATURE TYPE</label><select id="more-type"><option value="all">All feature types</option></select><p id="more-count" class="detail-legend"></p><p class="detail-legend">USGS / IAU names across Mars. Select a place to fly there. These names add no pins and do not imply HiRISE coverage.</p><details><summary>Go to coordinates</summary><form id="coordinate-form"><label for="go-lat">LATITUDE · −90 TO 90</label><input id="go-lat" type="number" min="-90" max="90" step="any" value="0" required><label for="go-lon">LONGITUDE · EAST POSITIVE</label><input id="go-lon" type="number" min="-180" max="180" step="any" value="0" required><button type="submit" class="secondary">View coordinates ↗</button></form></details><div id="more-list"></div></section><section id="spacecraft-menu" hidden aria-label="Spacecraft directory"><h2>Spacecraft</h2><p class="spacecraft-intro">Rovers, landers and probes on Mars, including inactive hardware. Only sourced positions receive pins. Orbiter records are available separately.</p><nav class="spacecraft-filters" aria-label="Spacecraft scope"><button data-spacecraft-scope="surface" aria-pressed="true">Surface</button><button data-spacecraft-scope="orbit" aria-pressed="false">Orbiters</button><button data-spacecraft-scope="all" aria-pressed="false">All</button></nav><label for="spacecraft-search">FIND A SPACECRAFT</label><input id="spacecraft-search" type="search" placeholder="Curiosity, Viking, Zhurong…"><label for="spacecraft-kind">VEHICLE TYPE</label><select id="spacecraft-kind"><option value="all">All types</option><option value="rover">Rovers</option><option value="lander">Landers</option><option value="helicopter">Helicopters</option><option value="landing_platform">Landing platforms</option><option value="failed_lander">Impact sites</option><option value="failed_or_unlocated_surface_hardware">Probes / unlocated</option><option value="orbiter">Orbiters</option></select><p id="spacecraft-count" role="status">Loading spacecraft catalogue…</p><button id="spacecraft-update">Check NASA positions</button><p id="spacecraft-feed-state" class="spacecraft-note" role="status">Latest published positions, not live tracking.</p><label class="spacecraft-track-switch"><input id="spacecraft-track-toggle" type="checkbox">Selected vehicle’s recorded track</label><article id="spacecraft-details" class="spacecraft-card" hidden aria-label="Selected spacecraft"></article><div id="spacecraft-list"></div><p class="spacecraft-note"><a href="/spacecraft/catalog.json" target="_blank" rel="noopener">Catalogue &amp; provenance ↗</a></p></section></div>
+<section id="value-info" hidden aria-label="Site evidence"><button id="value-back" class="secondary">← Research results</button><p id="value-evidence" class="evidence-badge"></p><p id="value-priority" class="detail-legend"></p><p id="value-location"></p><p id="value-validation" class="detail-legend"></p><p id="value-detail" class="detail-legend"></p><details><summary>Research sources</summary><div id="value-sources"></div></details></section>
+<section id="detail" hidden><label for="observation">HIRISE OBSERVATION</label><select id="observation"></select><p class="observation-help">Each observation is a separate satellite strip. CTX connects the surrounding surface.</p><p id="coverage" class="muted"></p><dl><dt>Surface imagery</dt><dd id="imagery-resolution">—</dd><dt>Elevation source</dt><dd id="terrain-resolution">—</dd></dl><button id="fit" class="primary">Explore selected observation ↗</button><button id="overview" class="secondary">Region overview ↗</button><div class="layer-controls"><label><input type="checkbox" id="footprints" checked> Coverage outlines</label><label><input type="checkbox" id="relief" checked> Relief ×3 <small>globe-wide · display only</small></label></div><details><summary>Data and accuracy</summary><p id="quality"></p><p>Missing fine-scale elevation retains the coarser context terrain and remains unavailable as native data. Visual detail does not establish navigational safety.</p><a id="source-link" target="_blank" rel="noopener">Original data in Drive ↗</a></details><button id="nearby-values" class="secondary" hidden>Nearby science &amp; resource sites ↗</button><button id="all" class="secondary">← All places</button></section>
+<p class="source-note">CTX / Murray Lab · HiRISE · HRSC/MOLA<br>Mars coordinates · East-positive longitude</p></aside>
+<button id="sidebar-toggle" aria-label="Hide places sidebar" aria-expanded="true" aria-controls="sidebar" title="Hide places sidebar">‹</button>
+<main id="workspace"><div id="globe" aria-label="Interactive 3D Mars terrain"></div><div id="map2d" aria-label="Interactive 2D surface map" hidden></div><span id="view-centre-mark" aria-hidden="true" hidden></span><button id="compare-link" aria-pressed="true" title="Link position and zoom; the 2D map stays north-up" hidden>Views linked</button><div id="view-switch" role="group" aria-label="Map view"><button data-view="3d" aria-pressed="true">3D</button><button data-view="2d">2D</button><button data-view="split">Compare</button></div><nav id="map-tools" aria-label="Map tools"><button id="appearance-toggle" aria-expanded="false" aria-controls="appearance-panel">Layers</button><button id="measure-toggle" aria-expanded="false" aria-pressed="false" aria-controls="measure-panel">Measure</button><button id="route-toggle" aria-expanded="false" aria-pressed="false" aria-controls="route-panel">Routes</button><button id="mission-toggle" aria-expanded="false" aria-controls="mission-panel">Missions</button><button id="spacecraft-open" aria-controls="spacecraft-menu">Spacecraft</button><button id="moons-open" aria-controls="moons-panel" aria-expanded="false">Mars system</button><button id="solar-toggle" aria-expanded="false" aria-pressed="false" aria-controls="solar-panel">Sunlight</button><button id="dust-toggle" aria-expanded="false" aria-pressed="false" aria-controls="dust-panel">Dust ML</button><button id="seismic-toggle" aria-expanded="false" aria-pressed="false" aria-controls="seismic-panel">Seismic Lab</button><button id="assistant-toggle" aria-expanded="false" aria-pressed="false" aria-controls="assistant-panel">ARES AI</button></nav><div id="location-context" aria-label="Current viewing location"><strong id="location-name">Martian surface</strong><small id="location-detail">Identifying the view centre…</small></div><div id="map-controls"><div id="status" role="status">Opening Mars…</div><div id="coverage-state" role="status" data-quality="context">Global context</div><nav id="navigation" aria-label="Terrain navigation" hidden><button id="nav-pan" aria-pressed="true">Pan</button><button id="nav-rotate" aria-pressed="false">Rotate</button><button id="nav-in" aria-label="Zoom terrain in">+</button><button id="nav-out" aria-label="Zoom terrain out">−</button><button id="nav-north" aria-label="Face north">N ↑</button><button id="nav-ground" aria-pressed="false" title="Experimental terrain-following view">Ground</button><span id="nav-hint">Drag to pan · wheel to zoom · right-drag to rotate</span></nav><div id="ground-help" hidden><label for="ground-speed">Movement speed</label><select id="ground-speed"><option value="8">Precise · 8 m/s</option><option value="80" selected>Explore · 80 m/s</option><option value="400">Fast · 400 m/s</option></select><span>WASD walk · Space jump · drag to look · Esc exits. Approximate loaded terrain; fine coverage varies.</span></div></div><div id="mini-wrap" hidden><span id="mini-title">2D OVERVIEW · NORTH UP</span><div id="mini-map"></div><button id="expand-2d" aria-label="Open full 2D map">↗</button></div>
+<section id="mission-panel" class="map-tool-panel" aria-label="Saved missions" hidden><button id="mission-close" class="tool-close" aria-label="Close missions">×</button><h2>Missions</h2><p>Save your measurements, routes, layers and viewpoint together.</p><label for="mission-name">Mission name</label><input id="mission-name" maxlength="80" value="My Mars mission"><div class="route-actions"><button id="mission-save" class="primary">Save in browser</button><button id="mission-share">Copy mission link</button><button id="mission-download">Download mission</button></div><label class="mission-import-label" for="mission-import">Open a mission file<input id="mission-import" type="file" accept=".json,.mars-mission.json,application/json"></label><p id="mission-status" role="status"></p><p id="mission-autosave" class="tool-note">The current session is saved automatically in this browser.</p><h3>Saved in this browser</h3><ul id="mission-list"></ul><p class="tool-note">Download a copy to keep or share the full mission. Anyone with a mission link can read its included points and settings. Saved route results keep their original source information; opening them does not recalculate terrain.</p></section>
+<div id="system-motion" role="group" aria-label="Mars system animation" hidden><button id="system-toggle" aria-pressed="false">▶ Play motion</button><output id="system-clock" aria-live="off"><span id="system-clock-state">CURRENT UTC · 1×</span><time id="system-clock-time"></time></output><div id="system-framing" role="group" aria-label="System framing"><button id="system-inner">Mars &amp; orbiters</button><button id="system-wide">All orbits</button></div></div>
+<section id="moons-panel" class="map-tool-panel" aria-label="Mars system" hidden><button id="moons-close" class="tool-close" aria-label="Close moon controls">×</button><h2>Mars system</h2><p class="moon-intro">Explore Mars, its moons and orbiters at the current UTC. Motion follows real elapsed time: one second here is one second in space.</p><button id="moons-system" class="primary">Show Mars system</button><button id="moons-mars">Return to Mars</button><p class="tool-note">Mars surface overlays are hidden in moon view. Return to Mars restores your selected layers.</p><article class="moon-card"><h3>Phobos</h3><p>The larger, inner moon. Its largest crater is Stickney.</p><output id="moon-distance-phobos"></output><button data-moon="phobos" aria-pressed="false">Explore Phobos</button></article><article class="moon-card"><h3>Deimos</h3><p>The smaller, outer moon, with a smoother-looking surface.</p><output id="moon-distance-deimos"></output><button data-moon="deimos" aria-pressed="false">Explore Deimos</button></article><h3 class="orbiters-heading">Orbiting spacecraft</h3><label class="moon-option"><span>Show orbiters</span><input id="moons-orbiters" type="checkbox" checked></label><div id="orbiters-list"></div><aside id="orbiter-source" hidden></aside><p id="orbiters-status" class="tool-note" role="status">Choose the system view to load dated trajectories.</p><p class="tool-note">Orbiter 3D models are enlarged for visibility. Their attitude is illustrative; orbital positions and distances retain their source scale. Spacecraft without a verified mesh use a marker.</p><fieldset class="orbit-display"><legend>Orbit display</legend><div class="orbit-choices"><label><input type="radio" name="orbit-display" value="path" checked> Path</label><label><input type="radio" name="orbit-display" value="trail"> Trail</label><label><input type="radio" name="orbit-display" value="hidden"> Hidden</label></div><p id="orbit-display-note" class="tool-note">The orbital curve from dated source positions. Partial coverage stays an open arc.</p></fieldset><label class="moon-option"><span>Enlarge moons 20×</span><input id="moons-enhance" type="checkbox"></label><p id="moons-scale-note" class="tool-note"></p><label class="moon-option"><span>Enlarge Sun</span><input id="sun-enlarge" type="checkbox" checked aria-describedby="sun-display-note"></label><p id="sun-display-note" class="tool-note">Sun enlarged for visibility. Display only; its calculated distance stays unchanged. Turn off for physical apparent size.</p><div class="system-rate"><span class="live-dot" aria-hidden="true"></span><strong>Real rate · 1×</strong><small>Current-time ephemerides · no accelerated motion</small></div><p class="tool-note">Pause stops Mars rotation, moon and spacecraft motion, and hides the axis. You can still move the camera.</p><label for="moons-time">Time · UTC</label><input id="moons-time" type="datetime-local" min="2025-01-01T00:00" max="2035-12-31T23:59" step="60"><div class="route-actions"><button id="moons-apply">Inspect snapshot</button><button id="moons-now">Return to now</button><button id="moons-pause">Pause</button></div><output id="moons-clock"></output><p id="moons-status" role="status">Choose a moon or show the system.</p><button id="moons-release" hidden>Stop following object</button><details><summary>Sources &amp; display accuracy</summary><p>Positions use NASA/JPL MAR099 ephemerides and SPICE IAU rotation models. These are geometric modeled positions, not live observations. Coverage: 2025–2035. Moon paths show approximately one revolution. Spacecraft paths follow actual JPL vectors, clipped to one angular revolution around the displayed time; incomplete coverage remains an open arc. Brighter trails show past travel. Positions are interpolated at the current UTC without extrapolation. Pause freezes a dated snapshot; Return to now catches up to current UTC. JPL spacecraft trajectories can include planning predictions. Missing coverage is left unknown. MAVEN is hidden after 4 December 2025 because JPL flags its predicted orbit as unreliable.</p><p>NASA/JPL visualization meshes supplied by you. Texture and prime-meridian alignment are approximate. The moons are 3D objects; Mars imagery and route tools apply to Mars’s surface. The camera-altitude meter continues to refer to Mars.</p><a href="https://ssd.jpl.nasa.gov/horizons/" target="_blank" rel="noopener">JPL spacecraft ephemerides ↗</a> · <a href="https://science.nasa.gov/mars/moons/" target="_blank" rel="noopener">NASA moon facts ↗</a> · <a href="/moons/ephemeris-provenance.json" target="_blank" rel="noopener">Ephemeris provenance ↗</a></details></section>
+<section id="appearance-panel" class="map-tool-panel" aria-label="Map layers" hidden>
+<button id="appearance-close" class="tool-close" aria-label="Close layers">×</button><h2 class="layers-title">Layers</h2>
+<fieldset class="appearance-switch"><legend>Map appearance</legend><div class="appearance-choices"><label><input type="radio" name="map-appearance" value="grayscale"><span>Grayscale</span></label><label><input type="radio" name="map-appearance" value="color" checked aria-describedby="color-availability"><span>Color <small>Viking and shaded detail</small></span></label></div><div class="map-grid-control"><label><span>Latitude / longitude grid</span><input type="checkbox" data-map-layer="graticule" aria-describedby="graticule-details"></label><div id="graticule-details" hidden><p class="tool-note">Planetocentric latitude · N/S. East-positive longitude · E/W. Lines follow the surface; labels thin out near the poles.</p><p id="graticule-spacing" class="tool-note" role="status"></p></div></div><div id="color-enhancement-control" class="color-enhancement-control" hidden><label><span>Enhance map colors</span><input id="color-enhancement" type="checkbox" checked aria-describedby="color-enhancement-note"></label><p id="color-enhancement-note" class="tool-note">Adds saturation and contrast to the selected color basemap.</p></div><p id="color-availability">Color uses Viking at globe scale. At closer scales, finer CTX and HiRISE textures use a display tint guided by Viking color. The displayed metre-per-pixel value describes image detail; color varies at a coarser scale.</p></fieldset>
+<fieldset class="terrain-relief-control"><legend>3D terrain</legend><label class="terrain-relief-row" for="terrain-relief"><span>Enhanced relief <small>3×</small></span><input id="terrain-relief" type="checkbox" checked aria-describedby="terrain-relief-help"></label><p id="terrain-relief-help" class="tool-note">Measured MOLA / HRSC elevations shape the globe in grayscale and color. Heights are enlarged 3× for visibility, including the horizon. Turn off for true-scale relief. Coordinates, elevation readings and route calculations use physical heights; 2D stays flat.</p></fieldset>
+<fieldset class="layer-list"><legend>Mars system</legend><label><span>Phobos &amp; Deimos · 3D</span><input type="checkbox" data-map-layer="moons" checked></label></fieldset>
+<section class="science-section" aria-labelledby="science-heading"><h3 id="science-heading">Scientific overlays</h3><p id="science-count" class="science-count"></p><h4>Recommended overlays</h4><div id="science-recommended"></div><details id="science-more"><summary>More overlays <span>8 map categories</span></summary><div id="science-groups"></div></details><p class="science-exclusivity">One scientific color layer at a time. Grid and contour lines can stay on independently.</p>
+<article id="science-selection" hidden aria-label="Selected overlay details"><h4 id="science-selected-title"></h4><dl class="science-explanation"><dt>What this shows</dt><dd id="science-shows"></dd><dt>How to read it</dt><dd id="science-reading"></dd><dt>Keep in mind</dt><dd id="science-limits"></dd></dl><details class="science-source-details"><summary>Source, resolution &amp; method</summary><p id="science-description"></p><p id="science-coverage"></p><div id="science-source-links"></div></details><p id="science-status" role="status"></p>
+<div id="space-weather-controls" hidden></div>
+<div id="wind-controls" hidden></div>
+<div id="environment-controls" hidden></div>
+<div id="source-controls" hidden></div>
+<div id="science-reference-controls" hidden><label id="science-variant-label" for="science-variant" hidden>Published component / depth band</label><select id="science-variant" hidden></select><label for="science-opacity">Overlay tint <output id="science-opacity-value">55%</output></label><input id="science-opacity" type="range" min="0" max="100" step="1" value="55"><button id="science-retry" class="tool-secondary" hidden>Retry source data</button></div>
+<div id="magnetic-options" hidden><label for="magnetic-altitude">Model evaluation height</label><select id="magnetic-altitude"><option value="150000">150 km above the reference sphere</option><option value="0">Reference surface · modeled estimate</option></select><label for="magnetic-opacity">Magnetic tint <output id="magnetic-opacity-value">40%</output></label><input id="magnetic-opacity" type="range" min="0" max="100" step="1" value="40" aria-describedby="magnetic-blend-help"><div class="magnetic-tint-scale" aria-hidden="true"><span style="left:0%">0%</span><span class="magnetic-tint-threshold" style="left:65%">65%</span><span style="left:100%">100%</span></div><p id="magnetic-blend-help" class="tool-note">Surface detail visibility will decrease significantly beyond 65% tint.</p><p id="magnetic-layer-status" class="tool-note" role="status"></p><button id="magnetic-retry" class="tool-secondary" hidden>Retry magnetic model</button><p class="tool-note">Langlais et al. (2019), based on MGS and MAVEN observations. Static crustal-field magnitude |B| in nT. Degree 134; ≈160 km surface resolving power. Heights refer to a 3,393.5 km sphere, not local terrain. Finer zoom adds no magnetic detail.</p><p class="magnetic-sources"><a href="https://doi.org/10.5281/zenodo.3876714" target="_blank" rel="noopener">Author’s data ↗</a> · <a href="https://doi.org/10.1029/2018JE005854" target="_blank" rel="noopener">Research paper ↗</a> · <a href="/magnetic/model.json" target="_blank" rel="noopener">Verification ↗</a></p></div></article><div id="contour-options" hidden><h4>Contour lines · Static</h4><p>Lines join places at the same elevation. The interval is the height difference between contour levels; closer lines generally mean steeper ground. Zoom closer to show lines. These use the available local terrain grid, so small obstacles may be unresolved.</p><label for="contour-interval">Contour interval</label><select id="contour-interval"><option value="100">100 m</option><option value="250">250 m</option><option value="500" selected>500 m</option><option value="1000">1 km</option><option value="2000">2 km</option></select><p id="contour-status" role="status"></p></div></section>
+<div class="layers-actions"><button id="layers-hide-all">Hide all</button><button id="layers-show-all">Show all</button></div>
+<fieldset class="layer-list"><legend>Places &amp; pins</legend><label><span>Spacecraft · rovers &amp; landers</span><input type="checkbox" data-map-layer="spacecraft" checked></label><button id="spacecraft-layer-open" class="spacecraft-layer-shortcut">Browse spacecraft &amp; recorded tracks ↗</button>
+<label><span class="layer-symbol region-key" aria-hidden="true">◇</span><span>Regions &amp; landmarks</span><input type="checkbox" data-map-layer="regions" checked></label>
+<label><span class="layer-symbol science-key" aria-hidden="true">S</span><span>Science sites</span><input type="checkbox" data-map-layer="science" checked></label>
+<label><span class="layer-symbol mineral-key" aria-hidden="true">M</span><span>Mineral prospects</span><input type="checkbox" data-map-layer="minerals" checked></label>
+<label><span class="layer-symbol resource-key" aria-hidden="true">W</span><span>Crew resources</span><input type="checkbox" data-map-layer="resources" checked></label>
+</fieldset>
+<fieldset class="layer-list"><legend>Outlines &amp; drawings</legend>
+<label><span>Site boundaries</span><input type="checkbox" data-map-layer="boundaries" checked></label>
+<label title="Outlines showing the coverage bounds of prepared high-resolution satellite images."><span>Image footprints</span><input type="checkbox" data-map-layer="footprints" checked></label>
+<label><span>Mission routes</span><input type="checkbox" data-map-layer="routes" checked></label><label><span>My measurements</span><input type="checkbox" data-map-layer="measurements" checked></label>
+</fieldset>
+<p class="tool-note">Applies to 3D, 2D and Compare. Hidden places stay in the menu. Your choices are remembered.</p>
+</section>
+<section id="site-evaluation-panel" class="map-tool-panel ui-drawer" aria-labelledby="site-evaluation-title" hidden>
+ <button id="site-evaluation-close" class="tool-close" type="button" aria-label="Close site evaluation">×</button>
+ <h2 id="site-evaluation-title" tabindex="-1">Landing &amp; base sites</h2>
+</section>
+<section id="route-panel" class="map-tool-panel" aria-label="Plan mission routes" hidden><button id="route-close" class="tool-close" aria-label="Close route planner">×</button><h2>Mission routes</h2><p class="tool-note">Your partner’s original A*, APF survey and deep-science engine, applied to measured Martian terrain.</p>
+<div class="route-endpoint"><strong>A · Start</strong><output id="route-start-readout">Not placed</output><div class="route-actions"><button id="route-pick-start">Pick on map</button><button id="route-centre-start">Use view centre</button></div><details><summary>Start coordinates</summary><form id="route-start-form"><div class="measure-coordinate-grid"><label>Latitude<input id="route-start-lat" aria-label="Start latitude" type="number" step="any" min="-90" max="90" required value="18.48"></label><label>Longitude °E<input id="route-start-lon" aria-label="Start longitude" type="number" step="any" min="-180" max="180" required value="77.4"></label></div><button type="submit">Set start</button></form></details></div>
+<div class="route-endpoint"><strong>B · Destination</strong><output id="route-goal-readout">Not placed</output><div class="route-actions"><button id="route-pick-goal">Pick on map</button><button id="route-centre-goal">Use view centre</button></div><details><summary>Destination coordinates</summary><form id="route-goal-form"><div class="measure-coordinate-grid"><label>Latitude<input id="route-goal-lat" aria-label="Destination latitude" type="number" step="any" min="-90" max="90" required value="18.49"></label><label>Longitude °E<input id="route-goal-lon" aria-label="Destination longitude" type="number" step="any" min="-180" max="180" required value="77.4"></label></div><button type="submit">Set destination</button></form></details></div>
+<div class="route-endpoint"><strong>Science checkpoints · optional</strong><p class="tool-note">Place up to 6 checkpoints and assign priorities from 0–100. These are your priorities, not measured ore grades or proof of life.</p><ol id="route-targets"></ol><button id="route-pick-target">Add checkpoint on map</button></div>
+<div class="route-endpoint" id="route-site-controls"><label class="route-sites-toggle"><input id="route-sites-enabled" type="checkbox" checked>Include nearby sites of value</label><p class="tool-note">APF survey is attracted toward research markers across the loaded mission window. Deep science attempts to visit included stops. Direct safe stays the terrain-cost reference.</p><details id="route-sites-details"><summary id="route-site-summary">Nearby sites of value · 0 included</summary><label for="route-site-radius">Search radius from the endpoint/checkpoint corridor · km</label><input id="route-site-radius" type="number" min="0.1" max="100" step="0.1" value="5"><div class="route-site-categories" aria-label="Site categories for routes"><label><input id="route-site-science" type="checkbox" checked>Science</label><label><input id="route-site-minerals" type="checkbox" checked>Minerals</label><label><input id="route-site-resources" type="checkbox" checked>Resources</label></div><p id="route-site-count" class="tool-note" role="status">Place both endpoints to find nearby markers.</p><ol id="route-site-list"></ol><button id="route-sites-reset">Reset site exclusions &amp; priorities</button><p class="tool-note">Up to six stops total, including your checkpoints, preserve the original exact-order algorithm. Catalogue stops start with equal priority 50; edit these as your preferences. Markers and study windows are research locations, not surveyed outcrop or extraction positions. Routes use the catalogue even when pins are hidden in Layers.</p></details></div>
+<details id="route-settings"><summary>Terrain &amp; mission settings</summary><label for="route-terrain">Elevation source</label><select id="route-terrain"><option value="auto">Automatic · HiRISE if the full window fits</option><option value="native">Prepared HiRISE DEM only</option><option value="global">Regional HRSC/MOLA</option></select><label for="route-spacing">Requested cell spacing</label><select id="route-spacing"><option value="5">5 m · detailed observation</option><option value="25">25 m · detailed observation</option><option value="50" selected>50 m · local mission</option><option value="100">100 m · wider mission</option></select><p class="tool-note">Terrain loads for your selected area, with no fixed distance limit. Regional search uses cells of 50 m or larger, interpolating the ≈200 m elevation source. Prepared HiRISE DEMs can support finer measurements. Large windows adapt to at most 513 × 513 grid points; actual cell spacing and source resolution are shown with results. Unknown elevations stay blocked.</p><div class="route-settings-grid"><label>Mass incl. suit · kg<input id="route-mass" aria-label="Astronaut and suit mass" type="number" min="40" max="250" step="5" value="125"></label><label>Gravity / Earth<input id="route-gravity" aria-label="Gravity ratio" type="number" min="0.1" max="1" step="0.01" value="0.38"></label><label>Slope limit · °<input id="route-slope" aria-label="Route slope limit" type="number" min="1" max="45" step="1" value="22"></label><label class="route-sites-toggle"><input id="route-allow-traverse" type="checkbox"> Allow experimental slope-limit fallback</label><p class="tool-note">If enabled, a blocked strict search may return a steep traverse. Such a route exceeds your selected slope limit and is flagged for review.</p><label>APF attraction<input id="route-pull" aria-label="APF attraction" type="number" min="0" max="2.5" step="0.1" value="1"></label><label>Sensor radius · m<input id="route-sensor" aria-label="Sensor radius" type="number" min="10" max="10000" step="10" value="900"></label></div></details>
+<div class="route-actions route-primary"><button id="route-plan" class="primary">Compare 3 routes</button><button id="route-cancel" hidden>Cancel</button><button id="route-clear">Clear</button></div><p id="route-message" role="status">Choose a start and destination on the map.</p><div class="route-actions"><button id="route-example">Try Jezero terrain</button><button id="route-fit" disabled>Show mission</button></div><div id="route-results"></div><div class="route-actions"><button id="route-json" disabled>Save route data</button><button id="route-geojson" disabled>Save GeoJSON</button></div><details><summary>Model &amp; accuracy</summary><p>Original partner engine: energy-aware 8-neighbour A*, Minetti walking-cost curve, suit-mass and gravity factors, artificial potential field attraction, and exact permutations for the checkpoint order. The ordering uses straight grid distances; its legs use terrain costs.</p><p>Energy and oxygen are model estimates, not a validated EVA budget. Routes check sampled elevation and slopes; they do not yet assess rocks, soil strength, weather, radiation or life support. Heuristic search and smoothing do not guarantee a globally optimal or astronaut-safe path.</p><p>Grid alignment uses metre coordinates. Broad-area grids have increasing projection distortion and coarser sampling; refine sections for local decisions. Smoothing checks the entire sampled corridor. A or B may be moved to a walkable grid cell; adjustments appear with the result. Display relief exaggeration never changes routing heights.</p><a href="/partner-pathfinding-sandbox.html" target="_blank" rel="noopener">Original partner canyon sandbox · synthetic terrain ↗</a></details></section><section id="measure-panel" class="map-tool-panel" aria-label="Measure Mars" hidden><button id="measure-close" class="tool-close" aria-label="Close measurement tool">×</button><h2>Measure</h2><nav class="measure-modes" aria-label="Measurement type"><button data-measure-mode="distance" aria-pressed="true">Distance</button><button data-measure-mode="area" aria-pressed="false">Area</button></nav><div class="measure-result"><small id="measure-result-state">Distance on Mars</small><output id="measure-total" aria-label="Total surface distance">0 m</output><span id="measure-perimeter" hidden></span><span id="measure-count">0 points</span></div><div class="measure-options"><label for="measure-unit">Units<select id="measure-unit"><option value="auto">Automatic</option><option value="m">Metres / m²</option><option value="km">Kilometres / km²</option></select></label><label class="measure-snap-option"><input id="measure-snap" type="checkbox" checked>Snap to placed points</label></div><p id="measure-message" role="status"></p><p id="measure-preview" class="measure-preview"></p><div class="measure-actions"><button id="measure-new">New measurement</button><button id="measure-finish">Finish</button><button id="measure-undo" disabled>Undo</button><button id="measure-clear" disabled>Clear</button></div><button id="measure-centre" class="tool-secondary">Add view centre</button><details><summary>Add a point by coordinates</summary><form id="measure-coordinates"><div class="measure-coordinate-grid"><label for="measure-lat">Latitude<input id="measure-lat" type="number" min="-90" max="90" step="any" value="18.48" required></label><label for="measure-lon">Longitude °E<input id="measure-lon" type="number" min="-180" max="180" step="any" value="77.4" required></label></div><button id="measure-add" type="submit">Add point</button></form></details><ol id="measure-points" aria-label="Measured points"></ol><button id="measure-save" class="tool-secondary" disabled>Save points</button><p class="tool-note">Click to add points · double-click or Enter to finish · Backspace undoes · Esc stops. Close an area by clicking its first point. Hold Ctrl to temporarily disable snapping. Coordinates are added exactly as entered.</p><p class="tool-note">Approximate distance and smaller enclosed area on the Mars reference sphere, excluding terrain slopes, obstacles and route safety. Draw a simple boundary without crossing edges. Relief ×3 does not change the result.</p></section><div id="measure-cursor" aria-hidden="true" hidden><span id="measure-cursor-label"></span></div>
+<section id="elevation-legend" aria-label="Elevation color scale" hidden><strong>Elevation · km above Mars datum</strong><div id="elevation-ramp"></div><div class="elevation-ticks"><span style="left:0">−8</span><span style="left:26.6667%">0</span><span style="left:53.3333%">+8</span><span style="left:80%">+16</span><span style="left:100%">+22</span></div><small>HRSC/MOLA ≈200 m source · coarse MOLA fallback<br>Color indicates height, not surface composition.</small></section>
+<section id="magnetic-legend" aria-label="Crustal magnetic field color scale" hidden><strong>Crustal magnetic field · nT</strong><small id="magnetic-height">150 km above the model reference sphere</small><div id="magnetic-ramp"></div><div id="magnetic-ticks"></div><output id="magnetic-value">Loading model…</output><small>Langlais et al. (2019) · modeled |B|<br>Logarithmic color scale · ≈160 km surface resolution</small></section>
+<section id="science-legend" aria-label="Selected scientific layer legend" hidden><strong id="science-legend-title"></strong><span id="science-legend-units"></span><div id="science-legend-ramp"></div><div class="science-legend-ends"><span id="science-legend-low"></span><span id="science-legend-high"></span></div><output id="science-value" hidden></output><small id="science-legend-note"></small></section>
+<section id="mineral-legend" aria-label="Hydrated mineral detection legend" hidden><span class="overlay-eyebrow">Published detections</span><strong>Hydrated minerals</strong><div class="mineral-legend-key"><span><i class="mineral-dot"></i>One detection</span><span><i class="mineral-badge">12</i>Grouped count</span></div><output id="mineral-visible-count"></output><small>Zoom in to separate nearby records. Points show locations, not deposit boundaries. Unmarked areas may be unsurveyed.</small></section>
+<section id="wind-legend" aria-label="Modeled wind speed legend" hidden><strong id="wind-legend-title">Wind speed · EMARS climatology</strong><span id="wind-legend-units"></span><div id="wind-legend-ramp"></div><div class="science-legend-ends"><span id="wind-legend-low">0</span><span id="wind-legend-high">50+</span></div><output id="wind-legend-value"></output><small id="wind-legend-note"></small></section>
+<section id="space-weather-hud" aria-label="Selected observation or forecast" hidden></section>
+<section id="environment-legend" aria-label="Time-dependent environmental layer legend" hidden><strong id="environment-legend-title"></strong><span id="environment-legend-units"></span><div id="environment-legend-ramp"></div><div class="science-legend-ends"><span id="environment-legend-low"></span><span id="environment-legend-high"></span></div><output id="environment-legend-value"></output><small id="environment-legend-note"></small></section>
+<section id="source-legend" aria-label="Verified source overlay legend" hidden></section>
+<section id="altitude" aria-label="Camera altitude above terrain"><span id="altitude-label">Camera altitude</span><output id="altitude-value">—</output><small id="altitude-source">Terrain loading</small></section><div id="readout">Select a place to explore</div><div id="error" role="alert" hidden></div><div id="busy" hidden>Retrieving surface data from Drive…</div><div id="pin-legend" aria-label="Map marker legend"><span id="legend-regions">◇ Regions</span><span id="legend-science" class="science-key">S Science</span><span id="legend-minerals" class="mineral-key">M Minerals</span><span id="legend-resources" class="resource-key">W Crew resources</span><span id="legend-spacecraft">◎ Spacecraft</span></div>
+<section id="solar-panel" class="map-tool-panel" aria-label="Mars solar lighting and calculation" hidden>
+ <button id="solar-close" class="tool-close" aria-label="Close solar lighting">×</button>
+ <h2>Sunlight &amp; space weather</h2>
+ <p class="solar-intro">Cesium 3D directional sunlight and terrain shadow calculations powered 100% offline by NASA GISS Mars24 analytical equations.</p>
+ <div class="solar-controls-group">
+  <label class="solar-option">
+   <span>Enable 3D globe &amp; terrain lighting</span>
+   <input id="solar-enable" type="checkbox" checked>
+  </label>
+  <label class="solar-option">
+   <span>Cast terrain &amp; model shadows</span>
+   <input id="solar-shadows" type="checkbox">
+  </label>
+ </div>
+ <div class="solar-mode-tabs" role="group" aria-label="Sunlight time mode">
+  <button id="solar-mode-now" aria-pressed="true">Live UTC Sun</button>
+  <button id="solar-mode-scrub" aria-pressed="false">Scrub Sol Time</button>
+ </div>
+ <div id="solar-scrub-controls" hidden>
+  <div class="solar-slider-header">
+   <span>Local True Solar Time (LTST)</span>
+   <span id="solar-hour-value">12:00 LTST</span>
+  </div>
+  <input id="solar-hour-slider" type="range" min="0" max="24" step="0.1" value="12" aria-label="Sol hour slider">
+  <div class="solar-presets" role="group" aria-label="Sol time presets">
+   <button data-solar-preset="dawn">Dawn (06:00)</button>
+   <button data-solar-preset="noon">Noon (12:00)</button>
+   <button data-solar-preset="dusk">Dusk (18:00)</button>
+   <button data-solar-preset="midnight">Night (00:00)</button>
+  </div>
+ </div>
+ <article class="solar-card" aria-label="Solar telemetry">
+  <div class="solar-card-header">
+   <h3>Surface calculation</h3>
+   <span id="solar-state-badge" class="solar-state-badge" data-state="day">Daylight</span>
+  </div>
+  <div class="solar-metrics-grid">
+   <div class="solar-metric">
+    <small>View Centre</small>
+    <strong id="solar-coords">—</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Local Solar Time</small>
+    <strong id="solar-time-readout">12:00 LTST</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Solar Elevation</small>
+    <strong id="solar-elev-readout">+0.0°</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Solar Azimuth</small>
+    <strong id="solar-az-readout">0°</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Surface Flux</small>
+    <strong id="solar-flux-readout">0 W/m²</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Optimal Tilt</small>
+    <strong id="solar-tilt-readout">0.0°</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Daylight Duration</small>
+    <strong id="solar-daylight-readout">12.3 hours/sol</strong>
+   </div>
+   <div class="solar-metric">
+    <small>Season / Distance</small>
+    <strong id="solar-ls-readout">Ls 0° · 1.52 AU</strong>
+   </div>
+  </div>
+ </article>
+ <details class="solar-space-weather"><summary>Space weather &amp; solar activity</summary><p class="tool-note">Dated observations and forecasts with their actual location and instrument coverage. Earth measurements and Mars-arrival forecasts do not describe a global Mars surface field. Select a record to see its source and times.</p><div id="solar-space-weather"></div><article id="solar-weather-selection" class="science-selection" hidden><h4 id="solar-weather-title"></h4><p id="solar-weather-description"></p><p id="solar-weather-coverage" class="tool-note"></p><p id="solar-weather-sources"></p></article></details>
+ <p id="solar-scale-note" class="tool-note">Sun enlarged for visibility at its calculated distance from Mars. Change display size in Mars system.</p>
+ <span class="solar-offline-pill">100% Offline Analytical Model · NASA GISS Mars24</span>
+</section>
+
+<section id="dust-panel" class="map-tool-panel" aria-label="Mars dust model inputs" hidden>
+ <button id="dust-close" class="tool-close" aria-label="Close dust predictor">×</button>
+ <h2>Dust model inputs</h2>
+ <p class="dust-intro">NASA source context and explicit manual inputs for dust-model evaluation. Forecast calibration remains unverified.</p>
+
+ <article class="dust-card" aria-label="Dust source inputs">
+  <div class="dust-card-header">
+   <h3 id="dust-coords">Map centre</h3>
+   <span id="dust-risk-badge" class="dust-badge" data-tier="unknown">UNVALIDATED</span>
+  </div>
+  <div class="dust-meter-wrap">
+   <progress id="dust-risk-meter" max="100" data-tier="unknown" hidden></progress>
+  </div>
+  <div class="dust-metrics-grid">
+   <div class="dust-metric">
+    <small>Storm Probability</small>
+    <strong id="dust-prob-pct">Not validated</strong>
+   </div>
+   <div class="dust-metric">
+    <small>Optical Depth</small>
+    <strong id="dust-tau-val">Unknown</strong>
+   </div>
+   <div class="dust-metric">
+    <small>Solar Occlusion</small>
+    <strong id="dust-power-loss">Not estimated</strong>
+   </div>
+   <div class="dust-metric">
+    <small>Initiation Basin</small>
+    <strong id="dust-basin-note">No source inputs loaded</strong>
+   </div>
+  </div>
+  <div class="dust-drivers-box">
+   <h4>Dominant Atmospheric Drivers</h4>
+   <ul id="dust-drivers-list">
+    <li>Source inputs have not loaded.</li>
+   </ul>
+  </div>
+ </article>
+
+ <div class="dust-controls-box">
+ <label>Inputs<select id="dust-input-mode"><option value="source">NASA source context · current map centre</option><option value="manual">Manual scenario · not observations</option></select></label>
+ <p id="dust-input-status" role="status">Select a point on Mars to load source-backed inputs.</p>
+ <button id="dust-eval-view" class="dust-eval-btn">Load inputs at map centre</button>
+ <form id="dust-manual" hidden><p>Manual values are your scenario, not NASA observations. Coordinates are east-positive.</p>
+<label>Latitude<input id="dust-input-lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude<input id="dust-input-lon" type="number" step="any" min="-180" max="180" required></label><label>Solar longitude Ls · °<input id="dust-input-ls" type="number" step="any" min="0" max="360" required></label><label>Local true solar time · h<input id="dust-input-ltst" type="number" step="any" min="0" max="24" required></label><label>Physical elevation · km<input id="dust-input-elevationKm" type="number" step="any" min="-15" max="30" required></label><label>Wind speed · m/s<input id="dust-input-windMps" type="number" step="any" min="0" max="150" required></label><button type="submit">Evaluate manual inputs</button></form>
+ </div>
+ <p class="tool-note">The supplied tree coefficients have no published training or calibration artifact. They cannot establish storm probability, atmospheric optical depth or solar-panel losses. NASA climatology is modeled context, not a live storm forecast. Historical dust masks remain in Layers.</p>
+</section>
+
+<section id="seismic-panel" class="map-tool-panel" aria-label="Mars and Moon planetary seismology lab" hidden>
+ <button id="seismic-close" class="tool-close" aria-label="Close seismic lab">×</button>
+ <h2>Planetary Seismology</h2>
+ <p class="seismic-intro">Autonomous on-device seismic event detector (STA/LTA trigger) inspired by the 2024 NASA Space Apps Challenge winner, using verified NASA InSight SEIS &amp; Apollo PSE waveforms.</p>
+
+ <div class="seismic-select-group">
+  <label for="seismic-event-select">SELECT SEISMIC EVENT</label>
+  <select id="seismic-event-select" aria-label="Select marsquake or moonquake"></select>
+ </div>
+
+ <div class="seismic-canvas-wrap">
+  <canvas id="seismic-canvas" width="320" height="110" aria-label="Seismic ground velocity waveform"></canvas>
+  <div class="seismic-canvas-legend">
+   <span>Velocity (μm/s)</span>
+   <span class="seismic-legend-item"><i class="seismic-dot p-wave"></i> P-wave</span>
+   <span class="seismic-legend-item"><i class="seismic-dot s-wave"></i> S-wave</span>
+  </div>
+ </div>
+
+ <div class="seismic-filter-tabs" role="group" aria-label="Seismogram filter">
+  <button id="seismic-filter-bp" aria-pressed="true">Bandpass 0.1–1.0 Hz</button>
+  <button id="seismic-filter-raw" aria-pressed="false">Raw Velocity</button>
+ </div>
+
+ <article class="seismic-card" aria-label="Seismic event analysis">
+  <div class="seismic-card-header">
+   <h3 id="seismic-event-title">S1222a Monster Marsquake</h3>
+   <span id="seismic-trigger-badge" class="seismic-trigger-badge" data-status="triggered">TRIGGERED</span>
+  </div>
+  <div class="seismic-metrics-grid">
+   <div class="seismic-metric">
+    <small>Magnitude</small>
+    <strong id="seismic-mag">Mw 4.7</strong>
+   </div>
+   <div class="seismic-metric">
+    <small>Focal Depth</small>
+    <strong id="seismic-depth">25.0 km depth</strong>
+   </div>
+   <div class="seismic-metric">
+    <small>P-Wave Arrival</small>
+    <strong id="seismic-p-arrival">+40.0s</strong>
+   </div>
+   <div class="seismic-metric">
+    <small>S-Wave Arrival</small>
+    <strong id="seismic-s-arrival">+100.0s</strong>
+   </div>
+   <div class="seismic-metric" style="grid-column: span 2;">
+    <small>Derived Epicentral Distance (vP=7.2, vS=4.0 km/s)</small>
+    <strong id="seismic-est-dist">1,620 km</strong>
+   </div>
+  </div>
+  <p id="seismic-desc" class="seismic-desc-box">The largest seismic event ever recorded on another planet. Shook Mars for over 4 hours.</p>
+ </article>
+
+ <div class="seismic-slider-header">
+  <span>STA/LTA Trigger Threshold Ratio</span>
+  <span id="seismic-sens-val">3.2</span>
+ </div>
+ <input id="seismic-sens-slider" type="range" min="1.5" max="8.0" step="0.1" value="3.2" aria-label="Detection sensitivity slider">
+
+ <div class="seismic-actions">
+  <button id="seismic-run-trigger" class="seismic-btn-primary">Run On-Device Trigger</button>
+  <button id="seismic-fly-epicenter" class="seismic-btn-secondary">View Epicenter on Globe ↗</button>
+ </div>
+
+ <span class="seismic-offline-pill">NASA InSight SEIS &amp; Apollo PSE · Offline Trigger</span>
+</section>
+
+<section id="assistant-panel" class="map-tool-panel" aria-label="ARES Tactical Mars EVA Assistant" hidden>
+<button id="assistant-close" class="tool-close" aria-label="Close assistant">×</button>
+<div class="assistant-header"><h2>ARES Co-Pilot</h2><span class="assistant-badge">LOCAL COMMANDS · OPTIONAL MODEL</span></div>
+<p class="tool-note">Map and route commands use the loaded catalogue and calculated profiles. Optional local ARES model support; route estimates are not EVA safety clearance.</p>
+<div class="assistant-audio-box">
+<div class="assistant-waveform" id="assistant-waveform"><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span></div>
+<div class="assistant-audio-controls">
+<button id="assistant-mic" class="assistant-mic-btn" aria-pressed="false" title="Hold or click to speak"><span class="mic-icon">🎙️</span> <span id="assistant-mic-label">Push to Talk</span></button>
+<button id="assistant-mute" class="tool-secondary" title="Mute/Unmute ARES audio output">🔊 Voice ON</button>
+</div>
+</div>
+<div class="assistant-transcript-box">
+<div class="chips-label">CONVERSATION</div>
+<div id="assistant-history" class="assistant-history" role="log" aria-live="polite">
+<div class="assistant-msg ares-msg"><strong class="msg-sender">ARES:</strong><p class="msg-text">ARES is ready for map and route commands. Responses use the current view and loaded catalogue, not live astronaut or rover telemetry.</p></div>
+</div>
+<form id="assistant-form" class="assistant-form">
+<input id="assistant-input" aria-label="Ask ARES" type="text" placeholder="Speak into mic or type command…" autocomplete="off">
+<button type="submit" id="assistant-send" class="primary">Send</button>
+</form>
+</div>
+<div class="assistant-chips">
+<span class="chips-label">QUICK TACTICAL ACTIONS:</span>
+<div class="chips-list">
+<button type="button" class="chip-btn chip-emergency" data-chip="emergency-return">Return to Declared Camp</button>
+<button type="button" class="chip-btn" data-chip="nearest-minerals">🔍 Scan Hydrated Minerals</button>
+<button type="button" class="chip-btn" data-chip="compare-view">🔭 Split Compare View</button>
+<button type="button" class="chip-btn" data-chip="slope-check">⚠️ Check Slope Hazards</button>
+<button type="button" class="chip-btn" data-chip="predict-dust">🌪️ Load dust model inputs</button>
+<button type="button" class="chip-btn" data-chip="detect-seismic">⚡ Detect Marsquakes (InSight)</button>
+<button type="button" class="chip-btn" data-chip="optimal-tour">🛰️ Plan Mineral Tour · 500 km</button>
+<button type="button" class="chip-btn" data-chip="consumables-check">🧑‍🚀 Consumables & O₂ Budget</button>
+</div>
+</div>
+<label class="assistant-model-option"><input id="assistant-local-model" type="checkbox"> Use my local ARES model</label><p class="tool-note">Requires Ollama with the ares-mars model on this computer. Voice recognition may use your browser’s online service. Maps and source feeds still need a connection.</p><div id="assistant-status" class="tool-note" role="status">Ready · Built-in commands</div>
+</section>
+</main>
+<section id="region-popup" aria-label="Selected Mars place" hidden><button id="popup-close" aria-label="Close place preview">×</button><h2 id="popup-name"></h2><p id="popup-description"></p><p id="popup-coverage"></p><button id="popup-explore" class="primary">Explore this place ↗</button></section>
+<footer><span id="storage-status">GOOGLE DRIVE → MAP VIEW</span><span id="view-status">Global context</span><button id="refresh">Refresh available data</button></footer><script type="module" src="/src/app.js"></script><dialog id="spacecraft-model-dialog" class="spacecraft-model-dialog" aria-labelledby="spacecraft-model-title"><div class="spacecraft-model-head"><h2 id="spacecraft-model-title">NASA spacecraft model</h2><button id="spacecraft-model-close" aria-label="Close spacecraft model">×</button></div><div id="spacecraft-model-stage" class="spacecraft-model-stage" aria-label="Interactive NASA spacecraft reference model"></div><div class="spacecraft-model-copy"><p id="spacecraft-model-status" class="spacecraft-model-status" role="status"></p><p id="spacecraft-model-note"></p><p id="spacecraft-model-credit"></p><button id="spacecraft-model-place" hidden>Show reference model on terrain ↗</button></div></dialog><section id="site-evaluation-panel" class="map-tool-panel ui-drawer" aria-labelledby="site-evaluation-title" hidden>
+ <button id="site-evaluation-close" class="tool-close" type="button" aria-label="Close site evaluation">×</button>
+ <h2 id="site-evaluation-title" tabindex="-1">Landing &amp; base sites</h2>
+</section>
+</body></html>

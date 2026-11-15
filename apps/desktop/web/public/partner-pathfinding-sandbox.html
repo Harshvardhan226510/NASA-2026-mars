@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mars EVA Navigator - 3-Profile Pathfinding & Minetti Bioenergetics</title>
+  <style>
+    :root {
+      --bg: #070a12;
+      --panel: #0e1524;
+      --border: #1e293b;
+      --border-light: #334155;
+      --cyan: #00f3ff;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --purple: #a855f7;
+      --text: #f1f5f9;
+      --subtext: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #sidebar {
+      width: 440px;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      overflow-y: auto;
+    }
+    h1 {
+      font-size: 1.12rem;
+      letter-spacing: 0.5px;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.65rem;
+      background: rgba(0, 243, 255, 0.15);
+      border: 1px solid var(--cyan);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--cyan);
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .card-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--subtext);
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Tabs for 3 route profiles */
+    .route-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .route-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--subtext);
+      padding: 8px 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .route-tab:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+    .route-tab.active-all {
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.15);
+      color: var(--cyan);
+      grid-column: span 2;
+    }
+    .route-tab.active-r1 {
+      border-color: var(--green);
+      background: rgba(16, 185, 129, 0.18);
+      color: var(--green);
+    }
+    .route-tab.active-r2 {
+      border-color: var(--amber);
+      background: rgba(245, 158, 11, 0.18);
+      color: var(--amber);
+    }
+    .route-tab.active-r3 {
+      border-color: var(--cyan);
+      background: rgba(0, 243, 255, 0.18);
+      color: var(--cyan);
+      grid-column: span 2;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    button {
+      flex: 1;
+      background: rgba(0, 243, 255, 0.1);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 8px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    button:hover { background: var(--cyan); color: #000; }
+    button.btn-primary {
+      background: var(--cyan);
+      color: #000;
+      font-size: 0.85rem;
+      padding: 9px;
+    }
+    button.btn-primary:hover { background: #6df8ff; }
+    button.btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #334155;
+      color: var(--text);
+    }
+    button.btn-secondary:hover { background: #334155; color: #fff; }
+    button.btn-danger {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: var(--red);
+      color: #fca5a5;
+    }
+    button.btn-danger:hover { background: var(--red); color: #000; }
+    button.btn-danger.active {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .control { margin-bottom: 8px; }
+    .control:last-child { margin-bottom: 0; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: #cbd5e1;
+      margin-bottom: 3px;
+    }
+    input[type=range] { width: 100%; accent-color: var(--cyan); cursor: pointer; }
+
+    /* Comparison Telemetry Table */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: monospace;
+      font-size: 0.72rem;
+      margin-top: 4px;
+    }
+    .compare-table th {
+      text-align: left;
+      padding: 5px 4px;
+      color: var(--subtext);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+    .compare-table td {
+      padding: 4px 4px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+    .c-metric { color: #e2e8f0; font-weight: 600; }
+    .c-r1 { color: var(--green); font-weight: bold; }
+    .c-r2 { color: var(--amber); font-weight: bold; }
+    .c-r3 { color: var(--cyan); font-weight: bold; }
+
+    /* Model Bioenergetics Inspector */
+    .bio-box {
+      background: #060911;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: monospace;
+      font-size: 0.71rem;
+      color: #38bdf8;
+      line-height: 1.45;
+    }
+    .highlight { color: #facc15; font-weight: bold; }
+
+    #main-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    #canvas-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #05070d;
+      padding: 10px;
+    }
+    canvas {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
+      cursor: grab;
+    }
+    canvas:active { cursor: grabbing; }
+
+    #top-bar {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .pill {
+      background: rgba(14, 21, 36, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    #legend {
+      position: absolute;
+      bottom: 18px;
+      left: 20px;
+      background: rgba(14, 21, 36, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      display: flex;
+      gap: 14px;
+      font-size: 0.71rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; }
+    .line-dot { width: 14px; height: 4px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <h1>Mars EVA Navigator <span class="badge">NASA Space Apps</span></h1>
+    <p style="font-size: 0.72rem; color: #94a3b8; line-height: 1.35;">
+      Autonomous pathfinding engine utilizing <b>Minetti's Biomechanical Model (0.38g)</b> and <b>Artificial Potential Fields (APF)</b> to compare 3 distinct mission profiles.
+    </p>
+
+    <!-- Mission Profile Selector -->
+    <div class="card">
+      <div class="card-title">Select Mission View</div>
+      <div class="route-tabs">
+        <div id="tab-all" class="route-tab active-all">✨ All 3 Routes Overlaid (Comparative)</div>
+        <div id="tab-r1" class="route-tab">🟢 R1: Direct Safe</div>
+        <div id="tab-r2" class="route-tab">🟠 R2: APF Survey</div>
+        <div id="tab-r3" class="route-tab">🔵 R3: Deep Science (Direct Intercept)</div>
+      </div>
+      <p id="profile-desc" style="font-size: 0.7rem; color: var(--subtext); line-height: 1.3; margin-top: 4px;">
+        Comparing all 3 routes simultaneously: Safe evacuation vs. Remote sensing vs. Core sample drilling.
+      </p>
+    </div>
+
+    <!-- Comparative Telemetry Table -->
+    <div class="card">
+      <div class="card-title">
+        <span>Mission Profile Comparison</span>
+        <span style="font-size: 0.65rem; color: var(--cyan);">Minetti 0.38g</span>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th style="color: var(--green);">R1: Safe</th>
+            <th style="color: var(--amber);">R2: APF</th>
+            <th style="color: var(--cyan);">R3: Deep</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="c-metric">Distance</td>
+            <td id="m-r1-dist" class="c-r1">--</td>
+            <td id="m-r2-dist" class="c-r2">--</td>
+            <td id="m-r3-dist" class="c-r3">--</td>
+          </tr>
+          <tr>
+            <td class="c-metric">Minetti Work</td>
+            <td id="m-r1-work" class="c-r1">--</td>
+            <td id="m-r2-work" class="c-r2">--</td>
+            <td id="m-r3-work" class="c-r3">--</td>
+          </tr>
+          <tr>
+            <td class="c-metric">Oxygen Burn</td>
+            <td id="m-r1-o2" class="c-r1">--</td>
+            <td id="m-r2-o2" class="c-r2">--</td>
+            <td id="m-r3-o2" class="c-r3">--</td>
+          </tr>
+          <tr>
+            <td class="c-metric">Peak Slope</td>
+            <td id="m-r1-slope" class="c-r1">--</td>
+            <td id="m-r2-slope" class="c-r2">--</td>
+            <td id="m-r3-slope" class="c-r3">--</td>
+          </tr>
+          <tr>
+            <td class="c-metric">Minerals Hit</td>
+            <td id="m-r1-min" class="c-r1">0 / 3</td>
+            <td id="m-r2-min" class="c-r2">--</td>
+            <td id="m-r3-min" class="c-r3">3 / 3</td>
+          </tr>
+          <tr>
+            <td class="c-metric">Science Score</td>
+            <td id="m-r1-sci" class="c-r1">0 pts</td>
+            <td id="m-r2-sci" class="c-r2">--</td>
+            <td id="m-r3-sci" class="c-r3">260 pts</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Execution & Animation Controls -->
+    <div class="card">
+      <div class="card-title">Execution Controls</div>
+      <div class="btn-row">
+        <button id="btn-run" class="btn-primary">▶ Step-by-Step Animation</button>
+        <button id="btn-instant">⚡ Instant Solve All</button>
+      </div>
+      <div class="btn-row">
+        <button id="btn-step" class="btn-secondary">⏭ Step 1 Node</button>
+        <button id="btn-reseed" class="btn-secondary">🎲 Regen Canyon</button>
+      </div>
+      <div class="btn-row" style="margin-top: 4px;">
+        <button id="btn-straight" class="btn-danger">⚠️ Compare Straight Line (Hazardous)</button>
+      </div>
+      <div class="control" style="margin-top: 6px;">
+        <label>Animation Speed <span id="val-speed">30 nodes/frame</span></label>
+        <input type="range" id="slider-speed" min="1" max="100" value="30" step="1">
+      </div>
+    </div>
+
+    <!-- Bioenergetics Model Parameters -->
+    <div class="card">
+      <div class="card-title">Minetti & Planetary Parameters</div>
+      <div class="control">
+        <label>
+          <span>Astronaut Mass (incl. Suit)</span>
+          <span id="val-mass" class="highlight">125 kg</span>
+        </label>
+        <input type="range" id="slider-mass" min="80" max="160" value="125" step="5">
+        <div style="font-size: 0.65rem; color: #64748b; margin-top: 2px;">
+          Heavier load spikes uphill gravitational work, forcing routes through flatter passes!
+        </div>
+      </div>
+      <div class="control">
+        <label>Mars Gravity Factor <span id="val-grav" class="highlight">0.38g</span></label>
+        <input type="range" id="slider-grav" min="0.25" max="0.55" value="0.38" step="0.01">
+      </div>
+      <div class="control">
+        <label>Max Safe Slope Angle <span id="val-slope-max" class="highlight">22°</span></label>
+        <input type="range" id="slider-slope-max" min="14" max="32" value="22" step="1">
+      </div>
+      <div class="control">
+        <label>
+          <span>APF Gravitational Pull (R2)</span>
+          <span id="val-apf" class="highlight">100%</span>
+        </label>
+        <input type="range" id="slider-apf" min="20" max="250" value="100" step="5">
+        <div style="font-size: 0.65rem; color: #64748b; margin-top: 2px;">
+          Controls the strength of mineral gravitational wells pulling R2 into survey halos!
+        </div>
+      </div>
+    </div>
+
+    <!-- Scientific Formulation Reference -->
+    <div class="card">
+      <div class="card-title">Scientific Formulation</div>
+      <div class="bio-box">
+        <div>• <b>Minetti (2002):</b> Cw(i) = 280.5i⁵ - 58.7i⁴ - 289.8i³ + 74.3i² + 19.1i + 3.2 J/(kg·m)</div>
+        <div>• <b>Uphill Mass Coupling:</b> W_lift = (M/80)³ · (θ/15)².⁵. Heavy mass forces flatter valley floors!</div>
+        <div>• <b>O2 Equivalent:</b> 1 Liter O2 = 20.9 kJ metabolic expenditure</div>
+        <div>• <b>APF Incentive:</b> Traversing mineral observation halos discounts effective step cost</div>
+        <div>• <b>R3 TSP Sequencing:</b> Permutation tour avoiding all backtracking</div>
+      </div>
+    </div>
+
+    <!-- Clear Martian EVA FAQ Card -->
+    <div class="card" style="border-color: rgba(0, 243, 255, 0.25);">
+      <div class="card-title" style="color: var(--cyan);">Mission Commander FAQ</div>
+      <div style="font-size: 0.69rem; color: #cbd5e1; line-height: 1.4; display: flex; flex-direction: column; gap: 7px;">
+        <div>
+          <b style="color: #f87171;">Q1: Why not a straight ruler line?</b><br>
+          Mars is not flat! The straight line between Start & Goal cuts directly through a <b>45° vertical cliff wall</b> (click the red button above to test). Walking off a 45° cliff is 100% fatal. Paths curve through the gentle <b>13° canyon pass</b> to keep the astronaut alive.
+        </div>
+        <div>
+          <b style="color: #f59e0b;">Q2: What does Astronaut Mass do?</b><br>
+          A light astronaut (80 kg) easily hikes over the 15° hill at (50, 22) to save distance. A heavy astronaut (160 kg) carrying heavy gear suffers exponential muscle exhaustion on slopes, forcing the pathfinder to divert around the hill into flatter valleys.
+        </div>
+        <div>
+          <b style="color: #38bdf8;">Q3: How do R1, R2 & R3 differ?</b><br>
+          • <b>R1 Safe:</b> Emergency exit. Ignores minerals completely.<br>
+          • <b>R2 APF:</b> Remote-sensing flyby. Curves into mineral sensor range without stopping.<br>
+          • <b>R3 Deep:</b> Ground drilling expedition. Intercepts every deposit directly in optimal order.
+        </div>
+        <div>
+          <b style="color: #4ade80;">Q4: Is anything hardcoded?</b><br>
+          <b>Zero hardcoding!</b> Click & drag Start, Goal, or any Mineral with your mouse, or slide Mass/APF, and watch A* recompute all routes live across 6,400 terrain cells!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-stage">
+    <div id="top-bar">
+      <div class="pill">
+        <span style="color: var(--cyan);">💡 Drag START (Green), GOAL (Red), or MINERALS (Gold) with your mouse</span>
+      </div>
+      <div class="pill" id="status-pill">
+        <span id="status-text">All 3 Mission Profiles Computed</span>
+      </div>
+    </div>
+
+    <div id="canvas-container">
+      <canvas id="mapCanvas" width="620" height="620"></canvas>
+    </div>
+
+    <div id="legend">
+      <div class="legend-item"><div class="line-dot" style="background: var(--green);"></div> R1: Direct Safe</div>
+      <div class="legend-item"><div class="line-dot" style="background: var(--amber);"></div> R2: APF Survey</div>
+      <div class="legend-item"><div class="line-dot" style="background: var(--cyan);"></div> R3: Deep Science</div>
+      <div class="legend-item"><div class="dot" style="background: var(--gold);"></div> Science Deposit</div>
+      <div class="legend-item"><div class="dot" style="background: rgba(239, 68, 68, 0.65);"></div> Cliff Wall (>22°)</div>
+    </div>
+  </div>
+
+  <script>
+    const N = 80;
+    const CELL_SIZE = 620 / N;
+    const RES_METERS = 50.0;
+    const APF_RADIUS_METERS = 1000.0;
+    const JOULES_PER_LITER_O2 = 20900.0;
+
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Model parameters
+    let elev = [];
+    let slope = [];
+    let astronautMass = 125.0;
+    let marsGravity = 0.38;
+    let maxSlope = 22.0;
+    let apfPull = 1.0; // 100%
+    let animSpeed = 30;
+    let showStraightLine = false;
+
+    // View mode: 'all', 'r1', 'r2', 'r3'
+    let activeView = 'all';
+
+    // Interactive Coordinates
+    // Placing Hematite at (42, 56) in an eastern alcove off the main canyon pass!
+    let startNode = { r: 68, c: 14 };
+    let goalNode = { r: 14, c: 66 };
+    let minerals = [
+      { r: 60, c: 28, name: "Sulfate", score: 90 },
+      { r: 40, c: 56, name: "Hematite", score: 85 },
+      { r: 16, c: 42, name: "Clay", score: 95 }
+    ];
+
+    let draggingTarget = null;
+
+    // 3 Computed Routes
+    let routeR1 = null; // Direct Safe
+    let routeR2 = null; // APF Survey
+    let routeR3 = null; // Deep Science
+
+    // Step-by-step animation engine state
+    let isAnimating = false;
+    let animFrameId = null;
+    let activeAnimationSolver = null;
+    let animPhaseIndex = 0;
+    let animCheckpoints = [];
+    let animBuiltPath = [];
+
+    // 1. Minetti (2002) Metabolic Equation + Non-Linear Mass Load Coupling
+    function minettiCw(gradient) {
+      const i = Math.max(-0.45, Math.min(0.45, gradient));
+      const cw = (
+        280.5 * Math.pow(i, 5) -
+        58.7 * Math.pow(i, 4) -
+        289.8 * Math.pow(i, 3) +
+        74.3 * Math.pow(i, 2) +
+        19.1 * i +
+        3.2
+      );
+      return Math.max(1.2, cw);
+    }
+
+    // Mass actively influences the route geometry!
+    // Carrying a heavy suit (e.g. 160kg) causes exponential vertical fatigue on inclines.
+    // Light astronauts (80kg) can climb moderate 15° hills to save distance; heavy astronauts divert around them!
+    function calculateStepEnergy(currR, currC, nr, nc, distM) {
+      const elevDiff = elev[nr][nc] - elev[currR][currC];
+      const grad = distM > 0 ? elevDiff / distM : 0;
+      const cw = minettiCw(grad);
+      const marsEffort = marsGravity + 0.15; // Mars gravity + pressurized suit joint stiffness
+
+      // Cubic mass load coupling for uphill climbing:
+      const massRatio = astronautMass / 80.0;
+      const slopeDeg = slope[nr][nc];
+      const hillAversion = elevDiff > 0 ? (1.0 + Math.pow(massRatio, 3.0) * Math.pow(slopeDeg / 15.0, 2.5)) : 1.0;
+
+      return cw * astronautMass * distM * marsEffort * hillAversion;
+    }
+
+    // 2. Realistic Procedural Martian Canyon Terrain Generation
+    // Features:
+    // - Towering canyon cliff wall with slopes > 45° (lethal red barrier)
+    // - Natural gentle canyon pass (slope 11°-15°, safe ochre ramp, guaranteed passable)
+    // - Strategic testing hill on western plateau:
+    //   Light astronauts (80kg) climb over it; Heavy astronauts (160kg) divert around it!
+    let canyonSeed = 42.0;
+    let currentPassRow = 28.0;
+
+    function generateTerrain(seed = null) {
+      if (seed !== null) {
+        canyonSeed = seed;
+      }
+      elev = [];
+      slope = [];
+      
+      // Pass row varies between row 25 and 38
+      currentPassRow = 26.0 + (canyonSeed % 13.0);
+      const warpAmp = 3.5 + (canyonSeed % 3.0);
+      const cCenter = 38.0 + (canyonSeed % 3.0) - 1.5;
+
+      const hillR = 46.0 + ((canyonSeed * 3.7) % 14.0);
+      const hillC = 18.0 + ((canyonSeed * 2.3) % 8.0);
+
+      for (let r = 0; r < N; r++) {
+        elev[r] = [];
+        slope[r] = [];
+        for (let c = 0; c < N; c++) {
+          const base = -2100.0;
+          const distFromPass = Math.abs(r - currentPassRow);
+          // Wide pass corridor: gentle inside, towering cliff outside
+          const cliffSharpness = 0.08 + 0.92 * (1.0 / (1.0 + Math.exp(-(distFromPass - 8.5) / 2.0)));
+          
+          const cWarp = cCenter + Math.sin((r + canyonSeed * 2.1) / 13.0) * warpAmp;
+          const canyon = -420.0 / (1.0 + Math.exp(-(c - cWarp) * (0.07 + 0.45 * cliffSharpness)));
+          
+          // Gentle undulating plains
+          const plains = 16.0 * Math.sin((c + canyonSeed) / 12.0) * Math.cos((r + canyonSeed) / 12.0);
+          
+          // Strategic testing hill
+          const hill = 135.0 * Math.exp(-((Math.pow(r - hillR, 2) + Math.pow(c - hillC, 2))) / (2 * Math.pow(5.5, 2)));
+          
+          elev[r][c] = base + canyon + plains + hill;
+        }
+      }
+
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          const r0 = Math.max(0, r - 1), r1 = Math.min(N - 1, r + 1);
+          const c0 = Math.max(0, c - 1), c1 = Math.min(N - 1, c + 1);
+          const gy = (elev[r1][c] - elev[r0][c]) / ((r1 - r0) * RES_METERS || 1);
+          const gx = (elev[r][c1] - elev[r][c0]) / ((c1 - c0) * RES_METERS || 1);
+          slope[r][c] = (Math.atan(Math.sqrt(gx * gx + gy * gy)) * 180) / Math.PI;
+        }
+      }
+    }
+
+    function isWalkable(r, c) {
+      if (r < 0 || r >= N || c < 0 || c >= N) return false;
+      return slope[r][c] <= maxSlope;
+    }
+
+    function findNearestWalkable(r, c) {
+      if (isWalkable(r, c)) return { r, c };
+      for (let rad = 1; rad < 20; rad++) {
+        for (let dr = -rad; dr <= rad; dr++) {
+          for (let dc = -rad; dc <= rad; dc++) {
+            if (Math.max(Math.abs(dr), Math.abs(dc)) === rad) {
+              const nr = r + dr, nc = c + dc;
+              if (isWalkable(nr, nc)) return { r: nr, c: nc };
+            }
+          }
+        }
+      }
+      return { r, c };
+    }
+
+    // 3. Line-of-sight Path Smoothing (For R1 and R3)
+    function canWalkStraight(p1, p2) {
+      const r0 = p1.r, c0 = p1.c;
+      const r1 = p2.r, c1 = p2.c;
+      const dr = Math.abs(r1 - r0);
+      const dc = Math.abs(c1 - c0);
+      const sr = r0 < r1 ? 1 : -1;
+      const sc = c0 < c1 ? 1 : -1;
+      let err = dr - dc;
+      let cr = r0, cc = c0;
+
+      while (true) {
+        if (!isWalkable(cr, cc)) return false;
+        if (cr === r1 && cc === c1) break;
+        const e2 = 2 * err;
+        if (e2 > -dc) { err -= dc; cr += sr; }
+        if (e2 < dr) { err += dr; cc += sc; }
+      }
+      return true;
+    }
+
+    function smoothPathR1(rawPath) {
+      if (!rawPath || rawPath.length <= 2) return rawPath;
+      const smoothed = [rawPath[0]];
+      let curr = 0;
+
+      while (curr < rawPath.length - 1) {
+        let furthest = curr + 1;
+        const maxLook = Math.min(rawPath.length - 1, curr + 14);
+        for (let cand = maxLook; cand > curr; cand--) {
+          if (canWalkStraight(rawPath[curr], rawPath[cand])) {
+            furthest = cand;
+            break;
+          }
+        }
+        smoothed.push(rawPath[furthest]);
+        curr = furthest;
+      }
+      return smoothed;
+    }
+
+    // Curvature-preserving filter for R2 (APF):
+    // Preserves the attractive gravity curves into mineral halos!
+    function smoothPathR2(rawPath) {
+      if (!rawPath || rawPath.length <= 4) return rawPath;
+      const result = [rawPath[0]];
+
+      for (let i = 1; i < rawPath.length - 1; i += 2) {
+        result.push(rawPath[i]);
+      }
+      result.push(rawPath[rawPath.length - 1]);
+      return result;
+    }
+
+    // 4. A* Search Solver with Minetti Bioenergetics and APF Science Incentives
+    class MinettiAStar {
+      constructor(fromNode, toNode, useAPF = false) {
+        this.start = findNearestWalkable(fromNode.r, fromNode.c);
+        this.goal = findNearestWalkable(toNode.r, toNode.c);
+        this.useAPF = useAPF;
+
+        this.openSet = [{ r: this.start.r, c: this.start.c, f: 0, g: 0, h: 0 }];
+        this.closedSet = new Set();
+        this.cameFrom = new Map();
+        this.gScore = new Map();
+        this.key = (r, c) => `${r},${c}`;
+
+        this.gScore.set(this.key(this.start.r, this.start.c), 0);
+        this.finished = false;
+        this.path = null;
+        this.currentNode = null;
+
+        this.neighbors = [
+          [-1, 0, 1], [1, 0, 1], [0, -1, 1], [0, 1, 1],
+          [-1, -1, 1.414], [-1, 1, 1.414], [1, -1, 1.414], [1, 1, 1.414]
+        ];
+      }
+
+      heuristic(r, c) {
+        const dM = Math.hypot((r - this.goal.r) * RES_METERS, (c - this.goal.c) * RES_METERS);
+        const flatWorkPerM = 3.2 * astronautMass * (marsGravity + 0.15);
+        // Scaled to remain strictly admissible under APF discounts
+        const factor = this.useAPF ? 0.35 : 1.0;
+        return dM * flatWorkPerM * factor;
+      }
+
+      step() {
+        if (this.finished) return true;
+        if (this.openSet.length === 0) {
+          this.finished = true;
+          this.path = null;
+          return true;
+        }
+
+        this.openSet.sort((a, b) => a.f - b.f);
+        const curr = this.openSet.shift();
+        this.currentNode = curr;
+        this.closedSet.add(this.key(curr.r, curr.c));
+
+        if (curr.r === this.goal.r && curr.c === this.goal.c) {
+          const p = [];
+          let temp = curr;
+          while (temp) {
+            p.push({ r: temp.r, c: temp.c });
+            temp = this.cameFrom.get(this.key(temp.r, temp.c));
+          }
+          this.path = p.reverse();
+          this.finished = true;
+          return true;
+        }
+
+        for (const [dr, dc, mult] of this.neighbors) {
+          const nr = curr.r + dr, nc = curr.c + dc;
+          if (!isWalkable(nr, nc)) continue;
+          if (this.closedSet.has(this.key(nr, nc))) continue;
+
+          const distM = mult * RES_METERS;
+          const physicalEnergy = calculateStepEnergy(curr.r, curr.c, nr, nc, distM);
+
+          // Khatib APF Science Incentive (Survey Flyby):
+          // Traversing through the observation halos of minerals yields a scientific discount!
+          // This naturally curves the trajectory toward targets without stopping for core drilling.
+          let stepCost = physicalEnergy;
+          if (this.useAPF && apfPull > 0) {
+            let attraction = 0.0;
+            for (const m of minerals) {
+              const dM = Math.hypot((nr - m.r) * RES_METERS, (nc - m.c) * RES_METERS);
+              if (dM < APF_RADIUS_METERS) {
+                attraction += (m.score / 100.0) / (1.0 + Math.pow(dM / 220.0, 2));
+              }
+            }
+            const discount = Math.min(0.85, (apfPull / 1.0) * 0.70 * attraction);
+            stepCost = physicalEnergy * (1.0 - discount);
+          }
+
+          const tentG = this.gScore.get(this.key(curr.r, curr.c)) + stepCost;
+          const nKey = this.key(nr, nc);
+
+          if (!this.gScore.has(nKey) || tentG < this.gScore.get(nKey)) {
+            this.gScore.set(nKey, tentG);
+            const h = this.heuristic(nr, nc);
+            const f = tentG + h;
+            this.cameFrom.set(nKey, curr);
+
+            const existing = this.openSet.find(item => item.r === nr && item.c === nc);
+            if (existing) {
+              existing.f = f;
+              existing.g = tentG;
+              existing.h = h;
+            } else {
+              this.openSet.push({ r: nr, c: nc, f, g: tentG, h });
+            }
+          }
+        }
+        return false;
+      }
+    }
+
+    // 5. Permutation Tour Optimizer (TSP for Route 3)
+    // Guarantees zero criss-cross loops and forward-progression
+    function getOptimalExpeditionSequence() {
+      const candidates = [...minerals];
+      if (candidates.length <= 1) return candidates;
+
+      function permutations(arr) {
+        if (arr.length <= 1) return [arr];
+        const res = [];
+        for (let i = 0; i < arr.length; i++) {
+          const rest = [...arr.slice(0, i), ...arr.slice(i + 1)];
+          for (const p of permutations(rest)) {
+            res.push([arr[i], ...p]);
+          }
+        }
+        return res;
+      }
+
+      let bestTour = candidates;
+      let minDistance = Infinity;
+
+      for (const tour of permutations(candidates)) {
+        let totalD = Math.hypot(tour[0].r - startNode.r, tour[0].c - startNode.c);
+        for (let i = 0; i < tour.length - 1; i++) {
+          totalD += Math.hypot(tour[i + 1].r - tour[i].r, tour[i + 1].c - tour[i].c);
+        }
+        totalD += Math.hypot(goalNode.r - tour[tour.length - 1].r, goalNode.c - tour[tour.length - 1].c);
+
+        if (totalD < minDistance) {
+          minDistance = totalD;
+          bestTour = tour;
+        }
+      }
+      return bestTour;
+    }
+
+    // 6. Route Solvers
+    function solveProfileR1() {
+      // Direct Safe (Pure Minetti energy, no APF, straight-line shortcutting)
+      const solver = new MinettiAStar(startNode, goalNode, false);
+      while (!solver.finished) solver.step();
+      const smoothed = smoothPathR1(solver.path);
+      return analyzeRoute(smoothed, "direct_safe");
+    }
+
+    function solveProfileR2() {
+      // APF Survey Flyby (Artificial Potential Field Attraction)
+      // Uses curvature-preserving smoothing so the APF detour curve is NOT erased!
+      const solver = new MinettiAStar(startNode, goalNode, true);
+      while (!solver.finished) solver.step();
+      const smoothed = smoothPathR2(solver.path);
+      return analyzeRoute(smoothed, "apf_survey");
+    }
+
+    function solveProfileR3() {
+      // Deep Science: Ordered TSP tour through every mineral directly
+      const tour = getOptimalExpeditionSequence();
+      let curr = startNode;
+      const fullPath = [];
+
+      for (const target of tour) {
+        const solver = new MinettiAStar(curr, target, false);
+        while (!solver.finished) solver.step();
+        if (solver.path) {
+          const leg = smoothPathR1(solver.path);
+          if (fullPath.length === 0) fullPath.push(...leg);
+          else fullPath.push(...leg.slice(1));
+          curr = target;
+        }
+      }
+
+      // Final leg to extraction goal
+      const finalSolver = new MinettiAStar(curr, goalNode, false);
+      while (!finalSolver.finished) finalSolver.step();
+      if (finalSolver.path) {
+        const finalLeg = smoothPathR1(finalSolver.path);
+        if (fullPath.length === 0) fullPath.push(...finalLeg);
+        else fullPath.push(...finalLeg.slice(1));
+      }
+
+      return analyzeRoute(fullPath, "deep_science");
+    }
+
+    function analyzeRoute(path, name) {
+      if (!path || path.length < 2) {
+        return { path: [], distKm: 0, workKj: 0, o2L: 0, maxSlope: 0, mineralsHit: 0, science: 0 };
+      }
+
+      let distM = 0;
+      let totalJoules = 0;
+      let maxSlp = 0;
+
+      for (let i = 1; i < path.length; i++) {
+        const p1 = path[i - 1], p2 = path[i];
+        const stepDist = Math.hypot(p2.r - p1.r, p2.c - p1.c) * RES_METERS;
+        distM += stepDist;
+        maxSlp = Math.max(maxSlp, slope[p2.r][p2.c]);
+
+        totalJoules += calculateStepEnergy(p1.r, p1.c, p2.r, p2.c, stepDist);
+      }
+
+      // Check minerals sampled:
+      // R3 intercepts them directly (< 150m = 3 cells)
+      // R2 surveys them with remote sensors (< 450m = 9 cells)
+      // R1 is an emergency safe bypass (ignores minerals)
+      let minCount = 0;
+      let sciScore = 0;
+      const sensorRadius = (name === "apf_survey") ? 9.0 : 3.2;
+
+      for (const m of minerals) {
+        const near = path.some(pt => Math.hypot(pt.r - m.r, pt.c - m.c) <= sensorRadius);
+        if (near) {
+          minCount++;
+          sciScore += m.score;
+        }
+      }
+
+      const totalKj = totalJoules / 1000.0;
+      const o2L = totalJoules / JOULES_PER_LITER_O2;
+
+      return {
+        path,
+        distKm: (distM / 1000).toFixed(2),
+        workKj: totalKj.toFixed(1),
+        o2L: o2L.toFixed(1),
+        maxSlope: maxSlp.toFixed(1),
+        mineralsHit: minCount,
+        science: sciScore
+      };
+    }
+
+    // Straight Euclidean Line analysis for user comparison
+    function getStraightLineStats() {
+      const p1 = startNode, p2 = goalNode;
+      const totalDistM = Math.hypot(p2.r - p1.r, p2.c - p1.c) * RES_METERS;
+      let maxSlp = 0;
+      let cliffHits = 0;
+
+      const steps = 60;
+      for (let s = 0; s <= steps; s++) {
+        const frac = s / steps;
+        const r = Math.round(p1.r + frac * (p2.r - p1.r));
+        const c = Math.round(p1.c + frac * (p2.c - p1.c));
+        if (r >= 0 && r < N && c >= 0 && c < N) {
+          const slp = slope[r][c];
+          maxSlp = Math.max(maxSlp, slp);
+          if (slp > maxSlope) cliffHits++;
+        }
+      }
+
+      return {
+        distKm: (totalDistM / 1000).toFixed(2),
+        maxSlope: maxSlp.toFixed(1),
+        cliffHits
+      };
+    }
+
+    function solveAllRoutes() {
+      routeR1 = solveProfileR1();
+      routeR2 = solveProfileR2();
+      routeR3 = solveProfileR3();
+
+      updateComparisonTable();
+      render();
+    }
+
+    function updateComparisonTable() {
+      if (!routeR1 || !routeR2 || !routeR3) return;
+
+      document.getElementById('m-r1-dist').textContent = routeR1.distKm + " km";
+      document.getElementById('m-r2-dist').textContent = routeR2.distKm + " km";
+      document.getElementById('m-r3-dist').textContent = routeR3.distKm + " km";
+
+      document.getElementById('m-r1-work').textContent = routeR1.workKj + " kJ";
+      document.getElementById('m-r2-work').textContent = routeR2.workKj + " kJ";
+      document.getElementById('m-r3-work').textContent = routeR3.workKj + " kJ";
+
+      document.getElementById('m-r1-o2').textContent = routeR1.o2L + " L";
+      document.getElementById('m-r2-o2').textContent = routeR2.o2L + " L";
+      document.getElementById('m-r3-o2').textContent = routeR3.o2L + " L";
+
+      document.getElementById('m-r1-slope').textContent = routeR1.maxSlope + "°";
+      document.getElementById('m-r2-slope').textContent = routeR2.maxSlope + "°";
+      document.getElementById('m-r3-slope').textContent = routeR3.maxSlope + "°";
+
+      document.getElementById('m-r1-min').textContent = `${routeR1.mineralsHit} / ${minerals.length}`;
+      document.getElementById('m-r2-min').textContent = `${routeR2.mineralsHit} / ${minerals.length}`;
+      document.getElementById('m-r3-min').textContent = `${routeR3.mineralsHit} / ${minerals.length}`;
+
+      document.getElementById('m-r1-sci').textContent = routeR1.science + " pts";
+      document.getElementById('m-r2-sci').textContent = routeR2.science + " pts";
+      document.getElementById('m-r3-sci').textContent = routeR3.science + " pts";
+    }
+
+    // 7. Step-by-Step Interactive Animation Engine
+    function startActiveAnimation() {
+      if (isAnimating) {
+        // Pause
+        isAnimating = false;
+        cancelAnimationFrame(animFrameId);
+        document.getElementById('btn-run').textContent = "▶ Resume Animation";
+        document.getElementById('status-text').textContent = "Animation Paused";
+        return;
+      }
+
+      // Initialize animation for currently selected activeView
+      isAnimating = true;
+      document.getElementById('btn-run').textContent = "⏸ Pause Animation";
+      document.getElementById('status-text').textContent = `Expanding A* wave for ${activeView.toUpperCase()}...`;
+
+      animBuiltPath = [];
+      animPhaseIndex = 0;
+
+      if (activeView === 'r3') {
+        const tour = getOptimalExpeditionSequence();
+        animCheckpoints = [startNode, ...tour, goalNode];
+        activeAnimationSolver = new MinettiAStar(animCheckpoints[0], animCheckpoints[1], false);
+      } else {
+        const useAPF = (activeView === 'r2');
+        animCheckpoints = [startNode, goalNode];
+        activeAnimationSolver = new MinettiAStar(startNode, goalNode, useAPF);
+      }
+
+      runAnimationLoop();
+    }
+
+    function runAnimationLoop() {
+      if (!isAnimating || !activeAnimationSolver) return;
+
+      for (let s = 0; s < animSpeed; s++) {
+        if (!activeAnimationSolver.finished) {
+          activeAnimationSolver.step();
+        } else {
+          // Finished this leg
+          if (activeAnimationSolver.path) {
+            const smoothedLeg = (activeView === 'r2') ? smoothPathR2(activeAnimationSolver.path) : smoothPathR1(activeAnimationSolver.path);
+            if (animBuiltPath.length === 0) animBuiltPath.push(...smoothedLeg);
+            else animBuiltPath.push(...smoothedLeg.slice(1));
+          }
+
+          animPhaseIndex++;
+          if (animPhaseIndex < animCheckpoints.length - 1) {
+            // Next leg
+            const useAPF = (activeView === 'r2');
+            activeAnimationSolver = new MinettiAStar(
+              animCheckpoints[animPhaseIndex],
+              animCheckpoints[animPhaseIndex + 1],
+              useAPF
+            );
+          } else {
+            // Entire search finished!
+            isAnimating = false;
+            document.getElementById('btn-run').textContent = "▶ Re-run Animation";
+            document.getElementById('status-text').textContent = "Search Finished! Optimal Path Locked.";
+            solveAllRoutes();
+            render();
+            return;
+          }
+        }
+      }
+
+      render();
+      animFrameId = requestAnimationFrame(runAnimationLoop);
+    }
+
+    function stepSingleNode() {
+      if (!activeAnimationSolver || activeAnimationSolver.finished) {
+        const useAPF = (activeView === 'r2');
+        if (activeView === 'r3') {
+          const tour = getOptimalExpeditionSequence();
+          animCheckpoints = [startNode, ...tour, goalNode];
+          activeAnimationSolver = new MinettiAStar(animCheckpoints[0], animCheckpoints[1], false);
+          animPhaseIndex = 0;
+          animBuiltPath = [];
+        } else {
+          animCheckpoints = [startNode, goalNode];
+          activeAnimationSolver = new MinettiAStar(startNode, goalNode, useAPF);
+          animPhaseIndex = 0;
+          animBuiltPath = [];
+        }
+      }
+
+      if (!activeAnimationSolver.finished) {
+        activeAnimationSolver.step();
+      }
+      render();
+    }
+
+    // 8. Canvas Rendering
+    function render() {
+      ctx.clearRect(0, 0, 620, 620);
+
+      // 1. Elevation Terrain with subtle Topographic Contours
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          const e = elev[r][c];
+          const norm = (e + 2700) / 1400;
+          let shade = Math.floor(Math.max(0, Math.min(1, norm)) * 130) + 35;
+
+          // Topographic Contour Lines (rings every 120m)
+          const isContour = (Math.abs(Math.round(e) % 120) < 6);
+          if (isContour) shade = Math.max(0, shade - 25);
+
+          ctx.fillStyle = `rgb(${shade + 20}, ${shade}, ${shade * 0.7})`;
+          ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE + 0.5, CELL_SIZE + 0.5);
+
+          if (slope[r][c] > maxSlope) {
+            ctx.fillStyle = "rgba(239, 68, 68, 0.65)";
+            ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE + 0.5, CELL_SIZE + 0.5);
+          }
+        }
+      }
+
+      // 2. APF Attraction Halos around Minerals
+      if (activeView === 'all' || activeView === 'r2') {
+        minerals.forEach(m => {
+          const x = m.c * CELL_SIZE + CELL_SIZE / 2;
+          const y = m.r * CELL_SIZE + CELL_SIZE / 2;
+          const radPix = (APF_RADIUS_METERS / RES_METERS) * CELL_SIZE;
+
+          const grad = ctx.createRadialGradient(x, y, 4, x, y, radPix);
+          grad.addColorStop(0, `rgba(245, 158, 11, ${0.48 * (apfPull / 1.0)})`);
+          grad.addColorStop(1, "rgba(245, 158, 11, 0.0)");
+
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(x, y, radPix, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      // 3. Draw Straight Line (Hazardous) if toggled on
+      if (showStraightLine) {
+        ctx.beginPath();
+        ctx.strokeStyle = "#ff0044";
+        ctx.lineWidth = 3.5;
+        ctx.setLineDash([8, 6]);
+        const x1 = startNode.c * CELL_SIZE + CELL_SIZE / 2;
+        const y1 = startNode.r * CELL_SIZE + CELL_SIZE / 2;
+        const x2 = goalNode.c * CELL_SIZE + CELL_SIZE / 2;
+        const y2 = goalNode.r * CELL_SIZE + CELL_SIZE / 2;
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Mark every fatal cliff intersection with a danger badge
+        const steps = 60;
+        for (let s = 0; s <= steps; s++) {
+          const frac = s / steps;
+          const r = Math.round(startNode.r + frac * (goalNode.r - startNode.r));
+          const c = Math.round(startNode.c + frac * (goalNode.c - startNode.c));
+          if (r >= 0 && r < N && c >= 0 && c < N && slope[r][c] > maxSlope) {
+            const hx = c * CELL_SIZE + CELL_SIZE / 2;
+            const hy = r * CELL_SIZE + CELL_SIZE / 2;
+            ctx.fillStyle = "#ff0044";
+            ctx.beginPath();
+            ctx.arc(hx, hy, 4.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 4. Draw Live Animation Wavefront (if search active)
+      if (isAnimating && activeAnimationSolver) {
+        // Draw closed set (explored wave)
+        ctx.fillStyle = "rgba(0, 243, 255, 0.35)";
+        for (const k of activeAnimationSolver.closedSet) {
+          const [r, c] = k.split(',').map(Number);
+          ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        }
+
+        // Draw open set frontier
+        ctx.fillStyle = "rgba(250, 204, 21, 0.85)";
+        for (const node of activeAnimationSolver.openSet) {
+          ctx.fillRect(node.c * CELL_SIZE, node.r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        }
+
+        // Draw path built so far in animation
+        if (animBuiltPath.length > 1) {
+          drawPath(animBuiltPath, "#00f3ff", 3.5, []);
+        }
+      } else {
+        // Not animating: draw precomputed routes based on active view tab
+        if (activeView === 'all') {
+          // R1: Direct Safe (Green dashed, straight pass)
+          drawPath(routeR1?.path, "#10b981", 3.2, [6, 4]);
+          // R2: APF Survey (Amber solid, sweeping curve toward Hematite)
+          drawPath(routeR2?.path, "#f59e0b", 4.2, []);
+          // R3: Deep Science (Cyan solid, intercepts all minerals)
+          drawPath(routeR3?.path, "#00f3ff", 4.5, []);
+        } else if (activeView === 'r1') {
+          drawPath(routeR1?.path, "#10b981", 4.5, []);
+        } else if (activeView === 'r2') {
+          drawPath(routeR2?.path, "#f59e0b", 4.5, []);
+        } else if (activeView === 'r3') {
+          drawPath(routeR3?.path, "#00f3ff", 4.5, []);
+        }
+      }
+
+      // 5. Draw Minerals with Labels
+      minerals.forEach(m => {
+        const x = m.c * CELL_SIZE + CELL_SIZE / 2;
+        const y = m.r * CELL_SIZE + CELL_SIZE / 2;
+        ctx.fillStyle = "#f59e0b";
+        ctx.beginPath();
+        ctx.arc(x, y, 7.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText(`${m.name} (${m.score}p)`, x + 10, y + 3);
+      });
+
+      // 6. Draw Start & Goal Bases
+      drawMarker(startNode.c * CELL_SIZE + CELL_SIZE / 2, startNode.r * CELL_SIZE + CELL_SIZE / 2, "#10b981", "START");
+      drawMarker(goalNode.c * CELL_SIZE + CELL_SIZE / 2, goalNode.r * CELL_SIZE + CELL_SIZE / 2, "#ef4444", "GOAL");
+    }
+
+    function drawPath(path, color, width, dash = []) {
+      if (!path || path.length < 2) return;
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.setLineDash(dash);
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 9;
+
+      path.forEach((pt, i) => {
+        const x = pt.c * CELL_SIZE + CELL_SIZE / 2;
+        const y = pt.r * CELL_SIZE + CELL_SIZE / 2;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.shadowBlur = 0;
+    }
+
+    function drawMarker(x, y, color, text) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 10px monospace";
+      ctx.fillText(text, x - 15, y - 13);
+    }
+
+    // 9. View Tabs
+    function setViewTab(view) {
+      activeView = view;
+      document.querySelectorAll('.route-tab').forEach(t => t.className = 'route-tab');
+
+      if (view === 'all') {
+        document.getElementById('tab-all').className = 'route-tab active-all';
+        document.getElementById('profile-desc').textContent = "Comparing all 3 routes simultaneously: Safe evacuation vs. Remote sensing vs. Core sample drilling.";
+      } else if (view === 'r1') {
+        document.getElementById('tab-r1').className = 'route-tab active-r1';
+        document.getElementById('profile-desc').textContent = "Route 1: Pure survival emergency evacuation. Minimizes Minetti metabolic energy and distance. Ignores all minerals.";
+      } else if (view === 'r2') {
+        document.getElementById('tab-r2').className = 'route-tab active-r2';
+        document.getElementById('profile-desc').textContent = "Route 2: APF Survey Flyby. Guided by Artificial Potential Field gravity wells to curve into remote sensor scanner range.";
+      } else if (view === 'r3') {
+        document.getElementById('tab-r3').className = 'route-tab active-r3';
+        document.getElementById('profile-desc').textContent = "Route 3: Deep Science Expedition. Directly intercepts every mineral checkpoint in optimal TSP sequence for core sample drilling.";
+      }
+
+      isAnimating = false;
+      cancelAnimationFrame(animFrameId);
+      document.getElementById('btn-run').textContent = "▶ Step-by-Step Animation";
+      render();
+    }
+
+    document.getElementById('tab-all').addEventListener('click', () => setViewTab('all'));
+    document.getElementById('tab-r1').addEventListener('click', () => setViewTab('r1'));
+    document.getElementById('tab-r2').addEventListener('click', () => setViewTab('r2'));
+    document.getElementById('tab-r3').addEventListener('click', () => setViewTab('r3'));
+
+    // Controls & Sliders
+    document.getElementById('slider-mass').addEventListener('input', (e) => {
+      astronautMass = parseFloat(e.target.value);
+      document.getElementById('val-mass').textContent = astronautMass + " kg";
+      solveAllRoutes();
+    });
+
+    document.getElementById('slider-grav').addEventListener('input', (e) => {
+      marsGravity = parseFloat(e.target.value);
+      document.getElementById('val-grav').textContent = marsGravity.toFixed(2) + "g";
+      solveAllRoutes();
+    });
+
+    document.getElementById('slider-slope-max').addEventListener('input', (e) => {
+      maxSlope = parseFloat(e.target.value);
+      document.getElementById('val-slope-max').textContent = maxSlope + "°";
+      solveAllRoutes();
+    });
+
+    document.getElementById('slider-apf').addEventListener('input', (e) => {
+      const v = parseInt(e.target.value);
+      apfPull = v / 100.0;
+      document.getElementById('val-apf').textContent = v + "%";
+      solveAllRoutes();
+    });
+
+    document.getElementById('slider-speed').addEventListener('input', (e) => {
+      animSpeed = parseInt(e.target.value);
+      document.getElementById('val-speed').textContent = animSpeed + " nodes/frame";
+    });
+
+    document.getElementById('btn-instant').addEventListener('click', () => {
+      isAnimating = false;
+      cancelAnimationFrame(animFrameId);
+      document.getElementById('btn-run').textContent = "▶ Step-by-Step Animation";
+      solveAllRoutes();
+      document.getElementById('status-text').textContent = "All 3 Mission Profiles Recomputed";
+    });
+
+    document.getElementById('btn-reseed').addEventListener('click', () => {
+      isAnimating = false;
+      cancelAnimationFrame(animFrameId);
+      document.getElementById('btn-run').textContent = "▶ Step-by-Step Animation";
+
+      // Procedural reseed with fresh seed
+      const newSeed = Math.floor(Math.random() * 8000) + 10;
+      generateTerrain(newSeed);
+
+      // Snap Start, Goal, and Minerals to ensure safe walkable ground in new terrain
+      startNode = findNearestWalkable(startNode.r, startNode.c);
+      goalNode = findNearestWalkable(goalNode.r, goalNode.c);
+      minerals.forEach(m => {
+        const snapped = findNearestWalkable(m.r, m.c);
+        m.r = snapped.r;
+        m.c = snapped.c;
+      });
+
+      solveAllRoutes();
+
+      if (showStraightLine) {
+        const stats = getStraightLineStats();
+        document.getElementById('status-text').textContent = `🎲 New Canyon (Pass at Row ${Math.round(currentPassRow)})! Straight line cuts ${stats.cliffHits} cliff blocks (${stats.maxSlope}° max slope).`;
+      } else {
+        document.getElementById('status-text').textContent = `🎲 New Procedural Canyon Generated (Pass at Row ${Math.round(currentPassRow)})! All 3 Routes Computed.`;
+      }
+    });
+
+    document.getElementById('btn-straight').addEventListener('click', () => {
+      showStraightLine = !showStraightLine;
+      const btn = document.getElementById('btn-straight');
+      if (showStraightLine) {
+        btn.classList.add('active');
+        const stats = getStraightLineStats();
+        document.getElementById('status-text').textContent = `Straight line cuts ${stats.cliffHits} cliff blocks! Max slope: ${stats.maxSlope}° (FATAL FALL HAZARD)`;
+      } else {
+        btn.classList.remove('active');
+        document.getElementById('status-text').textContent = "All 3 Mission Profiles Computed";
+      }
+      render();
+    });
+
+    document.getElementById('btn-run').addEventListener('click', startActiveAnimation);
+    document.getElementById('btn-step').addEventListener('click', stepSingleNode);
+
+    // Mouse Dragging (Start, Goal, Minerals)
+    canvas.addEventListener('mousedown', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const c = Math.floor(x / CELL_SIZE);
+      const r = Math.floor(y / CELL_SIZE);
+
+      if (Math.hypot(startNode.r - r, startNode.c - c) <= 3) {
+        draggingTarget = 'start';
+      } else if (Math.hypot(goalNode.r - r, goalNode.c - c) <= 3) {
+        draggingTarget = 'goal';
+      } else {
+        const mIdx = minerals.findIndex(m => Math.hypot(m.r - r, m.c - c) <= 3);
+        if (mIdx !== -1) draggingTarget = mIdx;
+      }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (draggingTarget === null) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = Math.max(0, Math.min(620, e.clientX - rect.left));
+      const y = Math.max(0, Math.min(620, e.clientY - rect.top));
+      const c = Math.floor(x / CELL_SIZE);
+      const r = Math.floor(y / CELL_SIZE);
+
+      if (draggingTarget === 'start') {
+        startNode = { r, c };
+      } else if (draggingTarget === 'goal') {
+        goalNode = { r, c };
+      } else if (typeof draggingTarget === 'number') {
+        minerals[draggingTarget] = { r, c, name: minerals[draggingTarget].name, score: minerals[draggingTarget].score };
+      }
+      solveAllRoutes();
+    });
+
+    window.addEventListener('mouseup', () => {
+      draggingTarget = null;
+    });
+
+    // Initial Execution
+    generateTerrain();
+    solveAllRoutes();
+  </script>
+</body>
+</html>

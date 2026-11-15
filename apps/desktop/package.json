@@ -1,0 +1,149 @@
+{
+  "name": "mars-field-atlas-desktop",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Independent Mars Field Atlas desktop application",
+  "author": "SamsDevForge",
+  "type": "module",
+  "main": "desktop/main.mjs",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "electron .",
+    "test": "node --test tests/*.test.mjs",
+    "test:upstream": "npm --prefix web test",
+    "dist:win": "npm run build && electron-builder --win nsis --x64 --publish never",
+    "dist:linux": "npm run build && electron-builder --linux deb --arm64 --publish never",
+    "runtime:science": "node scripts/build-python.mjs",
+    "runtime:inference": "node scripts/build-inference.mjs",
+    "postinstall": "node node_modules/electron/install.js",
+    "runtime:speech": "node scripts/build-speech.mjs",
+    "runtime:voice-pack": "node scripts/build-voice-pack.mjs"
+  },
+  "dependencies": {
+    "geotiff": "3.0.5",
+    "lerc": "3.0.0",
+    "proj4": "2.22.0"
+  },
+  "devDependencies": {
+    "cesium": "1.145.0",
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "org.marsfieldatlas.desktop",
+    "productName": "Mars Field Atlas",
+    "directories": {
+      "output": "release"
+    },
+    "asar": true,
+    "files": [
+      "desktop/**/*",
+      "services/**/*",
+      "web/dist/**/*",
+      "web/api/**/*",
+      "web/src/**/*.js",
+      "web/science/**/*",
+      "web/data/**/*",
+      "web/map-config.json",
+      "maps/**/*",
+      "package.json",
+      "UPSTREAM.md",
+      "KNOWN_LIMITATIONS.md",
+      "!web/data/environment/raw/**/*",
+      "!web/data/space-weather/raw/**/*",
+      "runtime/*.json",
+      "THIRD_PARTY_NOTICES.md",
+      "web/src/**/*.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Mars-Field-Atlas-${version}-${arch}-setup.${ext}",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "include": "desktop/installer.nsh"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "deb",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "category": "Science",
+      "maintainer": "SamsDevForge",
+      "artifactName": "Mars-Field-Atlas-${version}-${arch}.${ext}"
+    },
+    "extraResources": [
+      {
+        "from": "runtime/staging/mars-science",
+        "to": "runtime/mars-science"
+      },
+      {
+        "from": "runtime/staging/inference",
+        "to": "runtime/inference",
+        "filter": [
+          "llama-server",
+          "llama-server.exe",
+          "*.dll",
+          "*.so",
+          "*.so.*",
+          "*LICENSE*",
+          "BUILD_MANIFEST.json"
+        ]
+      },
+      {
+        "from": "runtime/chatml.jinja",
+        "to": "runtime/chatml.jinja"
+      },
+      {
+        "from": "runtime/staging/speech",
+        "to": "runtime/speech",
+        "filter": [
+          "whisper-cli",
+          "whisper-cli.exe",
+          "ggml-tiny.en.bin",
+          "*LICENSE*",
+          "WHISPER_MODEL_CARD.md",
+          "BUILD_MANIFEST.json"
+        ]
+      }
+    ],
+    "deb": {
+      "depends": [
+        "libc6",
+        "libstdc++6",
+        "libgcc-s1",
+        "libgomp1",
+        "libgtk-3-0",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0",
+        "libasound2",
+        "xdg-utils"
+      ]
+    },
+    "afterPack": "scripts/check-package.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harshvardhan226510/NASA-2026-mars.git",
+    "directory": "apps/desktop"
+  }
+}

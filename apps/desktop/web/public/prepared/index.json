@@ -1,0 +1,204 @@
+{
+  "schema": "mars-prepared-display/1",
+  "prepared_at": "2026-10-19T06:33:26.725Z",
+  "tiles": {
+    "DTEEC_038143_2205_055536_2205_A01:4148ed2a9a840c18b5323ad263af4de9:overview": {
+      "path": "/prepared/tiles/b5edb498dd3be8644261f15ebcc40f8d090404c974504bbc372da37a2bcda524.bin",
+      "sha256": "b5edb498dd3be8644261f15ebcc40f8d090404c974504bbc372da37a2bcda524",
+      "bytes": 219675,
+      "imagery_m": 25.415529251098633,
+      "terrain_m": 101.66211700439453,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/e5d2465a0e52380abf7e337c10bdaf5bcdfd9e6e9dd410cdf715a4a57832674f.webp",
+      "masked_webp": "/prepared/tiles/e5d2465a0e52380abf7e337c10bdaf5bcdfd9e6e9dd410cdf715a4a57832674f.webp"
+    },
+    "DTEEC_038143_2205_055536_2205_A01:4148ed2a9a840c18b5323ad263af4de9:4:3:1": {
+      "path": "/prepared/tiles/cdb9960cc341c43daef7fcb6f3137e6aad4f1397f595c2a6960c08e990e2c923.bin",
+      "sha256": "cdb9960cc341c43daef7fcb6f3137e6aad4f1397f595c2a6960c08e990e2c923",
+      "bytes": 303175,
+      "imagery_m": 4.007931232452393,
+      "terrain_m": 25.415529251098633,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/ea4b4cbd22b859fe5788664ad0bec3c71ee46ed2fdbf4c5fb934abf0cf90aabe.webp",
+      "masked_webp": "/prepared/tiles/ea4b4cbd22b859fe5788664ad0bec3c71ee46ed2fdbf4c5fb934abf0cf90aabe.webp"
+    },
+    "DTEEC_038143_2205_055536_2205_A01:4148ed2a9a840c18b5323ad263af4de9:4:2:1": {
+      "path": "/prepared/tiles/b5510f9aa31a9067eda5daf6721cc3bf2b81a4cdbea36c8bd0de8eeb9ef92824.bin",
+      "sha256": "b5510f9aa31a9067eda5daf6721cc3bf2b81a4cdbea36c8bd0de8eeb9ef92824",
+      "bytes": 310255,
+      "imagery_m": 4.007931232452393,
+      "terrain_m": 25.415529251098633,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/356ad6cc365e04e94d2f9c0bf794f0ea6a593d6ab7f4d172a1238b2fef69d813.webp",
+      "masked_webp": "/prepared/tiles/356ad6cc365e04e94d2f9c0bf794f0ea6a593d6ab7f4d172a1238b2fef69d813.webp"
+    },
+    "DTEEC_044325_1700_044180_1700_U01:82991f3f94d5e981a9755f7f22ea3f00:overview": {
+      "path": "/prepared/tiles/8cc497f423242f0b92a11bec6bbbca81028c17454f12fbc0b3280a51dc3a582f.bin",
+      "sha256": "8cc497f423242f0b92a11bec6bbbca81028c17454f12fbc0b3280a51dc3a582f",
+      "bytes": 170630,
+      "imagery_m": 36.282527923583984,
+      "terrain_m": 145.13011169433594,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/9b06cdac366c3d237b71b59b3e38c4816cc53423dd5081565cf67103cfadf880.webp",
+      "masked_webp": "/prepared/tiles/9b06cdac366c3d237b71b59b3e38c4816cc53423dd5081565cf67103cfadf880.webp"
+    },
+    "DTEEC_044325_1700_044180_1700_U01:82991f3f94d5e981a9755f7f22ea3f00:4:4:1": {
+      "path": "/prepared/tiles/013dd95be384eb6415d7f0d1bdfc50a51cf7b969b20ddba2105571a16c71b1d3.bin",
+      "sha256": "013dd95be384eb6415d7f0d1bdfc50a51cf7b969b20ddba2105571a16c71b1d3",
+      "bytes": 252572,
+      "imagery_m": 4.089303493499756,
+      "terrain_m": 16.357213973999023,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/813ae725e8b03a9f0fb2f930181ed25dbb9a40444b33823aefe661be05542bb3.webp",
+      "masked_webp": "/prepared/tiles/813ae725e8b03a9f0fb2f930181ed25dbb9a40444b33823aefe661be05542bb3.webp"
+    },
+    "DTEEC_060363_2200_060429_2200_A01:d3fc7b6d3a706bfef7e37796d7565e4d:overview": {
+      "path": "/prepared/tiles/fa43f963b53862a76e4cbf13338fcada73961be4d5751fdad57dbfbf1396bca7.bin",
+      "sha256": "fa43f963b53862a76e4cbf13338fcada73961be4d5751fdad57dbfbf1396bca7",
+      "bytes": 237835,
+      "imagery_m": 17.528209686279297,
+      "terrain_m": 70.11283874511719,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/64435f433d8ff62026585a359d631954e7ca23095055de2f507af7a0f61a7c2a.webp",
+      "masked_webp": "/prepared/tiles/64435f433d8ff62026585a359d631954e7ca23095055de2f507af7a0f61a7c2a.webp"
+    },
+    "DTEEC_060363_2200_060429_2200_A01:d3fc7b6d3a706bfef7e37796d7565e4d:4:2:1": {
+      "path": "/prepared/tiles/3f2e56d4d678c1a82a698fcb44edb07283198b64fe294506a7418e741d06dea7.bin",
+      "sha256": "3f2e56d4d678c1a82a698fcb44edb07283198b64fe294506a7418e741d06dea7",
+      "bytes": 298676,
+      "imagery_m": 4.268588542938232,
+      "terrain_m": 17.528209686279297,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/cf2425bf5ccafc7d74a92a212edce65be30779b04553b4cb939d530e906fe74c.webp",
+      "masked_webp": "/prepared/tiles/cf2425bf5ccafc7d74a92a212edce65be30779b04553b4cb939d530e906fe74c.webp"
+    },
+    "DTEEC_060363_2200_060429_2200_A01:d3fc7b6d3a706bfef7e37796d7565e4d:4:1:1": {
+      "path": "/prepared/tiles/0296f2d84d19e85acfc6e68e8d42f7af676100043cafe1b5d5ee3d4439986887.bin",
+      "sha256": "0296f2d84d19e85acfc6e68e8d42f7af676100043cafe1b5d5ee3d4439986887",
+      "bytes": 316754,
+      "imagery_m": 4.268588542938232,
+      "terrain_m": 17.528209686279297,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/7037368b0efb79a954b40133a3858cb67bc6d1ee389388ff89038f472b6d21b4.webp",
+      "masked_webp": "/prepared/tiles/7037368b0efb79a954b40133a3858cb67bc6d1ee389388ff89038f472b6d21b4.webp"
+    },
+    "DTEEC_060729_1670_060795_1670_A01:b5e56f3258af1554e6b7e0712c09c80e:overview": {
+      "path": "/prepared/tiles/469e9b962f5ec68b036a1c419612687d96ad558e506e8eee80e78c02c71507ad.bin",
+      "sha256": "469e9b962f5ec68b036a1c419612687d96ad558e506e8eee80e78c02c71507ad",
+      "bytes": 228888,
+      "imagery_m": 16.085445404052734,
+      "terrain_m": 64.34178161621094,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/b583f1ce3f86019ffc1af4caa42888b9790df1d0f74210cf057016bbedea9099.webp",
+      "masked_webp": "/prepared/tiles/b583f1ce3f86019ffc1af4caa42888b9790df1d0f74210cf057016bbedea9099.webp"
+    },
+    "DTEEC_060729_1670_060795_1670_A01:b5e56f3258af1554e6b7e0712c09c80e:3:3:2": {
+      "path": "/prepared/tiles/3244b798618fd69ad12589a5a57f77ab003ab30c25ebdc03843da7f135868034.bin",
+      "sha256": "3244b798618fd69ad12589a5a57f77ab003ab30c25ebdc03843da7f135868034",
+      "bytes": 279043,
+      "imagery_m": 2.043499231338501,
+      "terrain_m": 16.085445404052734,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/15c33a2915b5ee78045e755083bee5531ddb00f2f85f6d43cc0d5628c80bb6a4.webp",
+      "masked_webp": "/prepared/tiles/15c33a2915b5ee78045e755083bee5531ddb00f2f85f6d43cc0d5628c80bb6a4.webp"
+    },
+    "DTEEC_060729_1670_060795_1670_A01:b5e56f3258af1554e6b7e0712c09c80e:3:4:2": {
+      "path": "/prepared/tiles/0dd2d7fb04ca5202e18c031fdf6cd1cce3758dd8f780490e53ecdc20ad5d782a.bin",
+      "sha256": "0dd2d7fb04ca5202e18c031fdf6cd1cce3758dd8f780490e53ecdc20ad5d782a",
+      "bytes": 283505,
+      "imagery_m": 2.043499231338501,
+      "terrain_m": 16.085445404052734,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/a201e749d2e23797641a63a6f5094ccb8b4b02dc9ef25ddec1473d1159451f58.webp",
+      "masked_webp": "/prepared/tiles/a201e749d2e23797641a63a6f5094ccb8b4b02dc9ef25ddec1473d1159451f58.webp"
+    },
+    "DTEEC_045994_1985_046060_1985_U01:095e90d4e55deb5a80e5353d23d8ffa9:overview": {
+      "path": "/prepared/tiles/331c76315176f2699ebfc0160187b6b94c55f2777c5f0c8b70e38d17f1f073ca.bin",
+      "sha256": "331c76315176f2699ebfc0160187b6b94c55f2777c5f0c8b70e38d17f1f073ca",
+      "bytes": 233947,
+      "imagery_m": 28.13253402709961,
+      "terrain_m": 112.53013610839844,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/3a1ea4ed3b645e2a2552b65bf774926d5927712584c8725a4ca3759c99c92447.webp",
+      "masked_webp": "/prepared/tiles/3a1ea4ed3b645e2a2552b65bf774926d5927712584c8725a4ca3759c99c92447.webp"
+    },
+    "DTEEC_045994_1985_046060_1985_U01:095e90d4e55deb5a80e5353d23d8ffa9:4:3:1": {
+      "path": "/prepared/tiles/f7a576c6fd656cf1a4ae7584bfa48d39ae39cc5711288d5a6230d5d6740783a3.bin",
+      "sha256": "f7a576c6fd656cf1a4ae7584bfa48d39ae39cc5711288d5a6230d5d6740783a3",
+      "bytes": 300211,
+      "imagery_m": 4.110228538513184,
+      "terrain_m": 28.13253402709961,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/a83089e623ca92a3a4577d21daacea05b4dc69be3e89d09415606ec7c9e38ff8.webp",
+      "masked_webp": "/prepared/tiles/a83089e623ca92a3a4577d21daacea05b4dc69be3e89d09415606ec7c9e38ff8.webp"
+    },
+    "DTEEC_009505_1755_009571_1755_U01:6ed4fe281fd7fb2edfa520b1f1655f15:overview": {
+      "path": "/prepared/tiles/65ebd43d67867c03fed731887219bc7e09934a314229ad2a3f1ab0e472503eaa.bin",
+      "sha256": "65ebd43d67867c03fed731887219bc7e09934a314229ad2a3f1ab0e472503eaa",
+      "bytes": 180174,
+      "imagery_m": 49.1220817565918,
+      "terrain_m": 196.4883270263672,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/bc7b306b27e9f92958f870cd086b02e3724810630c221d25ede95868dbc6fa90.webp",
+      "masked_webp": "/prepared/tiles/bc7b306b27e9f92958f870cd086b02e3724810630c221d25ede95868dbc6fa90.webp"
+    },
+    "DTEEC_009505_1755_009571_1755_U01:6ed4fe281fd7fb2edfa520b1f1655f15:6:1:0": {
+      "path": "/prepared/tiles/33fd0d99de8144281a55fcd903e7ea9dee19d4025f23f4dc9c77b756850b3236.bin",
+      "sha256": "33fd0d99de8144281a55fcd903e7ea9dee19d4025f23f4dc9c77b756850b3236",
+      "bytes": 177393,
+      "imagery_m": 24.560300827026367,
+      "terrain_m": 64.95008850097656,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/3efe9a84508d2f41df040a7ded1e13317d5f7a6deb3df511b4fd55b1b64df306.webp",
+      "masked_webp": "/prepared/tiles/3efe9a84508d2f41df040a7ded1e13317d5f7a6deb3df511b4fd55b1b64df306.webp"
+    },
+    "DTEEC_048842_1985_048908_1985_U01:299322c962606a8869d43b8dae740f5b:overview": {
+      "path": "/prepared/tiles/39b11ab65641650fb32efa8f24e18c2ba26f63ee54190a891c67b4f7658c5e44.bin",
+      "sha256": "39b11ab65641650fb32efa8f24e18c2ba26f63ee54190a891c67b4f7658c5e44",
+      "bytes": 229032,
+      "imagery_m": 29.136280059814453,
+      "terrain_m": 116.54512023925781,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/95d20ea31956565e954f03255a1ced14200a0e66d606c0c95abd46d8a34eb8a3.webp",
+      "masked_webp": "/prepared/tiles/95d20ea31956565e954f03255a1ced14200a0e66d606c0c95abd46d8a34eb8a3.webp"
+    },
+    "DTEEC_048842_1985_048908_1985_U01:299322c962606a8869d43b8dae740f5b:3:7:3": {
+      "path": "/prepared/tiles/bcb55c7b716c5c7437909b9bed1b65ad2317941fbb9966a11f5dd06de7ad7bf8.bin",
+      "sha256": "bcb55c7b716c5c7437909b9bed1b65ad2317941fbb9966a11f5dd06de7ad7bf8",
+      "bytes": 285313,
+      "imagery_m": 2.0555436611175537,
+      "terrain_m": 8.222174644470215,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/3ba45c99feb6066c8889730fcad53bc1d30f7658dc7eb3d030603200cdf99447.webp",
+      "masked_webp": "/prepared/tiles/3ba45c99feb6066c8889730fcad53bc1d30f7658dc7eb3d030603200cdf99447.webp"
+    },
+    "DTEEC_048842_1985_048908_1985_U01:299322c962606a8869d43b8dae740f5b:3:6:3": {
+      "path": "/prepared/tiles/83016b324de9760d51e95d0b71def0b4c0c136a4de311ab5124d1c7b7e31d2db.bin",
+      "sha256": "83016b324de9760d51e95d0b71def0b4c0c136a4de311ab5124d1c7b7e31d2db",
+      "bytes": 279993,
+      "imagery_m": 2.0555436611175537,
+      "terrain_m": 8.222174644470215,
+      "encoding": "gzip",
+      "decoded_bytes": 590884,
+      "webp": "/prepared/tiles/8a484f216e08f8c68aeed74e71fd5629017dfebd4d270ca9e65b2ace1d6ab960.webp",
+      "masked_webp": "/prepared/tiles/8a484f216e08f8c68aeed74e71fd5629017dfebd4d270ca9e65b2ace1d6ab960.webp"
+    }
+  }
+}

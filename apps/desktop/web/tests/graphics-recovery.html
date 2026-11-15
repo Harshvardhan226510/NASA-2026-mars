@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphics recovery browser test</title>
+<body class="ui-orbit">
+<main id="workspace"></main>
+<script type="module">
+import '../src/style.css';
+import '../src/interface.css';
+import '../src/graphics-recovery.css';
+import {startGraphics,showGraphicsRecovery} from '../src/graphics-startup.js';
+// Deliberately failing factory: exercises the real bounded retry and recovery UI.
+// Tests are excluded from Vercel uploads and the Vite production entry points.
+try{await startGraphics(()=>{throw new Error('WebGL initialization failed (simulated browser test)');});}
+catch(error){showGraphicsRecovery(error,{location:{href:location.origin+'/#spacecraft=curiosity'}});}
+</script>
+</body>
+</html>

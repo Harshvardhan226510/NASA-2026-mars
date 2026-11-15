@@ -1,0 +1,14 @@
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+dist/
+.vercel/
+.env*
+
+.vercel
+.env*
+
+# Small public research inputs used by checksum regression tests.
+!data/value-sources/hydrous_sites_geo_map.lbl
+!data/value-sources/landing_maps.zip

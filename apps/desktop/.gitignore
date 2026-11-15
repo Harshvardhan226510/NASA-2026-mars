@@ -1,0 +1,12 @@
+node_modules/
+dist/
+release/
+artifacts/
+runtime/staging/
+runtime/downloads/
+.venv-build/
+__pycache__/
+.env*
+*.gguf
+*.safetensors
+*.log

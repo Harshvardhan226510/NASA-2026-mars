@@ -1,0 +1,5 @@
+{
+  "schema": "ares-optional-voice-catalog/1",
+  "entries": [],
+  "status": "Source catalogue is populated per platform only after native voice verification; verified app packages contain the matching approved local-import descriptor."
+}

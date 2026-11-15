@@ -1,0 +1,38 @@
+[
+  {
+    "landing": "AP1",
+    "product": "ESP_052490_2200_RED",
+    "bbox": [
+      -157.995,
+      39.6708,
+      -157.828,
+      39.9484
+    ],
+    "source": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/uncontrolled/ESP_052490_2200_RED/ESP_052490_2200_RED.tif",
+    "metadataBasis": "Previously obtained USGS Astrogeology STAC source footprint; approximate geographic consistency check only"
+  },
+  {
+    "landing": "AP8",
+    "product": "ESP_043220_2210_RED",
+    "bbox": [
+      -158.797,
+      40.6644,
+      -158.646,
+      40.8071
+    ],
+    "source": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/uncontrolled/ESP_043220_2210_RED/ESP_043220_2210_RED.tif",
+    "metadataBasis": "Previously obtained USGS Astrogeology STAC source footprint; approximate geographic consistency check only"
+  },
+  {
+    "landing": "AP9",
+    "product": "ESP_060811_2205_RED",
+    "bbox": [
+      -156.742,
+      39.8937,
+      -156.583,
+      40.1556
+    ],
+    "source": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/uncontrolled/ESP_060811_2205_RED/ESP_060811_2205_RED.tif",
+    "metadataBasis": "Previously obtained USGS Astrogeology STAC source footprint; approximate geographic consistency check only"
+  }
+]

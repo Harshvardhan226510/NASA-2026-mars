@@ -1,0 +1,42 @@
+.eva-card{display:grid;gap:7px;margin:12px 0;padding:14px;border:1px solid #8fa99c55;border-radius:8px;background:#0c151d}
+.eva-card :is(h4,p,a){margin:0!important}
+#walk-panel .eva-card h4{font-size:15px;color:#fff0df}
+.eva-card small{color:#a1d8c7}
+#walk-panel .eva-card button{width:100%;margin-top:3px;min-height:40px}
+#walk-field form>button{margin:4px 8px 4px 0;min-height:37px}
+.eva-field-readout{border-left:3px solid #79d7a3;background:#0c171f;border-radius:4px;padding:9px 12px;margin:14px 0}
+.eva-field-readout p{margin:4px 0}
+.eva-evidence figure{margin:10px 0 0}
+.eva-evidence img{display:block;width:100%;border-radius:5px}
+.eva-evidence figcaption{color:#b7ccc1;font-size:10px;margin:5px 0}
+.eva-visor{color:#eaf4ef;background:#0b141e;border:1px solid #8fa99c55;border-radius:14px;width:min(680px,calc(100vw - 36px));padding:clamp(18px,4vw,38px);font:clamp(16px,2vw,22px)/1.5 system-ui,sans-serif}
+.eva-visor::backdrop{background:#050910a6}
+.eva-visor h2{font-size:clamp(24px,4vw,34px)}
+.eva-visor>button{background:#162b37;color:#eaf4ef;border:1px solid #4b6776;border-radius:7px;padding:10px 15px}
+.eva-visor .walk-note{font-size:inherit}
+.eva-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:13px 0}
+.eva-actions button{min-height:38px}
+#walk-field fieldset{margin:12px 0;border:1px solid #8fa99c55;border-radius:5px;min-width:0}
+.eva-print{background:#f9f7f3;color:#202528;border:none;border-radius:10px;padding:24px;width:min(680px,calc(100vw - 36px));max-height:calc(100dvh - 40px);font:14px/1.5 system-ui,sans-serif}
+.eva-print::backdrop{background:#05090dba}
+.eva-print>div{display:flex;gap:10px;justify-content:flex-end}
+.eva-print>div button{color:#12242b;background:#e2e9e7;border:1px solid #bccbc4;padding:8px 12px;border-radius:4px}
+.eva-print p{overflow-wrap:anywhere}
+.eva-print li{margin-top:4px}
+.eva-mission-brief{width:min(800px,calc(100vw - 36px))}
+.eva-brief-kicker{font-size:11px;letter-spacing:.14em}
+.eva-mission-brief h2{margin-top:20px;font-size:18px}
+.eva-mission-brief table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+.eva-mission-brief :is(td,th){padding:5px 7px;text-align:left;border-bottom:1px solid #c7d0d0;vertical-align:top}
+.eva-mission-brief th{font-weight:650}
+.eva-brief-map{margin:12px 0}
+.eva-brief-map canvas{display:block;width:100%;border:1px solid #90a0a4}
+.eva-brief-map figcaption{margin-top:5px;font-size:11px}
+@media print{
+ body:has(.eva-print[open])>*:not(.eva-print){display:none!important}
+ .eva-print[open]{display:block;position:static;width:auto;max-width:none;max-height:none;margin:0;padding:0;overflow:visible}
+ .eva-print>div,.eva-print::backdrop{display:none}
+ .eva-print h3{break-after:avoid}
+ .eva-print h2{break-after:avoid}
+ .eva-print :is(tr,.eva-brief-map,.eva-brief-station){break-inside:avoid}
+}

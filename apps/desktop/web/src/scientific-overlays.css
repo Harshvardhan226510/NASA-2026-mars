@@ -1,0 +1,110 @@
+#appearance-panel{width:390px;max-width:calc(100% - 28px)}
+:is(.map-grid-control,.color-enhancement-control){margin:10px 0;padding:10px 2px;border-bottom:1px solid #a9c8d230}
+:is(.map-grid-control,.color-enhancement-control)>label{display:flex!important;justify-content:space-between;align-items:center;gap:12px;font-size:12px;cursor:pointer}
+:is(.map-grid-control,.color-enhancement-control) input{width:16px!important;height:16px;padding:0;margin:0;accent-color:var(--accent)}
+#geology-unit-key{pointer-events:auto;margin:9px 0;font-size:11px}
+#geology-unit-key summary{cursor:pointer;padding:5px 0;color:inherit}
+#geology-unit-key ul{list-style:none;padding:0;margin:6px 0;max-height:210px;overflow:auto;overscroll-behavior:contain}
+#geology-unit-key li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;line-height:1.4}
+#geology-unit-key i{display:block;flex:0 0 15px;height:15px;border:1px solid #ffffff70;border-radius:2px}
+#appearance-panel .layers-title{font-size:25px;font-weight:650;color:#fff0df;margin:0 0 20px;letter-spacing:-.5px}
+.science-section{margin:20px 0;padding:18px 0;border-block:1px solid #ddad7955}
+#science-heading{font-size:19px;font-weight:650;color:#ffcca4;letter-spacing:0;margin:0 0 5px}
+.science-count{font-size:11px!important;color:#aec7ba!important;margin:0 0 20px!important}
+.science-section h4{font-size:13px;color:#f1e4ca;margin:18px 0 9px;font-weight:600}
+.science-option{padding:8px 0;border-bottom:1px solid #a7b5ae18}
+.science-option>label{display:flex!important;align-items:center;gap:9px;margin:0!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer;line-height:1.45}
+.science-option>label>input{width:15px!important;height:15px;margin:0!important;flex:0 0 15px;accent-color:var(--accent)}
+.science-option-name{font-size:12px;color:#e4ece6;flex:1;min-width:0}
+.science-type{font-size:9px;font-weight:600;border:1px solid #8bbaa763;border-radius:10px;padding:1px 7px;color:#a8d3bd;white-space:nowrap}
+.science-type.dynamic{border-color:#8fa7bf55;color:#b3c3d8}
+.science-unavailable .science-option-name{color:#a2afa9}.science-unavailable label{cursor:default}
+.science-unavailable-note{display:block;margin:2px 0 0 24px;color:#9aa8a2;font-size:10px}
+#science-more{margin-top:10px;padding:0;border:1px solid #dca97780;border-radius:5px;background:#152028}
+#science-more>summary{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 10px;list-style:none;color:#ffd4af;font-size:13px;font-weight:650;line-height:1.4;cursor:pointer}
+#science-more>summary::-webkit-details-marker{display:none}
+#science-more>summary::before{content:'▸';font-size:11px;transition:transform .15s}
+#science-more[open]>summary::before{transform:rotate(90deg)}
+#science-more>summary>span{margin-left:auto;font-size:10px;font-weight:400;color:#b3c6bb;white-space:nowrap}
+#science-groups{padding:0 10px 8px;max-height:min(45dvh,320px);overflow-y:auto;overscroll-behavior:contain}.science-category{margin-top:0;border-top:1px solid #869d8d33;padding-top:0}
+.science-category>summary{padding:7px 0;font-size:12px;color:#dfcfb4;cursor:pointer;line-height:1.45}
+.science-category-list{padding-bottom:8px}.science-exclusivity{font-size:10px!important;color:#a9beb1!important;line-height:1.5}
+#science-selection,#contour-options{margin-top:15px;padding:12px;background:#16242b;border:1px solid #7faaa555;border-radius:6px}
+#science-selection h4,#contour-options h4{margin:0 0 10px;font-size:15px;color:#ffcca4}
+#science-selection p,#contour-options p{font-size:11px;line-height:1.65;color:#d1ddd4;margin:8px 0}
+.science-expanded>label .science-option-name{color:#ffd4af}
+.science-explanation{margin:0}.science-explanation dt{font-size:11px;font-weight:650;color:#ffcca4;margin-top:12px}.science-explanation dt:first-child{margin-top:0}
+.science-explanation dd{margin:4px 0 0;font-size:12px;line-height:1.65;color:#edf2eb}
+.science-source-details{margin-top:13px;border-top:1px solid #8aaba733;padding-top:10px}.science-source-details>summary{font-size:11px;color:#bfd6cc;cursor:pointer;line-height:1.6}
+#science-coverage{color:#b3c4ba!important}#science-source-links a{display:block;font-size:10px;color:#efbd96;line-height:1.6;margin:4px 0}
+#science-status{color:#eaca9a!important}#science-reference-controls label{margin-top:12px}#science-opacity-value{float:right}
+#science-opacity{padding:0!important;width:100%;margin:12px 0;accent-color:var(--accent)}
+#science-legend{position:absolute;left:22px;bottom:210px;z-index:610;width:285px;max-width:calc(100% - 44px);padding:12px 15px;background:#101923f2;border:1px solid var(--line);border-radius:5px;pointer-events:none}
+#science-legend strong,#science-legend-units{display:block;font-size:11px;color:#e2e8df;line-height:1.5}
+#science-legend-units{font-size:10px;color:#c5d6cb}.science-legend-ends{display:flex;justify-content:space-between;font-size:10px;color:#d4ddd8}
+#science-legend-ramp{height:12px;border-radius:3px;margin:10px 0 5px}#science-legend small{display:block;font-size:9px;color:#b5c3bd;line-height:1.5;margin-top:6px}
+@media(max-width:800px){#science-legend{left:15px;bottom:190px;width:255px}}
+@media(max-width:560px){#appearance-panel{width:100%;max-width:100%;max-height:70dvh}#science-legend{bottom:110px;width:230px;padding:9px 12px}body.split #science-legend{bottom:50%;margin-bottom:10px}}
+
+#science-value{display:block;font-size:10px;color:#f4dda8;margin-top:7px;line-height:1.5}
+.mineral-detections{position:absolute;left:0;top:0;z-index:3;pointer-events:none!important;contain:strict}
+.leaflet-overlay-pane>.mineral-detections{z-index:450}
+.mineral-tooltip{position:absolute;z-index:600;max-width:230px;padding:8px 11px;border:1px solid #c8add45c;border-radius:6px;background:#151e2af5;color:#f1e3fa;font-size:11px;line-height:1.5;box-shadow:0 3px 12px #0005;pointer-events:none}
+.science-class-scale{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 5px;justify-content:flex-start}
+.science-class-scale>span{display:inline-flex;align-items:center;gap:6px;line-height:1.5}
+.science-class-scale i{width:12px;height:12px;border-radius:3px;border:1px solid #ffffff50;flex-shrink:0}
+.overlay-eyebrow{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:#c6b1dc;margin-bottom:7px}
+.mineral-legend-key{display:flex;flex-wrap:wrap;gap:14px;margin:13px 0 10px;font-size:11px;color:#e2d5ed}
+.mineral-legend-key>span{display:inline-flex;align-items:center;gap:7px}
+.mineral-dot{width:8px;height:8px;border-radius:50%;background:#d9b9fa;box-shadow:0 0 0 2px #30233f}
+.mineral-badge{display:inline-flex;width:23px;height:23px;align-items:center;justify-content:center;border:1px solid #dbb9fb;border-radius:50%;background:#27243b;color:#fff3ff;font:600 10px system-ui}
+#space-weather-controls{margin-top:14px;padding-top:12px;border-top:1px solid #8aaba744}
+#space-weather-controls label{display:block!important;font-size:11px;color:#c7d5cd;margin:13px 0 8px!important}
+#space-weather-controls select{width:100%;margin-top:6px;font-size:11px}
+#space-weather-controls .weather-state{white-space:pre-line;color:#bddbc9;font-size:12px;font-weight:600}
+#space-weather-controls .weather-state[data-stale=true]{color:#f3c28f}
+.weather-value{display:block;color:#ffe2bb;font-size:18px;line-height:1.5;margin:12px 0}
+.weather-metadata{display:grid;grid-template-columns:minmax(0,85px) minmax(0,1fr);gap:6px 10px;font-size:10px;line-height:1.6;margin:12px 0}
+.weather-metadata dt{color:#b3c8bc}.weather-metadata dd{margin:0;color:#e5eee7;overflow-wrap:anywhere}
+.weather-chart{margin:14px 0;padding:8px;background:#0b141b;border:1px solid #8aaba733;border-radius:4px}.weather-chart svg{display:block;width:100%;height:auto}.weather-chart figcaption{font-size:9px;line-height:1.6;color:#bacec2;margin-top:6px}
+.weather-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.weather-actions button,#space-weather-controls>button{font-size:10px;padding:8px}
+.weather-event{padding:10px;margin-top:10px;border:1px solid #8aaba733;border-radius:4px;background:#101a22}.weather-event strong{font-size:12px;color:#ffcea5}.weather-event small,.weather-entries small{display:block;font-size:9px;color:#bed0c4;line-height:1.7;overflow-wrap:anywhere}.weather-event a,.weather-entries a{display:block;font-size:10px;color:#f2bd91;line-height:1.7;margin:5px 0}.weather-entries ol{padding-left:18px;font-size:10px;line-height:1.8}
+.weather-entries details{margin-top:12px;padding-top:8px}.weather-entries summary{font-size:11px;cursor:pointer}.weather-warning{color:#efc994!important}
+#space-weather-hud{position:absolute;left:22px;bottom:210px;z-index:610;width:285px;max-width:calc(100% - 44px);padding:12px 15px;background:#101923f2;border:1px solid var(--line);border-radius:5px;pointer-events:none}
+#space-weather-hud strong{font-size:12px;color:#ffdbb5;line-height:1.5}#space-weather-hud small{display:block;font-size:10px;color:#d7e5da;line-height:1.6;margin-top:5px}
+#wind-controls{margin-top:14px;padding-top:12px;border-top:1px solid #8aaba744}#wind-controls label{display:block!important;font-size:11px;margin:12px 0 7px!important}#wind-controls select{display:block;width:100%;margin-top:7px}#wind-centre-value{display:block;color:#ffdbb5;font-size:12px;line-height:1.6}#wind-controls .wind-arrow-option{display:flex!important;justify-content:space-between;align-items:center}#wind-controls .wind-arrow-option input{width:15px!important;height:15px;accent-color:var(--accent)}
+#wind-legend{position:absolute;left:22px;bottom:210px;z-index:610;width:285px;max-width:calc(100% - 44px);padding:12px 15px;background:#101923f2;border:1px solid var(--line);border-radius:5px;pointer-events:none}#wind-legend strong,#wind-legend-units,#wind-legend-value{display:block;font-size:11px;color:#e2e8df;line-height:1.6}#wind-legend-value{color:#f4dda8;font-size:10px;margin-top:8px}#wind-legend-ramp{height:12px;border-radius:3px;margin:10px 0 5px}#wind-legend-note{display:block;font-size:9px;color:#b5c3bd;line-height:1.6;margin-top:7px}
+@media(max-width:560px){#space-weather-hud{left:15px;bottom:110px;width:230px;padding:9px 12px}body.split #space-weather-hud{bottom:50%;margin-bottom:10px}}
+@media(max-width:560px){#wind-legend{left:15px;bottom:110px;width:230px;padding:9px 12px}body.split #wind-legend{bottom:50%;margin-bottom:10px}}
+.wind-flow-canvas{position:absolute;pointer-events:none!important;z-index:2;contain:strict}#wind-controls>small{display:block;font-size:10px;line-height:1.6;color:#bed0c4}.leaflet-windFlow-pane .wind-flow-canvas{z-index:0}
+#environment-controls{margin-top:14px;padding-top:12px;border-top:1px solid #8aaba744}#environment-controls label{display:block!important;font-size:11px;margin-bottom:8px!important}#environment-controls input{display:block;width:100%;margin-top:7px;color-scheme:dark}#environment-controls p{font-size:11px;line-height:1.65}#environment-controls output{display:block;color:#ffdbb5;line-height:1.7;font-size:12px}#environment-legend{position:absolute;left:22px;bottom:210px;z-index:610;width:285px;max-width:calc(100% - 44px);padding:12px 15px;background:#101923f2;border:1px solid var(--line);border-radius:5px;pointer-events:none}#environment-legend strong,#environment-legend-units,#environment-legend-value{display:block;font-size:11px;color:#e2e8df;line-height:1.6}#environment-legend-value{color:#f4dda8;font-size:10px;margin-top:8px}#environment-legend-ramp{height:12px;border-radius:3px;margin:10px 0 5px}#environment-legend-note{display:block;font-size:9px;color:#b5c3bd;line-height:1.6;margin-top:7px;max-height:110px;overflow:hidden}.science-dependency{margin:5px 0 5px 23px;font-size:10px;color:#d2b393}.science-dependency summary{cursor:pointer}.science-dependency p{font-size:11px;line-height:1.6;color:#c4d0c9}@media(max-width:560px){#environment-legend{left:15px;bottom:110px;width:230px;padding:9px 12px}body.split #environment-legend{bottom:50%;margin-bottom:10px}}
+
+/* A consistent, readable key across static, modeled and measured overlays. */
+:is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud){position:absolute;left:22px;bottom:210px;z-index:610;width:290px;max-width:calc(100% - 44px);box-sizing:border-box;padding:15px 16px;background:#101b25f5;border:1px solid #9db5c449;border-radius:10px;box-shadow:0 6px 24px #0004;pointer-events:none}
+:is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud)>strong{display:block;font-size:13px;font-weight:600;line-height:1.5;letter-spacing:.05px;color:#f3eee4}
+:is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud)>small{display:block;font-size:10px;line-height:1.6;color:#bfcfc9;margin-top:10px;max-height:none;overflow:visible}
+:is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend)>output{display:block;font-size:11px;line-height:1.5;color:#f7deb7;margin-top:10px;font-variant-numeric:tabular-nums}
+:is(#science-legend-ramp,#environment-legend-ramp,#wind-legend-ramp,#magnetic-ramp,#elevation-ramp){height:10px;border-radius:5px;margin:13px 0 7px;box-shadow:inset 0 0 0 1px #ffffff30}
+.science-legend-ends{font-size:10px;line-height:1.5;font-variant-numeric:tabular-nums;color:#d4ddd8}
+.science-legend-ends:not(.science-class-scale)>span:nth-child(2):not(:last-child){text-align:center}
+#science-legend-units,#environment-legend-units,#wind-legend-units{font-size:10px;color:#bbcfc5;line-height:1.6;margin-top:3px}
+@media(max-width:800px){:is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud){left:15px;bottom:190px;width:265px;max-width:calc(100% - 30px)}}
+@media(max-width:560px){:is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud){bottom:110px;width:245px;padding:11px 13px}body.split :is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud){bottom:50%;margin-bottom:10px}}
+@media(min-width:801px){body.split :is(#science-legend,#mineral-legend,#environment-legend,#wind-legend,#magnetic-legend,#elevation-legend,#space-weather-hud){left:auto;right:calc(50% + 15px);bottom:22px;width:250px;padding:11px 13px}}
+
+#source-controls{margin-top:14px;padding-top:12px;border-top:1px solid #8aaba744}
+#source-controls label{display:block!important;font-size:11px;margin:9px 0!important;line-height:1.6}
+#source-controls :is(select,input){display:block;width:100%;margin-top:6px;color-scheme:dark}
+#source-controls p{font-size:11px;line-height:1.65;color:#c9d6ce}
+#source-controls [role=status]{color:#ffd4ad;font-weight:600}
+#source-controls output{display:block;color:#f7deb7;font-size:12px;line-height:1.7;margin:12px 0}
+#source-controls svg{display:block;width:100%;height:auto;background:#0b151c;border-radius:6px;margin:12px 0}
+#source-controls small{font-size:10px;line-height:1.7;color:#bdccc5}
+#source-legend{position:absolute;left:22px;bottom:210px;z-index:610;width:290px;max-width:calc(100% - 44px);box-sizing:border-box;padding:15px 16px;background:#101b25f5;border:1px solid #9db5c449;border-radius:10px;box-shadow:0 6px 24px #0004;pointer-events:none}
+#source-legend>strong{display:block;font-size:13px;line-height:1.5;color:#f3eee4}
+#source-legend>small{display:block;font-size:10px;line-height:1.6;color:#bfcfc9;margin-top:10px}
+#source-legend>output{display:block;font-size:11px;line-height:1.5;color:#f7deb7;margin-top:10px;font-variant-numeric:tabular-nums}
+.source-scale{font-size:10px;line-height:1.7;margin-top:10px}.source-ramp{height:10px;border-radius:5px;margin:10px 0 7px}.science-dependency a{display:block;font-size:10px;line-height:1.7;margin-top:6px;color:#a6d7e5}
+@media(max-width:800px){#source-legend{left:15px;bottom:190px;width:265px;max-width:calc(100% - 30px)}}
+@media(max-width:560px){#source-legend{bottom:110px;width:245px;padding:11px 13px}body.split #source-legend{bottom:50%;margin-bottom:10px}}
+@media(min-width:801px){body.split #source-legend{left:auto;right:calc(50% + 15px);bottom:22px;width:250px;padding:11px 13px}}

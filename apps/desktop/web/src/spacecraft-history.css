@@ -1,0 +1,11 @@
+.ui-centre-crosshair{position:absolute;left:50%;top:50%;width:25px;height:25px;transform:translate(-50%,-50%);z-index:610;pointer-events:none;filter:drop-shadow(0 1px 1px #000) drop-shadow(0 0 1px #000)}
+.ui-centre-crosshair svg{display:block;width:100%;height:100%;stroke:#e9fff7;stroke-width:1.3;stroke-linecap:round}
+body.ui-orbit #view-centre-mark{display:none!important}
+.spacecraft-history{margin:16px 0;padding:14px 0;border-top:1px solid #a1c4ce33;border-bottom:1px solid #a1c4ce33}
+.spacecraft-history h4{font-size:14px;color:#d6eee7;margin:0 0 8px}
+.spacecraft-history>p{font-size:12px!important;line-height:1.6!important;color:#c5d6dd!important}
+.spacecraft-history dl{display:block!important;margin:12px 0!important}
+.spacecraft-history dt{font-size:10px!important;color:#a6c4d0!important;letter-spacing:.5px;margin:12px 0 4px!important;text-transform:uppercase}
+.spacecraft-history dd{margin:0!important;font-size:13px!important;line-height:1.5!important;color:#f0f7f9!important;overflow-wrap:anywhere}
+.spacecraft-history dd small{display:block;margin-top:3px;font-size:10px;color:#afc6d0;line-height:1.5}
+.spacecraft-history details{font-size:11px;line-height:1.6}.spacecraft-history summary{color:#b7dccf;cursor:pointer}.spacecraft-history a{color:#a9ead6}.spacecraft-history details p{font-size:10px!important;line-height:1.5!important;color:#abc0cc!important}

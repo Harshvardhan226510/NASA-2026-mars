@@ -1,0 +1,60 @@
+{
+  "schema": "mars-starter/1",
+  "id": "mars-global-overview",
+  "version": "1.0.0",
+  "bounds": [
+    -180,
+    -90,
+    180,
+    90
+  ],
+  "coordinates": "east-positive planetocentric degrees",
+  "elevationDatum": "MOLA published topography relative to Mars areoid",
+  "imageryMetersPerPixelAtEquator": 5210,
+  "elevationPixelsPerDegree": 4,
+  "credit": "NASA/JPL/MSSS; Caltech Murray Lab; NASA Viking; NASA/MGS MOLA",
+  "redistributionStatus": "Release rights audit pending; source credits retained",
+  "limitations": "Coarse overview only. No HiRISE coverage or operational navigation clearance implied.",
+  "files": [
+    {
+      "path": "globe-overview-0.jpg",
+      "bytes": 1661457,
+      "sha256": "590135dd6d8067e6e3f7e2c475b0ce432d44f30a074081f45999e186c364f2db"
+    },
+    {
+      "path": "globe-overview-1.jpg",
+      "bytes": 1679850,
+      "sha256": "fd8d271209212e19866b9a0ca1c83f190c0b36c8ec72e8698e61fb5cf369b8f5"
+    },
+    {
+      "path": "color-overview-0.jpg",
+      "bytes": 1941226,
+      "sha256": "042bb975a0567c36518ba69bf7b51196b4725cb52226127d84cc4127fa1e27bf"
+    },
+    {
+      "path": "color-overview-1.jpg",
+      "bytes": 1959695,
+      "sha256": "4f4a3635c3d536ebed452605be06ea80dbfa00afc43576888ef0230e15ddb07b"
+    },
+    {
+      "path": "mola-topography.dat",
+      "bytes": 1698916,
+      "sha256": "3e94a9e6fd34d317cf74a6b68b9c315cc65a97713393df217e63fea40b569eb8"
+    },
+    {
+      "path": "globe-overview-provenance.json",
+      "bytes": 20413,
+      "sha256": "c77feb5486e562e4b3ffdc3b4c3cbc736acfff9f83981bf0748f0665708a2b80"
+    },
+    {
+      "path": "mola-provenance.json",
+      "bytes": 681,
+      "sha256": "83551e4aa7985230bb1b77163333247bb22167f832411c9addef47fbd04d234b"
+    },
+    {
+      "path": "color-context-provenance.json",
+      "bytes": 38383,
+      "sha256": "fc9474ce409cf74174d180291f22d61bda66843949013c1a64edd74b23294771"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Region label terrain check</title>
+<link rel="stylesheet" href="/vendor/cesium/Widgets/widgets.css"><script src="/vendor/cesium/Cesium.js"></script>
+<style>html,body,#globe{margin:0;width:100%;height:100%;overflow:hidden;background:#090d12;color:#e6eff0;font:14px system-ui}aside{position:absolute;top:16px;left:16px;background:#101924ed;padding:16px;max-width:310px}button{padding:8px;margin:6px 4px 0 0}output{display:block;white-space:pre-wrap;line-height:1.5}#desktop-status{display:none}</style>
+</head><body><div id="globe"></div><aside><strong>Region labels over Olympus</strong><p>Bundled measured MOLA terrain, 3× display relief. Compare label clipping at different camera angles.</p><button id="oblique">Oblique</button><button id="overhead">Overhead</button><button id="far">Far hemisphere</button><button id="legacy">Legacy depth testing</button><button id="fixed">Fixed labels</button><output id="result">Starting…</output></aside>
+<script>window.marsDesktop={};</script><script type="module">
+import {regionMarkerGraphics} from '../../src/map-marker-style.js';
+import {aboveHorizon} from '../../src/value-geometry.js';
+import {MarsTerrain} from '../../src/planet.js';
+const C=window.Cesium,R=3396190,ellipsoid=new C.Ellipsoid(R,R,R);C.Ellipsoid.default=ellipsoid;
+const viewer=new C.Viewer('globe',{ellipsoid,globe:new C.Globe(ellipsoid),terrainProvider:new MarsTerrain(C,ellipsoid),baseLayer:false,skyBox:false,skyAtmosphere:false,animation:false,timeline:false,baseLayerPicker:false,geocoder:false,homeButton:false,navigationHelpButton:false,sceneModePicker:false,fullscreenButton:false,selectionIndicator:false,infoBox:false,requestRenderMode:true,contextOptions:{webgl:{antialias:false,stencil:true}}});
+viewer.scene.globe.baseColor=C.Color.fromCssColorString('#ad7760');viewer.scene.globe.depthTestAgainstTerrain=true;viewer.scene.verticalExaggeration=3;
+const data=await fetch('/regions.json').then(r=>r.json()),regions=(data.regions??data).filter(r=>r.id.startsWith('OLYMPUS_'));
+const markers=regions.map(region=>{const entity=viewer.entities.add({position:C.Cartesian3.fromDegrees(...region.center,0,ellipsoid),...regionMarkerGraphics(C,region,R)});entity.region=region;return entity;});
+let legacy=false,mode='Oblique';const output=document.getElementById('result');
+function view(pitch){viewer.camera.lookAt(C.Cartesian3.fromDegrees(-132.4,19.05,60000,ellipsoid),new C.HeadingPitchRange(C.Math.toRadians(30),C.Math.toRadians(pitch),310000));viewer.camera.lookAtTransform(C.Matrix4.IDENTITY);viewer.scene.requestRender();}
+function depth(value){legacy=value;for(const entity of markers){entity.label.disableDepthTestDistance=entity.billboard.disableDepthTestDistance=value?0:Infinity;}viewer.scene.requestRender();}
+document.getElementById('legacy').onclick=()=>depth(true);document.getElementById('fixed').onclick=()=>depth(false);
+document.getElementById('oblique').onclick=()=>{mode='Oblique';view(-35);};document.getElementById('overhead').onclick=()=>{mode='Overhead';view(-90);};
+document.getElementById('far').onclick=()=>{mode='Far hemisphere';viewer.camera.setView({destination:C.Cartesian3.fromDegrees(47.6,-19.05,1000000,ellipsoid)});viewer.scene.requestRender();};
+viewer.scene.preRender.addEventListener(()=>{for(const entity of markers)entity.show=aboveHorizon(entity.region.center,viewer.camera.positionWC);output.textContent=(legacy?'Legacy':'Fixed')+' · '+mode+'\n'+markers.filter(entity=>entity.show).length+' region markers facing camera\nTerrain '+(viewer.scene.globe.tilesLoaded?'ready':'loading');});
+viewer.scene.renderError.addEventListener((_scene,error)=>{output.textContent='RENDER ERROR: '+error.message;});view(-35);
+</script></body></html>

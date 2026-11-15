@@ -1,0 +1,60 @@
+{
+  "started_at": "2026-10-18T13:10:25.180Z",
+  "completed_at": "2026-10-18T13:10:31.731Z",
+  "results": [
+    {
+      "feed": "rad",
+      "ok": true,
+      "samples": 2387,
+      "runs": 0,
+      "events": 0,
+      "latest": "2026-10-17T11:08:54.000Z",
+      "raw_bytes": 131095
+    },
+    {
+      "feed": "mex",
+      "ok": true,
+      "samples": 10460,
+      "runs": 0,
+      "events": 0,
+      "latest": "2026-10-16T19:43:51.000Z",
+      "raw_bytes": 365006
+    },
+    {
+      "feed": "ipath",
+      "ok": true,
+      "samples": 0,
+      "runs": 5,
+      "events": 0,
+      "latest": "2026-10-17T13:52:44.000Z",
+      "raw_bytes": 45819
+    },
+    {
+      "feed": "donki",
+      "ok": true,
+      "samples": 0,
+      "runs": 0,
+      "events": 18,
+      "latest": "2026-10-17T12:59:00.000Z",
+      "raw_bytes": 53171
+    },
+    {
+      "feed": "goes-protons",
+      "ok": true,
+      "samples": 2014,
+      "runs": 0,
+      "events": 0,
+      "latest": "2026-10-18T13:00:00.000Z",
+      "raw_bytes": 1700175
+    },
+    {
+      "feed": "goes-xrays",
+      "ok": true,
+      "samples": 10075,
+      "runs": 0,
+      "events": 0,
+      "latest": "2026-10-18T13:07:00.000Z",
+      "raw_bytes": 4587395
+    }
+  ]
+}

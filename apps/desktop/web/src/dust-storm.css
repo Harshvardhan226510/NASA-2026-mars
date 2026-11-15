@@ -1,0 +1,235 @@
+#dust-panel {
+ width: 360px;
+ max-height: calc(100dvh - 120px);
+ overflow-y: auto;
+}
+
+.dust-intro {
+ color: #b8cbc2;
+ font-size: 12px;
+ line-height: 1.6;
+ margin-bottom: 12px;
+}
+
+.dust-card {
+ padding: 14px;
+ margin: 12px 0;
+ background: #15232b;
+ border: 1px solid #91aab54a;
+ border-radius: 8px;
+}
+
+.dust-card-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 8px;
+}
+
+.dust-card-header h3 {
+ font-size: 14px;
+ font-weight: 650;
+ color: #ffe0b7;
+ margin: 0;
+}
+
+.dust-badge {
+ padding: 3px 8px;
+ font-size: 11px;
+ font-weight: 700;
+ border-radius: 4px;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+}
+
+.dust-badge[data-tier="low"] {
+ background: #132e22;
+ color: #72e0a8;
+ border: 1px solid #236545;
+}
+
+.dust-badge[data-tier="moderate"] {
+ background: #373319;
+ color: #ffd666;
+ border: 1px solid #735e23;
+}
+
+.dust-badge[data-tier="high"] {
+ background: #3c2415;
+ color: #ff9955;
+ border: 1px solid #7e4620;
+}
+
+.dust-badge[data-tier="severe"] {
+ background: #42161b;
+ color: #ff6879;
+ border: 1px solid #8e2b38;
+}
+
+.dust-meter-wrap {
+ margin: 10px 0 14px;
+}
+
+#dust-risk-meter {
+ width: 100%;
+ height: 10px;
+ border-radius: 5px;
+ appearance: none;
+ -webkit-appearance: none;
+}
+
+#dust-risk-meter::-webkit-progress-bar {
+ background-color: #0c141a;
+ border-radius: 5px;
+ border: 1px solid #8ba1ae33;
+}
+
+#dust-risk-meter[data-tier="low"]::-webkit-progress-value {
+ background: linear-gradient(90deg, #1fa363, #57df9b);
+ border-radius: 5px;
+}
+
+#dust-risk-meter[data-tier="moderate"]::-webkit-progress-value {
+ background: linear-gradient(90deg, #b8861d, #ffd453);
+ border-radius: 5px;
+}
+
+#dust-risk-meter[data-tier="high"]::-webkit-progress-value {
+ background: linear-gradient(90deg, #d35400, #ff8c42);
+ border-radius: 5px;
+}
+
+#dust-risk-meter[data-tier="severe"]::-webkit-progress-value {
+ background: linear-gradient(90deg, #c0392b, #ff4d6d);
+ border-radius: 5px;
+}
+
+.dust-metrics-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 10px;
+ margin-top: 10px;
+}
+
+.dust-metric {
+ display: flex;
+ flex-direction: column;
+ gap: 2px;
+}
+
+.dust-metric small {
+ font-size: 10px;
+ color: #9bb0be;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+}
+
+.dust-metric strong {
+ font-size: 14px;
+ color: #fff2df;
+ font-variant-numeric: tabular-nums;
+}
+
+.dust-drivers-box {
+ margin-top: 12px;
+ padding-top: 10px;
+ border-top: 1px solid #91aab526;
+}
+
+.dust-drivers-box h4 {
+ font-size: 11px;
+ text-transform: uppercase;
+ color: #b7c8ce;
+ margin: 0 0 6px;
+ letter-spacing: 0.5px;
+}
+
+#dust-drivers-list {
+ margin: 0;
+ padding-left: 16px;
+ font-size: 11px;
+ color: #cfded9;
+ line-height: 1.5;
+}
+
+.dust-controls-box {
+ margin: 14px 0;
+}
+
+.dust-slider-header {
+ display: flex;
+ justify-content: space-between;
+ font-size: 11px;
+ color: #b7c8ce;
+ margin-bottom: 6px;
+}
+
+#dust-wind-slider {
+ width: 100%;
+ margin-bottom: 12px;
+ accent-color: #efae7d;
+ cursor: pointer;
+}
+
+.dust-presets {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 6px;
+ margin: 8px 0;
+}
+
+.dust-presets button {
+ padding: 7px 6px;
+ font-size: 10px;
+ font-weight: 600;
+ background: #101a22;
+ border: 1px solid #8ba1ae33;
+ border-radius: 4px;
+ color: #c4d7de;
+ cursor: pointer;
+ transition: all 0.15s ease;
+}
+
+.dust-presets button:hover {
+ background: #1f303d;
+ border-color: #efae7d;
+ color: #fff;
+}
+
+.dust-eval-btn {
+ width: 100%;
+ padding: 8px;
+ margin: 10px 0;
+ background: #263836;
+ color: #c6f0dc;
+ border: 1px solid #579d7d;
+ border-radius: 5px;
+ font-weight: 650;
+ font-size: 11px;
+ cursor: pointer;
+}
+
+.dust-eval-btn:hover {
+ background: #324c49;
+ color: #fff;
+}
+
+.dust-offline-pill {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ padding: 6px 10px;
+ margin: 8px 0 4px;
+ background: #142a23;
+ border: 1px solid #71b8964d;
+ border-radius: 4px;
+ font-size: 10px;
+ color: #8cdbb5;
+ font-weight: 600;
+}
+
+.dust-offline-pill::before {
+ content: '●';
+ font-size: 8px;
+ color: #62d79a;
+}

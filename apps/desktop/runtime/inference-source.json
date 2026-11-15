@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/ggml-org/llama.cpp",
+  "release": "b12032",
+  "commit": "dde879bc4f954b809892fd0d660515f42536394a",
+  "win32-x64": {
+    "asset": "llama-b12032-bin-win-cpu-x64.zip",
+    "sha256": "5296f5d18bb7d422c7c26f4bb9bc796d9d4f41e1312a8c296cff475bdc60d0d4"
+  },
+  "linux-arm64": {
+    "method": "Native Debian Bookworm ARM64 CMake build from the same pinned commit; portable CPU/static dependencies"
+  },
+  "verification": "Windows private runtime and official Qwen Q4_K_M base weights verified offline. Original Mars fine-tuned weights and Pi on-device performance remain unverified."
+}

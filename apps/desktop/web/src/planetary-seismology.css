@@ -1,0 +1,244 @@
+#seismic-panel {
+ width: 360px;
+ max-height: calc(100dvh - 120px);
+ overflow-y: auto;
+}
+
+.seismic-intro {
+ color: #b8cbc2;
+ font-size: 12px;
+ line-height: 1.6;
+ margin-bottom: 12px;
+}
+
+.seismic-select-group {
+ margin-bottom: 12px;
+}
+
+.seismic-select-group select {
+ width: 100%;
+ padding: 8px 10px;
+ font-size: 12px;
+ background: #15222b;
+ border: 1px solid #8ba1ae4d;
+ border-radius: 5px;
+ color: #ffe0b7;
+ cursor: pointer;
+}
+
+.seismic-canvas-wrap {
+ position: relative;
+ margin: 10px 0;
+ border: 1px solid #91aab54a;
+ border-radius: 6px;
+ overflow: hidden;
+ background: #0b1319;
+}
+
+#seismic-canvas {
+ display: block;
+ width: 100%;
+ height: 110px;
+}
+
+.seismic-canvas-legend {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 5px 8px;
+ font-size: 10px;
+ color: #9bb0be;
+ background: #101c24;
+ border-top: 1px solid #1e303d;
+}
+
+.seismic-legend-item {
+ display: inline-flex;
+ align-items: center;
+ gap: 4px;
+}
+
+.seismic-dot {
+ width: 7px;
+ height: 7px;
+ border-radius: 50%;
+}
+
+.seismic-dot.p-wave {
+ background: #ffd666;
+}
+
+.seismic-dot.s-wave {
+ background: #ff4d6d;
+}
+
+.seismic-filter-tabs {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 6px;
+ margin: 8px 0 12px;
+}
+
+.seismic-filter-tabs button {
+ padding: 6px 8px;
+ font-size: 11px;
+ font-weight: 600;
+ background: #131f27;
+ border: 1px solid #8ba1ae33;
+ border-radius: 4px;
+ color: #b7c8ce;
+ cursor: pointer;
+}
+
+.seismic-filter-tabs button[aria-pressed="true"] {
+ background: #263c3a;
+ border-color: #57df9b;
+ color: #eafff5;
+}
+
+.seismic-card {
+ padding: 14px;
+ margin: 12px 0;
+ background: #15232b;
+ border: 1px solid #91aab54a;
+ border-radius: 8px;
+}
+
+.seismic-card-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 8px;
+}
+
+.seismic-card-header h3 {
+ font-size: 13px;
+ font-weight: 650;
+ color: #ffe0b7;
+ margin: 0;
+}
+
+.seismic-trigger-badge {
+ padding: 3px 8px;
+ font-size: 10px;
+ font-weight: 700;
+ border-radius: 4px;
+ letter-spacing: 0.5px;
+}
+
+.seismic-trigger-badge[data-status="triggered"] {
+ background: #4a1523;
+ color: #ff6879;
+ border: 1px solid #8e2b38;
+}
+
+.seismic-trigger-badge[data-status="quiet"] {
+ background: #132e22;
+ color: #72e0a8;
+ border: 1px solid #236545;
+}
+
+.seismic-metrics-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 10px;
+ margin-top: 10px;
+}
+
+.seismic-metric {
+ display: flex;
+ flex-direction: column;
+ gap: 2px;
+}
+
+.seismic-metric small {
+ font-size: 10px;
+ color: #9bb0be;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+}
+
+.seismic-metric strong {
+ font-size: 13px;
+ color: #fff2df;
+ font-variant-numeric: tabular-nums;
+}
+
+.seismic-desc-box {
+ font-size: 11px;
+ color: #b8cbc2;
+ line-height: 1.5;
+ margin: 10px 0;
+}
+
+.seismic-slider-header {
+ display: flex;
+ justify-content: space-between;
+ font-size: 11px;
+ color: #b7c8ce;
+ margin: 8px 0 4px;
+}
+
+#seismic-sens-slider {
+ width: 100%;
+ margin-bottom: 10px;
+ accent-color: #ff4d6d;
+ cursor: pointer;
+}
+
+.seismic-actions {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 8px;
+ margin: 12px 0;
+}
+
+.seismic-actions button {
+ padding: 8px 6px;
+ font-size: 11px;
+ font-weight: 600;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+.seismic-btn-primary {
+ background: #263836;
+ color: #c6f0dc;
+ border: 1px solid #579d7d;
+}
+
+.seismic-btn-primary:hover {
+ background: #324c49;
+ color: #fff;
+}
+
+.seismic-btn-secondary {
+ background: #131d25;
+ color: #c0d1d6;
+ border: 1px solid #8ba1ae4d;
+}
+
+.seismic-btn-secondary:hover {
+ background: #202e3b;
+ color: #fff;
+}
+
+.seismic-offline-pill {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ padding: 6px 10px;
+ margin: 8px 0 4px;
+ background: #142a23;
+ border: 1px solid #71b8964d;
+ border-radius: 4px;
+ font-size: 10px;
+ color: #8cdbb5;
+ font-weight: 600;
+}
+
+.seismic-offline-pill::before {
+ content: '●';
+ font-size: 8px;
+ color: #62d79a;
+}

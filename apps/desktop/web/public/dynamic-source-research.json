@@ -1,0 +1,875 @@
+{
+  "schema": "mars-dynamic-source-research/1",
+  "prepared_at": "2026-10-20T12:47:55.054Z",
+  "audited_entries": 32,
+  "new_scoped_views": 5,
+  "not_all_pending_entries_lack_data": true,
+  "entries": [
+    {
+      "id": "seasonal-subsurface-thermal-conditions",
+      "display_name": "Seasonal subsurface thermal conditions",
+      "category": "Water, Ice & Subsurface",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "subsurface-thermal",
+      "dependency_label": "Thermal model needed",
+      "remaining_for_full_scope": "A depth-resolved conduction model needs conductivity, density, heat capacity, layered material / ice, spin-up and surface boundary history. EMARS surface temperature is available but does not supply temperatures at depth.",
+      "sources": [
+        {
+          "title": "Mars Climate Database · variables / access conditions",
+          "url": "https://www-mars.lmd.jussieu.fr/mars/access"
+        }
+      ]
+    },
+    {
+      "id": "time-specific-communication-availability",
+      "display_name": "Relay orbiter visibility · geometry",
+      "category": "Marswalk & Mission Analysis",
+      "selectable": true,
+      "implemented_scope": "partial_geometry",
+      "model_package": "relay-link-and-operations",
+      "dependency_label": "Partial · geometry available",
+      "remaining_for_full_scope": "Geometric visibility is implemented. A communication schedule still needs operational pass allocations plus antenna attitudes, radio compatibility, link budgets and local terrain. NASA MaROS supplies operational planning, but a public machine-readable schedule feed was not verified in this audit.",
+      "sources": [
+        {
+          "title": "NASA Mars Relay Network · participation documents",
+          "url": "https://science.nasa.gov/mars/mars-relay-network/"
+        },
+        {
+          "title": "NASA MaROS · operational planning system",
+          "url": "https://ammos.nasa.gov/maros/"
+        },
+        {
+          "title": "NASA JPL Horizons numerical ephemerides",
+          "url": "https://ssd.jpl.nasa.gov/horizons/"
+        }
+      ]
+    },
+    {
+      "id": "eva-environmental-exposure-along-routes",
+      "display_name": "EVA environmental exposure along routes",
+      "category": "Marswalk & Mission Analysis",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "timed-route-exposure",
+      "dependency_label": "Timed exposure model needed",
+      "remaining_for_full_scope": "Environmental grids and local measurements exist. Route integration needs arrival times, stops and return travel plus validated UV / dose / thermal-response fields and suit assumptions. Unsupported route intervals must stay unknown rather than contribute zero exposure.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        }
+      ]
+    },
+    {
+      "id": "time-dependent-route-energy-requirements",
+      "display_name": "Time-dependent route energy requirements",
+      "category": "Marswalk & Mission Analysis",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "route-energy",
+      "dependency_label": "Suit / vehicle model needed",
+      "remaining_for_full_scope": "Terrain walking cost is already available. Time-dependent energy needs separately validated metabolic, suit life-support / thermal or vehicle models with mass, speed, stops, battery state and weather. Climate temperature alone cannot determine energy use.",
+      "sources": [
+        {
+          "title": "Mars Climate Database · variables / access conditions",
+          "url": "https://www-mars.lmd.jussieu.fr/mars/access"
+        },
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        }
+      ]
+    },
+    {
+      "id": "dust-storm-extent",
+      "display_name": "Dust storm extent · historical MARCI",
+      "category": "Atmosphere, Solar & Thermal Environment",
+      "selectable": true,
+      "implemented_scope": "historical_scope",
+      "model_package": "current-dust-detection",
+      "dependency_label": "Historical source implemented",
+      "remaining_for_full_scope": "Historical observed masks are connected. A current storm perimeter would require newly published masks or a validated detection pipeline on timestamped MARCI images; climate dust optical depth is not a storm polygon.",
+      "sources": [
+        {
+          "title": "MDAD v1.1 · native storm masks · CC BY 4.0",
+          "url": "https://zenodo.org/records/7480334"
+        }
+      ]
+    },
+    {
+      "id": "uva-irradiance",
+      "display_name": "UV-A irradiance · REMS archive",
+      "category": "Atmosphere, Solar & Thermal Environment",
+      "selectable": true,
+      "implemented_scope": "historical_local_band",
+      "model_package": "surface-spectral-radiation",
+      "dependency_label": "Local archive implemented",
+      "remaining_for_full_scope": "REMS instrument-band history is connected. A current global 315–400 nm field needs spectral radiative transfer, aerosols, solar geometry and a defined receiver geometry, validated against REMS / MEDA bands.",
+      "sources": [
+        {
+          "title": "NASA PDS · corrected REMS UV archive",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_uv_corrected/"
+        },
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        },
+        {
+          "title": "NASA PSG · radiative-transfer service",
+          "url": "https://psg.gsfc.nasa.gov/helpapi.php"
+        }
+      ]
+    },
+    {
+      "id": "uvb-irradiance",
+      "display_name": "UV-B irradiance · REMS archive",
+      "category": "Atmosphere, Solar & Thermal Environment",
+      "selectable": true,
+      "implemented_scope": "historical_local_band",
+      "model_package": "surface-spectral-radiation",
+      "dependency_label": "Local archive implemented",
+      "remaining_for_full_scope": "REMS instrument-band history is connected. A current global standard 280–315 nm field needs spectral radiative transfer; the REMS 280–320 nm band cannot be silently relabelled.",
+      "sources": [
+        {
+          "title": "NASA PDS · corrected REMS UV archive",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_uv_corrected/"
+        },
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        },
+        {
+          "title": "NASA PSG · radiative-transfer service",
+          "url": "https://psg.gsfc.nasa.gov/helpapi.php"
+        }
+      ]
+    },
+    {
+      "id": "surface-reaching-uvc-irradiance",
+      "display_name": "UV-C irradiance · REMS archive",
+      "category": "Atmosphere, Solar & Thermal Environment",
+      "selectable": true,
+      "implemented_scope": "historical_local_band",
+      "model_package": "surface-spectral-radiation",
+      "dependency_label": "Local archive implemented",
+      "remaining_for_full_scope": "REMS 220–280 nm history is connected locally. A global sub-280 nm surface field needs spectral solar input and CO₂ / ozone / aerosol transmission. Missing short-wavelength coverage cannot be assumed zero.",
+      "sources": [
+        {
+          "title": "NASA PDS · corrected REMS UV archive",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_uv_corrected/"
+        },
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        },
+        {
+          "title": "NASA PSG · radiative-transfer service",
+          "url": "https://psg.gsfc.nasa.gov/helpapi.php"
+        }
+      ]
+    },
+    {
+      "id": "visible-solar-irradiance",
+      "display_name": "Visible solar irradiance",
+      "category": "Atmosphere, Solar & Thermal Environment",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "surface-spectral-radiation",
+      "dependency_label": "Band integration needed",
+      "remaining_for_full_scope": "MEDA RDS has calibrated local spectral and broadband solar measurements. A 400–700 nm global surface field needs a specified band / geometry and validated spectral integration. A narrow detector band or 0.2–1.2 μm panchromatic channel is not the full visible band. MEDA archive decoding is additional engineering, not missing data.",
+      "sources": [
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        },
+        {
+          "title": "NASA PSG · radiative-transfer service",
+          "url": "https://psg.gsfc.nasa.gov/helpapi.php"
+        }
+      ]
+    },
+    {
+      "id": "solar-infrared-irradiance",
+      "display_name": "Solar infrared irradiance",
+      "category": "Atmosphere, Solar & Thermal Environment",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "surface-spectral-radiation",
+      "dependency_label": "Band definition / model needed",
+      "remaining_for_full_scope": "Define the solar-IR wavelength interval first. MEDA TIRS measures reflected shortwave 0.3–3 μm and thermal longwave, which are not an isolated downward solar-IR band. Archive products exist; global solar-IR requires spectral separation / transfer.",
+      "sources": [
+        {
+          "title": "NASA PDS · MEDA calibrated local radiation",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+        },
+        {
+          "title": "NASA PSG · radiative-transfer service",
+          "url": "https://psg.gsfc.nasa.gov/helpapi.php"
+        }
+      ]
+    },
+    {
+      "id": "heliospheric-magnetic-connectivity",
+      "display_name": "Heliospheric magnetic connectivity",
+      "category": "Space Weather & Solar Activity",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "heliospheric-connectivity",
+      "dependency_label": "Heliospheric model needed",
+      "remaining_for_full_scope": "Requires dated magnetic-field / solar-wind solutions and field-line tracing to Mars, with source-surface / transport assumptions. Existing Earth-L1 IMF values cannot determine Mars connectivity. A Parker-spiral approximation would need explicit limitations and validation.",
+      "sources": [
+        {
+          "title": "NASA CCMC · Mars iPATH run metadata",
+          "url": "https://iswa.ccmc.gsfc.nasa.gov/api/recent?dataID=2806&n=5"
+        }
+      ]
+    },
+    {
+      "id": "gcr-solar-cycle-modulation",
+      "display_name": "GCR solar-cycle modulation",
+      "category": "Space Weather & Solar Activity",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "gcr-boundary-spectrum",
+      "dependency_label": "GCR spectrum model needed",
+      "remaining_for_full_scope": "Historical RAD dose / particle responses and published GCR models exist. A dated modulation potential or species-resolved boundary spectrum needs calibration, radial transport assumptions and uncertainty; Earth F10.7 is context, not a modulation potential.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "space-weather-forecast-uncertainty",
+      "display_name": "Space-weather forecast uncertainty",
+      "category": "Space Weather & Solar Activity",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "forecast-calibration",
+      "dependency_label": "Ensemble / calibration needed",
+      "remaining_for_full_scope": "The verified iPATH feed has deterministic forecast issues, not calibrated probability intervals. Supply an ensemble or a hindcast / observed-event calibration with coverage tests. Revisions between runs cannot be labelled confidence bounds.",
+      "sources": [
+        {
+          "title": "NASA CCMC · Mars iPATH run metadata",
+          "url": "https://iswa.ccmc.gsfc.nasa.gov/api/recent?dataID=2806&n=5"
+        }
+      ]
+    },
+    {
+      "id": "galactic-cosmic-ray-particle-flux",
+      "display_name": "Galactic cosmic-ray particle flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Local archive / global model",
+      "remaining_for_full_scope": "Published RAD species spectra and detector archives are real data sources. A historical local spectrum adapter requires species / energy / geometry / quality calibration; raw detector counts are not flux. A global time-varying surface field additionally needs a validated atmospheric / regolith particle-transport model. This entry is not blocked by an absence of all measurements.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD measured species spectra · published analysis",
+          "url": "https://doi.org/10.1002/2013JE004547"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "high-energy-proton-flux",
+      "display_name": "High-energy proton flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Local archive / global model",
+      "remaining_for_full_scope": "Published RAD species spectra and detector archives are real data sources. A historical local spectrum adapter requires species / energy / geometry / quality calibration; raw detector counts are not flux. A global time-varying surface field additionally needs a validated atmospheric / regolith particle-transport model. This entry is not blocked by an absence of all measurements.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD measured species spectra · published analysis",
+          "url": "https://doi.org/10.1002/2013JE004547"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "alpha-particle-flux",
+      "display_name": "Alpha-particle flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Local archive / global model",
+      "remaining_for_full_scope": "Published RAD species spectra and detector archives are real data sources. A historical local spectrum adapter requires species / energy / geometry / quality calibration; raw detector counts are not flux. A global time-varying surface field additionally needs a validated atmospheric / regolith particle-transport model. This entry is not blocked by an absence of all measurements.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD measured species spectra · published analysis",
+          "url": "https://doi.org/10.1002/2013JE004547"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "heavy-ion-hze-flux",
+      "display_name": "Heavy-ion / HZE flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Local archive / global model",
+      "remaining_for_full_scope": "Published RAD species spectra and detector archives are real data sources. A historical local spectrum adapter requires species / energy / geometry / quality calibration; raw detector counts are not flux. A global time-varying surface field additionally needs a validated atmospheric / regolith particle-transport model. This entry is not blocked by an absence of all measurements.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD measured species spectra · published analysis",
+          "url": "https://doi.org/10.1002/2013JE004547"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "energetic-electron-flux",
+      "display_name": "Energetic electron flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Local archive / global model",
+      "remaining_for_full_scope": "Published RAD species spectra and detector archives are real data sources. A historical local spectrum adapter requires species / energy / geometry / quality calibration; raw detector counts are not flux. A global time-varying surface field additionally needs a validated atmospheric / regolith particle-transport model. This entry is not blocked by an absence of all measurements.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD measured species spectra · published analysis",
+          "url": "https://doi.org/10.1002/2013JE004547"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-neutron-flux",
+      "display_name": "Secondary neutron flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "RAD neutral-particle event histograms and published neutron / gamma spectra provide local validation data. Event histograms require instrument-response unfolding before becoming flux. Global secondary production and upward albedo need directional atmosphere / regolith transport, species and energy bins; orbital neutron counts are not surface astronaut exposure.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-gamma-ray-flux",
+      "display_name": "Secondary gamma-ray flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "RAD neutral-particle event histograms and published neutron / gamma spectra provide local validation data. Event histograms require instrument-response unfolding before becoming flux. Global secondary production and upward albedo need directional atmosphere / regolith transport, species and energy bins; orbital neutron counts are not surface astronaut exposure.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-proton-ion-flux",
+      "display_name": "Secondary proton / ion flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "Requires secondary-particle production and transport through atmosphere, regolith and shielding. Keep the particle species, parent population, energy bins and upward / downward directions explicit; no calibrated global public field was verified in this audit.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-electron-and-positron-flux",
+      "display_name": "Secondary electron and positron flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "Requires secondary-particle production and transport through atmosphere, regolith and shielding. Keep the particle species, parent population, energy bins and upward / downward directions explicit; no calibrated global public field was verified in this audit.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-muon-flux",
+      "display_name": "Secondary muon flux",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "Requires secondary-particle production and transport through atmosphere, regolith and shielding. Keep the particle species, parent population, energy bins and upward / downward directions explicit; no calibrated global public field was verified in this audit.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "upward-emitted-albedo-neutron-radiation",
+      "display_name": "Upward-emitted albedo neutron radiation",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "RAD neutral-particle event histograms and published neutron / gamma spectra provide local validation data. Event histograms require instrument-response unfolding before becoming flux. Global secondary production and upward albedo need directional atmosphere / regolith transport, species and energy bins; orbital neutron counts are not surface astronaut exposure.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "upward-emitted-albedo-gamma-radiation",
+      "display_name": "Upward-emitted albedo gamma radiation",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-transport",
+      "dependency_label": "Transport / response needed",
+      "remaining_for_full_scope": "RAD neutral-particle event histograms and published neutron / gamma spectra provide local validation data. Event histograms require instrument-response unfolding before becoming flux. Global secondary production and upward albedo need directional atmosphere / regolith transport, species and energy bins; orbital neutron counts are not surface astronaut exposure.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "RAD neutron / gamma spectra · published analysis",
+          "url": "https://arxiv.org/abs/2003.06604"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "gcr-surface-dose-estimate",
+      "display_name": "GCR surface dose estimate",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-dose-response",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "sep-surface-dose-estimate",
+      "display_name": "SEP surface dose estimate",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-dose-response",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "total-ionizing-radiation-dose-estimate",
+      "display_name": "Total ionizing radiation dose estimate",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-dose-response",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-neutron-dose-estimate",
+      "display_name": "Secondary neutron dose estimate",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-dose-response",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "secondary-gamma-ray-dose-estimate",
+      "display_name": "Secondary gamma-ray dose estimate",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-dose-response",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "dose-equivalent-rate-sv-time",
+      "display_name": "Dose equivalent rate (Sv/time)",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "particle-dose-response",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    },
+    {
+      "id": "cumulative-marswalk-radiation-exposure",
+      "display_name": "Cumulative Marswalk radiation exposure",
+      "category": "Radiation & Exposure",
+      "selectable": false,
+      "implemented_scope": null,
+      "model_package": "timed-route-exposure",
+      "dependency_label": "Dose response / validation needed",
+      "remaining_for_full_scope": "Curiosity detector absorbed-dose observations are already shown in the RAD layer. Global GCR / SEP attribution and species-dose fields need transported spectra, detector / tissue material, geometry, shielding and response functions. Gy is not Sv; dose equivalent also needs a declared quality-factor convention. Cumulative exposure additionally needs timed travel, stops, return and complete valid coverage.",
+      "sources": [
+        {
+          "title": "NASA SPDF · RAD science observations",
+          "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+        },
+        {
+          "title": "Published Mars dose-response functions",
+          "url": "https://arxiv.org/abs/1902.00243"
+        },
+        {
+          "title": "Geant4 / AtRIS · Mars implementation and validation",
+          "url": "https://doi.org/10.1051/swsc/2018051"
+        },
+        {
+          "title": "NASA OLTARIS / HZETRN · approved access required",
+          "url": "https://oltaris.larc.nasa.gov/"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "mdad": {
+      "title": "MDAD v1.1 · native storm masks · CC BY 4.0",
+      "url": "https://zenodo.org/records/7480334"
+    },
+    "rems": {
+      "title": "NASA PDS · corrected REMS UV archive",
+      "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_uv_corrected/"
+    },
+    "remsBands": {
+      "title": "NASA PDS · REMS instrument band definitions",
+      "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/document/REMS_INST.CAT"
+    },
+    "meda": {
+      "title": "NASA PDS · MEDA calibrated local radiation",
+      "url": "https://atmos.nmsu.edu/PDS/data/PDS4/Mars2020/mars2020_meda/data_calibrated_env/"
+    },
+    "rad": {
+      "title": "NASA SPDF · RAD science observations",
+      "url": "https://spdf.gsfc.nasa.gov/pub/data/aaa_planetary/msl/rad/cdf/obs-l2/"
+    },
+    "radMeta": {
+      "title": "NASA RAD science-product metadata",
+      "url": "https://hpde.io/NASA/NumericalData/MarsScienceLaboratory/RAD/Observation/Level2"
+    },
+    "radSpectra": {
+      "title": "RAD measured species spectra · published analysis",
+      "url": "https://doi.org/10.1002/2013JE004547"
+    },
+    "neutral": {
+      "title": "RAD neutron / gamma spectra · published analysis",
+      "url": "https://arxiv.org/abs/2003.06604"
+    },
+    "oltaris": {
+      "title": "NASA OLTARIS / HZETRN · approved access required",
+      "url": "https://oltaris.larc.nasa.gov/"
+    },
+    "atris": {
+      "title": "Geant4 / AtRIS · Mars implementation and validation",
+      "url": "https://doi.org/10.1051/swsc/2018051"
+    },
+    "response": {
+      "title": "Published Mars dose-response functions",
+      "url": "https://arxiv.org/abs/1902.00243"
+    },
+    "horizons": {
+      "title": "NASA JPL Horizons numerical ephemerides",
+      "url": "https://ssd.jpl.nasa.gov/horizons/"
+    },
+    "relay": {
+      "title": "NASA Mars Relay Network · participation documents",
+      "url": "https://science.nasa.gov/mars/mars-relay-network/"
+    },
+    "maros": {
+      "title": "NASA MaROS · operational planning system",
+      "url": "https://ammos.nasa.gov/maros/"
+    },
+    "climate": {
+      "title": "Mars Climate Database · variables / access conditions",
+      "url": "https://www-mars.lmd.jussieu.fr/mars/access"
+    },
+    "ccmc": {
+      "title": "NASA CCMC · Mars iPATH run metadata",
+      "url": "https://iswa.ccmc.gsfc.nasa.gov/api/recent?dataID=2806&n=5"
+    },
+    "psg": {
+      "title": "NASA PSG · radiative-transfer service",
+      "url": "https://psg.gsfc.nasa.gov/helpapi.php"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<Layer opaque="1">
+                    <Name>mars_odyssey_grs_mons_perc_wt</Name>
+                    <Title>Mars Odyssey Neutron Spectrometer % WEH</Title>
+                    <Abstract>From the Icarus abstract: We present a map of the near subsurface hydrogen distribution on Mars, based on epithermal neutron data from the Mars Odyssey Neutron Spectrometer. The map's spatial resolution is approximately improved two-fold via a new form of the pixon image reconstruction technique. We discover hydrogen-rich mineralogy far from the poles, including ~10 wt. % water equivalent hydrogen (WEH) on the flanks of the Tharsis Montes and greater than 40 wt. % WEH at the Medusae Fossae Formation (MFF). The high WEH abundance at the MFF implies the presence of bulk water ice. This supports the hypothesis of recent periods of high orbital obliquity during which water ice was stable on the surface. We find the young undivided channel system material in southern Elysium Planitia to be distinct from its surroundings and exceptionally dry; there is no evidence of hydration at the location in Elysium Planitia suggested to contain a buried water ice sea. Finally, we find that the sites of recurring slope lineae (RSL) do not correlate with subsurface hydration. This implies that RSL are not fed by large, near-subsurface aquifers, but are instead the result of either small (less than 120 km diameter) aquifers, deliquescence of perchlorate and chlorate salts or dry, granular flows. Date of ingest 2/22/19</Abstract>
+                    <KeywordList>
+                        <Keyword>jmarsCategory:By Type//Surface Properties//GRS_MONS %WEH</Keyword>
+                        <Keyword>numeric</Keyword>
+                        <Keyword>mars</Keyword>
+                        <Keyword>jmarsCategory:By Instrument//GRS_MONS</Keyword>
+                        <Keyword>maxPPD:2</Keyword>
+                        <Keyword>units:% WEH</Keyword>
+                    </KeywordList>
+                    <LatLonBoundingBox minx="-180.000000" miny="-90.000000" maxx="180.000000" maxy="90.000000" />
+                    <Dimension name="bands" units="" />
+                    <Extent name="bands" multipleValues="1" default="band1">band1</Extent>
+               </Layer>
+               

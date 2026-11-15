@@ -1,0 +1,27 @@
+.atlas-field-dialog {
+  width: min(720px, calc(100vw - 36px));
+  max-height: 82vh;
+  padding: 20px;
+  color: #edf4f7;
+  background: #101d27;
+  border: 1px solid #405762;
+  border-radius: 12px;
+}
+.atlas-field-dialog::backdrop { background: #08101899; }
+.atlas-field-dialog > button:first-child { float: right; }
+.atlas-field-dialog p { line-height: 1.5; }
+.atlas-field-dialog details, .atlas-field-dialog article { padding: 10px 0; border-bottom: 1px solid #354852; }
+.atlas-field-dialog summary { cursor: pointer; }
+.atlas-field-dialog pre { overflow: auto; }
+.atlas-field-dialog canvas { width: 100%; background: #09131b; margin: 8px 0; }
+.atlas-field-dialog dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; }
+.atlas-field-dialog dd { margin: 0; font-variant-numeric: tabular-nums; }
+.ui-header-tools .atlas-field-top-button {
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #b7d9d33b;
+  border-radius: 9px;
+  background: #14262fe8;
+  color: #d2ebe3;
+  white-space: nowrap;
+}

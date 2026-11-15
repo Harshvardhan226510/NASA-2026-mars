@@ -1,0 +1,9 @@
+# Website sync and external site positions — 8 November 2026
+
+Source: SamsDevForge/mars-mapping2 **main**, commit `828f335097fc406f769ce070f4fc7406eeadf993`, compared against `aed8493b9e0565920b0edbf55416b9b32c67e1e4`. Main advanced while this update was being reviewed; final source bytes come from the published commit. Partner main remains `fdfc259599b579d543a97452b1f20149157f5512`. No upstream repository or website deployment was modified.
+
+Imported personal-site markers and their mission serialization, separate landing/base editors and marking evaluated candidates, landing/base pair comparisons, persistent photographic color enhancement, coordinate search, and thermal-inertia display corrections. The desktop's offline color overview cache and offline request limits remain; color enhancement operates below scientific overlays. Existing label clipping fixes, local-map download workflow and durable session storage remain.
+
+Added desktop external-position input and an operator-controlled source selector in Mark a site. The authenticated loopback API accepts resolved Mars coordinates, retains current fixes per source, rejects invalid/out-of-order data and marks stale fixes. Applying a fix copies it into the editor; saving a site records its source/time/reported accuracy. Later feed updates do not move saved markers. User edits to the coordinates remove the measurement attribution. The feed is separate from dead-reckoning engagement and starts empty on restart. My sites use existing durable app preferences and mission exports.
+
+See [Location system API](LOCATION_SYSTEM_API.md) for protocol, startup, Python client and SBC integration. API and UI tests use a clearly identified development position publisher; they do not constitute NASA hardware acceptance. This remains an editable app source draft; no packaging, release replacement or Pi install was performed.

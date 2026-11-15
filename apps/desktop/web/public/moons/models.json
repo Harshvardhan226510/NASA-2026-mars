@@ -1,0 +1,26 @@
+{
+  "schema": "mars-moon-models/1",
+  "credit": "NASA/JPL-Caltech",
+  "models": [
+    {
+      "id": "phobos",
+      "url": "/moons/phobos.glb",
+      "bytes": 3855016,
+      "sha256": "757712101e4fbcf9527942ee664a3bc6dfe3ab460466b760f4bf51ee85dbd8d3",
+      "units_m": 1000,
+      "source_page": "https://science.nasa.gov/resource/phobos-mars-moon-3d-model/",
+      "delivery": "User-supplied GLB; embedded texture; original bytes retained.",
+      "pose": "Long-axis placement and texture/prime-meridian registration are illustrative."
+    },
+    {
+      "id": "deimos",
+      "url": "/moons/deimos.glb",
+      "bytes": 1600012,
+      "sha256": "5d5da763970acffe88aac26d3c3bd0fa66c5bef251d1bb4bfe2ae5fd723507e4",
+      "units_m": 1000,
+      "source_page": "https://science.nasa.gov/resource/deimos-mars-moon-3d-model/",
+      "delivery": "User-supplied GLB; embedded texture; original bytes retained.",
+      "pose": "Long-axis placement and texture/prime-meridian registration are illustrative."
+    }
+  ]
+}

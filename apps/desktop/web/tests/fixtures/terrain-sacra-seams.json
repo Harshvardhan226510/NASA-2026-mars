@@ -1,0 +1,20 @@
+{
+  "purpose": "Regression evidence for discontinuous source elevations at Sacra Mensa; shared border latitude 22.5 N",
+  "observed_max_shared_edge_difference_m": 2901,
+  "sources": [
+    {
+      "file": "terrain-7-47-79.lerc",
+      "sha256": "fd040aa25ede73c8beacb5874c06eb5c617fdf577c95618a6c65ab6008167569",
+      "source": "https://astro.arcgis.com/arcgis/rest/services/OnMars/MDEM200M/ImageServer/tile/7/47/79",
+      "retrieved_utc": "2026-10-26",
+      "proxy": "https://mars-atlas-snapshot.vercel.app/api/planet?kind=terrain&z=7&y=47&x=79"
+    },
+    {
+      "file": "terrain-7-48-79.lerc",
+      "sha256": "c63259db1f46028b9b812972d74168190a124257de5122661c5706030b2df5b2",
+      "source": "https://astro.arcgis.com/arcgis/rest/services/OnMars/MDEM200M/ImageServer/tile/7/48/79",
+      "retrieved_utc": "2026-10-26",
+      "proxy": "https://mars-atlas-snapshot.vercel.app/api/planet?kind=terrain&z=7&y=48&x=79"
+    }
+  ]
+}

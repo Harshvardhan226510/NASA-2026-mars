@@ -1,0 +1,341 @@
+{
+  "schema": "mars-crustal-magnetism/1",
+  "model": "Langlais et al. (2019)",
+  "quantity": "Magnitude of the modeled internal crustal magnetic field |B|",
+  "units": "nT",
+  "degree": 134,
+  "reference_radius_m": 3393500.0,
+  "effective_surface_resolution_km": 160,
+  "grid": {
+    "width": 720,
+    "height": 361,
+    "step_degrees": 0.5,
+    "west": -180,
+    "north": 90,
+    "east_exclusive": 180,
+    "south": -90,
+    "longitude": "east-positive",
+    "latitude": "planetocentric",
+    "row_order": "north-to-south",
+    "encoding": "little-endian Float32"
+  },
+  "sources": {
+    "dataset": "https://doi.org/10.5281/zenodo.3876714",
+    "paper": "https://doi.org/10.1029/2018JE005854",
+    "coefficients_url": "https://zenodo.org/records/3876714/files/Langlais2019.sh.gz?download=1",
+    "coefficients_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b",
+    "loader": "https://github.com/SHTOOLS/SHTOOLS/blob/v4.13.1/pyshtools/datasets/Mars/__init__.py",
+    "observations": [
+      "MGS magnetometer",
+      "MGS electron reflectometer",
+      "MAVEN magnetometer"
+    ]
+  },
+  "calculation": {
+    "library": "pyshtools",
+    "version": "4.13.1",
+    "normalization": "Schmidt semi-normalized",
+    "csphase": 1,
+    "operation": "SHMagCoeffs.expand(a=reference_radius+altitude, f=0, lmax=179, lmax_calc=134, sampling=2, extend=True)",
+    "pole_operation": "Exact m=0 radial and m=1 horizontal Schmidt-harmonic limits, checked against point synthesis at \u00b189.9999\u00b0"
+  },
+  "interpretation": "Static model of crustal magnetism; not a live total-field measurement. Altitudes are above the model reference sphere, not local terrain. Grid sampling is finer than the resolving power of the model.",
+  "layers": [
+    {
+      "altitude_m": 150000,
+      "file": "crustal-field-150km.f32.gz",
+      "sha256": "af1c7f71755b6137ac93b393bfd158a97982f568c0777ec5e60a2b25b32f37bd",
+      "packet_sha256": "2d31ba7601af87deaa4d7d5b1b29408287202c70bd908e9e920e0530843a645e",
+      "bytes": 934844,
+      "min_nT": 0.1965247541666031,
+      "max_nT": 1206.9326171875,
+      "verification_points": [
+        {
+          "lon": -180.0,
+          "lat": 89.5,
+          "expected_nT": 74.06271669532731
+        },
+        {
+          "lon": 20.0,
+          "lat": -89.5,
+          "expected_nT": 6.943496352508428
+        },
+        {
+          "lon": -180.0,
+          "lat": 0.0,
+          "expected_nT": 45.067379512169566
+        },
+        {
+          "lon": 0.0,
+          "lat": 0.0,
+          "expected_nT": 62.21386142416125
+        },
+        {
+          "lon": -129.5,
+          "lat": 20.0,
+          "expected_nT": 4.7901953351579705
+        },
+        {
+          "lon": -128.0,
+          "lat": 35.0,
+          "expected_nT": 7.219955392822666
+        },
+        {
+          "lon": -21.0,
+          "lat": 20.0,
+          "expected_nT": 69.09479478596157
+        },
+        {
+          "lon": -57.5,
+          "lat": -0.5,
+          "expected_nT": 215.28451918124136
+        },
+        {
+          "lon": 168.5,
+          "lat": 32.0,
+          "expected_nT": 10.217994602561443
+        },
+        {
+          "lon": -108.0,
+          "lat": -43.5,
+          "expected_nT": 30.41277627985214
+        },
+        {
+          "lon": -25.0,
+          "lat": 54.0,
+          "expected_nT": 9.955051498832908
+        },
+        {
+          "lon": -16.0,
+          "lat": 69.5,
+          "expected_nT": 7.000349488641332
+        },
+        {
+          "lon": 54.5,
+          "lat": -80.5,
+          "expected_nT": 5.215207824340043
+        },
+        {
+          "lon": 67.0,
+          "lat": 3.5,
+          "expected_nT": 13.354689160891185
+        },
+        {
+          "lon": 10.5,
+          "lat": -41.0,
+          "expected_nT": 24.90693051699199
+        },
+        {
+          "lon": 136.5,
+          "lat": -77.0,
+          "expected_nT": 22.933888214110628
+        },
+        {
+          "lon": 95.5,
+          "lat": 57.0,
+          "expected_nT": 8.933752400457955
+        },
+        {
+          "lon": -41.0,
+          "lat": -11.5,
+          "expected_nT": 38.05000047940889
+        },
+        {
+          "lon": 72.0,
+          "lat": 27.5,
+          "expected_nT": 35.915103363773525
+        },
+        {
+          "lon": 19.0,
+          "lat": -74.0,
+          "expected_nT": 12.86517089577476
+        },
+        {
+          "lon": 155.5,
+          "lat": -78.0,
+          "expected_nT": 148.81066061717834
+        },
+        {
+          "lon": 125.5,
+          "lat": -52.0,
+          "expected_nT": 42.33782480326943
+        },
+        {
+          "lon": 167.5,
+          "lat": 74.5,
+          "expected_nT": 7.14818101813383
+        },
+        {
+          "lon": -50.5,
+          "lat": -39.0,
+          "expected_nT": 58.500062622152576
+        },
+        {
+          "lon": 14.5,
+          "lat": -76.0,
+          "expected_nT": 15.07736211123256
+        }
+      ],
+      "pole_verification": [
+        {
+          "lat": 90,
+          "analytic_nT": 69.93414344651391,
+          "near_pole_nT": 69.93281498680498
+        },
+        {
+          "lat": -90,
+          "analytic_nT": 11.917659465271052,
+          "near_pole_nT": 11.916750366274178
+        }
+      ]
+    },
+    {
+      "altitude_m": 0,
+      "file": "crustal-field-0km.f32.gz",
+      "sha256": "961751ce08f92146110aa821d28274d780e08687d28446447c304cda56a8d927",
+      "packet_sha256": "92d15f0c0681fa9bc2bff3c446ccd3f9675341ec3784c3948261bd975e17b4cc",
+      "bytes": 936232,
+      "min_nT": 0.5463504791259766,
+      "max_nT": 11222.595703125,
+      "verification_points": [
+        {
+          "lon": -180.0,
+          "lat": 89.5,
+          "expected_nT": 2235.0160095356914
+        },
+        {
+          "lon": 20.0,
+          "lat": -89.5,
+          "expected_nT": 497.21900675959773
+        },
+        {
+          "lon": -180.0,
+          "lat": 0.0,
+          "expected_nT": 1159.4109521342655
+        },
+        {
+          "lon": 0.0,
+          "lat": 0.0,
+          "expected_nT": 583.8415045799604
+        },
+        {
+          "lon": -129.5,
+          "lat": 20.0,
+          "expected_nT": 25.30774488771024
+        },
+        {
+          "lon": 115.0,
+          "lat": 7.0,
+          "expected_nT": 710.7788748289684
+        },
+        {
+          "lon": 44.0,
+          "lat": -45.0,
+          "expected_nT": 136.61358802304017
+        },
+        {
+          "lon": -86.0,
+          "lat": 59.5,
+          "expected_nT": 33.29742642677216
+        },
+        {
+          "lon": 114.5,
+          "lat": -3.0,
+          "expected_nT": 284.06489062263364
+        },
+        {
+          "lon": -133.5,
+          "lat": 29.5,
+          "expected_nT": 53.585227429792745
+        },
+        {
+          "lon": 92.5,
+          "lat": -40.0,
+          "expected_nT": 201.96241478413157
+        },
+        {
+          "lon": -61.0,
+          "lat": -66.0,
+          "expected_nT": 62.88977394709462
+        },
+        {
+          "lon": -72.0,
+          "lat": -23.0,
+          "expected_nT": 31.20954865636197
+        },
+        {
+          "lon": -139.5,
+          "lat": 76.0,
+          "expected_nT": 43.95988011683883
+        },
+        {
+          "lon": -127.0,
+          "lat": 76.5,
+          "expected_nT": 66.66476765110872
+        },
+        {
+          "lon": 161.0,
+          "lat": -62.0,
+          "expected_nT": 6097.444908854835
+        },
+        {
+          "lon": 120.0,
+          "lat": -44.0,
+          "expected_nT": 659.7064805277124
+        },
+        {
+          "lon": 44.5,
+          "lat": 30.0,
+          "expected_nT": 236.29823828977268
+        },
+        {
+          "lon": 35.0,
+          "lat": -17.0,
+          "expected_nT": 273.10797693563245
+        },
+        {
+          "lon": -160.0,
+          "lat": -43.0,
+          "expected_nT": 763.7387074025132
+        },
+        {
+          "lon": -161.5,
+          "lat": -48.5,
+          "expected_nT": 1361.936733763975
+        },
+        {
+          "lon": -5.0,
+          "lat": 85.0,
+          "expected_nT": 645.0701025544712
+        },
+        {
+          "lon": -73.0,
+          "lat": -68.0,
+          "expected_nT": 78.21596334224002
+        },
+        {
+          "lon": 42.5,
+          "lat": -47.0,
+          "expected_nT": 89.85261328052114
+        },
+        {
+          "lon": 179.0,
+          "lat": 50.0,
+          "expected_nT": 37.94755218887279
+        }
+      ],
+      "pole_verification": [
+        {
+          "lat": 90,
+          "analytic_nT": 1748.5320226534861,
+          "near_pole_nT": 1748.4089766441286
+        },
+        {
+          "lat": -90,
+          "analytic_nT": 643.9492154935397,
+          "near_pole_nT": 643.9249286859831
+        }
+      ]
+    }
+  ]
+}

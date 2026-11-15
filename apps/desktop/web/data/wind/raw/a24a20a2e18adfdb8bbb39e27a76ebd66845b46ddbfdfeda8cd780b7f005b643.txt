@@ -1,0 +1,514 @@
+
+<!--
+// #################################################
+// Mars Explorer App
+// Copyright Geronimo Villanueva NASA/GSFC
+// #################################################
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Explorer</title>
+    <link rel="stylesheet" href="images/fa.min.css">
+    <link rel="stylesheet" href="styles.css?jul30">
+    <meta name="Content-Security-Policy" content="default-src 'none'; object-src 'none'; font-src 'self';  img-src 'self'; form-action 'self'; base-uri 'self'; script-src 'unsafe-inline' 'self' https://dap.digitalgov.gov https://www.google-analytics.com https://www.googletagmanager.com; style-src 'unsafe-inline' 'self'; connect-src 'self' https://en.wikipedia.org https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.youtube-nocookie.com/;">
+    <meta name="Referrer-Policy" content="no-referrer">
+    <meta name="MSSmartTagsPreventParsing" content="true">
+    <meta name="orgcode" content="693">
+    <meta name="rno" content="Geronimo Villanueva">
+    <meta name="content-owner" content="Geronimo Villanueva">
+    <meta name="webmaster" content="Geronimo Villanueva">
+    <meta name="description" content="NASA Mars Weather">
+    <meta name="short_name" content="Mars Weather">
+    <meta name="keywords" content="Mars, Weather, Realtime, forecasting, climate, astronatus">
+    <meta name="doc-class" content="Living Document">
+    <meta name="theme-color" content="#14100f">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="refresh" content="60">
+    <link rel="profile" href="https://www.w3.org/1999/xhtml/vocab">
+    <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+</head>
+<body>
+    <form method="POST" style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo-container">
+                <a href="https://www.nasa.gov" title="www.nasa.gov" rel="external" class="site-logo"><img width="50" src="images/logo.svg" alt="NASA"></a>
+            </div>
+            <div class="nav-items">
+                <div class="nav-item" onclick="location_open();">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="nav-item" onclick="date_open();">
+                    <i class="far fa-calendar"></i>
+                </div>
+                <div class="nav-item" onclick="settings_open();">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="nav-item" onclick="info_open();">
+                    <i class="fas fa-circle-info"></i>
+                </div>
+            </div>
+            <div class="user-profile">
+                <img src="images/astronaut.png" alt="User Profile">
+            </div>
+        </div>
+        
+        <div class="main-content">           
+            <div class="main-title">
+                <div style="padding:0px;margin:0px;display: flex; align-items: center; font-size: 20px; font-weight: 500;"><img src="images/gsfclogo.png?jul21" height="30"/>&nbsp;&nbsp;Mars Explorer</div>
+                <div style="padding:3px 0 0 0;margin:0px;font-size:12px;color: var(--text-secondary);">Climatological data based on EMARS MY32 Moderate dust</div>
+            </div>
+
+            <!-- Current Weather Section -->
+            <div class="current-weather-card" style="background-image: url('images/weather/dusty-light.png');">
+                <div class="current-weather">
+                    <div class="temperature">
+                        <span class="temp-value">-77</span><span class="temp-unit">°C</span>
+                    </div>
+                    <div class="weather-description">
+                        Surface at -83&deg;C and -80&deg;C at a scaleheight above                    </div>
+                </div>
+                
+                <div class="location-info">
+                    <div class="date-time">
+                        <i class="far fa-calendar"></i>
+                        NH Spring, aphelion at LS:71<br>MY39, Sol 17 23:09 MTC (Ls 9.04)<br>JD 2461332.2083 (12.8 mins delay to Earth)<br>2026, October 18 17:00 UT                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Syrtis Major, Mars<br>9.9&deg;N 70&deg;E   Altitude: 1624 m                    </div>
+                    <div class="location">
+                        <i class="fas fa-user-astronaut"></i>
+                        <img class="location-asset" src="images/mars/perseverance.jpg"><div><b>Perseverance Rover</b>&nbsp;<img src="images/mars/us.svg" height="12px"/><br>is closest surface asset (661.6 km away). Operational since 2021-02-18. <br>Location 18.4447&deg;N 77.4508&deg;E                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="apps-section">
+                <div class="apps-grid">
+                    <!-- Wind app -->
+                    <div class="app-card">
+                        <div class="app-title"><i class="fas fa-wind"></i> Wind and Pressure</div>
+                        <div class="app-row">
+                            <div class="app-block">
+                                <canvas class="wind-canvas" id="windCanvas" width="120" height="120"></canvas>
+                                <div class="wind-value">18</div>
+                                <div class="wind-unit">km/h</div>
+                            </div>
+                            <div class="app-block">
+                                <canvas class="pressure-canvas" id="pressureCanvas" width="120" height="120"></canvas>
+                                <div class="pressure-value">
+                                    <i class="fas fa-arrow-down"></i><br>5.177                                </div>
+                                <div class="pressure-unit">mbar</div>
+                            </div>
+                        </div>
+                        <div class="app-note">
+                            Light wind conditions at this location                        
+                        </div>
+                    </div>
+                    
+                    <!-- Dust app -->
+                    <div class="app-card">
+                        <div class="app-title"><i class="fas fa-smog"></i> Dust and Visibility</div>
+                        <div class="dust-block">
+                            <span class="dust-visibility">10.2</span>&nbsp;&nbsp;
+                            Moderate visibility                            <div class="dust-visibility-unit">km                        </div>
+                        </div>
+                        <div class="dust-block-tau">
+                            <i class="far fa-sun"></i>&nbsp;&nbsp;Dust&nbsp;
+                            <img src="images/colordust.png" width="180" height="11" style="position:absolute;left:70px;top:25px;border-radius:5px;border-color:white;border-width:10px;">
+                            <span style="position:absolute;top:20px;left:129px;"><i class="fas fa-circle-dot"></i></span><span style="position:absolute;top:5px;left:124px;font-size:12px">0.356</span>                        </div>
+                        <div class="dust-block">
+                            <i class="fas fa-snowflake"></i>&nbsp;&nbsp;Ice&nbsp;&nbsp;&nbsp;
+                            <img src="images/colorice.png" width="180" height="11" style="position:absolute;left:70px;top:5px;border-radius:5px;border-color:white;border-width:10px;">
+                            <span style="position:absolute;top:0px;left:68px;"><i class="fas fa-circle-dot"></i></span><span style="position:absolute;top:20px;left:63px;font-size:12px">0.017</span>                        </div>
+                        <div class="app-note" style="padding:25px 0px 0px 0px">
+                            7.4 pr-um of water vapor above                        </div>
+
+                    </div>
+                    
+                    <!-- Sunset app -->
+                    <div class="app-card">
+                        <div class="app-title"><i class="far fa-clock"></i> Sunrise and Sunset</div>
+                        <div class="app-row">
+                            <div class="app-block">
+                                <canvas class="sunset-canvas" id="sunsetCanvas" width="120" height="120"></canvas>
+                                <div class="sun-time">03:49</div>
+                                <div class="sunset-time" id="sun-times"></div>
+                            </div>
+                            <div class="app-block">
+                                <canvas class="globe-canvas" id="globe-canvas" width="120" height="120"></canvas>
+                                <div class="globe-dot" id="globe-dot"><i class="fas fa-location-dot"></i></div>
+                            </div>                            
+                        </div>
+                        <div class="app-note">
+                            Times in Local Mean Solar Time (LMST). MTC is 23:09 and LTST is 03:13.                        </div>
+                    </div>
+                    
+                    <!-- UV app -->
+                    <div class="app-card">
+                        <div class="app-title"><i class="fas fa-sun"></i> UV Radiation Levels</div>
+                        <div><span style="font-size:40px;">0</span>&nbsp;&nbsp;
+                        Low risk                        </div>
+                        <div style="position:relative;">
+                            <img src="images/colorbar.png" width="250" height="11" style="border-radius:5px;">
+                            <span style="position:absolute;top:0px;left:0px;"><i class="fas fa-circle-dot"></i></span>                        </div>
+                        <div class="app-note">The local UV radiation field is being affected by the aerosols column (&tau; 0.373), the local pressure, the atmospheric composition, the heliocentric distance (1.579 AU) and the localtime.</div>
+                    </div>                    
+                </div>
+            </div>
+
+            <!-- Hourly Forecast Section -->
+            <div class="hourly-section">
+                <div class="hourly-block"><b>Now</b><img src="images/weather/dusty-light.png" height="50px">-77&deg;C</div><div class="hourly-block">04:00<img src="images/weather/dusty-light.png" height="50px">-78&deg;C</div><div class="hourly-block">05:00<img src="images/weather/dusty-light.png" height="50px">-80&deg;C</div><div class="hourly-block">06:00<img src="images/weather/dusty-light.png" height="50px">-81&deg;C</div><div class="hourly-block">07:00<img src="images/weather/dusty-light.png" height="50px">-75&deg;C</div><div class="hourly-block">08:00<img src="images/weather/dusty-light.png" height="50px">-63&deg;C</div><div class="hourly-block">09:00<img src="images/weather/dusty-light.png" height="50px">-52&deg;C</div><div class="hourly-block">10:00<img src="images/weather/dusty-light.png" height="50px">-42&deg;C</div><div class="hourly-block">11:00<img src="images/weather/dusty-light.png" height="50px">-36&deg;C</div><div class="hourly-block">12:00<img src="images/weather/dusty-light.png" height="50px">-30&deg;C</div><div class="hourly-block">13:00<img src="images/weather/dusty-light.png" height="50px">-27&deg;C</div><div class="hourly-block">14:00<img src="images/weather/dusty-light.png" height="50px">-24&deg;C</div><div class="hourly-block">15:00<img src="images/weather/dusty-light.png" height="50px">-21&deg;C</div><div class="hourly-block">16:00<img src="images/weather/dusty-light.png" height="50px">-22&deg;C</div><div class="hourly-block">17:00<img src="images/weather/dusty-light.png" height="50px">-28&deg;C</div><div class="hourly-block">18:00<img src="images/weather/dusty-light.png" height="50px">-36&deg;C</div><div class="hourly-block">19:00<img src="images/weather/dusty-light.png" height="50px">-45&deg;C</div><div class="hourly-block">20:00<img src="images/weather/dusty-light.png" height="50px">-54&deg;C</div><div class="hourly-block">21:00<img src="images/weather/dusty-light.png" height="50px">-61&deg;C</div><div class="hourly-block">22:00<img src="images/weather/dusty-light.png" height="50px">-65&deg;C</div><div class="hourly-block">23:00<img src="images/weather/dusty-light.png" height="50px">-67&deg;C</div><div class="hourly-block">00:00<img src="images/weather/dusty-light.png" height="50px">-70&deg;C</div><div class="hourly-block">01:00<img src="images/weather/dusty-light.png" height="50px">-74&deg;C</div><div class="hourly-block">02:00<img src="images/weather/dusty-light.png" height="50px">-76&deg;C</div>            </div>
+            
+            <!-- 5 Days Forecast Section  -->
+            <div class="forecast-section">
+                <div class="forecast-block">
+  <div class="forecast-day"><b>Today</b></div>
+  <div class="forecast-symbol"><img src="images/weather/dusty-light.png" height="60px"></div>
+  <div class="forecast-values">
+      <span><i class="fas fa-gauge-simple"></i>&nbsp;&lt;&nbsp;5.45 mbar</span>
+      <span><i class="fas fa-wind"></i></i>&nbsp;&lt;&nbsp;86 km/h</span>
+      <span><i class="fas fa-smog"></i>&nbsp;&lt;&nbsp;0.507 tau</span>
+  </div>
+  <div class="forecast-temperature">
+      <img class="forecast-colorbar" src="images/colorbar.png" width="110" height="11" style="">
+      <span style="position:absolute;top:0px;left:39px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:20px;left:29px;font-size:12px">-81&deg;C</span>
+      <span style="position:absolute;top:0px;left:85px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:-15px;left:75px;font-size:12px">-21&deg;C</span>
+  </div>
+</div>
+<div class="forecast-block">
+  <div class="forecast-day">+1 sol</div>
+  <div class="forecast-symbol"><img src="images/weather/dusty-light.png" height="60px"></div>
+  <div class="forecast-values">
+      <span><i class="fas fa-gauge-simple"></i>&nbsp;&lt;&nbsp;5.51 mbar</span>
+      <span><i class="fas fa-wind"></i></i>&nbsp;&lt;&nbsp;71 km/h</span>
+      <span><i class="fas fa-smog"></i>&nbsp;&lt;&nbsp;0.556 tau</span>
+  </div>
+  <div class="forecast-temperature">
+      <img class="forecast-colorbar" src="images/colorbar.png" width="110" height="11" style="">
+      <span style="position:absolute;top:0px;left:40px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:20px;left:30px;font-size:12px">-79&deg;C</span>
+      <span style="position:absolute;top:0px;left:81px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:-15px;left:71px;font-size:12px">-27&deg;C</span>
+  </div>
+</div>
+<div class="forecast-block">
+  <div class="forecast-day">+2 sol</div>
+  <div class="forecast-symbol"><img src="images/weather/dusty-light.png" height="60px"></div>
+  <div class="forecast-values">
+      <span><i class="fas fa-gauge-simple"></i>&nbsp;&lt;&nbsp;5.53 mbar</span>
+      <span><i class="fas fa-wind"></i></i>&nbsp;&lt;&nbsp;80 km/h</span>
+      <span><i class="fas fa-smog"></i>&nbsp;&lt;&nbsp;0.578 tau</span>
+  </div>
+  <div class="forecast-temperature">
+      <img class="forecast-colorbar" src="images/colorbar.png" width="110" height="11" style="">
+      <span style="position:absolute;top:0px;left:38px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:20px;left:28px;font-size:12px">-81&deg;C</span>
+      <span style="position:absolute;top:0px;left:83px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:-15px;left:73px;font-size:12px">-25&deg;C</span>
+  </div>
+</div>
+<div class="forecast-block">
+  <div class="forecast-day">+3 sol</div>
+  <div class="forecast-symbol"><img src="images/weather/dusty-light.png" height="60px"></div>
+  <div class="forecast-values">
+      <span><i class="fas fa-gauge-simple"></i>&nbsp;&lt;&nbsp;5.51 mbar</span>
+      <span><i class="fas fa-wind"></i></i>&nbsp;&lt;&nbsp;73 km/h</span>
+      <span><i class="fas fa-smog"></i>&nbsp;&lt;&nbsp;0.553 tau</span>
+  </div>
+  <div class="forecast-temperature">
+      <img class="forecast-colorbar" src="images/colorbar.png" width="110" height="11" style="">
+      <span style="position:absolute;top:0px;left:41px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:20px;left:31px;font-size:12px">-78&deg;C</span>
+      <span style="position:absolute;top:0px;left:85px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:-15px;left:75px;font-size:12px">-22&deg;C</span>
+  </div>
+</div>
+<div class="forecast-block">
+  <div class="forecast-day">+4 sol</div>
+  <div class="forecast-symbol"><img src="images/weather/dusty-light.png" height="60px"></div>
+  <div class="forecast-values">
+      <span><i class="fas fa-gauge-simple"></i>&nbsp;&lt;&nbsp;5.52 mbar</span>
+      <span><i class="fas fa-wind"></i></i>&nbsp;&lt;&nbsp;80 km/h</span>
+      <span><i class="fas fa-smog"></i>&nbsp;&lt;&nbsp;0.519 tau</span>
+  </div>
+  <div class="forecast-temperature">
+      <img class="forecast-colorbar" src="images/colorbar.png" width="110" height="11" style="">
+      <span style="position:absolute;top:0px;left:40px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:20px;left:30px;font-size:12px">-79&deg;C</span>
+      <span style="position:absolute;top:0px;left:84px;"><i class="fas fa-circle-dot"></i></span>
+      <span style="position:absolute;top:-15px;left:74px;font-size:12px">-23&deg;C</span>
+  </div>
+</div>
+            </div>
+            
+            <!-- Map section  -->
+            <div id="display" class="map-section">
+                <canvas id="topo" style="width:100%;height:100%;width:100%;height:100%;position:absolute;top:0;left:0;"></canvas>
+                <svg id="grid" style="width:100%;height:100%;position:absolute;top:0;left:0;"></svg>
+                <canvas id="winds" style="width:100%;height:100%;position:absolute;top:0;left:0;"></canvas>
+                <canvas id="overlay" style="width:100%;height:100%;position:absolute;top:0;left:0;"></canvas>
+
+                <div id="pointlabel" style="position:absolute;bottom:45px;left:5px;background-color:rgba(0,0,0,0.0);width:440px;height:20px;font-size:14px;padding:0px;border-radius:5px;"></div>
+
+                <div style="position:absolute;bottom:5px;left:5px;background-color:rgba(0,0,0,0.7);width:440px;height:40px;font-size:14px;padding:0px;border-radius:5px;display:flex;flex-direction:row; align-items:center;">
+                    <div style="display:inline-block;height:32px;padding:2px 10px;margin:0x;">
+                        <select id="param" onchange="showtoggle('value'); return updatedata();" style="width:150px">
+                            <option value="Wind">Winds</option>
+                            <option value="Tair">Temperature</option>
+                            <option value="Tsurf">Surface temperature</option>
+                            <option value="Psurf">Surface pressure</option>
+                            <option value="Dust">Dust opacity</option>
+                            <option value="Ice">Ice opacity</option>
+                            <option value="Vapor">Water vapor</option>
+                            <option value="Frost">Surface water frost</option>
+                            <option value="Snow">Surface CO2 snow</option>
+                            <option value="Rad">Radiation level</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                    <div style="display:inline-block;height:32px;font-size:12px;padding:2px;margin:0;">
+                        <canvas id="colorbar" width="250" height="10" style="display:inline;padding:0px;"></canvas><br/>
+                        <span id="varlabel">Variable (100 to 400 m/s)</span>
+                    </div>
+                </div>
+
+                <div style="position:absolute;bottom:5px;right:5px;background-color:rgba(0,0,0,0.7);width:110px;height:117px;font-size:14px;border-radius:5px;padding:10px;text-align:right;line-height:18px;">
+                    Winds <input type="checkbox" id="showwinds"  onchange="return showtoggle(this);" checked="checked"/><br/>
+                    POIs <input type="checkbox" id="showPOIs" onchange="return showtoggle(this);" checked="checked"/><br/>
+                    Topo <input type="checkbox" id="showtopo" onchange="return showtoggle(this);" checked="checked"/><br/>
+                    <span style="font-size:18px;line-height:40px;cursor:pointer;"><i class="fas fa-sun" onclick="showtoggle('solar');"></i>&nbsp;&nbsp;<i class="fas fa-earth" onclick="showtoggle('earth');"></i>&nbsp;&nbsp;<i class="fas fa-globe" onclick="showtoggle('mars');"></i>&nbsp;</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Location window -->
+    <div id="window-background" class="window-background"></div>
+    <div id="window-location" class="window">
+        <div class="window-title">
+            <div style="text-align:center;display:inline-block;width:95%;">Define location</div>
+            <div style="text-align:right;width:5%;cursor: pointer;" onclick="location_click(0);"><i class="fa-solid fa-circle-xmark"></i></div>
+        </div>
+        <div style="display:block;padding:10px 20px;line-height:40px;height:calc(100% - 80px);">
+            Location <select id="locationsel" style="width:13em;" onchange="changelocationsel();">
+            <option value="Sub-solar point,0,0" >Sub-solar point</option>
+            <option value="Sub-Earth point,0,0" >Sub-Earth point</option>
+            <option value="Perseverance Rover,18.4447,77.4508">Perseverance Rover</option><option value="Zhurong Tianwen-1 Rover,24.748,110.318">Zhurong Tianwen-1 Rover</option><option value="Curiosity MSL Rover,-4.5895,137.4417">Curiosity MSL Rover</option><option value="Spirit MER-A Rover,-14.8,175.5">Spirit MER-A Rover</option><option value="Opportunity MER-B Rover,-1.9,354.5">Opportunity MER-B Rover</option><option value="Pathfinder Rover,19.1,326.7">Pathfinder Rover</option><option value="Phoenix Lander,68.2,234.2">Phoenix Lander</option><option value="Viking 1 Lander,22.3,312">Viking 1 Lander</option><option value="Viking 2 Lander,47.7,134.3">Viking 2 Lander</option><option value="InSight Lander,4,138">InSight Lander</option><option value="Beagle 2 Lander (crash),11.5,90.5">Beagle 2 Lander (crash)</option><option value="Mars2 Lander (crash),-44.6,58">Mars2 Lander (crash)</option><option value="Mars3 Lander,-44.6,202">Mars3 Lander</option><option value="Mars6 Lander (crash),-23.6,340.6">Mars6 Lander (crash)</option><option value="Polar Lander (crash),-75.9,164.7">Polar Lander (crash)</option><option value="Acidalia Planitia,49.8,339.3">Acidalia Planitia</option><option value="Airy Crater,-5.1,0">Airy Crater</option><option value="Albor Tholus,18.8,150.4">Albor Tholus</option><option value="Apollinaris Patera,-8.5,174.4">Apollinaris Patera</option><option value="Argyre Planitia,-49.6,316">Argyre Planitia</option><option value="Arsia Mons,-8.3,238.9">Arsia Mons</option><option value="Ascraeus Mons,11.8,255.5">Ascraeus Mons</option><option value="Cassini Crater,23.5,31.8">Cassini Crater</option><option value="Cydonia Mensae,33.7,347">Cydonia Mensae</option><option value="Elysium Mons,24.7,146.9">Elysium Mons</option><option value="Hellas Planitia,-40,70">Hellas Planitia</option><option value="Huygens Crater,-14.1,55.4">Huygens Crater</option><option value="Isidis Planitia,12.8,87">Isidis Planitia</option><option value="Kepler Crater,-46.7,140.9">Kepler Crater</option><option value="Lomonosov Crater,64.9,350.8">Lomonosov Crater</option><option value="Lowell Crater,-51.9,278.6">Lowell Crater</option><option value="Lyot Crater,50.4,29.3">Lyot Crater</option><option value="Milankovic Crater,54.3,213.3">Milankovic Crater</option><option value="Newton Crater,-40.4,201.9">Newton Crater</option><option value="Noctis Labyrinthus,-6.9,257.8">Noctis Labyrinthus</option><option value="Olympus Mons,18.4,226">Olympus Mons</option><option value="Ophir Planum,-8.7,302.5">Ophir Planum</option><option value="Pavonis Mons,0.8,246.6">Pavonis Mons</option><option value="Schiaparelli Crater,-2.7,16.7">Schiaparelli Crater</option><option value="Solis Planum,-25.2,273.5">Solis Planum</option><option value="Syrtis Major,9.9,70" selected="selected">Syrtis Major</option><option value="Valles Marineris,-13.7,300.8">Valles Marineris</option>            <option value="Localized region,0,0" >Localized region</option>
+            </select><br/>
+            <input name="location" id="location" style="display:none" value="Syrtis Major"/>
+            Latitude <input name="latitude" id="latitude" maxlength="10" style="maxlength:10;width:5.5em" onchange="changelatlon();" value="9.9"/>
+            Longitude [E] <input name="longitude" id="longitude" maxlength="10" style="maxlength:10;width:5.5em" onchange="changelatlon();" value="70"/><br>
+            <img name="locationmap" id="locationmap" style="margin:10px 0;width:350px" src="images/mars/mars-basemap.png"/>
+            <div id="locationdot" class="globe-dot" style="font-size:24px;"><i class="fas fa-location-dot"></i></div>
+        </div>
+        <div class="window-bottom">
+            <button onclick="return location_click(true);">OK</button>
+            <button onclick="return location_click(false);">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Date/time window -->
+    <div id="window-date" class="window">
+        <div class="window-title">
+            <div style="text-align:center;display:inline-block;width:95%;">Define Date/Time</div>
+            <div style="text-align:right;width:5%;cursor: pointer;" onclick="date_click(0);"><i class="fa-solid fa-circle-xmark"></i></div>
+        </div>
+        <div style="display:block;padding:10px 20px;line-height:40px;height:calc(100% - 80px);">
+            <div style="margin:5px 0px 0 0; background-color:#1c6476; border-radius:5px; padding:5px 20px">
+                Earth's year <input name="dateyear" id="dateyear" maxlength="4" style="width:6em;" value="2026" onchange="return changedateEarth();"/> <button onclick="return datenow();">Now</button></br>Month 
+                <select name="datemonth" id="datemonth" style="background-image:linear-gradient(to bottom, #2384c2 5%, #155680 100%);" onchange="return changedateEarth();">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <script>document.getElementById("datemonth").value = "10";</script>
+                Day <input name="dateday" id="dateday" maxlength="2" style="width:5em;" value="18" onchange="return changedateEarth();"/></br>
+                Universal time [UT] <input name="datetime" id="datetime" maxlength="5" style="width:6em;" value="17:00" onchange="return changedateEarth();"/>
+            </div>
+            <div style="margin:10px 0px 0 0; background-color:#764616; border-radius:5px; padding:5px 20px">
+                Martian year <input id="datemy" style="width:6em;" maxlength="5" onchange="return changedateMars();" value="39"/></br>
+                <select id="datesel" style="margin:0px;" onchange="changedatesel();"><option value="sol">Martian Sol</option><option value="MY">Season [Ls]</option></select>
+                <input id="datesol" maxlength="3" style="width:6em;" onchange="return changedateMars();" value="17"/>
+                <input id="datels"  maxlength="10" style="width:7em; display:none;" onchange="return changedateMars();" value="9.03903"/></br>
+                <div id="datemtcblock" style="display:inline-block">Coordinated time [MTC] <input id="datemtc" maxlength="5" style="width:6em;" onchange="return changedateMars();" value="23:09"/></div>
+            </div>
+        </div>
+        <div class="window-bottom">
+            <button onclick="return date_click(true);">OK</button>
+            <button onclick="return date_click(false);">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Settings window -->
+    <div id="window-settings" class="window">
+        <div class="window-title">
+            <div style="text-align:center;display:inline-block;width:95%;">Define Settings</div>
+            <div style="text-align:right;width:5%;cursor: pointer;" onclick="settings_click(0);"><i class="fa-solid fa-circle-xmark"></i></div>
+        </div>
+        <div style="display:block;padding:10px 20px;line-height:40px;height:calc(100% - 80px);">
+            <select name="units" id="units" style="margin:0px;width:100%;">
+                <option value="SI">International SI units [&deg;C, bar, km]</option>
+                <option value="Imperial">Imperial units [&deg;F, inHG, miles]</option>
+                <option value="Scientific">Scientific units [&deg;K, Pa, km]</option>
+            </select><br>
+            <script>document.getElementById("units").value = "SI";</script>
+            <input name="model" id="model" style="display:none" value="EMARS"/>
+            <input name="modelmode" id="modelmode" style="display:none" value="Optimum"/>
+            <div id="modelOSSE" onclick="modelchange('OSSE');" class="model-block">
+                <img src="images/logo.svg" style="height:25px"/>
+                &nbsp;Assimilated Mars (OSSE)&nbsp;
+                <select id="modeOSSE" style="font-size:12px;margin:0px;" onchange="modelchange('OSSE');">
+                    <option value="MY38">MY38</option>
+                </select>
+            </div>            
+            <div id="modelHR" onclick="modelchange('HR');" class="model-block" style="background-color:#201c1a;">
+                <img src="images/logo.svg" style="height:25px"/>
+                &nbsp;High-resolution Mars model&nbsp;
+                <select  id="modeHR" style="font-size:12px;margin:0px;" onchange="modelchange('WRF');">
+                    <option value="MY38">MY38</option>
+                </select>                
+            </div>            
+            <div id="modelEMARS" onclick="modelchange('EMARS');" class="model-block" style="background-color:#201c1a;">
+                <img src="images/upenn_logo.png" style="height:30px"/>
+                &nbsp;EMARS &nbsp;<a href="https://doi.org/10.1002/gdj3.77" target="models"><i class="fas fa-circle-info" style="color:white;"></i></a>&nbsp;
+                <select id="modeEMARS" style="font-size:12px;margin:0px;" onchange="modelchange('EMARS');">
+                    <option value="Optimum">Most similar MY</option>
+                    <option value="MY25">MY25 Global Dust Storm</option>
+<option value="MY26">MY26 Moderate dust</option>
+<option value="MY28">MY28 Late Global Dust Storm</option>
+<option value="MY29">MY29 Moderate dust</option>
+<option value="MY30">MY30 Clear / very low dust</option>
+<option value="MY31">MY31 Low dust</option>
+<option value="MY32">MY32 Moderate dust</option>
+                </select>
+            </div>            
+            <div id="modelMCD" onclick="modelchange('MCD');" class="model-block" style="background-color:#201c1a;">
+                <img src="images/lmd_logo.png" style="height:27px"/>
+                &nbsp;Mars Climate Database&nbsp;<a href="https://www-mars.lmd.jussieu.fr/" target="models"><i class="fas fa-circle-info" style="color:white;"></i></a>&nbsp;
+                <select id="modeMCD" style="font-size:12px;margin:0px;" onchange="modelchange('MCD');">
+                    <option value="24">MY24</option>
+                    <option value="25">MY25</option>
+                    <option value="26">MY26</option>
+                    <option value="27">MY27</option>
+                    <option value="28">MY28</option>
+                    <option value="29">MY29</option>
+                    <option value="30">MY30</option>
+                    <option value="31">MY31</option>
+                    <option value="32">MY32</option>
+                    <option value="1">Std (avg UV)</option>
+                    <option value="2">Std (min UV)</option>
+                    <option value="3">Std (max UV)</option>
+                    <option value="4">Dusty (avg UV)</option>
+                    <option value="5">Dusty (min UV)</option>
+                    <option value="6">Dusty (max UV)</option>
+                    <option value="7">Warm (max UV)</option>
+                    <option value="8">Cold (min UV)</option>  
+                </select>  
+            </div>            
+        </div>
+        <div class="window-bottom">
+            <button onclick="return settings_click(true);">OK</button>
+            <button onclick="return settings_click(false);">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Info window -->
+    <div id="window-info" class="window">
+        <div class="window-title">
+            <div style="text-align:center;display:inline-block;width:95%;">App Information</div>
+            <div style="text-align:right;width:5%;cursor: pointer;" onclick="info_click(0);"><i class="fa-solid fa-circle-xmark"></i></div>
+        </div>
+        <div style="display:block;padding:10px 20px;height:calc(100% - 80px);font-size:14px;"><br>
+            The <b>Mars Explorer App</b> was developed by <a href="https://astrobiology.gsfc.nasa.gov/Villanueva/">Geronimo Villanueva</a> and the Mars OSSE team at NASA Goddard Space Flight Center. 
+            The app is undergoing active development and its current version should be only used for testing purposes. <br>&nbsp;<br>
+            The app stems from an ongoing collaboration across the center, 
+            and we thank the Technology and Research Investments office at NASA Goddard for their support.<br>&nbsp;<br>
+            The timekeeping algorithms used by the app are primarily based on those reported in <a href="https://doi.org/10.1016/S0032-0633(99)00092-6">Allison & McEwen (2000)</a> 
+            and the globe render module employs the open-source <a href="https://github.com/d3/d3">d3 visualization library</a>.<br>
+        </div>
+        <div class="window-bottom">
+            <button onclick="return info_click(false);">OK</button>
+        </div>
+    </div>
+    </form>
+</body>
+
+<script>
+var pois = [["Perseverance Rover","18.4447","77.4508", "1"],
+            ["Zhurong Tianwen-1 Rover","24.748","110.318", "1"],
+            ["Curiosity MSL Rover","-4.5895","137.4417", "1"],
+            ["Spirit MER-A Rover","-14.8","175.5", "1"],
+            ["Opportunity MER-B Rover","-1.9","354.5", "1"],
+            ["Pathfinder Rover","19.1","326.7", "1"],
+            ["Phoenix Lander","68.2","234.2", "1"],
+            ["Viking 1 Lander","22.3","312", "1"],
+            ["Viking 2 Lander","47.7","134.3", "1"],
+            ["InSight Lander","4","138", "1"],
+            ["Beagle 2 Lander (crash)","11.5","90.5", "1"],
+            ["Mars2 Lander (crash)","-44.6","58", "1"],
+            ["Mars3 Lander","-44.6","202", "1"],
+            ["Mars6 Lander (crash)","-23.6","340.6", "1"],
+            ["Polar Lander (crash)","-75.9","164.7", "1"],
+            ["Acidalia Planitia","49.8","339.3", "0"],
+            ["Airy Crater","-5.1","0", "0"],
+            ["Albor Tholus","18.8","150.4", "0"],
+            ["Apollinaris Patera","-8.5","174.4", "0"],
+            ["Argyre Planitia","-49.6","316", "0"],
+            ["Arsia Mons","-8.3","238.9", "0"],
+            ["Ascraeus Mons","11.8","255.5", "0"],
+            ["Cassini Crater","23.5","31.8", "0"],
+            ["Cydonia Mensae","33.7","347", "0"],
+            ["Elysium Mons","24.7","146.9", "0"],
+            ["Hellas Planitia","-40","70", "0"],
+            ["Huygens Crater","-14.1","55.4", "0"],
+            ["Isidis Planitia","12.8","87", "0"],
+            ["Kepler Crater","-46.7","140.9", "0"],
+            ["Lomonosov Crater","64.9","350.8", "0"],
+            ["Lowell Crater","-51.9","278.6", "0"],
+            ["Lyot Crater","50.4","29.3", "0"],
+            ["Milankovic Crater","54.3","213.3", "0"],
+            ["Newton Crater","-40.4","201.9", "0"],
+            ["Noctis Labyrinthus","-6.9","257.8", "0"],
+            ["Olympus Mons","18.4","226", "0"],
+            ["Ophir Planum","-8.7","302.5", "0"],
+            ["Pavonis Mons","0.8","246.6", "0"],
+            ["Schiaparelli Crater","-2.7","16.7", "0"],
+            ["Solis Planum","-25.2","273.5", "0"],
+            ["Syrtis Major","9.9","70", "0"],
+            ["Valles Marineris","-13.7","300.8", "0"],
+            ["Sub-solar","3.8757941818785","201.66735064652","2"],
+            ["Sub-Earth","18.652418850672","236.5890334886","2"]];
+var npoi = 44;
+windscl=1.000;
+windir=-69.981458396883;
+psurf=5.4726708984375;
+slat=3.8757941818785;
+slon=201.66735064652;
+geolat=18.652418850672;
+geolon=236.5890334886;
+dslon=90.677483813508;
+EOT=-8.9304538730951;
+</script>
+<script src="images/d3.min.js"></script>
+<script src="scripts.js?aug07"></script>
+<script>
+</script>
+</html>

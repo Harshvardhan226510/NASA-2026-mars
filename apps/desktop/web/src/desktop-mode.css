@@ -1,0 +1,16 @@
+/* Desktop controls live in the website header without shifting map reticles. */
+#desktop-status {position:fixed;top:16px;right:20px;z-index:10000;margin:0;padding:0;border:0;font:12px system-ui;color:#e4eee9}
+#desktop-status.desktop-controls-attached {position:relative;top:auto;right:auto;flex:0 0 auto}
+#desktop-status>summary {list-style:none;cursor:pointer;white-space:nowrap;display:flex;align-items:center;min-height:38px;padding:9px 12px;background:#14262fe8;border:1px solid #b7d9d33b;border-radius:9px;color:#d2ebe3;font-size:11px}
+#desktop-status>summary::-webkit-details-marker {display:none}
+#desktop-status>summary:after {content:'⌄';margin-left:8px}
+#desktop-status>summary:focus-visible {outline:2px solid #a4e5d2;outline-offset:3px}
+#desktop-status .desktop-controls-content {position:absolute;top:calc(100% + 12px);right:0;width:340px;max-width:calc(100vw - 32px);max-height:70vh;overflow:auto;box-sizing:border-box;padding:20px;background:#10202af5;border:1px solid #a7cebd55;border-radius:10px;box-shadow:0 15px 45px #0008;backdrop-filter:blur(18px)}
+#desktop-status .desktop-controls-content strong {font-size:13px}
+#desktop-status .desktop-controls-content p {font-size:12px;line-height:1.6;color:#bfcec9;margin:12px 0}
+#desktop-status .desktop-controls-content label {display:block;color:#bdd0c8;font-size:11px}
+#desktop-status .desktop-controls-content select {width:100%;margin:8px 0 15px;padding:10px;background:#10212c;color:#e4eee9;border:1px solid #ffffff30}
+#desktop-status .desktop-controls-actions {display:flex;flex-wrap:wrap;gap:8px}
+#desktop-status .desktop-controls-actions button {padding:10px 12px;font-size:12px;cursor:pointer;color:#dcf0e9}
+@media(max-width:1000px){body[data-desktop=true].ui-horizon .ui-header-tools .ui-search{min-width:38px;width:38px}body[data-desktop=true].ui-horizon .ui-header-tools .ui-search :is(span,kbd){display:none}}
+@media(max-width:650px){#desktop-status>summary{padding:8px;font-size:10px}#desktop-status .desktop-controls-content{position:fixed;top:70px;right:15px}body[data-desktop=true].ui-horizon .horizon-ares span{display:none}}

@@ -23,3 +23,7 @@ surface in 3D, compare terrain-aware EVA routes, and plan field missions.
 
 When connecting this repository to Vercel, set the project's Root Directory to
 `apps/web`.
+
+## Desktop downloads
+
+[Windows and Linux ARM64 installers](https://github.com/Harshvardhan226510/NASA-2026-mars/releases/latest) · [Desktop setup and API guides](apps/desktop/README.md).

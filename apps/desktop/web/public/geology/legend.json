@@ -1,0 +1,247 @@
+{
+  "schema": "mars-usgs-geology-legend/1",
+  "publication": "Tanaka et al. (2014), USGS SIM 3292",
+  "scale": "1:20,000,000",
+  "units": [
+    {
+      "code": "lApd",
+      "name": "Late Amazonian polar dunes unit",
+      "color": "#ffe3b3"
+    },
+    {
+      "code": "Ap",
+      "name": "Amazonian polar unit",
+      "color": "#00e8f0"
+    },
+    {
+      "code": "lApc",
+      "name": "Late Amazonian polar cap unit",
+      "color": "#f5f5f5"
+    },
+    {
+      "code": "Hpe",
+      "name": "Hesperian polar edifice unit",
+      "color": "#6ba5cc"
+    },
+    {
+      "code": "Hpu",
+      "name": "Hesperian polar undivided unit",
+      "color": "#9ab2e6"
+    },
+    {
+      "code": "Hp",
+      "name": "Hesperian polar unit",
+      "color": "#00858a"
+    },
+    {
+      "code": "Apu",
+      "name": "Amazonian polar undivided unit",
+      "color": "#0000cc"
+    },
+    {
+      "code": "lHvf",
+      "name": "Late Hesperian volcanic field unit",
+      "color": "#ccb3b3"
+    },
+    {
+      "code": "Ave",
+      "name": "Amazonian volcanic edifice",
+      "color": "#cc3600"
+    },
+    {
+      "code": "lNv",
+      "name": "Late Noachian volcanic unit",
+      "color": "#531a89"
+    },
+    {
+      "code": "eHv",
+      "name": "Early Hesperian volcanic unit",
+      "color": "#8a668a"
+    },
+    {
+      "code": "Nve",
+      "name": "Noachian volcanic edifice unit",
+      "color": "#cc0000"
+    },
+    {
+      "code": "AHv",
+      "name": "Amazonian and Hesperian volcanic",
+      "color": "#cd4e37"
+    },
+    {
+      "code": "lAvf",
+      "name": "Late Amazonian volcanic field unit",
+      "color": "#b39999"
+    },
+    {
+      "code": "lAv",
+      "name": "Late Amazonian volcanic unit",
+      "color": "#ffb8c1"
+    },
+    {
+      "code": "Hve",
+      "name": "Hesperian volcanic edifice unit",
+      "color": "#ff0000"
+    },
+    {
+      "code": "Av",
+      "name": "Amazonian volcanic unit",
+      "color": "#ff6347"
+    },
+    {
+      "code": "lHv",
+      "name": "Late Hesperian volcanic unit",
+      "color": "#cd6aca"
+    },
+    {
+      "code": "eNhm",
+      "name": "Early Noachian highland massif unit",
+      "color": "#848b8b"
+    },
+    {
+      "code": "mNhm",
+      "name": "Middle Noachian highland massif unit",
+      "color": "#c1cdcd"
+    },
+    {
+      "code": "eAb",
+      "name": "Early Amazonian basin unit",
+      "color": "#99ffff"
+    },
+    {
+      "code": "lHb",
+      "name": "Late Hesperian basin unit",
+      "color": "#518a8a"
+    },
+    {
+      "code": "eHb",
+      "name": "Early Hesperian basin unit",
+      "color": "#9dcd9d"
+    },
+    {
+      "code": "HNb",
+      "name": "Hesperian and Noachian basin unit",
+      "color": "#698c69"
+    },
+    {
+      "code": "mAl",
+      "name": "Middle Amazonian lowland unit",
+      "color": "#6a8c22"
+    },
+    {
+      "code": "lHl",
+      "name": "Late Hesperian lowland unit",
+      "color": "#228c22"
+    },
+    {
+      "code": "lHt",
+      "name": "Late Hesperian transition unit",
+      "color": "#ffc124"
+    },
+    {
+      "code": "Hto",
+      "name": "Hesperian transition outflow unit",
+      "color": "#bdffff"
+    },
+    {
+      "code": "Ht",
+      "name": "Hesperian transition unit",
+      "color": "#ffeb8a"
+    },
+    {
+      "code": "eHt",
+      "name": "Early Hesperian transition unit",
+      "color": "#cf980c"
+    },
+    {
+      "code": "AHtu",
+      "name": "Amazonian and Hesperian transition undivided unit",
+      "color": "#faead6"
+    },
+    {
+      "code": "HNt",
+      "name": "Hesperian and Noachian transition unit",
+      "color": "#cdbd70"
+    },
+    {
+      "code": "Htu",
+      "name": "Hesperian transition undivided unit",
+      "color": "#cccccc"
+    },
+    {
+      "code": "mNh",
+      "name": "Middle Noachian highland unit",
+      "color": "#8b7355"
+    },
+    {
+      "code": "lNh",
+      "name": "Late Noachian highland unit",
+      "color": "#cdab7e"
+    },
+    {
+      "code": "eHh",
+      "name": "Early Hesperian highland unit",
+      "color": "#efd5b8"
+    },
+    {
+      "code": "eNh",
+      "name": "Early Noachian highland unit",
+      "color": "#8b4513"
+    },
+    {
+      "code": "Nhe",
+      "name": "Noachian highland edifice unit",
+      "color": "#730000"
+    },
+    {
+      "code": "Nhu",
+      "name": "Noachian highland undivided unit",
+      "color": "#686868"
+    },
+    {
+      "code": "HNhu",
+      "name": "Hesperian and Noachian highland undivided unit",
+      "color": "#b2b2b2"
+    },
+    {
+      "code": "Aa",
+      "name": "Amazonian apron unit",
+      "color": "#ffd900"
+    },
+    {
+      "code": "ANa",
+      "name": "Amazonian and Noachian apron unit",
+      "color": "#ccad00"
+    },
+    {
+      "code": "lAa",
+      "name": "Late Amazonian apron unit",
+      "color": "#8a7500"
+    },
+    {
+      "code": "AHi",
+      "name": "Amazonian and Hesperian impact unit",
+      "color": "#ffff00"
+    }
+  ],
+  "source_urls": {
+    "publication": "https://doi.org/10.3133/sim3292",
+    "style": "https://asc-docs.s3.us-west-2.amazonaws.com/pygeoapi/sld/Global_Geology.sld",
+    "attributes": "https://astrogeology.usgs.gov/pygeoapi/collections/mars/sim3292_global_geologic_map/units/items?f=json&limit=10000&skipGeometry=true&properties=unit,unitdesc",
+    "tiles": "https://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/Mars_geology_All_layers_100pct/MapServer"
+  },
+  "verified": "2026-11-03",
+  "verification": "All 44 rendered unit codes join to official USGS names and SLD symbols. Service legend colors differ from the official SLD by at most one 8-bit value per RGB channel; exact service colors are used here.",
+  "color_rounding_differences": [
+    {
+      "code": "lHvf",
+      "service": "#ccb3b3",
+      "usgs_sld": "#ccb2b2"
+    },
+    {
+      "code": "lAvf",
+      "service": "#b39999",
+      "usgs_sld": "#b29999"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {hasRecoverableNull,restoreOrthoMask} from '../src/ortho-mask.js';
+const d={id:'DTEEC_044325_1700_044180_1700_U01',ortho_source_id:'ESP_044180_1700_RED_A_01_ORTHO',display_radiometry:{source_low:0,source_high:212}};
+test('verified CORE_NULL padding becomes transparent while valid dark shadows remain',()=>{const p=new Uint8Array([0,255,1,255,8,255,0,0,255,255]);assert.equal(restoreOrthoMask(p,d),1);assert.deepEqual([...p],[0,0,1,255,8,255,0,0,255,255]);assert.equal(restoreOrthoMask(p,d),0);});
+test('unknown products and stretches that collapse valid DNs into zero cannot be guessed',()=>{assert.equal(hasRecoverableNull(d),true);for(const other of [{...d,id:'unverified'},{...d,ortho_source_id:'unknown'},{...d,display_radiometry:{source_low:8,source_high:212}},{...d,display_radiometry:{source_low:0,source_high:1000}}]){const p=new Uint8Array([0,255]);assert.equal(restoreOrthoMask(p,other),0);assert.equal(p[1],255);}});

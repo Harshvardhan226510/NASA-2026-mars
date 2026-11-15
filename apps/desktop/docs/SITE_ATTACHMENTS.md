@@ -1,0 +1,16 @@
+# Marked-site attachments
++
++Open **Explore → My sites**, select **View & edit** on a marked site (or create a site), then use **Attachments → Add files**. Choose multiple files in the native file picker and save the site. Up to 32 files can be attached to one site. Partial import failures preserve the successfully copied files in the draft and show the failed filenames.
++
++Atlas copies the selected files into its private `site-attachments` folder under the application user-data directory. Copying streams files to disk and calculates SHA-256; media contents are not stored in browser localStorage or the mission JSON. Moving or deleting an original file does not remove the stored copy. Free space is checked before each copy. There is no additional small per-file size ceiling; the selected file must fit on the attachment-storage drive with 64 MiB headroom. The file picker accepts ordinary files of any type.
++
++PNG, JPEG, GIF and WebP have inline image previews. MP4, WebM and QuickTime video can use inline playback when supported by the platform's media codecs. Videos preload on demand and support byte-range requests for playback/seeking. Other files have a native **Save a copy** action; files are not automatically executed or opened in external applications. Unsupported or damaged media still offer Save a copy.
++
++**Remove from site** changes the editor draft; save the site to keep the removal. The local file copy is retained so older saved missions can still refer to it. Cancelling an edit leaves the saved site's attachment list unchanged. Files selected for a cancelled draft can remain in the local library; automatic removal of unreferenced files is not implemented.
++
++Attachment references, original display names, sizes, SHA-256 values and import times persist with My sites, the desktop state mirror and saved/shared missions. Mission JSON and links contain references only, not the image/video/document bytes. On another device, an unavailable reference is explicitly labelled **Missing on this device**; attach the actual file there. Keep or share separate file copies when transferring a mission.
++
++The authenticated app server resolves only opaque attachment IDs in the registered local library. It checks file size/modification time, rejects substituted symlinks and uses media types determined from file signatures. Other content is served as a download with a restrictive policy. Save-copy destinations cannot overwrite the attachment library. Updating a previously evaluated site preserves its attachments.
++
++Validation: local-copy independence after source deletion, a fresh library instance, save-copy bytes, partial import failures, media byte ranges, content types and saved-mission reference round trips. Browser verification covers attaching a photo, a generated WebM video and a CSV; image decode, actual video playback, saving/cancelling/removing references, reload persistence and exporting the CSV. The Windows test host does not permit creating file symlinks; that single test is skipped on this host. Packaged and physical Pi acceptance remain pending.
++

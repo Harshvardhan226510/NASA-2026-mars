@@ -1,0 +1,16 @@
+{
+  "source_url": "https://pds-geosciences.wustl.edu/mgs/urn-nasa-pds-mgs_mola_topography_derived/meg004/megt90n000cb.img",
+  "label_url": "https://pds-geosciences.wustl.edu/mgs/urn-nasa-pds-mgs_mola_topography_derived/meg004/megt90n000cb.xml",
+  "source_bytes": 2073600,
+  "source_sha256": "25f16fb7aaf857898dcf98bc4f841341a24f8b9f7e98453ca083bc45d897ca2c",
+  "stored_bytes": 1698916,
+  "width": 1440,
+  "height": 720,
+  "grid_pixels_per_degree": 4,
+  "source": "NASA/MGS/MOLA MEGT90N000CB",
+  "height_reference": "Published topography relative to Mars areoid",
+  "usage": "Coarse fallback only, not native terrain",
+  "missing_pixels": 0,
+  "raw_min": -8068,
+  "raw_max": 21134
+}

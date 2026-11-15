@@ -1,0 +1,46 @@
+{
+  "schema": "ares-voice-output-source/1",
+  "engine": {
+    "name": "Piper",
+    "version": "1.8.0",
+    "repository": "https://github.com/OHF-Voice/piper1-gpl",
+    "commit": "639388b6317fc4731e91d53da42aea68fd4166ff",
+    "licence": "GPL-3.0",
+    "wheels": {
+      "win32-x64": {
+        "filename": "piper_tts-1.8.0-cp39-abi3-win_amd64.whl",
+        "bytes": 34119688,
+        "sha256": "5da9bfdb05dfe15da3536859d422e605483ffa6d2b3ec2c5b9593bae6b5aa6a4"
+      },
+      "linux-arm64": {
+        "filename": "piper_tts-1.8.0-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_28_aarch64.whl",
+        "bytes": 34131751,
+        "sha256": "3f60c1917de6d8e8033f395878ad3f88f6dfee88a8b05f98971a275f76a38484"
+      }
+    }
+  },
+  "voice": {
+    "name": "English (US) \u2014 LJ Speech medium",
+    "repository": "rhasspy/piper-voices",
+    "revision": "e7229f7d33a10e145e109b886d661984201ac3c4",
+    "directory": "en/en_US/ljspeech/medium",
+    "datasetLicence": "public domain, according to publisher model card",
+    "files": [
+      {
+        "path": "en_US-ljspeech-medium.onnx",
+        "bytes": 63531379,
+        "sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22"
+      },
+      {
+        "path": "en_US-ljspeech-medium.onnx.json",
+        "bytes": 4972,
+        "sha256": "141d612cc0a95ed7efc1ca936b845c2364967f2e9217c5dbfcf69fc4d6c65860"
+      },
+      {
+        "path": "MODEL_CARD",
+        "bytes": 517,
+        "sha256": "fbee1529c89d36b3fe76d7e9f3f832dce17f44900a52d76a9bda735654766b4d"
+      }
+    ]
+  }
+}
