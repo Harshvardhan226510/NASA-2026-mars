@@ -1,0 +1,956 @@
+/* Mission Deployer: Interactive 3D Tactical Equipment Workbench */
+
+#plan-mission-panel {
+  width: 460px;
+  max-width: calc(100% - 24px);
+  font-size: 12px;
+  line-height: 1.5;
+  background: #0d151ded;
+  border-left: 3px solid #f0bd60;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+#plan-mission-panel h2 {
+  font-size: 18px;
+  color: #fff0df;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mission-pilot-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #f0bd6022;
+  color: #f0bd60;
+  border: 1px solid #f0bd6066;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.deploy-section {
+  margin: 14px 0;
+  border-top: 1px solid #8aa3952a;
+  padding-top: 12px;
+}
+
+.deploy-section h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #efc49f;
+  margin: 0 0 8px 0;
+}
+
+/* Location Selector Grid */
+.location-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.location-card-btn {
+  background: #141f29;
+  border: 1px solid #233544;
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: #d7e4dc;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.location-card-btn:hover {
+  background: #1c2b38;
+  border-color: #f0bd60aa;
+}
+
+.location-card-btn[aria-pressed="true"],
+.location-card-btn.active-pilot {
+  background: #1e3040;
+  border-color: #f0bd60;
+  box-shadow: 0 0 10px #f0bd6028;
+}
+
+.location-card-btn strong {
+  font-size: 11px;
+  color: #fff;
+}
+
+.location-card-btn small {
+  font-size: 9px;
+  color: #8da398;
+  line-height: 1.25;
+}
+
+.location-card-btn .loc-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 8px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: #73cde322;
+  color: #73cde3;
+  border: 1px solid #73cde344;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.location-card-btn.active-pilot .loc-badge {
+  background: #f0bd6022;
+  color: #f0bd60;
+  border-color: #f0bd6044;
+}
+
+/* Equipment Palette Cards with Thumbnails */
+.equipment-palette {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.equipment-card {
+  background: #121c26;
+  border: 1px solid #243748;
+  border-radius: 6px;
+  padding: 10px;
+  color: #e5eee8;
+  cursor: grab;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  user-select: none;
+}
+
+.equipment-card:hover {
+  border-color: #73cde3;
+  background: #162432;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.equipment-card.dragging {
+  opacity: 0.5;
+  border: 1px dashed #f0bd60;
+  cursor: grabbing;
+}
+
+.equipment-card[aria-pressed="true"] {
+  background: #182a3a;
+  border-color: #f0bd60;
+  box-shadow: 0 0 12px #f0bd6033;
+}
+
+.equipment-thumb {
+  width: 100%;
+  height: 52px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #091017;
+  border: 1px solid #1a2734;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equip-thumb-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.equipment-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.equipment-card-info strong {
+  font-size: 12px;
+  color: #f4ebd9;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.equip-sub-badge {
+  font-size: 9px;
+  color: #73cde3;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.equip-dims {
+  font-size: 9px;
+  color: #a4b8aa;
+}
+
+.equip-desc {
+  font-size: 10px;
+  color: #839b8d;
+  margin: 3px 0 0 0;
+  line-height: 1.35;
+}
+
+.equip-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.equip-place-btn {
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  background: #1a2c3c;
+  color: #f0bd60;
+  border: 1px solid #f0bd6066;
+  border-radius: 4px;
+}
+
+.equip-place-btn:hover {
+  background: #233b50;
+  border-color: #f0bd60;
+  color: #fff;
+}
+
+.drag-hint-pill {
+  font-size: 9px;
+  color: #728d80;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Canvas Dropzone Indicator */
+.drop-target-active {
+  outline: 2px dashed #f0bd60 !important;
+  outline-offset: -2px;
+}
+
+/* Placement status banner */
+.deploy-placement-banner {
+  background: #162a1e;
+  border: 1px dashed #78d7a3;
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: #b7eec9;
+  font-size: 11px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  animation: bannerPulse 1.8s infinite alternate;
+}
+
+@keyframes bannerPulse {
+  0% { border-color: #78d7a366; }
+  100% { border-color: #78d7a3; }
+}
+
+.deploy-placement-banner button {
+  background: #2b4028;
+  border: 1px solid #78d7a3;
+  color: #fff;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Deployed stations inventory */
+.deployed-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.deployed-item {
+  background: #101921;
+  border: 1px solid #1f303f;
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.deployed-item.selected {
+  border-color: #f0bd60;
+  background: #172430;
+}
+
+.deployed-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.deployed-info strong {
+  font-size: 11px;
+  color: #e5eee8;
+}
+
+.deployed-info small {
+  font-size: 9px;
+  color: #8ba295;
+  font-variant-numeric: tabular-nums;
+}
+
+.deployed-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.deployed-actions button {
+  padding: 4px 7px;
+  font-size: 10px;
+}
+
+/* Telemetry Dossier Panel */
+.telemetry-card {
+  background: #101822;
+  border: 1px solid #233748;
+  border-left: 3px solid #73cde3;
+  border-radius: 5px;
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+
+.telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #233748;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.telemetry-header h4 {
+  font-size: 12px;
+  color: #f4ebd9;
+  margin: 0;
+}
+
+.telemetry-status-badge {
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.telemetry-status-badge.nominal {
+  background: #78d7a322;
+  color: #78d7a3;
+  border: 1px solid #78d7a344;
+}
+
+.telemetry-status-badge.caution {
+  background: #f0bd6022;
+  color: #f0bd60;
+  border: 1px solid #f0bd6044;
+}
+
+.telemetry-status-badge.warning {
+  background: #ff5e5e22;
+  color: #ff8585;
+  border: 1px solid #ff5e5e44;
+}
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  margin: 8px 0;
+}
+
+.telemetry-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.telemetry-item small {
+  font-size: 9px;
+  color: #8fa598;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.telemetry-item strong {
+  font-size: 11px;
+  color: #f4ebd9;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Route Planner Integration Action Box */
+.deploy-route-actions {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #1a2a38;
+}
+
+.route-action-title {
+  display: block;
+  font-size: 9px;
+  color: #f0bd60;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.route-action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.route-pill-btn {
+  font-size: 9px;
+  padding: 4px 8px;
+  background: #14222e;
+  border: 1px solid #294054;
+  color: #d2e4dd;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.route-pill-btn:hover {
+  background: #1c3244;
+  border-color: #73cde3;
+  color: #fff;
+}
+
+.telemetry-citation {
+  font-size: 9px;
+  color: #768d82;
+  border-top: 1px solid #1a2936;
+  padding-top: 6px;
+  margin-top: 8px;
+  line-height: 1.35;
+}
+
+.deploy-controls-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.deploy-controls-row button {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 10px;
+}
+
+/* 2D Leaflet Deployed Marker */
+.deployed-leaflet-marker {
+  background: transparent;
+  border: none;
+}
+
+.deployed-map-pin {
+  width: 26px;
+  height: 26px;
+  background: #101c27;
+  border: 2px solid #f0bd60;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.deployed-map-pin:hover {
+  transform: scale(1.15);
+  border-color: #73cde3;
+}
+
+@media (max-width: 560px) {
+  #plan-mission-panel {
+    width: 100%;
+    max-width: 100%;
+    max-height: 65dvh;
+  }
+  .location-selector-grid,
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Focus Camera Button */
+.deploy-focus-action {
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.focus-station-btn {
+  width: 100%;
+  padding: 8px 12px;
+  background: #f0bd60;
+  color: #0b141c !important;
+  font-weight: 700;
+  font-size: 11px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.focus-station-btn:hover {
+  background: #ffcf73;
+  box-shadow: 0 0 12px rgba(240, 189, 96, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Base Operations Life-Support & Power Command Center */
+.base-operations-hud {
+  margin-top: 6px;
+}
+
+.base-hud-card {
+  background: #0f1c27;
+  border: 1px solid #233b4e;
+  border-left: 3px solid #73cde3;
+  border-radius: 6px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.base-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #1f3344;
+  padding-bottom: 6px;
+}
+
+.base-hud-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.base-hud-badge {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #73cde3;
+  background: #73cde31a;
+  border: 1px solid #73cde344;
+  padding: 1px 4px;
+  border-radius: 3px;
+  align-self: flex-start;
+}
+
+.base-hud-title strong {
+  font-size: 12px;
+  color: #f4ebd9;
+}
+
+.hud-status-pill {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.hud-status-pill.nominal {
+  background: #78d7a322;
+  color: #78d7a3;
+  border: 1px solid #78d7a366;
+}
+
+.hud-status-pill.warning {
+  background: #f0706022;
+  color: #f07060;
+  border: 1px solid #f0706066;
+}
+
+.base-hud-row {
+  margin-bottom: 8px;
+}
+
+.base-metric-col small {
+  font-size: 9px;
+  color: #8fa597;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.base-metric-val {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 2px 0 5px 0;
+}
+
+.base-metric-val strong {
+  font-size: 15px;
+  color: #fff;
+  font-family: monospace;
+}
+
+.base-metric-val .dim {
+  font-size: 11px;
+  color: #728c9b;
+}
+
+.net-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.net-pill.nominal {
+  background: #78d7a322;
+  color: #78d7a3;
+}
+
+.net-pill.warning {
+  background: #f0706022;
+  color: #f07060;
+}
+
+.base-progress-track {
+  width: 100%;
+  height: 5px;
+  background: #14222e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.base-progress-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.base-progress-bar.nominal {
+  background: linear-gradient(90deg, #73cde3, #78d7a3);
+}
+
+.base-progress-bar.warning {
+  background: linear-gradient(90deg, #f0bd60, #f07060);
+}
+
+.base-hud-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.base-sub-metric {
+  background: #13212c;
+  border: 1px solid #1c3244;
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.base-sub-metric small {
+  font-size: 8.5px;
+  color: #8aa194;
+  text-transform: uppercase;
+}
+
+.base-sub-metric strong {
+  font-size: 12px;
+  font-family: monospace;
+  color: #fff;
+}
+
+.base-sub-metric strong.nominal {
+  color: #78d7a3;
+}
+
+.base-sub-metric strong.caution {
+  color: #f0bd60;
+}
+
+.base-sub-metric strong.warning {
+  color: #f07060;
+}
+
+.base-sub-metric .sub-dim {
+  font-size: 8px;
+  color: #6d8594;
+}
+
+.base-hud-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #1b2e3e;
+}
+
+.conduit-count-pill {
+  font-size: 9px;
+  color: #f0bd60;
+}
+
+.comms-status-pill {
+  font-size: 9px;
+  color: #73cde3;
+}
+
+
+/* 3-Tab Tactical Segmented Workflow */
+.mission-tab-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  background: #091118;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid #1a2a38;
+  margin: 10px 0 14px 0;
+}
+
+.mission-tab-btn {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 4px;
+  color: #8da398;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.2s ease;
+}
+
+.mission-tab-btn:hover {
+  background: #14202c;
+  color: #f4ebd9;
+}
+
+.mission-tab-btn.active,
+.mission-tab-btn[aria-selected="true"] {
+  background: #1e3040;
+  color: #f0bd60;
+  border: 1px solid #f0bd6088;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.tab-counter {
+  background: #f0bd60;
+  color: #0b141c;
+  font-weight: bold;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  margin-left: 2px;
+}
+
+/* Location Briefing Card */
+.location-briefing-card {
+  background: #101a24;
+  border: 1px solid #1f3040;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.loc-spec-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #091117;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #172532;
+  font-size: 11px;
+}
+
+.loc-spec-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.loc-spec-row span {
+  color: #8fa5b5;
+}
+
+.loc-spec-row strong {
+  color: #d7e4dc;
+  text-align: right;
+}
+
+/* Catalog Filter Pills */
+.catalog-filters-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.catalog-filter-pill {
+  background: #111a24;
+  border: 1px solid #233544;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 10px;
+  color: #8fa5b5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.catalog-filter-pill:hover {
+  background: #162432;
+  border-color: #73cde3aa;
+  color: #e5eee8;
+}
+
+.catalog-filter-pill.active {
+  background: #193142;
+  border-color: #73cde3;
+  color: #73cde3;
+  font-weight: bold;
+}
+
+.official-nasa-badge {
+  background: #f0bd6022;
+  color: #f0bd60;
+  border: 1px solid #f0bd6088;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+/* Fleet Cluster Summary Bar */
+.fleet-cluster-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 12px 0;
+  padding: 8px;
+  background: #091219;
+  border: 1px solid #1a2a38;
+  border-radius: 6px;
+}
+
+.cluster-pill {
+  font-size: 10px;
+  background: #14222f;
+  border: 1px solid #233a4d;
+  color: #d7e4dc;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Cluster Contribution Banner inside Dossier */
+.cluster-contribution-banner {
+  background: #152433;
+  border-left: 3px solid #f0bd60;
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cluster-contribution-banner small {
+  font-size: 9px;
+  color: #f0bd60;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.cluster-contribution-banner strong {
+  font-size: 11px;
+  color: #e5eee8;
+}
+
+/* Conduit Toggle Bar */
+.conduit-toggle-bar {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #0d1720;
+  border: 1px solid #1c2e3e;
+  border-radius: 6px;
+}
+
+.conduit-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #cfdcd5;
+  font-size: 11px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.conduit-checkbox-label input[type="checkbox"] {
+  accent-color: #f0bd60;
+  cursor: pointer;
+}
+
+/* Telemetry Dossier Action Buttons */
+.dossier-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.dossier-act-btn {
+  font-size: 10px;
+  padding: 6px 4px;
+  text-align: center;
+}
+
+/* Consistent decorative icons in equipment and mission controls. */
+.equipment-line-icon{display:inline-block;vertical-align:middle;flex:none;color:currentColor}
+.tab-icon .equipment-line-icon{width:20px;height:20px}
+.cluster-pill .equipment-line-icon{width:15px;height:15px}
+.deployed-map-pin .equipment-line-icon{width:18px;height:18px;color:#9fe4cf}
