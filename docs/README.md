@@ -1,21 +1,22 @@
-# 📚 Pyxis Mission Documentation & Technical Specifications
+# Pyxis Mission Documentation & Technical Specifications
 
 > **NASA Space Apps Challenge 2026** — *Interplanetary Survival Guide: Martian Map*  
 > Complete technical reference, algorithmic specifications, scientific datasets, and mission architecture dossiers.
 
 ---
 
-## 📑 Documentation Index
+## Documentation Index
 
 | Document | Focus Domain | Key Topics Covered |
 | :--- | :--- | :--- |
+| **[Data Sources & Provenance Registry](./DATA_SOURCES.md)** | Planetary Data Architecture | Full two-tier classification of 37 NASA and Non-NASA datasets, archive links, and usage rules. |
 | **[System Architecture & Tech Stack](./PROJECT_ARCHITECTURE_AND_TECHNOLOGY_STACK.md)** | Full-Stack Architecture | Complete hardware specifications, offline data pipeline, multi-threaded rendering engine, and telemetry integration. |
 | **[Skyline Visual Place Recognition (Skyline-VPR)](./SKYLINE_VPR.md)** | Autonomous Navigation | Mathematical formulation of unconstrained horizon-profile extraction, synthetic DEM ray-marching, and celestial heading alignment. |
 | **[ARES / TARS Model Specifications](./ARES_MODEL_SPECIFICATIONS.md)** | Edge AI & SLM Architecture | Fine-tuning dataset provenance, LoRA hyperparameters, 4-bit/8-bit GGUF quantization benchmarks, and deterministic safety grounding. |
 
 ---
 
-## 📐 Scientific & Mathematical Assets
+## Scientific & Mathematical Assets
 
 The `docs/` directory also maintains verified technical graphics and visualization assets used in mission briefings:
 
@@ -28,7 +29,7 @@ The `docs/` directory also maintains verified technical graphics and visualizati
 
 ---
 
-## 🔬 Scientific Data Provenance Summary
+## Scientific Data Provenance Summary
 
 All physical algorithms and overlays documented here are strictly grounded in peer-reviewed planetary science and authentic NASA Planetary Data System (PDS) archives:
 
