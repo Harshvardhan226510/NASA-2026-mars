@@ -1,0 +1,1749 @@
+{
+  "schema": "mars-static-overlays/1",
+  "prepared": "2026-10-18",
+  "coordinate_convention": "planetocentric latitude; signed east longitude; pixel centres; north-to-south rows",
+  "layers": {
+    "thermal-inertia": {
+      "file": "thermal-inertia.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "939e28323f86246511bd2420dcbda073f66c45a2cc50254b7bfa5d57619d4bee",
+      "sha256": "8072ee6ad0be4fd885a18d1e4ca50e78ac61aac55e16cd29ee7d6e227492102d",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_ti",
+          "url": "https://www.mars.asu.edu/data/tes_ti/",
+          "download_url": "http://ms-mars.mars.asu.edu/ti16?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=720&HEIGHT=360&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Thermal_Inertia_numeric",
+          "source_sha256": "6dafd2f50feb2b363c7e6bfc2ef074b7694dacef343269d6bc76ecdf07af9053"
+        }
+      ],
+      "units": "J m⁻² K⁻¹ s⁻½",
+      "native_sampling": "8 pixels/degree (~7.5 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 25.0,
+      "maximum": 588.0,
+      "valid_pixels": 259200,
+      "verification_points": [
+        {
+          "column": 180,
+          "row": 90,
+          "value": 102.0
+        },
+        {
+          "column": 360,
+          "row": 180,
+          "value": 171.0
+        },
+        {
+          "column": 540,
+          "row": 270,
+          "value": 372.0
+        }
+      ]
+    },
+    "surface-albedo-reference-composite": {
+      "file": "surface-albedo-reference-composite.f32.gz",
+      "width": 2880,
+      "height": 1440,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "e777e83c23c77f305220b45d381c82ad00588c7647da1f6fb699d209feae1689",
+      "sha256": "b0f95559e99ac64765851e95709b8c0f45a909840362ecbed9af5a79b59ef56c",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_albedo",
+          "url": "https://www.mars.asu.edu/data/tes_albedo/",
+          "download_url": "http://ms-mars.mars.asu.edu/alb32?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=2880&HEIGHT=1440&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Lambert_Albedo_numeric",
+          "source_sha256": "e8b01f9c2d9dfba0d4fc5a8b1c698d014ad85969b24cefa96877689199e4d35b"
+        }
+      ],
+      "units": "unitless Lambert albedo",
+      "native_sampling": "8 pixels/degree (~7.5 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.07999999821186066,
+      "maximum": 0.3209448754787445,
+      "valid_pixels": 4147200,
+      "verification_points": [
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.2633070945739746
+        },
+        {
+          "column": 1440,
+          "row": 720,
+          "value": 0.18488189578056335
+        },
+        {
+          "column": 2160,
+          "row": 1080,
+          "value": 0.149921253323555
+        }
+      ]
+    },
+    "olivine-abundance": {
+      "file": "olivine-abundance.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "ace5d2a343689a08ba84e8d1b2e02caf3a035a49cd3e18cbd0a138891a122d6e",
+      "sha256": "966c88856ab04e075ee92159aa9a15602ef05835d830fe16aa06498556de49d8",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_olivine",
+          "url": "https://www.mars.asu.edu/data/tes_olivine/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Olivine_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Olivine_numeric",
+          "source_sha256": "5454ff2ac3bd55774c63404840bf8fc201f886a2f450a23886fd50ba883f8384"
+        }
+      ],
+      "units": "spectral fraction",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.0,
+      "maximum": 0.17419886589050293,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.0
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.02852237969636917
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.0
+        }
+      ]
+    },
+    "feldspar-abundance": {
+      "file": "feldspar-abundance.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "a2fc15fbf954731136ea1ef31ab8f8cff5b8b0fb3deb3c251e58bbfdf01e2640",
+      "sha256": "ed536f77a046f7389fd56e48f64aab7cd86bb913724f9167ba232d1599db3815",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_kfeldspar",
+          "url": "https://www.mars.asu.edu/data/tes_kfeldspar/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Feldspar_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Feldspar_numeric",
+          "source_sha256": "b89938390d146046d00bbafa1f50728c1a1f213a04fd8ea3071d47d85ae0364b"
+        }
+      ],
+      "units": "spectral fraction (K-feldspar)",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.0,
+      "maximum": 0.147202268242836,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.05515177175402641
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.0443391315639019
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.012577677145600319
+        }
+      ]
+    },
+    "hematite-abundance": {
+      "file": "hematite-abundance.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "3a4426a91f84360c4e5107a79d6091fa91544449f069610eaa3b3e5c2d2bea7d",
+      "sha256": "18d7dec1414a7aab05454c747d766bcc7816bcc8904a52924a9b9432010680e1",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_hematite",
+          "url": "https://www.mars.asu.edu/data/tes_hematite/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Hematite_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Hematite_numeric",
+          "source_sha256": "e2f0178ff25aba7686c3d36d0c36ee78f29321eea93025edbacd3ede390eff08"
+        }
+      ],
+      "units": "spectral fraction",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.0,
+      "maximum": 0.22377972304821014,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.006222547497600317
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.09221065789461136
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.0641300305724144
+        }
+      ]
+    },
+    "high-ca-pyroxene": {
+      "file": "high-ca-pyroxene.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "d4b45ffce090a92c506b65b1df78b6fcd29c24d72cb16f63290d35ee480c472e",
+      "sha256": "6cb2451099a11396ead1eaa5d60b2b36752a1c91e5cf3bb4cc4ed91ed6f0d8cf",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_clinopyroxene",
+          "url": "https://www.mars.asu.edu/data/tes_clinopyroxene/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Clinopyroxene_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Clinopyroxene_numeric",
+          "source_sha256": "74d46350d89cb47cf95fe01f2d8c00ede28570c0115bd9b3cc23cbe9fd60d4c3"
+        }
+      ],
+      "units": "spectral fraction",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.0,
+      "maximum": 0.2818993926048279,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.0
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.006023618392646313
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.0175913255661726
+        }
+      ]
+    },
+    "low-ca-pyroxene": {
+      "file": "low-ca-pyroxene.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "09a9f7a71ce0e65fb85519b56f251c317ecb2b0b57044e7e440f9ef6ab65e5b8",
+      "sha256": "5ef5a14ed4cad3bea6e1f0c2b1b6cd687fc6d9f07b536e91a163b502f361c031",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_orthopyroxene",
+          "url": "https://www.mars.asu.edu/data/tes_orthopyroxene/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Orthopyroxene_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Orthopyroxene_numeric",
+          "source_sha256": "c1ac2b9beb78422af09fc723721db9fb48d3ca04cb037c140eb40de44320b1e0"
+        }
+      ],
+      "units": "spectral fraction",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.0,
+      "maximum": 0.31968119740486145,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.0
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.0
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.007627041079103947
+        }
+      ]
+    },
+    "glass-clay": {
+      "file": "glass-clay.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "16968ea68a080add2e672262d3e37dc8d4fff67a7393863aa77c5c1c4dad2dcb",
+      "sha256": "d5706b61a225ff0df8514383af9b2b0d971764a3455e15ea736df24f659e9daf",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_silicates",
+          "url": "https://www.mars.asu.edu/data/tes_silicates/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Glass_Clay_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Glass_Clay_numeric",
+          "source_sha256": "f01430e016346109afdd11319049ffd79f2bb8cde16e8931a93ed13d48750654"
+        }
+      ],
+      "units": "spectral fraction (glass + sheet silicates)",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "As served by author-listed numeric WMS; 0–360° grid rolled to −180–180°. Negative mineral sentinels become NoData. Thermal-inertia delivery sampled at 2 pixels/degree; other arrays retain the requested native sampling. Spectral fractions are unmixing estimates, not extractable ore grades. Values have not been sharpened or filled.",
+      "minimum": 0.0,
+      "maximum": 0.7328559160232544,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.07243799418210983
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.052137959748506546
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.049751657992601395
+        }
+      ]
+    },
+    "pyroxene-abundance": {
+      "file": "pyroxene-abundance.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "45758be078709c6b6784878204b176b0527db8cda1a180b5431e951073465ede",
+      "sha256": "3d51e153d76aab4e86b87a5056f246eb25d3cd418ff12c295aee16d335115d02",
+      "sources": [
+        {
+          "title": "NASA MGS/TES · ASU tes_clinopyroxene",
+          "url": "https://www.mars.asu.edu/data/tes_clinopyroxene/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Clinopyroxene_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Clinopyroxene_numeric",
+          "source_sha256": "74d46350d89cb47cf95fe01f2d8c00ede28570c0115bd9b3cc23cbe9fd60d4c3"
+        },
+        {
+          "title": "NASA MGS/TES · ASU tes_orthopyroxene",
+          "url": "https://www.mars.asu.edu/data/tes_orthopyroxene/",
+          "download_url": "http://ms-mars.mars.asu.edu/TES_Orthopyroxene_numeric?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=JMARS:4&BBOX=0,-90,360,90&STYLES=&VERSION=1.1.1&LAYERS=TES_Orthopyroxene_numeric",
+          "source_sha256": "c1ac2b9beb78422af09fc723721db9fb48d3ca04cb037c140eb40de44320b1e0"
+        }
+      ],
+      "units": "spectral fraction (high + low Ca)",
+      "native_sampling": "4 pixels/degree (~15 km)",
+      "processing": "Sum of the two published pyroxene fractions only where both are valid.",
+      "minimum": 0.0,
+      "maximum": 0.3971484303474426,
+      "valid_pixels": 749267,
+      "verification_points": [
+        {
+          "column": 360,
+          "row": 180,
+          "value": 0.0
+        },
+        {
+          "column": 720,
+          "row": 360,
+          "value": 0.006023618392646313
+        },
+        {
+          "column": 1080,
+          "row": 540,
+          "value": 0.02521836757659912
+        }
+      ]
+    },
+    "ice-0_1": {
+      "file": "ice-0_1.f32.gz",
+      "width": 7200,
+      "height": 2400,
+      "bounds": [
+        -180,
+        -60,
+        180,
+        60
+      ],
+      "packet_sha256": "dea4e54194690d417ec9b16866ac5419d97552d4ff35ea9d642dd08ea92f52b3",
+      "sha256": "3a6b1638d7b05cd1db706ecff7feadab01863448cdeab02611a126fc5409b746",
+      "sources": [
+        {
+          "title": "PSI/JPL SWIM4IMIM · August 2025 reference composite",
+          "url": "https://swim.psi.edu/SWIM4MIMProducts.php",
+          "source_sha256": "98755028c1942565345e2b5d8d64fc188458e7c2aab480e60fffb72df86e8ff2",
+          "member": "SWIM4MIM_Ci_0_1.tif"
+        }
+      ],
+      "units": "ice consistency (−1 to +1)",
+      "native_sampling": "20 pixels/degree (~3 km)",
+      "processing": "Original signed composite ice consistency, not probability or reserves. Sensing-depth band 0–1 m (>5 m for 5). NoData −30 remains transparent. Source projected grid maps to ±180° and ±60° within 0.001°; geographic bounds normalized to those published limits. No gap filling.",
+      "minimum": -0.37437498569488525,
+      "maximum": 1.0,
+      "valid_pixels": 17280000,
+      "verification_points": [
+        {
+          "column": 1800,
+          "row": 600,
+          "value": 0.10499998927116394
+        },
+        {
+          "column": 3600,
+          "row": 1200,
+          "value": 0.02895834669470787
+        },
+        {
+          "column": 5400,
+          "row": 1800,
+          "value": 0.0806250050663948
+        }
+      ]
+    },
+    "ice-1_5": {
+      "file": "ice-1_5.f32.gz",
+      "width": 7200,
+      "height": 2400,
+      "bounds": [
+        -180,
+        -60,
+        180,
+        60
+      ],
+      "packet_sha256": "b426a0d3c18530557f2db352e7123557d0fdec464f6ca07b73acde5d3b67d211",
+      "sha256": "606519167b5575e45a1433f4142581a595ed08ddda24ea25f398762a307fc8b0",
+      "sources": [
+        {
+          "title": "PSI/JPL SWIM4IMIM · August 2025 reference composite",
+          "url": "https://swim.psi.edu/SWIM4MIMProducts.php",
+          "source_sha256": "98755028c1942565345e2b5d8d64fc188458e7c2aab480e60fffb72df86e8ff2",
+          "member": "SWIM4MIM_Ci_1_5.tif"
+        }
+      ],
+      "units": "ice consistency (−1 to +1)",
+      "native_sampling": "20 pixels/degree (~3 km)",
+      "processing": "Original signed composite ice consistency, not probability or reserves. Sensing-depth band 1–5 m (>5 m for 5). NoData −30 remains transparent. Source projected grid maps to ±180° and ±60° within 0.001°; geographic bounds normalized to those published limits. No gap filling.",
+      "minimum": -0.5714285969734192,
+      "maximum": 1.0,
+      "valid_pixels": 17280000,
+      "verification_points": [
+        {
+          "column": 1800,
+          "row": 600,
+          "value": 0.4285714328289032
+        },
+        {
+          "column": 3600,
+          "row": 1200,
+          "value": -0.2142857164144516
+        },
+        {
+          "column": 5400,
+          "row": 1800,
+          "value": 0.4285714328289032
+        }
+      ]
+    },
+    "ice-5": {
+      "file": "ice-5.f32.gz",
+      "width": 7200,
+      "height": 2400,
+      "bounds": [
+        -180,
+        -60,
+        180,
+        60
+      ],
+      "packet_sha256": "cd4b44403a60b6e79838eee8abab9f3ba0a9501bb23e034fb0a053cdddb65bd3",
+      "sha256": "2e8ba5208f465313cb7a775a5ed185f861682362d4e55ae1fec31a306f3c7952",
+      "sources": [
+        {
+          "title": "PSI/JPL SWIM4IMIM · August 2025 reference composite",
+          "url": "https://swim.psi.edu/SWIM4MIMProducts.php",
+          "source_sha256": "98755028c1942565345e2b5d8d64fc188458e7c2aab480e60fffb72df86e8ff2",
+          "member": "SWIM4MIM_Ci_5.tif"
+        }
+      ],
+      "units": "ice consistency (−1 to +1)",
+      "native_sampling": "20 pixels/degree (~3 km)",
+      "processing": "Original signed composite ice consistency, not probability or reserves. Sensing-depth band 5 m (>5 m for 5). NoData −30 remains transparent. Source projected grid maps to ±180° and ±60° within 0.001°; geographic bounds normalized to those published limits. No gap filling.",
+      "minimum": -0.5,
+      "maximum": 1.0,
+      "valid_pixels": 17280000,
+      "verification_points": [
+        {
+          "column": 1800,
+          "row": 600,
+          "value": 0.5
+        },
+        {
+          "column": 3600,
+          "row": 1200,
+          "value": 0.0
+        },
+        {
+          "column": 5400,
+          "row": 1800,
+          "value": 0.5
+        }
+      ]
+    },
+    "potassium-abundance": {
+      "file": "potassium-abundance.f32.gz",
+      "width": 72,
+      "height": 36,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "fa58dcda7649161f48ab59dc66562f32546b4501049b95d5518866f8b5002e8a",
+      "sha256": "cc98884e63160287120c2c9358d4c534432c844f6d790704d4e3f43bedf9780f",
+      "sources": [
+        {
+          "title": "NASA PDS Odyssey GRS K 5° unsmoothed · v2.0",
+          "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+          "download_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/k_5x5.tab",
+          "label_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/k_5x5.lbl",
+          "source_sha256": "289fb6f0bcdb7ba685a474c61ede0147d5cf04ae8a0797fcc4d2865876672d55",
+          "label_sha256": "4e020d258ca0261365ae277a016e49b2eab9aad460cdf84a3b85fa638cb99424"
+        }
+      ],
+      "units": "weight % K",
+      "native_sampling": "5° bins (~296 km at equator)",
+      "processing": "2002-06-04 to 2005-04-03 observations; invalid 9999.999 bins transparent. Negative peak-fit estimates retained, not interpreted as physically negative abundance. Thorium converted from weight percent to ppm by ×10,000. 5° bins are not instrument resolving power. Water equivalent does not establish extractable ice. See separate sigma asset for published statistical errors; correction-factor errors are not added.",
+      "minimum": -0.09399999678134918,
+      "maximum": 0.6629999876022339,
+      "valid_pixels": 2592,
+      "verification_points": [
+        {
+          "column": 18,
+          "row": 9,
+          "value": 0.3050000071525574
+        },
+        {
+          "column": 36,
+          "row": 18,
+          "value": 0.3310000002384186
+        },
+        {
+          "column": 54,
+          "row": 27,
+          "value": 0.28999999165534973
+        }
+      ]
+    },
+    "potassium-abundance-sigma": {
+      "file": "potassium-abundance-sigma.f32.gz",
+      "width": 72,
+      "height": 36,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "128e16810a21db36d1faac4c9099e2e54c0457d61326cf97882a967c3568cfd5",
+      "sha256": "c9b0d88dd5725abce4f255c0880b8361fd9020177ab7a251b144568b32e1bc0b",
+      "sources": [
+        {
+          "title": "NASA PDS Odyssey GRS K 5° unsmoothed · v2.0",
+          "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+          "download_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/k_5x5.tab",
+          "label_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/k_5x5.lbl",
+          "source_sha256": "289fb6f0bcdb7ba685a474c61ede0147d5cf04ae8a0797fcc4d2865876672d55",
+          "label_sha256": "4e020d258ca0261365ae277a016e49b2eab9aad460cdf84a3b85fa638cb99424"
+        }
+      ],
+      "units": "weight % K (1σ statistical)",
+      "native_sampling": "5° bins",
+      "processing": "2002-06-04 to 2005-04-03 observations; invalid 9999.999 bins transparent. Negative peak-fit estimates retained, not interpreted as physically negative abundance. Thorium converted from weight percent to ppm by ×10,000. 5° bins are not instrument resolving power. Water equivalent does not establish extractable ice. See separate sigma asset for published statistical errors; correction-factor errors are not added.",
+      "minimum": 0.019999999552965164,
+      "maximum": 0.10199999809265137,
+      "valid_pixels": 2592,
+      "verification_points": [
+        {
+          "column": 18,
+          "row": 9,
+          "value": 0.03400000184774399
+        },
+        {
+          "column": 36,
+          "row": 18,
+          "value": 0.03799999877810478
+        },
+        {
+          "column": 54,
+          "row": 27,
+          "value": 0.04600000008940697
+        }
+      ]
+    },
+    "thorium-abundance": {
+      "file": "thorium-abundance.f32.gz",
+      "width": 72,
+      "height": 36,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "473bbd7777069fddfa733188a192eef798f7a16c3621b1bd1be4b64672d66bda",
+      "sha256": "986653236e7021e06b1aa0bfc86f718d1670c22c14faddf2e4691e342fb2236a",
+      "sources": [
+        {
+          "title": "NASA PDS Odyssey GRS TH 5° unsmoothed · v2.0",
+          "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+          "download_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/th_5x5.tab",
+          "label_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/th_5x5.lbl",
+          "source_sha256": "9200801e453b28339c037d00adb31fafed8bae1e31e1d582162ddf7e12d3183f",
+          "label_sha256": "c494b435760566f6fc539649922bd04f112b780e80dae008c4c2a92d0f496784"
+        }
+      ],
+      "units": "ppm Th",
+      "native_sampling": "5° bins (~296 km at equator)",
+      "processing": "2002-06-04 to 2005-04-03 observations; invalid 9999.999 bins transparent. Negative peak-fit estimates retained, not interpreted as physically negative abundance. Thorium converted from weight percent to ppm by ×10,000. 5° bins are not instrument resolving power. Water equivalent does not establish extractable ice. See separate sigma asset for published statistical errors; correction-factor errors are not added.",
+      "minimum": -0.8899999856948853,
+      "maximum": 2.1700000762939453,
+      "valid_pixels": 2592,
+      "verification_points": [
+        {
+          "column": 18,
+          "row": 9,
+          "value": 0.4399999976158142
+        },
+        {
+          "column": 36,
+          "row": 18,
+          "value": 0.28999999165534973
+        },
+        {
+          "column": 54,
+          "row": 27,
+          "value": 0.17000000178813934
+        }
+      ]
+    },
+    "thorium-abundance-sigma": {
+      "file": "thorium-abundance-sigma.f32.gz",
+      "width": 72,
+      "height": 36,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "dd656bf6f254acdf30125f16a954b653b2a7afba86e084cc95e6ae5245756925",
+      "sha256": "9e735790d28bb7b607058312a6ae21282c80225128f9a6c431b25ca14fea9407",
+      "sources": [
+        {
+          "title": "NASA PDS Odyssey GRS TH 5° unsmoothed · v2.0",
+          "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+          "download_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/th_5x5.tab",
+          "label_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/th_5x5.lbl",
+          "source_sha256": "9200801e453b28339c037d00adb31fafed8bae1e31e1d582162ddf7e12d3183f",
+          "label_sha256": "c494b435760566f6fc539649922bd04f112b780e80dae008c4c2a92d0f496784"
+        }
+      ],
+      "units": "ppm Th (1σ statistical)",
+      "native_sampling": "5° bins",
+      "processing": "2002-06-04 to 2005-04-03 observations; invalid 9999.999 bins transparent. Negative peak-fit estimates retained, not interpreted as physically negative abundance. Thorium converted from weight percent to ppm by ×10,000. 5° bins are not instrument resolving power. Water equivalent does not establish extractable ice. See separate sigma asset for published statistical errors; correction-factor errors are not added.",
+      "minimum": 0.12999999523162842,
+      "maximum": 0.5600000023841858,
+      "valid_pixels": 2592,
+      "verification_points": [
+        {
+          "column": 18,
+          "row": 9,
+          "value": 0.20000000298023224
+        },
+        {
+          "column": 36,
+          "row": 18,
+          "value": 0.2199999988079071
+        },
+        {
+          "column": 54,
+          "row": 27,
+          "value": 0.25
+        }
+      ]
+    },
+    "water-equivalent-hydrogen": {
+      "file": "water-equivalent-hydrogen.f32.gz",
+      "width": 72,
+      "height": 36,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "61afd508397a1bdda4b77bae5bfcad88138e07cf7a99fed61a72b9bd463fa754",
+      "sha256": "d2158fa14a903fb023b45508bb2011cdcd3387eca79e652038ba780b306e38f1",
+      "sources": [
+        {
+          "title": "NASA PDS Odyssey GRS H2O 5° unsmoothed · v2.0",
+          "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+          "download_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/h2o_5x5.tab",
+          "label_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/h2o_5x5.lbl",
+          "source_sha256": "ef6d1c2904b614652cf1fbd0d78e8e520127781802eeb18c9e6b82a1a752a4c6",
+          "label_sha256": "8c95fd7e281caaf7014444d89bee387f97aa62eed55f7e7cae6d35b26d76480c"
+        }
+      ],
+      "units": "weight % H₂O equivalent",
+      "native_sampling": "5° bins (~296 km at equator)",
+      "processing": "2002-06-04 to 2005-04-03 observations; invalid 9999.999 bins transparent. Negative peak-fit estimates retained, not interpreted as physically negative abundance. Thorium converted from weight percent to ppm by ×10,000. 5° bins are not instrument resolving power. Water equivalent does not establish extractable ice. See separate sigma asset for published statistical errors; correction-factor errors are not added.",
+      "minimum": -2.3350000381469727,
+      "maximum": 11.586999893188477,
+      "valid_pixels": 1508,
+      "verification_points": [
+        {
+          "column": 18,
+          "row": 9,
+          "value": 6.175000190734863
+        },
+        {
+          "column": 36,
+          "row": 18,
+          "value": 3.9749999046325684
+        },
+        {
+          "column": 54,
+          "row": 27,
+          "value": null
+        }
+      ]
+    },
+    "water-equivalent-hydrogen-sigma": {
+      "file": "water-equivalent-hydrogen-sigma.f32.gz",
+      "width": 72,
+      "height": 36,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "adee8beb028d0b5f6de468698cc5ce43f04c758662fd1bf50439339b8741422f",
+      "sha256": "c95de0599dbbf1e7f880ece3c39a07f31e709c0b6ce0953e6d1c4b1a03e18e9c",
+      "sources": [
+        {
+          "title": "NASA PDS Odyssey GRS H2O 5° unsmoothed · v2.0",
+          "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+          "download_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/h2o_5x5.tab",
+          "label_url": "https://pds-geosciences.wustl.edu/ody/ody-m-grs-5-elements-v1/odgm_xxxx/data/unsmoothed/5x5/h2o_5x5.lbl",
+          "source_sha256": "ef6d1c2904b614652cf1fbd0d78e8e520127781802eeb18c9e6b82a1a752a4c6",
+          "label_sha256": "8c95fd7e281caaf7014444d89bee387f97aa62eed55f7e7cae6d35b26d76480c"
+        }
+      ],
+      "units": "weight % H₂O equivalent (1σ statistical)",
+      "native_sampling": "5° bins",
+      "processing": "2002-06-04 to 2005-04-03 observations; invalid 9999.999 bins transparent. Negative peak-fit estimates retained, not interpreted as physically negative abundance. Thorium converted from weight percent to ppm by ×10,000. 5° bins are not instrument resolving power. Water equivalent does not establish extractable ice. See separate sigma asset for published statistical errors; correction-factor errors are not added.",
+      "minimum": 0.7910000085830688,
+      "maximum": 2.492000102996826,
+      "valid_pixels": 1508,
+      "verification_points": [
+        {
+          "column": 18,
+          "row": 9,
+          "value": 1.1440000534057617
+        },
+        {
+          "column": 36,
+          "row": 18,
+          "value": 1.4179999828338623
+        },
+        {
+          "column": 54,
+          "row": 27,
+          "value": null
+        }
+      ]
+    },
+    "mons-weh": {
+      "file": "mons-weh.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "0d1cf1a91be0ab33b103227fcec04b9c2b2c4d411069e4d4d1e3517ed71457ba",
+      "sha256": "74326149c50ee7134020f05244a04093fd5cf92bb96be2240023a3ebbc3e9d91",
+      "sources": [
+        {
+          "title": "ASU JMARS · Mars Odyssey Neutron Spectrometer % WEH · Wilson et al. (2017)",
+          "url": "https://doi.org/10.1016/j.icarus.2017.07.028",
+          "service_url": "https://www.mars.asu.edu/data/",
+          "download_url": "http://ms-mars.mars.asu.edu/?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=720&HEIGHT=360&SRS=EPSG:4326&BBOX=-180,-90,180,90&STYLES=&VERSION=1.1.1&LAYERS=mars_odyssey_grs_mons_perc_wt",
+          "source_sha256": "9550af072f8e5ce87f30a432dfc0946203a718c9945aae69f43f20f6d2e4bdfc"
+        }
+      ],
+      "units": "wt% water-equivalent hydrogen",
+      "native_sampling": "0.5° grid (~30 km); effective resolution ~290 km",
+      "processing": "ASU published numeric MONS reconstruction, ingested by ASU 2019-02-22; global 720×360 array including both polar regions. Source DOUB/RIEEE converted to float32 only. No SWIM merging, gap filling, saturation replacement or scientific smoothing. Values near 100 are model-limited hydrogen estimates, not confirmed pure or accessible water ice. Service registration cross-checked with MOLA Olympus Mons at 133.5°W, 17.5°N. Grid spacing is finer than the ~290 km effective resolving power in Wilson et al. (2017).",
+      "minimum": 1.8632556200027466,
+      "maximum": 100.0,
+      "valid_pixels": 259200,
+      "verification_points": [
+        {
+          "column": 180,
+          "row": 90,
+          "value": 6.955192565917969
+        },
+        {
+          "column": 360,
+          "row": 180,
+          "value": 9.539042472839355
+        },
+        {
+          "column": 540,
+          "row": 270,
+          "value": 3.3488199710845947
+        }
+      ],
+      "display": {
+        "min": 0,
+        "max": 100,
+        "title": "Global near-surface hydrogen · MONS",
+        "note": "Both polar regions covered · wt% H₂O equivalent, not ice probability · ~290 km effective resolution. High values may reach the model limit; no reserves claim."
+      }
+    },
+    "rock-abundance": {
+      "file": "rock-abundance.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "3ebd5fdb79c6d3deef54acf4f5ff495055bb792377f8d14e9cd38b2d0887505f",
+      "sha256": "8f327f0d342f7944343382334265c53683699b499c51c49412cee02e2e50727b",
+      "sources": [
+        {
+          "title": "ASU JMARS · tes_rock_abundance_numeric",
+          "url": "https://doi.org/10.1029/2006JE002798",
+          "download_url": "http://ms-mars.mars.asu.edu/?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=EPSG:4326&BBOX=-180,-90,180,90&STYLES=&VERSION=1.1.1&LAYERS=tes_rock_abundance_numeric",
+          "source_sha256": "57cc2e79579606d352fab893653bed774fa37b32a59a0c7e42ba529537faf8e7",
+          "capabilities_sha256": "71bbc4daebbb96deb38a140dfc084c43594203b0e3a8465da76f30e774cb651c"
+        }
+      ],
+      "units": "% rock",
+      "native_sampling": "TES 8 pixels/degree (~7.5 km); delivery 4 pixels/degree (~15 km)",
+      "processing": "Published TES thermal-model rock abundance. Source NullValue 0 is masked exactly; it is not interpreted as zero rocks. Nonzero integer percentages retain their original values. EPSG:4326 signed-east request is already north-up; no longitude rolling or gap filling.",
+      "minimum": 1.0,
+      "maximum": 58.0,
+      "valid_pixels": 419127,
+      "verification_points": [
+        {
+          "row": 180,
+          "column": 360,
+          "value": null
+        },
+        {
+          "row": 360,
+          "column": 720,
+          "value": null
+        },
+        {
+          "row": 540,
+          "column": 1080,
+          "value": 23.0
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": 0,
+        "max": 60,
+        "title": "Rock abundance · TES reference",
+        "note": "% rock from orbital thermal modeling · ≈15 km delivery · no individual-boulder or route-safety claim"
+      }
+    },
+    "surface-dust-cover-index-reference-composite": {
+      "file": "surface-dust-cover-index-reference-composite.f32.gz",
+      "width": 1440,
+      "height": 720,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "9fdbf32f858d4839902d876d6f02e1af4e7104000511c8d8d120dc9579dc0c0d",
+      "sha256": "21700fc22437554fc2608b7d203f5f0a4ad88f21d4e7a0ee727f36c484e93cb2",
+      "sources": [
+        {
+          "title": "ASU JMARS · TES_dust_index_16ppd_numeric",
+          "url": "https://www.mars.asu.edu/data/tes_ruffdust/",
+          "download_url": "http://ms-mars.mars.asu.edu/?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=1440&HEIGHT=720&SRS=EPSG:4326&BBOX=-180,-90,180,90&STYLES=&VERSION=1.1.1&LAYERS=TES_dust_index_16ppd_numeric",
+          "source_sha256": "307f1653dadf94f761b34d3a8307694e45087fafcaaea6a5f1fa19a83c93944a",
+          "capabilities_sha256": "71bbc4daebbb96deb38a140dfc084c43594203b0e3a8465da76f30e774cb651c"
+        }
+      ],
+      "units": "dust cover index",
+      "native_sampling": "TES 16 pixels/degree (~3.5 km); delivery 4 pixels/degree (~15 km)",
+      "processing": "Published Ruff and Christensen (2002) dimensionless DCI. Mask only the exact float32 source sentinel 0.85000002; retain other finite source values, including outliers. No conversion to dust thickness, airborne opacity or current conditions.",
+      "minimum": 0.8500344753265381,
+      "maximum": 0.9898966550827026,
+      "valid_pixels": 822177,
+      "verification_points": [
+        {
+          "row": 180,
+          "column": 360,
+          "value": 0.9515551328659058
+        },
+        {
+          "row": 360,
+          "column": 720,
+          "value": 0.9641633629798889
+        },
+        {
+          "row": 540,
+          "column": 1080,
+          "value": 0.9555167555809021
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": 0.85,
+        "max": 1,
+        "title": "Surface dust cover · TES reference",
+        "note": "Lower index: finer / dustier surface · higher: less fine dust · static reference; not atmospheric dust. Values outside the display ramp remain in the source-cell readout."
+      }
+    },
+    "gravity-anomalies": {
+      "file": "gravity-anomalies.f32.gz",
+      "width": 360,
+      "height": 180,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "9210ee98887e575a8c3ad01d1ba488693a52653a3c30b11c214d1aca28030997",
+      "sha256": "7ef0cbf21a9ea4744eb577f550101080e33736eb73b973e4fa55146f60ce6df5",
+      "sources": [
+        {
+          "title": "ASU JMARS · grav_jgmro_120d_anom_095",
+          "url": "https://pds-geosciences.wustl.edu/missions/mro/gravity.htm",
+          "download_url": "http://ms-mars.mars.asu.edu/?SERVICE=WMS&REQUEST=GetMap&FORMAT=image/vicar&WIDTH=360&HEIGHT=180&SRS=EPSG:4326&BBOX=-180,-90,180,90&STYLES=&VERSION=1.1.1&LAYERS=grav_jgmro_120d_anom_095",
+          "source_sha256": "b5762ea27ab38bc902dd0008bd18c796c85b20ea302f2c6d3fa569199082a294",
+          "capabilities_sha256": "71bbc4daebbb96deb38a140dfc084c43594203b0e3a8465da76f30e774cb651c"
+        }
+      ],
+      "units": "mGal",
+      "native_sampling": "JPL MRO120D degrees 2–95; ≈1° / 59 km delivery",
+      "processing": "ASU-served JGMRO_120D_ANOM_095. Difference of model gravity on the geoid from normal gravity on the publisher reference ellipsoid (a=3397 km, GM=42828.37582 km³/s², f=0.005079304192, rotation=7.088218081e-5 rad/s). Preserve signed mGal; 1 mGal = 1e-5 m/s². Not Bouguer anomaly or total surface acceleration.",
+      "minimum": -694.8800048828125,
+      "maximum": 3134.89990234375,
+      "valid_pixels": 64800,
+      "verification_points": [
+        {
+          "row": 45,
+          "column": 90,
+          "value": 123.70999908447266
+        },
+        {
+          "row": 90,
+          "column": 180,
+          "value": -9.78950023651123
+        },
+        {
+          "row": 135,
+          "column": 270,
+          "value": -70.32499694824219
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -3500,
+        "max": 3500,
+        "title": "Gravity anomaly · JPL MRO120D",
+        "note": "Signed mGal relative to the model reference ellipsoid · degrees 2–95 · not local g or a buried-resource measurement"
+      }
+    },
+    "catalogue-density-100km": {
+      "file": "catalogue-density-100km.f32.gz",
+      "width": 360,
+      "height": 180,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "125e50a107e1c8e8d67628b78f35016c4811081a73afe3d3f5c37a659df276b6",
+      "sha256": "661d7b6e170eaafdabc28c0c28703982f342fee6e784bdd721bbba8c46109cb4",
+      "sources": [
+        {
+          "title": "Atlas sourced target catalogue · per-record primary citations",
+          "url": "/value-sites.json",
+          "source_sha256": "19b0492cebb066ab0b96094392d0daa3704a3e5b7c2ecd410b70ebb9ca88d3b7"
+        }
+      ],
+      "units": "catalogue records within 100 km",
+      "native_sampling": "1° evaluation grid (~59 km); fixed spherical-cap count",
+      "processing": "Count each of 2494 unique catalogue IDs once when its published representative coordinate is within 100 km. Spherical Mars radius 3396190.0 m; cap area 31413.657 km². Multiple records can describe the same locality; records are not equal-sized deposits. Zero means no catalogue records in this window, not absence of scientific interest. Global catalogue completeness is not established.",
+      "minimum": 0.0,
+      "maximum": 380.0,
+      "valid_pixels": 64800,
+      "verification_points": [
+        {
+          "row": 45,
+          "column": 90,
+          "value": 0.0
+        },
+        {
+          "row": 90,
+          "column": 180,
+          "value": 4.0
+        },
+        {
+          "row": 135,
+          "column": 270,
+          "value": 0.0
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": 0,
+        "max": 380.0,
+        "title": "Catalogue target density · 100 km radius",
+        "note": "Counts catalogue records only · uneven research coverage · zero does not mean no science or resources"
+      },
+      "record_count": 2494,
+      "radius_km": 100,
+      "cap_area_km2": 31413.656816765313
+    },
+    "catalogue-density-250km": {
+      "file": "catalogue-density-250km.f32.gz",
+      "width": 360,
+      "height": 180,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "3939786ac5291e1cf0e2d5c506849a5c1cc2881bb890ba8172671769efe18b0f",
+      "sha256": "6a06400b661fd66e021e501f39faba97d34a1e37615eb4d2c6be618d468ecbef",
+      "sources": [
+        {
+          "title": "Atlas sourced target catalogue · per-record primary citations",
+          "url": "/value-sites.json",
+          "source_sha256": "19b0492cebb066ab0b96094392d0daa3704a3e5b7c2ecd410b70ebb9ca88d3b7"
+        }
+      ],
+      "units": "catalogue records within 250 km",
+      "native_sampling": "1° evaluation grid (~59 km); fixed spherical-cap count",
+      "processing": "Count each of 2494 unique catalogue IDs once when its published representative coordinate is within 250 km. Spherical Mars radius 3396190.0 m; cap area 196260.893 km². Multiple records can describe the same locality; records are not equal-sized deposits. Zero means no catalogue records in this window, not absence of scientific interest. Global catalogue completeness is not established.",
+      "minimum": 0.0,
+      "maximum": 385.0,
+      "valid_pixels": 64800,
+      "verification_points": [
+        {
+          "row": 45,
+          "column": 90,
+          "value": 2.0
+        },
+        {
+          "row": 90,
+          "column": 180,
+          "value": 51.0
+        },
+        {
+          "row": 135,
+          "column": 270,
+          "value": 0.0
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": 0,
+        "max": 385.0,
+        "title": "Catalogue target density · 250 km radius",
+        "note": "Counts catalogue records only · uneven research coverage · zero does not mean no science or resources"
+      },
+      "record_count": 2494,
+      "radius_km": 250,
+      "cap_area_km2": 196260.89339673813
+    },
+    "magnetic-radial-150km": {
+      "file": "magnetic-radial-150km.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "42dbc570139edac63131cd6183028675d9a3d6dba94f8027bccfbe7eda873262",
+      "sha256": "14c827ec129648831aa162d94e3304eec49e93ad2a9480bec2f459ee6b737334",
+      "sources": [
+        {
+          "title": "Langlais et al. (2019) published model coefficients",
+          "url": "https://zenodo.org/records/3876714",
+          "source_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b"
+        }
+      ],
+      "units": "nT",
+      "native_sampling": "Langlais 2019 degree 134 (~160 km surface resolving power); 0.5° delivery",
+      "processing": "Schmidt semi-normalized coefficients; pyshtools 4.13.1. Br outward, Bnorth=-Btheta, Beast=Bphi. Evaluation radius 3543500.0 m: 150 km above the 3393.5 km model reference sphere, not terrain. Bilinear node-to-pixel-centre resampling; horizontal components masked in the two polar half-cells rather than using singular tangent limits. Not live fields, shielding or radiation dose.",
+      "minimum": -691.2813720703125,
+      "maximum": 1123.6573486328125,
+      "valid_pixels": 259200,
+      "verification_points": [
+        {
+          "row": 90,
+          "column": 180,
+          "value": 0.14821752905845642
+        },
+        {
+          "row": 180,
+          "column": 360,
+          "value": 38.25498962402344
+        },
+        {
+          "row": 270,
+          "column": 540,
+          "value": 1.0566377639770508
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -1500,
+        "max": 1500,
+        "title": "Crustal field · radial · 150 km",
+        "note": "Positive = outward · nT · static model above reference sphere, not local terrain; display can saturate, readout retains the value."
+      },
+      "altitude_m": 150000,
+      "component": "radial",
+      "point_synthesis_checks": [
+        {
+          "lon": -179.75,
+          "lat": 88.75,
+          "point_synthesis_nT": 59.61267194415422,
+          "delivered_nT": 58.48766013827047,
+          "resampling_error_nT": 1.1250118058837515
+        },
+        {
+          "lon": 20.25,
+          "lat": -88.75,
+          "point_synthesis_nT": -6.326500087578809,
+          "delivered_nT": -5.879031941253623,
+          "resampling_error_nT": 0.4474681463251864
+        },
+        {
+          "lon": -179.75,
+          "lat": -0.25,
+          "point_synthesis_nT": 32.64845662425167,
+          "delivered_nT": 29.66767271103478,
+          "resampling_error_nT": 2.980783913216893
+        },
+        {
+          "lon": 0.25,
+          "lat": -0.25,
+          "point_synthesis_nT": 38.22975671835385,
+          "delivered_nT": 38.25499032706682,
+          "resampling_error_nT": 0.02523360871297342
+        },
+        {
+          "lon": -129.25,
+          "lat": 19.75,
+          "point_synthesis_nT": 2.997383406334459,
+          "delivered_nT": 3.0287587068544486,
+          "resampling_error_nT": 0.03137530051998949
+        },
+        {
+          "lon": 75.75,
+          "lat": -15.25,
+          "point_synthesis_nT": 3.7438635271535476,
+          "delivered_nT": 4.345218092340177,
+          "resampling_error_nT": 0.6013545651866297
+        },
+        {
+          "lon": -94.75,
+          "lat": 29.75,
+          "point_synthesis_nT": -1.2302487099505264,
+          "delivered_nT": -1.2281601591895588,
+          "resampling_error_nT": 0.002088550760967589
+        }
+      ]
+    },
+    "magnetic-north-150km": {
+      "file": "magnetic-north-150km.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "4a34cad52c957ce55e652553e767663a9728efb1c1003c99ced02cdae24523a3",
+      "sha256": "6fc1858462823241eb635c434496dc9fc83e83970996ff0b78195fd818571ba5",
+      "sources": [
+        {
+          "title": "Langlais et al. (2019) published model coefficients",
+          "url": "https://zenodo.org/records/3876714",
+          "source_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b"
+        }
+      ],
+      "units": "nT",
+      "native_sampling": "Langlais 2019 degree 134 (~160 km surface resolving power); 0.5° delivery",
+      "processing": "Schmidt semi-normalized coefficients; pyshtools 4.13.1. Br outward, Bnorth=-Btheta, Beast=Bphi. Evaluation radius 3543500.0 m: 150 km above the 3393.5 km model reference sphere, not terrain. Bilinear node-to-pixel-centre resampling; horizontal components masked in the two polar half-cells rather than using singular tangent limits. Not live fields, shielding or radiation dose.",
+      "minimum": -739.0687255859375,
+      "maximum": 983.6781005859375,
+      "valid_pixels": 257760,
+      "verification_points": [
+        {
+          "row": 90,
+          "column": 180,
+          "value": -0.5208238363265991
+        },
+        {
+          "row": 180,
+          "column": 360,
+          "value": 47.72190475463867
+        },
+        {
+          "row": 270,
+          "column": 540,
+          "value": 8.92074203491211
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -1500,
+        "max": 1500,
+        "title": "Crustal field · north · 150 km",
+        "note": "Positive = north · nT · static model above reference sphere, not local terrain; display can saturate, readout retains the value."
+      },
+      "altitude_m": 150000,
+      "component": "north",
+      "point_synthesis_checks": [
+        {
+          "lon": -179.75,
+          "lat": 88.75,
+          "point_synthesis_nT": -29.107947182815188,
+          "delivered_nT": -28.12753622700376,
+          "resampling_error_nT": 0.9804109558114291
+        },
+        {
+          "lon": 20.25,
+          "lat": -88.75,
+          "point_synthesis_nT": -1.1451848979055321,
+          "delivered_nT": -1.069855045738683,
+          "resampling_error_nT": 0.07532985216684907
+        },
+        {
+          "lon": -179.75,
+          "lat": -0.25,
+          "point_synthesis_nT": -39.24607176903492,
+          "delivered_nT": -39.09119219909905,
+          "resampling_error_nT": 0.15487956993587204
+        },
+        {
+          "lon": 0.25,
+          "lat": -0.25,
+          "point_synthesis_nT": 48.285183943467835,
+          "delivered_nT": 47.72190288285591,
+          "resampling_error_nT": 0.5632810606119278
+        },
+        {
+          "lon": -129.25,
+          "lat": 19.75,
+          "point_synthesis_nT": 2.6913196162752064,
+          "delivered_nT": 2.682227168359778,
+          "resampling_error_nT": 0.009092447915428625
+        },
+        {
+          "lon": 75.75,
+          "lat": -15.25,
+          "point_synthesis_nT": 20.457908598540488,
+          "delivered_nT": 19.18944050121141,
+          "resampling_error_nT": 1.2684680973290767
+        },
+        {
+          "lon": -94.75,
+          "lat": 29.75,
+          "point_synthesis_nT": -0.34758278387729286,
+          "delivered_nT": -0.32774686397257224,
+          "resampling_error_nT": 0.01983591990472061
+        }
+      ]
+    },
+    "magnetic-east-150km": {
+      "file": "magnetic-east-150km.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "c3ff0d0b8e614a50b671e37b4e647f417fadf482fa8f3e0f854b96119a9f0457",
+      "sha256": "ba378712a6aa1ccbb96a3b682d4633985f07ee7d82b9a0b9d40ff2fe87d0bc7b",
+      "sources": [
+        {
+          "title": "Langlais et al. (2019) published model coefficients",
+          "url": "https://zenodo.org/records/3876714",
+          "source_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b"
+        }
+      ],
+      "units": "nT",
+      "native_sampling": "Langlais 2019 degree 134 (~160 km surface resolving power); 0.5° delivery",
+      "processing": "Schmidt semi-normalized coefficients; pyshtools 4.13.1. Br outward, Bnorth=-Btheta, Beast=Bphi. Evaluation radius 3543500.0 m: 150 km above the 3393.5 km model reference sphere, not terrain. Bilinear node-to-pixel-centre resampling; horizontal components masked in the two polar half-cells rather than using singular tangent limits. Not live fields, shielding or radiation dose.",
+      "minimum": -546.0553588867188,
+      "maximum": 430.3117980957031,
+      "valid_pixels": 257760,
+      "verification_points": [
+        {
+          "row": 90,
+          "column": 180,
+          "value": 0.7191981673240662
+        },
+        {
+          "row": 180,
+          "column": 360,
+          "value": -4.641231060028076
+        },
+        {
+          "row": 270,
+          "column": 540,
+          "value": 4.063577175140381
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -1500,
+        "max": 1500,
+        "title": "Crustal field · east · 150 km",
+        "note": "Positive = east · nT · static model above reference sphere, not local terrain; display can saturate, readout retains the value."
+      },
+      "altitude_m": 150000,
+      "component": "east",
+      "point_synthesis_checks": [
+        {
+          "lon": -179.75,
+          "lat": 88.75,
+          "point_synthesis_nT": -16.056676317794697,
+          "delivered_nT": -15.93148753401865,
+          "resampling_error_nT": 0.12518878377604636
+        },
+        {
+          "lon": 20.25,
+          "lat": -88.75,
+          "point_synthesis_nT": -4.769297147749416,
+          "delivered_nT": -4.68506335052502,
+          "resampling_error_nT": 0.08423379722439606
+        },
+        {
+          "lon": -179.75,
+          "lat": -0.25,
+          "point_synthesis_nT": -5.525527360042815,
+          "delivered_nT": -4.603561617059689,
+          "resampling_error_nT": 0.9219657429831267
+        },
+        {
+          "lon": 0.25,
+          "lat": -0.25,
+          "point_synthesis_nT": -5.348107232572544,
+          "delivered_nT": -4.641231197383722,
+          "resampling_error_nT": 0.7068760351888219
+        },
+        {
+          "lon": -129.25,
+          "lat": 19.75,
+          "point_synthesis_nT": -3.209894340665503,
+          "delivered_nT": -3.1713724699325105,
+          "resampling_error_nT": 0.038521870732992625
+        },
+        {
+          "lon": 75.75,
+          "lat": -15.25,
+          "point_synthesis_nT": -20.4927081524939,
+          "delivered_nT": -21.11465801808887,
+          "resampling_error_nT": 0.6219498655949707
+        },
+        {
+          "lon": -94.75,
+          "lat": 29.75,
+          "point_synthesis_nT": -0.9219632718310804,
+          "delivered_nT": -0.9012182667314396,
+          "resampling_error_nT": 0.020745005099640834
+        }
+      ]
+    },
+    "magnetic-radial-0km": {
+      "file": "magnetic-radial-0km.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "945814ef7e4dd447cf3585e422d7e07120df0da732e403fae5ae047dd53ec7b6",
+      "sha256": "2b0c47ce6454b2323a8efd815d0a392b2cd2a5756041e782dd97a2ae266f78c4",
+      "sources": [
+        {
+          "title": "Langlais et al. (2019) published model coefficients",
+          "url": "https://zenodo.org/records/3876714",
+          "source_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b"
+        }
+      ],
+      "units": "nT",
+      "native_sampling": "Langlais 2019 degree 134 (~160 km surface resolving power); 0.5° delivery",
+      "processing": "Schmidt semi-normalized coefficients; pyshtools 4.13.1. Br outward, Bnorth=-Btheta, Beast=Bphi. Evaluation radius 3393500.0 m: 0 km above the 3393.5 km model reference sphere, not terrain. Bilinear node-to-pixel-centre resampling; horizontal components masked in the two polar half-cells rather than using singular tangent limits. Not live fields, shielding or radiation dose.",
+      "minimum": -8075.42431640625,
+      "maximum": 10849.982421875,
+      "valid_pixels": 259200,
+      "verification_points": [
+        {
+          "row": 90,
+          "column": 180,
+          "value": 9.443275451660156
+        },
+        {
+          "row": 180,
+          "column": 360,
+          "value": -98.39749908447266
+        },
+        {
+          "row": 270,
+          "column": 540,
+          "value": 27.796642303466797
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -20000,
+        "max": 20000,
+        "title": "Crustal field · radial · 0 km",
+        "note": "Positive = outward · nT · static model above reference sphere, not local terrain; display can saturate, readout retains the value."
+      },
+      "altitude_m": 0,
+      "component": "radial",
+      "point_synthesis_checks": [
+        {
+          "lon": -179.75,
+          "lat": 88.75,
+          "point_synthesis_nT": 2004.5004638795651,
+          "delivered_nT": 1926.399782581277,
+          "resampling_error_nT": 78.10068129828824
+        },
+        {
+          "lon": 20.25,
+          "lat": -88.75,
+          "point_synthesis_nT": -302.1565175598521,
+          "delivered_nT": -286.6366690652694,
+          "resampling_error_nT": 15.519848494582675
+        },
+        {
+          "lon": -179.75,
+          "lat": -0.25,
+          "point_synthesis_nT": 1273.3507822786466,
+          "delivered_nT": 1219.5353041353953,
+          "resampling_error_nT": 53.81547814325131
+        },
+        {
+          "lon": 0.25,
+          "lat": -0.25,
+          "point_synthesis_nT": -120.9110017123255,
+          "delivered_nT": -98.3974965123619,
+          "resampling_error_nT": 22.513505199963603
+        },
+        {
+          "lon": -129.25,
+          "lat": 19.75,
+          "point_synthesis_nT": -15.539869747176299,
+          "delivered_nT": -14.727063031974437,
+          "resampling_error_nT": 0.8128067152018623
+        },
+        {
+          "lon": 75.75,
+          "lat": -15.25,
+          "point_synthesis_nT": -504.1740466070161,
+          "delivered_nT": -459.6282155295771,
+          "resampling_error_nT": 44.545831077439004
+        },
+        {
+          "lon": -94.75,
+          "lat": 29.75,
+          "point_synthesis_nT": -4.228560520138931,
+          "delivered_nT": -3.643891002117801,
+          "resampling_error_nT": 0.5846695180211299
+        }
+      ]
+    },
+    "magnetic-north-0km": {
+      "file": "magnetic-north-0km.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "a7e823298afa2509a54f51177250b39e31cd3476b16b45518a750ad7cc8e92c0",
+      "sha256": "b3b936929172b54cd160c5e3a597d1fc64fc6af1e3a9753c33611f0b43ee75d8",
+      "sources": [
+        {
+          "title": "Langlais et al. (2019) published model coefficients",
+          "url": "https://zenodo.org/records/3876714",
+          "source_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b"
+        }
+      ],
+      "units": "nT",
+      "native_sampling": "Langlais 2019 degree 134 (~160 km surface resolving power); 0.5° delivery",
+      "processing": "Schmidt semi-normalized coefficients; pyshtools 4.13.1. Br outward, Bnorth=-Btheta, Beast=Bphi. Evaluation radius 3393500.0 m: 0 km above the 3393.5 km model reference sphere, not terrain. Bilinear node-to-pixel-centre resampling; horizontal components masked in the two polar half-cells rather than using singular tangent limits. Not live fields, shielding or radiation dose.",
+      "minimum": -7066.30419921875,
+      "maximum": 8052.361328125,
+      "valid_pixels": 257760,
+      "verification_points": [
+        {
+          "row": 90,
+          "column": 180,
+          "value": -9.503559112548828
+        },
+        {
+          "row": 180,
+          "column": 360,
+          "value": 333.6126403808594
+        },
+        {
+          "row": 270,
+          "column": 540,
+          "value": 12.698060035705566
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -20000,
+        "max": 20000,
+        "title": "Crustal field · north · 0 km",
+        "note": "Positive = north · nT · static model above reference sphere, not local terrain; display can saturate, readout retains the value."
+      },
+      "altitude_m": 0,
+      "component": "north",
+      "point_synthesis_checks": [
+        {
+          "lon": -179.75,
+          "lat": 88.75,
+          "point_synthesis_nT": -825.01939445473,
+          "delivered_nT": -764.3838499064757,
+          "resampling_error_nT": 60.6355445482543
+        },
+        {
+          "lon": 20.25,
+          "lat": -88.75,
+          "point_synthesis_nT": -136.64625698728466,
+          "delivered_nT": -116.73802244910313,
+          "resampling_error_nT": 19.90823453818153
+        },
+        {
+          "lon": -179.75,
+          "lat": -0.25,
+          "point_synthesis_nT": 58.48335998092914,
+          "delivered_nT": 36.45872470154495,
+          "resampling_error_nT": 22.024635279384185
+        },
+        {
+          "lon": 0.25,
+          "lat": -0.25,
+          "point_synthesis_nT": 348.8121726882789,
+          "delivered_nT": 333.6126396886358,
+          "resampling_error_nT": 15.199532999643111
+        },
+        {
+          "lon": -129.25,
+          "lat": 19.75,
+          "point_synthesis_nT": 10.597739485835877,
+          "delivered_nT": 9.710466386693613,
+          "resampling_error_nT": 0.8872730991422646
+        },
+        {
+          "lon": 75.75,
+          "lat": -15.25,
+          "point_synthesis_nT": 437.94675289940596,
+          "delivered_nT": 434.4396706290562,
+          "resampling_error_nT": 3.5070822703497697
+        },
+        {
+          "lon": -94.75,
+          "lat": 29.75,
+          "point_synthesis_nT": -8.179750888173839,
+          "delivered_nT": -7.967725076109806,
+          "resampling_error_nT": 0.2120258120640326
+        }
+      ]
+    },
+    "magnetic-east-0km": {
+      "file": "magnetic-east-0km.f32.gz",
+      "width": 720,
+      "height": 360,
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "packet_sha256": "8a5fb1a7efafdf68aa5f9eb2ca3afd9de4db8d8802f10d51e637f71865c05645",
+      "sha256": "ee669b5653a138600096f91c4e185dc1103d9e1e783e60dd30790ba2eaf72b8f",
+      "sources": [
+        {
+          "title": "Langlais et al. (2019) published model coefficients",
+          "url": "https://zenodo.org/records/3876714",
+          "source_sha256": "3cad9e268f0673be1702f1df504a4cbcb8dba4480c7b3f629921911488fe247b"
+        }
+      ],
+      "units": "nT",
+      "native_sampling": "Langlais 2019 degree 134 (~160 km surface resolving power); 0.5° delivery",
+      "processing": "Schmidt semi-normalized coefficients; pyshtools 4.13.1. Br outward, Bnorth=-Btheta, Beast=Bphi. Evaluation radius 3393500.0 m: 0 km above the 3393.5 km model reference sphere, not terrain. Bilinear node-to-pixel-centre resampling; horizontal components masked in the two polar half-cells rather than using singular tangent limits. Not live fields, shielding or radiation dose.",
+      "minimum": -5238.01318359375,
+      "maximum": 5387.7705078125,
+      "valid_pixels": 257760,
+      "verification_points": [
+        {
+          "row": 90,
+          "column": 180,
+          "value": -6.38715934753418
+        },
+        {
+          "row": 180,
+          "column": 360,
+          "value": -377.6828918457031
+        },
+        {
+          "row": 270,
+          "column": 540,
+          "value": 171.0000762939453
+        }
+      ],
+      "prepared": "2026-10-23",
+      "display": {
+        "min": -20000,
+        "max": 20000,
+        "title": "Crustal field · east · 0 km",
+        "note": "Positive = east · nT · static model above reference sphere, not local terrain; display can saturate, readout retains the value."
+      },
+      "altitude_m": 0,
+      "component": "east",
+      "point_synthesis_checks": [
+        {
+          "lon": -179.75,
+          "lat": 88.75,
+          "point_synthesis_nT": -576.1669996901829,
+          "delivered_nT": -562.1541861052212,
+          "resampling_error_nT": 14.012813584961691
+        },
+        {
+          "lon": 20.25,
+          "lat": -88.75,
+          "point_synthesis_nT": 11.86838538175994,
+          "delivered_nT": 21.05054619181989,
+          "resampling_error_nT": 9.182160810059951
+        },
+        {
+          "lon": -179.75,
+          "lat": -0.25,
+          "point_synthesis_nT": -329.9312585199026,
+          "delivered_nT": -322.31494373047445,
+          "resampling_error_nT": 7.616314789428145
+        },
+        {
+          "lon": 0.25,
+          "lat": -0.25,
+          "point_synthesis_nT": -405.06573988394405,
+          "delivered_nT": -377.6829051755675,
+          "resampling_error_nT": 27.38283470837655
+        },
+        {
+          "lon": -129.25,
+          "lat": 19.75,
+          "point_synthesis_nT": -14.459921783223555,
+          "delivered_nT": -15.041281411370612,
+          "resampling_error_nT": 0.581359628147057
+        },
+        {
+          "lon": 75.75,
+          "lat": -15.25,
+          "point_synthesis_nT": 398.7502405381543,
+          "delivered_nT": 363.90453751325134,
+          "resampling_error_nT": 34.845703024902946
+        },
+        {
+          "lon": -94.75,
+          "lat": 29.75,
+          "point_synthesis_nT": -15.804992102395541,
+          "delivered_nT": -14.969440890628038,
+          "resampling_error_nT": 0.8355512117675037
+        }
+      ]
+    }
+  },
+  "extended": "2026-10-23"
+}

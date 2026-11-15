@@ -1,0 +1,12 @@
+import {writeFile,readFile,mkdir,copyFile} from 'node:fs/promises';
+import {SCIENCE_CATALOG,SCIENCE_GROUPS} from '../src/science-catalog.js';
+import {DYNAMIC_RESEARCH,RESEARCH_SOURCES} from '../src/dynamic-source-research.js';
+const entries=Object.entries(DYNAMIC_RESEARCH).map(([id,r])=>{const item=SCIENCE_CATALOG.find(x=>x.id===id);return {id,display_name:item.name,category:SCIENCE_GROUPS.find(g=>g.id===item.group).name,selectable:Boolean(item.engine),implemented_scope:item.completion??null,model_package:r.modelPackage,dependency_label:r.dependencyLabel,remaining_for_full_scope:r.reason,sources:r.researchSources};});
+const packet={schema:'mars-dynamic-source-research/1',prepared_at:new Date().toISOString(),audited_entries:32,new_scoped_views:5,not_all_pending_entries_lack_data:true,entries,sources:RESEARCH_SOURCES};
+await writeFile(new URL('../public/dynamic-source-research.json',import.meta.url),JSON.stringify(packet,null,2)+'\n');
+const quote=x=>'"'+String(x??'').replaceAll('"','""')+'"',rows=[['ID','Display name','Category','Selectable view','Implemented scope','Model package','Dependency','Remaining for full scope','Primary source URLs'],...entries.map(e=>[e.id,e.display_name,e.category,e.selectable,e.implemented_scope,e.model_package,e.dependency_label,e.remaining_for_full_scope,e.sources.map(s=>s.url).join(' | ')])],csv='\ufeff'+rows.map(r=>r.map(quote).join(',')).join('\r\n')+'\r\n';
+await writeFile(new URL('../docs/dynamic-source-matrix.csv',import.meta.url),csv);
+const folder=new URL('../../../outputs/Dynamic_Overlay_Handoff_20261020/',import.meta.url);await mkdir(folder,{recursive:true});
+for(const [src,dest] of [['../docs/dynamic-model-handoff.md','dynamic-model-handoff.md'],['../docs/dynamic-source-matrix.csv','dynamic-source-matrix.csv'],['../public/dynamic-source-research.json','dynamic-source-research.json'],['../public/dynamic-overlay-status.json','dynamic-overlay-status.json']])await copyFile(new URL(src,import.meta.url),new URL(dest,folder));
+const handoff=await readFile(new URL('dynamic-model-handoff.md',folder),'utf8');await writeFile(new URL('dynamic-model-handoff.md',folder),handoff.replace('../public/dynamic-source-research.json','dynamic-source-research.json'));
+console.log(JSON.stringify({entries:entries.length,scoped_views:entries.filter(e=>e.selectable).length,folder:folder.pathname}));

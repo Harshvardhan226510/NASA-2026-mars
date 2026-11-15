@@ -1,0 +1,688 @@
+/* Interface-only layer. Terrain, imagery, scientific rendering and models are unchanged. */
+:root{--ui-surface:#111923;--ui-surface-2:#182430;--ui-text:#ecf0f3;--ui-secondary:#aab9c8;--ui-border:#ffffff20;--ui-accent:#9fe4cf;--accent:#9fe4cf;--muted:#aab9c8;--line:#ffffff20;--ui-panel-width:354px;font-family:Inter,"Segoe UI",Arial,sans-serif}
+body{background:#070c12;color:var(--ui-text)}
+body button,body input,body select,body summary,body textarea{font-family:inherit}
+body button{transition:background .15s,border-color .15s;touch-action:manipulation}
+body button:focus-visible,body a:focus-visible,body summary:focus-visible,body input:focus-visible,body select:focus-visible,body textarea:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}
+body button:hover{border-color:var(--ui-accent)}
+body button[aria-pressed=true]{background:var(--ui-accent);color:#102b2c}
+body .ui-header{position:fixed;inset:0 0 auto;height:80px;z-index:1010;border:0;background:linear-gradient(#060b13ed,#060b1300);display:flex;padding:0 28px;gap:25px;pointer-events:none}
+.ui-header>*{pointer-events:auto}
+body .brand{font-size:15px;letter-spacing:2.6px;gap:13px;color:#f5f7f8!important;flex-shrink:0;min-height:44px}
+.brand>b,.brand b{font-weight:650}.brand small{display:block;font-size:8px;letter-spacing:4px;color:#9facbb;margin-top:5px;text-align:left}
+.ui-planet{width:26px;height:26px;border:1px solid #f0b894;border-radius:50%;display:block;position:relative;background:radial-gradient(circle at 27% 25%,#d8a380,#845f4d 65%,#29272b);box-shadow:0 0 24px #e8a57816}
+.ui-planet:after{content:"";position:absolute;inset:-5px -9px;border:1px solid #e1b49175;border-radius:50%;transform:rotate(-35deg)}
+.ui-header-tools{display:flex;gap:12px;align-items:center;margin-left:auto}
+.ui-header-tools button{background:#111923d9;border-color:#ffffff1c;min-height:40px;padding:10px 13px;border-radius:7px;font-size:12px;color:#d6e0e7;display:flex;align-items:center;justify-content:center;gap:9px}
+.ui-header-tools svg{width:18px;height:18px}.ui-header-tools kbd{margin-left:20px;color:#93a1b0;border:1px solid #ffffff25;border-radius:3px;padding:1px 6px;font:11px inherit}
+.ui-domain{display:flex;padding:3px;border:1px solid #ffffff20;border-radius:8px;background:#111923d9}.ui-domain button{background:transparent;border:0;min-height:33px;font-size:11px;padding:8px 16px}.ui-domain button[aria-pressed=true]{background:#d7e4e8;color:#152731}
+body #workspace,body.sidebar-collapsed #workspace{inset:0;transition:none}
+body #map-tools{display:none!important}
+body footer{display:none!important}
+#ui-rail{position:fixed;top:110px;left:20px;bottom:120px;width:62px;z-index:1005;display:flex;flex-direction:column;gap:9px;pointer-events:none}
+#ui-rail button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:62px;min-height:58px;padding:9px 2px;background:#121b26e8;backdrop-filter:blur(16px);border:1px solid #ffffff16;border-radius:9px;color:#aebccc;font-size:10px;pointer-events:auto}
+#ui-rail button svg{width:22px;height:22px}
+#ui-rail button:hover{color:#fff;background:#243440;border-color:#a7d6d065}
+#ui-rail button[aria-pressed=true]{background:#c0e9de;color:#153c37;border-color:#d8fff0}
+#ui-rail .ui-rail-help{margin-top:auto;background:transparent;border-color:transparent;min-height:48px}
+.ui-nav-caption{font-size:9px;letter-spacing:1.3px;color:var(--ui-secondary);padding:10px 15px}
+.ui-research-pins{display:flex;align-items:center;gap:9px;margin:6px 0 20px;font-size:12px;color:var(--ui-secondary)}.ui-research-pins input{width:16px;height:16px;accent-color:var(--ui-accent)}
+body #sidebar,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel,#plan-mission-panel),body #walk-panel,body .ui-drawer{position:fixed!important;left:100px;right:auto;top:100px;bottom:104px;width:var(--ui-panel-width);max-width:calc(100vw - 122px);height:auto;max-height:none;padding:24px;z-index:1000;background:#111a25ed;backdrop-filter:blur(24px);border:1px solid #ffffff20;border-radius:14px;box-shadow:0 15px 55px #0005;overflow:auto;overscroll-behavior:contain;color:var(--ui-text);scrollbar-gutter:stable}
+body #sidebar{padding-top:18px}
+body #sidebar-toggle,body.sidebar-collapsed #sidebar-toggle{position:static;transform:none;flex:none;width:30px;height:30px;min-height:30px;border:1px solid #ffffff22;border-radius:50%;background:transparent;box-shadow:none;color:var(--ui-secondary);padding:0}
+.ui-drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;font-size:9px;color:var(--ui-secondary);letter-spacing:1.5px}
+body #sidebar h1{font-size:29px;line-height:1.15;letter-spacing:-.7px;font-weight:550;margin:12px 0}
+body #category{font-size:9px;letter-spacing:1.1px;color:var(--ui-accent)}
+body #description{font-size:12px;line-height:1.65;margin-bottom:22px}
+body #sidebar p{color:#adbdc9}
+body #sidebar #directory>label[for="place-type"]{display:none}
+#ui-directory-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin:0 0 21px;padding:3px;background:#060d1580;border:1px solid #ffffff1a;border-radius:7px}
+#ui-directory-tabs button{padding:9px 0;min-height:36px;border:0;font-size:11px;border-radius:4px;background:transparent;color:#b9c6d1}
+#ui-directory-tabs button[aria-pressed=true]{background:#2a3c49;color:#e2f5f0}
+body #sidebar input:not([type=checkbox]),body #sidebar select{font-size:12px;margin-top:8px;background:#0a121c;border-color:#ffffff24;border-radius:6px;padding:12px}
+body #sidebar .filters{gap:5px;margin:0 0 14px}
+body #sidebar .filters button{min-height:29px;font-size:10px;padding:5px 8px;border-radius:5px;background:transparent}
+body #sidebar .filters button[aria-pressed=true]{background:var(--ui-accent);color:#18302e}
+body #sidebar .region-row{padding:15px 4px;gap:10px;border-color:#ffffff13;min-width:0;border-radius:0;background:transparent}
+body #sidebar .region-row:hover{background:#ffffff06}
+body #sidebar .region-row strong{font-size:13px;line-height:1.6;font-weight:550}
+body #sidebar .region-row small{font-size:10px;color:#a5b5c4;letter-spacing:0;line-height:1.5}
+body #sidebar .detail-badge{font-size:9px!important;background:#173d3380;color:#b1e3d2!important;border-color:#9fe4cf30}
+body #sidebar details{display:block}.ui-small,body .tool-note{font-size:11px!important;line-height:1.65!important;color:#a7b9c7!important}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) h2,body .ui-drawer h2,body #walk-panel h2{font-size:25px;line-height:1.25;letter-spacing:-.6px;font-weight:550;margin:0 30px 18px 0;color:#f1f5f6}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel)>h2{margin-bottom:22px}
+body .tool-close,body .ui-close{position:absolute;right:13px;top:17px;width:30px;height:30px;display:grid;place-items:center;min-height:30px;padding:0;background:transparent;border:1px solid #ffffff20;border-radius:50%;color:#b7c7d3;font-size:22px;line-height:1}
+body #walk-close{padding:0}
+:is(#sidebar-toggle,#popup-close,#spacecraft-model-close){display:grid;place-items:center}
+.close-icon{display:block;width:16px;height:16px;pointer-events:none}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) label,body #walk-panel label{font-size:12px;line-height:1.5;letter-spacing:0}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) p,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) small{line-height:1.65}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel)>p{font-size:12px;color:#b2c4cf}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) input:not([type=checkbox]):not([type=radio]):not([type=range]),body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) select,body #walk-panel input:not([type=checkbox]),body #walk-panel select,body #walk-panel textarea{background:#0c1520;color:#e5ecf1;border-color:#ffffff26;border-radius:6px;font-size:12px;padding:10px;min-height:38px}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) input[type=checkbox],body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) input[type=radio]{accent-color:var(--ui-accent)}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) summary{font-size:12px;line-height:1.6;color:#d1e2e9}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) button:not(.tool-close){min-height:32px;font-size:11px;border-radius:5px;background:#1b2b38;border-color:#ffffff20}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) button[aria-pressed=true],body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .primary,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) #system-toggle{background:var(--ui-accent)!important;color:#12312d!important}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .primary{min-height:42px!important;font-weight:650}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .layer-list label{min-height:45px}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .science-heading h3{color:#c7ebdf}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .appearance-choices{background:#0c1520;border-color:#ffffff20}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .appearance-choices label:has(input:checked){background:var(--ui-accent);color:#132e29}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .science-more{background:#1b2b38;border-color:#ffffff26}
+body #walk-tabs{top:-24px;background:#111b26;padding:12px 0;z-index:3}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .moon-card,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .orbiter-row,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .system-rate,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) #orbiter-source,body #sidebar .spacecraft-card{background:#1b2b38;border-color:#ffffff20}
+.ui-kicker{font-size:9px;letter-spacing:1.8px;color:var(--ui-accent);margin-bottom:14px}
+.ui-drawer>p{font-size:12px;color:#adbdcc}
+.ui-feature-card{display:flex;width:100%;align-items:center;gap:13px;min-height:100px;padding:16px 12px;margin-top:12px;text-align:left;background:#1b2b38;border-color:#ffffff20;border-radius:8px}
+.ui-feature-card>svg{width:23px;flex-shrink:0}.ui-feature-card>svg:last-child{width:13px;margin-left:auto}
+.ui-feature-card strong{font-size:14px;font-weight:550;display:block;color:#edf4f5}.ui-feature-card small{font-size:11px;line-height:1.6;color:#a6bac9;display:block;margin-top:5px}
+#ui-help ol{padding:0;list-style:none;counter-reset:step;margin-top:25px}#ui-help li{counter-increment:step;position:relative;padding:0 0 20px 34px;font-size:12px}#ui-help li:before{content:counter(step);position:absolute;left:0;top:0;color:var(--ui-accent);width:23px;height:23px;display:grid;place-items:center;border:1px solid #ffffff30;border-radius:50%;font-size:10px}#ui-help li strong{display:block;font-size:13px;margin-bottom:5px}#ui-help li span{color:var(--ui-secondary);line-height:1.65}
+.ui-shortcuts{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px;font-size:10px;color:var(--ui-secondary)}.ui-shortcuts kbd{padding:2px 5px;border:1px solid #ffffff30;border-radius:3px;margin-right:3px;font:11px inherit}
+#ui-help a{font-size:12px;color:var(--ui-accent)}
+#ui-scene-caption{position:absolute;top:111px;left:112px;display:flex;flex-direction:column;gap:7px;pointer-events:none;z-index:590;text-shadow:0 2px 12px #000}
+#ui-scene-caption>.ui-kicker{color:#a1b2c3;font-size:9px;margin:0}
+#ui-scene-caption>strong{font-size:49px;letter-spacing:-1.5px;font-weight:300;line-height:1.2}
+#ui-scene-caption>span:last-child{font-size:12px;color:#adbac7}
+.ui-pane-open #ui-scene-caption{display:none}
+body #location-context{position:absolute;top:106px;right:28px;width:225px;padding:0;background:transparent;border:0;text-align:right;pointer-events:none;z-index:610}
+body #location-context strong{font-size:14px;font-weight:450;color:#ecf4f3;line-height:1.5}body #location-context small{font-size:10px;color:#9eafbc;line-height:1.65}
+#ui-task-label{position:absolute;left:112px;bottom:150px;z-index:605;pointer-events:none;display:none;flex-direction:column;gap:5px}
+#ui-task-label>span{font-size:15px;color:#e4ecef}#ui-task-label>small{font-size:10px;color:#9fb3c1}
+body #ui-view-host{position:absolute;right:28px;top:154px;z-index:620}
+body #view-switch{position:static;display:flex;background:#111923dc;border:1px solid #ffffff20;border-radius:8px;padding:3px}
+body #view-switch button{min-height:33px;padding:8px 13px;font-size:11px;background:transparent;border-radius:5px}
+body #view-switch button[aria-pressed=true]{background:#d5e4e8;color:#19303a}
+body #navigation{position:absolute;top:auto;bottom:80px;left:auto;right:28px;border-radius:8px;background:#111923e8;border-color:#ffffff22;gap:1px;padding:4px;max-width:none;z-index:620}
+body #navigation button{width:34px;height:33px;padding:0;font-size:12px;background:transparent;border:0;border-radius:5px}
+body #navigation #nav-pan,body #navigation #nav-rotate,body #navigation #nav-ground{width:auto;padding:0 11px;font-size:11px}
+body #navigation button[aria-pressed=true]{background:#304754;color:#e2f5f1}
+body #nav-hint{display:none}
+body #ground-help{position:absolute;left:auto;right:28px;top:auto;bottom:131px;width:275px;padding:16px;background:#111923f5;border:1px solid #ffffff26;border-radius:9px;z-index:640;font-size:11px}
+body #system-motion{position:absolute;top:auto;bottom:73px;left:50%;transform:translateX(-50%);z-index:620;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 16px;max-width:min(540px,calc(100vw - 140px));width:max-content;background:#111923e8;border:1px solid #ffffff20;border-radius:12px;padding:12px 16px;box-shadow:0 6px 30px #0003}
+body #system-motion #system-toggle{background:#c4eadd;color:#14382f;min-width:82px;padding:9px 12px;border-radius:6px;font-size:12px}
+body #system-clock{font-size:11px;max-width:280px;color:#c6d8e1}
+body #system-framing{display:flex;gap:5px;border-left:1px solid #ffffff20;padding-left:12px}
+body #system-framing button{font-size:10px;min-height:30px;border-radius:5px;padding:6px 10px;background:transparent}
+body #system-framing button[aria-pressed=true]{background:#304754;color:#e2f5f1}
+#ui-scene-bar{position:absolute;left:50%;transform:translateX(-50%);bottom:23px;display:none;align-items:center;gap:4px;background:#111923e8;border:1px solid #ffffff1c;border-radius:30px;padding:5px;z-index:620}
+body.moon-view #ui-scene-bar{display:flex}
+#ui-scene-bar button{border:0;background:transparent;color:#adc1cc;font-size:11px;white-space:nowrap;border-radius:22px;padding:10px 16px}
+#ui-scene-bar button:first-child{background:#293b48;color:#dfedf0}
+body #altitude{left:auto;right:28px;bottom:135px;top:auto;min-width:0;width:auto;max-width:250px;padding:0;background:transparent;border:0;box-shadow:none;text-align:right;z-index:615;pointer-events:none}
+body #altitude-label{font-size:8px;color:#9bb2c3;letter-spacing:1.8px}
+body #altitude-value{font-size:27px;color:#f2f6f7;font-weight:350;letter-spacing:-.8px}
+body #altitude-source{font-size:9px;color:#92a6b8}
+body #readout{left:110px;bottom:29px;padding:0;background:transparent;color:#b9c9d5;font-size:10px;max-width:calc(100% - 380px);border-radius:0}
+body #pin-legend{display:none!important}
+body #mini-wrap{right:28px;bottom:195px;width:218px;height:190px;border-radius:9px;border-color:#ffffff30}
+body #mini-map{height:151px}
+body #compare-link{right:28px;bottom:128px;background:#172634;color:#e3f2ed;border-color:#ffffff30;border-radius:6px}
+body #elevation-legend,body #magnetic-legend,body #science-legend,body #mineral-legend,body #wind-legend,body #environment-legend,body #space-weather-hud,body #source-legend{left:110px;right:auto;bottom:81px;top:auto;width:270px;max-width:calc(100% - 140px);padding:14px 16px;background:#111923e8;border:1px solid #ffffff22;border-radius:10px;z-index:612;backdrop-filter:blur(15px)}
+body.ui-orbit.ui-pane-open #elevation-legend,body.ui-orbit.ui-pane-open #magnetic-legend,body.ui-orbit.ui-pane-open #science-legend,body.ui-orbit.ui-pane-open #mineral-legend,body.ui-orbit.ui-pane-open #wind-legend,body.ui-orbit.ui-pane-open #environment-legend,body.ui-orbit.ui-pane-open #space-weather-hud,body.ui-orbit.ui-pane-open #source-legend{left:476px}
+body #region-popup{left:auto;right:28px;top:205px;width:300px;padding:22px;background:#111a25f5;border:1px solid #9fe4cf66;border-radius:12px;z-index:1010}
+body #error{top:86px;left:100px;right:28px;z-index:1020;background:#592c29f5;color:#ffe7d9;border-radius:9px}
+body #busy{bottom:153px;border-radius:20px;background:#172b36ed;border-color:#ffffff30}
+#ui-data-details{position:fixed;bottom:21px;right:28px;z-index:1050;border:0;padding:0;font-size:10px;color:#98afbd}
+#ui-data-details summary{font-size:10px;list-style:none;padding:9px 12px;background:#111923cf;border:1px solid #ffffff1c;border-radius:6px;color:#9eb3c2}
+#ui-data-details[open] summary{color:#d9eee9}
+#ui-data-details>div{position:absolute;bottom:42px;right:0;width:300px;padding:18px;background:#111a25f7;box-shadow:0 8px 35px #0007;border:1px solid #ffffff25;border-radius:10px;display:flex;flex-direction:column;gap:12px;line-height:1.6}
+body #ui-data-details #status,body #ui-data-details #coverage-state,body #ui-data-details #storage-status,body #ui-data-details #view-status{position:static;max-width:none;width:auto;margin:0;padding:0;background:none;border:0;font-size:11px;color:#b2c9d5;display:block}
+body #ui-data-details #status{font-weight:600;color:#d8eae8}
+body #ui-data-details #refresh{font-size:11px;min-height:36px;background:#273c49;border-color:#ffffff20}
+#ui-loading,#ui-toast{position:fixed;left:50%;top:85px;transform:translateX(-50%);padding:12px 18px;background:#172633ef;color:#c8e5e6;border:1px solid #ffffff20;border-radius:30px;z-index:1100;font-size:12px;box-shadow:0 3px 24px #0003;max-width:85vw;text-align:center}
+#ui-loading span{display:inline-block;width:6px;height:6px;margin-right:9px;background:#a5e5d0;border-radius:50%;animation:ui-pulse 1.7s ease infinite}
+@keyframes ui-pulse{50%{opacity:.25}}
+body .cesium-viewer-bottom{bottom:0!important;left:5px!important;z-index:600}
+body.ui-focus #ui-rail,body.ui-focus #sidebar,body.ui-focus .map-tool-panel,body.ui-focus .ui-drawer,body.ui-focus #ui-scene-caption,body.ui-focus #ui-view-host,body.ui-focus #location-context,body.ui-focus #ui-data-details,body.ui-focus #ui-task-label{display:none!important}
+body.ui-focus .ui-header{background:none}
+body.ui-focus .ui-search,body.ui-focus .ui-domain,body.ui-focus .ui-header-tools>[data-action=help]{visibility:hidden}
+body.ui-focus #navigation{opacity:.55}
+body.ui-focus #ui-focus{background:#223441;border-color:#ffffff45}
+
+/* Expedition is a separate spatial design: persistent task navigation, right
+   inspector, warm light chrome and a framed working map. */
+body.ui-expedition{--ui-surface:#f9f8f4;--ui-surface-2:#f0efe9;--ui-text:#223537;--ui-secondary:#697a79;--ui-border:#22353722;--ui-accent:#237f73;--accent:#237f73;--muted:#697a79;--line:#22353722;--ui-panel-width:365px;background:#e9ebe5;color:#223537}
+body.ui-expedition .ui-header{height:76px;background:#f9f8f4;border-bottom:1px solid #22353716;padding:0 24px;pointer-events:auto;box-shadow:none}
+body.ui-expedition .brand{color:#203c3b!important;font-size:13px;letter-spacing:2px}
+body.ui-expedition .brand small{color:#70827e;font-size:8px;letter-spacing:3.6px}
+body.ui-expedition .ui-header-tools button{background:transparent;border-color:#22353722;color:#3d5453;border-radius:5px}
+body.ui-expedition .ui-header-tools kbd{color:#8b9792;border-color:#22353725}
+body.ui-expedition .ui-domain{border-color:#2235371e;background:#ecefe8}
+body.ui-expedition .ui-domain button{border:0;background:transparent}
+body.ui-expedition .ui-domain button[aria-pressed=true]{background:#fff;box-shadow:0 1px 4px #22353712;color:#23685f}
+body.ui-expedition #ui-rail{left:12px;top:96px;bottom:22px;width:202px;gap:5px}
+body.ui-expedition #ui-rail button{width:100%;min-height:54px;display:flex;flex-direction:row;justify-content:flex-start;align-items:center;text-align:left;gap:12px;padding:12px 14px;border:1px solid transparent;border-radius:6px;background:transparent;backdrop-filter:none;font-size:13px;color:#445c59}
+body.ui-expedition #ui-rail button svg{width:20px;flex-shrink:0}
+body.ui-expedition #ui-rail button small{display:block;font-size:10px;margin-top:4px;color:#617266}
+body.ui-expedition #ui-rail button[aria-pressed=true]{background:#dbe9df;border-color:#c6dbcd;color:#23645b;font-weight:650}
+body.ui-expedition #ui-rail button[aria-pressed=true] small{color:#57776a;font-weight:400}
+body.ui-expedition #ui-rail button:hover{background:#e0e7dd}
+body.ui-expedition #ui-rail .ui-rail-help{margin-top:auto;border-top:1px solid #2235371a;border-radius:0;min-height:46px}
+body.ui-expedition #workspace,body.ui-expedition.sidebar-collapsed #workspace{top:88px;left:228px;bottom:15px;right:16px;border:1px solid #60726930;border-radius:12px;overflow:hidden;box-shadow:0 5px 25px #24362b13;background:#081018}
+body.ui-expedition.ui-pane-open #workspace{right:397px}
+body.ui-expedition #sidebar,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel),body.ui-expedition #walk-panel,body.ui-expedition .ui-drawer{left:auto;right:16px;top:88px;bottom:15px;max-width:calc(100vw - 32px);background:#f9f8f4;color:#263c3a;border-color:#50655b25;border-radius:10px;box-shadow:0 4px 20px #273f3210;backdrop-filter:none;padding:22px;scrollbar-color:#bccabe #f0f1ec}
+body.ui-expedition #sidebar-toggle{color:#6a8178;border-color:#50655b2b;background:#e8ede5}
+body.ui-expedition .ui-drawer-top{color:#799084;font-size:9px;margin-bottom:20px}
+body.ui-expedition #category{color:#28806c}
+body.ui-expedition #sidebar h1{font-size:28px;font-weight:450;color:#243d39}
+body.ui-expedition #sidebar p{color:#617266}
+body.ui-expedition #ui-directory-tabs{background:#e9ede5;border-color:#60746520;margin-bottom:20px}
+body.ui-expedition #ui-directory-tabs button{color:#617266;font-size:10px}
+body.ui-expedition #ui-directory-tabs button[aria-pressed=true]{background:#fff;color:#1c6f60;box-shadow:0 1px 5px #243d3912}
+body.ui-expedition #sidebar input:not([type=checkbox]),body.ui-expedition #sidebar select{background:#fff;color:#364e47;border-color:#4a64572b}
+body.ui-expedition #sidebar .filters button{border-color:#50655b25;color:#748276;background:transparent}
+body.ui-expedition #sidebar .filters button[aria-pressed=true]{background:#2d7665;color:#fff}
+body.ui-expedition #sidebar .region-row{color:#344e43;border-color:#50655b20}
+body.ui-expedition #sidebar .region-row:hover{background:#e5ede22e}
+body.ui-expedition #sidebar .region-row small{color:#617266}
+body.ui-expedition #sidebar .detail-badge{background:#e6f0e3;color:#517d5b!important;border-color:#c9ddc2}
+body.ui-expedition #sidebar dd{color:#425c4d}
+body.ui-expedition #sidebar dt{color:#7e8e80}
+body.ui-expedition #sidebar a{color:#276b5f}
+body.ui-expedition #sidebar details summary{color:#456556}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) h2,body.ui-expedition .ui-drawer h2,body.ui-expedition #walk-panel h2{color:#254a42;font-weight:500}
+body.ui-expedition .tool-close,body.ui-expedition .ui-close{color:#778b7c;border-color:#50655b25;background:#eef1e9}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) label,body.ui-expedition #walk-panel label{color:#4e6b59}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) p,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) small,body.ui-expedition .tool-note,body.ui-expedition .ui-small{color:#526d5b!important}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) strong{color:#41664f}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) input:not([type=checkbox]):not([type=radio]):not([type=range]),body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) select,body.ui-expedition #walk-panel input:not([type=checkbox]),body.ui-expedition #walk-panel select,body.ui-expedition #walk-panel textarea{background:#fff;color:#3e5a48;border-color:#50655b32;color-scheme:light}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) summary{color:#34684d}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) button:not(.tool-close){background:#ebf0e5;color:#50715c;border-color:#50655b2a}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .primary,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) button[aria-pressed=true]{background:#2f7c65!important;color:#fff!important}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .appearance-choices{background:#e8eee3;border-color:#50655b22}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .appearance-choices label:has(input:checked){background:#2f7c65;color:#fff}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .science-more{background:#edf1e6;border-color:#50655b22}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .moon-card,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .orbiter-row,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .system-rate,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) #orbiter-source,body.ui-expedition #sidebar .spacecraft-card{background:#edf2e7;border-color:#526b5633;color:#496b50}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .moon-card h3,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .orbiter-row strong,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .moon-card output,body.ui-expedition .orbiters-heading{color:#417052}
+body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .system-rate strong,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) .system-rate small,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) output,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) dd{color:#3e7154}
+body.ui-expedition #walk-tabs{background:#f9f8f4;top:-22px}
+body.ui-expedition #walk-panel h3,body.ui-expedition #walk-panel h4,body.ui-expedition #walk-panel th,body.ui-expedition #walk-panel td{color:#4c6d54}
+body.ui-expedition .route-card,body.ui-expedition .walk-budget-check{background:#eff3e9;border-color:#50655b35}
+body.ui-expedition .route-stats dt,body.ui-expedition .route-stats dd{color:#5a755c}
+body.ui-expedition .ui-feature-card{background:#edf1e7;border-color:#50655b25}
+body.ui-expedition .ui-feature-card strong{color:#3d674e}
+body.ui-expedition .ui-feature-card small,body.ui-expedition .ui-drawer>p{color:#5d735f}
+body.ui-expedition #ui-help li:before{border-color:#50655b35}
+body.ui-expedition #ui-help a{color:#28745a}
+body.ui-expedition #ui-scene-caption{left:28px;top:31px}
+body.ui-expedition #ui-scene-caption>strong{font-size:38px}
+body.ui-expedition #ui-scene-caption>span:last-child{display:none}
+body.ui-expedition.ui-pane-open #ui-scene-caption{display:flex}
+body.ui-expedition #location-context{right:20px;top:24px;width:210px}
+body.ui-expedition #ui-view-host{right:20px;top:89px}
+body.ui-expedition #navigation{right:20px;bottom:27px}
+body.ui-expedition #altitude{right:21px;bottom:82px}
+body.ui-expedition #readout{left:22px;bottom:18px;max-width:calc(100% - 280px);font-size:9px}
+body.ui-expedition #elevation-legend,body.ui-expedition #magnetic-legend,body.ui-expedition #science-legend,body.ui-expedition #mineral-legend,body.ui-expedition #wind-legend,body.ui-expedition #environment-legend,body.ui-expedition #space-weather-hud,body.ui-expedition #source-legend{left:22px;bottom:61px;width:245px;max-width:calc(100% - 44px)}
+body.ui-expedition #ui-data-details{left:242px;right:auto;bottom:29px}
+body.ui-expedition #ui-data-details>div{right:auto;left:0}
+body.ui-expedition #readout{bottom:60px}
+body.ui-expedition #system-motion{bottom:77px;max-width:calc(100% - 40px);padding:10px 12px;left:50%}
+body.ui-expedition #system-motion #system-clock{max-width:190px;font-size:10px}
+body.ui-expedition #ui-scene-bar{bottom:20px;max-width:calc(100% - 32px)}
+body.ui-expedition #ui-scene-bar button{padding:8px 10px;font-size:10px}
+body.ui-expedition.moon-view #navigation{bottom:170px}
+body.ui-expedition.moon-view #ui-scene-caption{display:none}
+body.ui-expedition #mini-wrap{right:20px;bottom:143px;width:180px;height:155px}
+body.ui-expedition #mini-map{height:117px}
+body.ui-expedition #compare-link{right:20px;bottom:80px}
+body.ui-expedition #region-popup{right:410px;top:185px;width:285px}
+body.ui-expedition #error{left:20px;right:20px;top:158px}
+body.ui-expedition.ui-focus #workspace{inset:88px 16px 15px}
+body.ui-expedition.ui-focus .ui-header{background:#f9f8f4}
+
+@media(max-width:1150px){
+ body.ui-expedition #ui-rail{width:65px;left:10px}body.ui-expedition #ui-rail button{flex-direction:column;padding:9px 2px;min-height:60px;gap:6px;text-align:center;font-size:9px}body.ui-expedition #ui-rail button small,body.ui-expedition .ui-nav-caption{display:none}body.ui-expedition #ui-rail button svg{width:22px}body.ui-expedition #workspace,body.ui-expedition.sidebar-collapsed #workspace{left:87px}body.ui-expedition #ui-data-details{left:100px}body.ui-expedition .brand{font-size:12px}.ui-header-tools{gap:7px}.ui-header-tools kbd{display:none}
+ body.ui-orbit #system-framing{display:none}
+}
+@media(max-width:900px){
+ body.ui-expedition.ui-pane-open #workspace{right:16px}body.ui-expedition #sidebar,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel),body.ui-expedition #walk-panel,body.ui-expedition .ui-drawer{background:#f9f8f4fa;box-shadow:-10px 0 45px #0003}body.ui-expedition.ui-pane-open #location-context,body.ui-expedition.ui-pane-open #ui-view-host,body.ui-expedition.ui-pane-open #navigation,body.ui-expedition.ui-pane-open #altitude{right:390px}body.ui-expedition.ui-pane-open #system-motion,body.ui-expedition.ui-pane-open #ui-scene-bar{left:25%;max-width:calc(100% - 410px)}body.ui-expedition.ui-pane-open #ui-scene-bar{display:none}body.ui-expedition #region-popup{right:30px}
+ body.ui-orbit #system-motion{left:55%;max-width:calc(100vw - 120px)}body.ui-orbit.ui-pane-open #location-context{display:none}body.ui-orbit .ui-search span{display:none}body.ui-orbit .ui-header-tools .ui-search{padding:10px}body.ui-orbit #ui-scene-caption{left:105px}
+}
+@media(max-width:650px){
+ body .ui-header,body.ui-expedition .ui-header{height:64px;padding:0 15px;gap:10px}body .brand,body.ui-expedition .brand{font-size:10px;letter-spacing:1.4px;gap:10px}.brand small,body.ui-expedition .brand small{font-size:6px;letter-spacing:2.4px}.ui-planet{width:21px;height:21px}.ui-header-tools{gap:5px}.ui-header-tools .ui-search,.ui-header-tools>[data-action=help]{display:none}.ui-header-tools button{padding:8px;min-height:34px;border-radius:5px}.ui-header-tools svg{width:16px;height:16px}.ui-domain button{padding:6px 9px;font-size:10px;min-height:28px}.ui-domain{padding:2px;border-radius:6px}
+ body #ui-rail,body.ui-expedition #ui-rail{top:auto;left:8px;right:8px;bottom:8px;width:auto;height:64px;display:flex;flex-direction:row;align-items:stretch;gap:2px;padding:4px;background:#101b26f5;border:1px solid #ffffff24;border-radius:12px;z-index:1060;pointer-events:auto;box-shadow:0 3px 20px #0004}
+ body #ui-rail button,body.ui-expedition #ui-rail button{flex:1;width:0;min-width:0;min-height:0;height:54px;padding:6px 1px;border:0;border-radius:8px;gap:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:transparent;font-size:9px;color:#b6c9d2;box-shadow:none;line-height:1.1;text-align:center}
+ body #ui-rail button svg,body.ui-expedition #ui-rail button svg{width:20px;height:20px}body #ui-rail .ui-rail-help,body.ui-expedition #ui-rail .ui-rail-help,body .ui-nav-caption,body.ui-expedition #ui-rail button small{display:none}body #ui-rail button[aria-pressed=true],body.ui-expedition #ui-rail button[aria-pressed=true]{background:#ceeadd;color:#214e3e}
+ body.ui-expedition #ui-rail{background:#f9f8f4;border-color:#50655b25;box-shadow:0 3px 20px #31432d25}body.ui-expedition #ui-rail button{color:#6b8170;font-size:8px}
+ body #workspace,body.sidebar-collapsed #workspace{inset:0 0 78px}body.ui-expedition #workspace,body.ui-expedition.sidebar-collapsed #workspace,body.ui-expedition.ui-pane-open #workspace{inset:72px 8px 80px;border-radius:9px}
+ body #sidebar,body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel),body #walk-panel,body .ui-drawer,body.ui-expedition #sidebar,body.ui-expedition :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel),body.ui-expedition #walk-panel,body.ui-expedition .ui-drawer{left:8px!important;right:8px!important;top:auto!important;bottom:80px!important;width:auto;max-width:none;max-height:62dvh;min-height:0;border-radius:13px;padding:20px;z-index:1040;height:auto}
+ body #sidebar{padding-top:12px}body #sidebar h1{font-size:24px;margin:8px 0}body #sidebar #description{display:block!important;font-size:11px;margin:6px 0 16px}body #sidebar #category{font-size:8px}.ui-drawer-top{margin-bottom:8px}body #sidebar #directory>label:not([for="place-type"]){display:block}body #sidebar .filters{display:flex}body #sidebar #regions{display:block;overflow:visible}body #sidebar .region-row{min-width:0}body #sidebar #detail{display:block}body #sidebar #detail>label{display:block}body #sidebar #detail dl{display:block;margin:15px 0}body #sidebar #detail dt{font-size:10px}body #sidebar #detail dd{font-size:12px;margin:6px 0 14px}body #sidebar .layer-controls{display:flex}body #sidebar #observation{margin:10px 0}#ui-directory-tabs{margin-bottom:14px}
+ body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) h2,body .ui-drawer h2,body #walk-panel h2{font-size:23px;margin-bottom:18px}body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel) details{display:block}body #walk-tabs{top:-20px}
+ body #ui-scene-caption,body.ui-expedition #ui-scene-caption{top:90px;left:21px}body #ui-scene-caption>strong{font-size:38px}body #ui-scene-caption>.ui-kicker{font-size:8px}body.ui-expedition #ui-scene-caption{top:25px}body.ui-expedition.ui-pane-open #ui-scene-caption{display:none}
+ body #location-context,body.ui-expedition #location-context,body.ui-expedition.ui-pane-open #location-context{top:90px;right:18px;width:160px}body #location-context strong{font-size:12px}body #location-context small{font-size:9px}body.ui-expedition #location-context,body.ui-expedition.ui-pane-open #location-context{top:23px;right:17px}
+ body #ui-view-host,body.ui-expedition #ui-view-host,body.ui-expedition.ui-pane-open #ui-view-host{top:155px;right:17px}body.ui-expedition #ui-view-host,body.ui-expedition.ui-pane-open #ui-view-host{top:87px}body #view-switch button{font-size:10px;min-height:30px;padding:6px 10px}
+ body #navigation,body.ui-expedition #navigation,body.ui-expedition.ui-pane-open #navigation{bottom:25px;right:16px;padding:3px}body #navigation button{width:29px;height:30px}body #navigation #nav-pan,body #navigation #nav-rotate{display:none}body #navigation #nav-ground{font-size:10px;padding:0 8px}
+ body #altitude,body.ui-expedition #altitude,body.ui-expedition.ui-pane-open #altitude{top:auto;bottom:75px;right:17px;left:auto;max-width:190px;width:auto}body #altitude-value{font-size:23px}body #altitude-source{font-size:8px}body #altitude-label{font-size:7px}
+ body #readout,body.ui-expedition #readout{left:17px;bottom:24px;font-size:8px;max-width:calc(100% - 185px)}body #ui-data-details,body.ui-expedition #ui-data-details{bottom:164px;right:17px;left:auto}#ui-data-details summary{font-size:9px;padding:7px 9px}#ui-data-details>div,body.ui-expedition #ui-data-details>div{left:auto;right:0;bottom:35px;width:265px}
+ body.ui-pane-open #ui-view-host,body.ui-pane-open #navigation,body.ui-pane-open #altitude,body.ui-pane-open #readout,body.ui-pane-open #location-context,body.ui-pane-open #ui-data-details,body.ui-pane-open #ui-scene-caption,body.ui-pane-open #system-motion,body.ui-pane-open #ui-scene-bar{visibility:hidden}
+ body #system-motion,body.ui-expedition #system-motion,body.ui-expedition.ui-pane-open #system-motion{left:50%;bottom:80px;width:calc(100% - 32px);max-width:none;padding:9px 10px;gap:7px 10px;transform:translateX(-50%);border-radius:9px}body #system-motion #system-toggle{font-size:10px;min-width:70px;padding:9px}body #system-clock,body.ui-expedition #system-motion #system-clock{font-size:9px;max-width:205px}body #system-framing{display:none}
+ body #ui-scene-bar,body.ui-expedition #ui-scene-bar,body.ui-expedition.ui-pane-open #ui-scene-bar{left:50%;bottom:23px;width:max-content;max-width:calc(100% - 30px);padding:4px;gap:0}#ui-scene-bar button,body.ui-expedition #ui-scene-bar button{padding:8px 10px;font-size:10px}body.moon-view #ui-scene-bar{display:flex}body.moon-view #navigation,body.ui-expedition.moon-view #navigation{bottom:153px}
+ body #elevation-legend,body #magnetic-legend,body #science-legend,body #mineral-legend,body #wind-legend,body #environment-legend,body #space-weather-hud,body #source-legend,body.ui-expedition #elevation-legend,body.ui-expedition #magnetic-legend,body.ui-expedition #science-legend,body.ui-expedition #mineral-legend,body.ui-expedition #wind-legend,body.ui-expedition #environment-legend,body.ui-expedition #space-weather-hud,body.ui-expedition #source-legend{left:17px;bottom:78px;width:190px;padding:10px;max-width:calc(100% - 34px)}body.ui-pane-open #elevation-legend,body.ui-pane-open #magnetic-legend,body.ui-pane-open #science-legend,body.ui-pane-open #mineral-legend,body.ui-pane-open #wind-legend,body.ui-pane-open #environment-legend,body.ui-pane-open #space-weather-hud,body.ui-pane-open #source-legend{visibility:hidden}
+ body #mini-wrap,body.ui-expedition #mini-wrap{right:16px;bottom:125px;width:150px;height:135px}body #mini-map,body.ui-expedition #mini-map{height:97px}body #compare-link,body.ui-expedition #compare-link{bottom:122px;right:16px;font-size:9px}body #ground-help{right:16px;bottom:130px;width:250px}body #error,body.ui-expedition #error{left:16px;right:16px;top:220px;max-height:150px;overflow:auto}body #region-popup,body.ui-expedition #region-popup{left:16px;right:16px;top:auto;bottom:94px;width:auto}body #busy{bottom:180px;max-width:85%;font-size:10px}#ui-loading,#ui-toast{top:74px;font-size:11px;width:max-content;max-width:90vw}
+ body.ui-focus #workspace,body.ui-expedition.ui-focus #workspace{inset:64px 8px 8px}body.ui-focus #ui-rail{display:none}body.ui-focus .ui-domain{visibility:hidden}body.ui-focus #altitude{visibility:visible}body.ui-focus #navigation{opacity:1;visibility:visible}
+}
+@media(prefers-reduced-motion:reduce){body button{transition:none}#ui-loading span{animation:none}}
+
+/* A surface inset is not relevant while navigating the orbital system. */
+body.moon-view #mini-wrap{display:none!important}
+
+/* Keep map chrome legible independently of the surrounding inspector theme. */
+#ui-scene-caption>strong{color:#e5eef2}
+body.ui-expedition #view-switch button,body.ui-expedition #navigation button{color:#b7cbd4}
+body.ui-expedition #view-switch button[aria-pressed=true]{color:#183740}
+body.ui-expedition #navigation button[aria-pressed=true]{color:#e0f5ef}
+body.ui-expedition #appearance-panel #science-heading,body.ui-expedition #appearance-panel .science-section h4{color:#34654e}
+body.ui-expedition #appearance-panel .science-option-name,body.ui-expedition #appearance-panel .science-expanded>label .science-option-name{color:#4a6a54}
+body.ui-expedition #appearance-panel .science-type{color:#557663;border-color:#799c824f}
+body.ui-expedition #appearance-panel .science-type.dynamic{color:#526e89;border-color:#7592b14f}
+body.ui-expedition #appearance-panel .science-unavailable .science-option-name,body.ui-expedition #appearance-panel .science-unavailable-note{color:#7a887a}
+body.ui-expedition #appearance-panel #science-more{background:#edf2e7;border-color:#7c9c7d55}
+body.ui-expedition #appearance-panel #science-more>summary,body.ui-expedition #appearance-panel #science-more>summary>span,body.ui-expedition #appearance-panel .science-category>summary{color:#47694f}
+body.ui-expedition #appearance-panel #science-selection,body.ui-expedition #appearance-panel #contour-options{background:#edf3e8;border-color:#93ac9350}
+body.ui-expedition #appearance-panel #science-selection h4,body.ui-expedition #appearance-panel #science-selection dt,body.ui-expedition #appearance-panel #contour-options h4{color:#356448}
+body.ui-expedition #appearance-panel #science-selection dd,body.ui-expedition #appearance-panel #science-selection p,body.ui-expedition #appearance-panel #contour-options p{color:#536f58}
+body.ui-expedition #appearance-panel #science-selection a,body.ui-expedition #appearance-panel #science-source-links a{color:#246f52}
+body.ui-expedition #appearance-panel #science-coverage,body.ui-expedition #appearance-panel #science-status{color:#57715b!important}
+body.ui-expedition #appearance-panel .weather-value,body.ui-expedition #appearance-panel #wind-centre-value,body.ui-expedition #appearance-panel .weather-state{color:#416c50}
+body.ui-expedition #appearance-panel .weather-event{background:#edf3e8;border-color:#93ac9350}
+body.ui-expedition #appearance-panel .weather-chart figcaption{color:#c3d8cd}
+body.ui-expedition #sidebar .spacecraft-card h3,body.ui-expedition #sidebar .spacecraft-card dt,body.ui-expedition #sidebar .spacecraft-card dd,body.ui-expedition #sidebar .spacecraft-card a{color:#486c51}
+body.ui-expedition #sidebar .spacecraft-badge{color:#607d52;border-color:#799c824f;background:#e4ecda}
+body.ui-expedition #region-popup{background:#f9f8f4;color:#345342;border-color:#7e9f7d70}
+body.ui-expedition #region-popup p{color:#60765f}
+body.ui-expedition #popup-coverage{color:#437650}
+.ui-imagery-details{border:0;padding:7px 1px 0;margin:0!important}
+.ui-imagery-details>summary{font-size:10px!important;color:var(--ui-secondary)!important}
+.ui-visibility{padding:0!important;margin-top:20px;border:1px solid var(--ui-border)!important;border-radius:7px;overflow:hidden}
+.ui-visibility>summary{padding:14px;font-size:12px!important;font-weight:600;color:var(--ui-text)!important;background:#ffffff05}
+.ui-visibility>p,.ui-visibility>fieldset,.ui-visibility>.layers-actions{margin:14px!important}
+.ui-visibility>p{font-size:11px;line-height:1.6;color:var(--ui-secondary)}
+body.ui-expedition #appearance-panel .layer-list legend,body.ui-expedition #appearance-panel .appearance-switch legend{color:#607864}
+body.ui-expedition #appearance-panel .ui-visibility>summary{background:#edf2e7;color:#365e45!important}
+body.ui-expedition #sidebar button{background:#edf2e7;color:#3c6b53;border-color:#7b9b7b3a}
+body.ui-expedition #sidebar button[aria-pressed=true],body.ui-expedition #sidebar button.primary{background:#2f7c65;color:#fff}
+body.ui-expedition #sidebar #ui-directory-tabs button{background:transparent;color:#536a59}
+body.ui-expedition #sidebar #ui-directory-tabs button[aria-pressed=true]{background:#fff;color:#226e58}
+body.ui-expedition #sidebar :is(h2,h3,h4,strong,summary){color:#365b45}
+body.ui-expedition #region-popup .primary{color:#fff}
+
+/* Orbit compact motion bar and map annotations. */
+.ui-system-framing{margin:14px 0;padding:10px;border:1px solid #ffffff20;border-radius:7px;display:flex;gap:6px}.ui-system-framing legend{padding:0 5px;font-size:11px;color:#c1d5df}.ui-system-framing button{flex:1;font-size:11px;padding:8px 6px}
+body.ui-orbit #system-motion{display:grid;grid-template-columns:76px 166px auto;align-items:center;justify-content:initial;gap:12px;box-sizing:border-box;width:max-content;max-width:calc(100vw - 40px);padding:8px 10px;left:50%;bottom:77px;border-radius:10px;min-height:58px}
+body.ui-orbit #system-motion #system-toggle{min-width:0;width:76px;min-height:38px;padding:8px 9px;font-size:12px}
+body.ui-orbit #system-clock{display:flex;flex-direction:column;gap:3px;max-width:none;line-height:1.25;white-space:nowrap;font-variant-numeric:tabular-nums}
+body.ui-orbit #system-clock-state{font-size:9px;letter-spacing:.8px;color:#a7d9cc;font-weight:650}
+body.ui-orbit #system-clock-time{font-size:12px;letter-spacing:.1px;color:#f0f5f8}
+body.ui-orbit #system-motion[data-mode=paused] #system-clock-state{color:#f1c394}
+body.ui-orbit #system-framing{display:flex;grid-column:auto;align-items:center;gap:3px;padding-left:12px;white-space:nowrap}
+body.ui-orbit #system-framing button{min-height:36px;padding:7px 9px;font-size:11px}
+body.ui-orbit .leaflet-tooltip:is(.value-tooltip,.spacecraft-tooltip,.observation-label){background:#101e2bef;color:#f3f8fb;border:1px solid #9fe4cf44;border-radius:6px;font:600 13px/1.4 "Segoe UI",sans-serif;padding:7px 10px;box-shadow:0 3px 12px #0005}
+body.ui-orbit .leaflet-tooltip-top:is(.value-tooltip,.spacecraft-tooltip):before{border-top-color:#101e2b}
+body.ui-orbit .value-cluster span{background:#142634;box-shadow:0 2px 8px #0006;border-width:2px;font:600 13px/30px "Segoe UI",sans-serif}
+@media(max-width:1150px){body.ui-orbit #system-motion{grid-template-columns:76px 166px}body.ui-orbit #system-framing{display:none}}
+@media(min-width:651px) and (max-width:1150px){body.ui-orbit.moon-view :is(#sidebar,#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel,.ui-drawer){bottom:150px}}
+@media(max-width:650px){body.ui-orbit #system-motion{width:max-content;max-width:calc(100vw - 32px);grid-template-columns:72px 162px;gap:10px;left:50%;bottom:80px;padding:8px 10px;min-height:56px}body.ui-orbit #system-motion #system-toggle{width:72px;min-height:36px;font-size:11px}body.ui-orbit #system-clock-time{font-size:11px}body.ui-orbit #system-framing{display:none}}
+@media(max-width:650px){body.ui-orbit.moon-view #altitude{left:17px;right:auto;bottom:150px}body.ui-orbit.moon-view #ui-data-details{bottom:278px}}
+
+/* Keep assistant input and audio controls inside the shared Orbit drawer. */
+body #assistant-panel .assistant-header{display:block;margin-right:20px}
+body #assistant-panel .assistant-header h2{margin-bottom:8px}
+body #assistant-panel .assistant-badge{display:inline-block;letter-spacing:.5px}
+body #assistant-panel .assistant-form{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch}
+body #assistant-panel .assistant-form input{width:100%;min-width:0;box-sizing:border-box;margin:0}
+body #assistant-panel .assistant-form button{width:auto;padding:8px 12px;margin:0}
+body #assistant-panel .assistant-audio-controls{display:grid;grid-template-columns:1fr 1fr}
+body #assistant-panel .assistant-audio-controls button{width:auto;min-width:0}
+
+#assistant-guide details{margin:10px 0}#assistant-guide button{display:block;width:100%;text-align:left;margin:6px 0}#assistant-panel [role=tablist]{display:flex;gap:6px;margin:12px 0}#assistant-panel [role=tab][aria-selected=true]{background:var(--ui-accent);color:#153c37}#dust-manual{display:grid;grid-template-columns:1fr 1fr;gap:10px}#dust-manual[hidden]{display:none}#dust-manual input{width:100%;box-sizing:border-box}#dust-input-status{font-size:12px;line-height:1.6}
+
+.solar-space-weather {margin:18px 0;border-top:1px solid #52616d;padding-top:16px}.solar-space-weather>summary{font-weight:700;cursor:pointer}.solar-space-weather .science-option{margin-top:8px}
+
+/* Traverse Risk Index (TRI) & Route Blinking Safety Badge */
+.route-tri-badge {
+  margin: 9px 0 6px;
+}
+.tri-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tri-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background: rgba(14, 23, 34, 0.85);
+  border: 1px solid var(--tri-color, #4ade80);
+  color: var(--tri-color, #4ade80);
+  text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@keyframes safetyPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+  }
+  50% {
+    opacity: 0.38;
+    transform: scale(0.96);
+    box-shadow: 0 0 2px rgba(74, 222, 128, 0.1);
+  }
+}
+
+.route-safety-badge-wrapper {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.route-safety-blink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  animation: safetyPulse 1.6s ease-in-out infinite;
+  background: rgba(8, 14, 22, 0.94);
+  border: 1.5px solid var(--tri-color, #4ade80);
+  color: var(--tri-color, #4ade80);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 2px #000;
+  letter-spacing: 0.5px;
+}
+
+/* Agentic Step-by-Step Execution Drawer & Citations */
+.ares-trace-drawer {
+  margin-top: 8px;
+  border: 1px solid rgba(115, 205, 227, 0.3);
+  border-radius: 6px;
+  background: rgba(7, 14, 22, 0.7);
+  font-size: 10.5px;
+  overflow: hidden;
+}
+.ares-trace-drawer summary {
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-weight: 600;
+  color: #9fe4cf;
+  background: rgba(18, 30, 44, 0.85);
+  user-select: none;
+  transition: background 0.15s ease;
+}
+.ares-trace-drawer summary:hover {
+  background: rgba(28, 45, 65, 0.95);
+}
+.ares-trace-drawer summary::-webkit-details-marker {
+  display: none;
+}
+.trace-pill {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid #4ade80;
+  color: #4ade80;
+  text-transform: uppercase;
+}
+.trace-steps {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 18, 27, 0.5);
+}
+.trace-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 10px;
+  line-height: 1.45;
+  color: #b8c9d4;
+}
+.trace-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 8.5px;
+  font-weight: bold;
+  border-radius: 50%;
+  background: #193144;
+  color: #73cde3;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.trace-step-content strong {
+  color: #e2f1f5;
+  display: inline-block;
+  margin-right: 4px;
+}
+.trace-citations {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ares-citation-badge {
+  display: inline-block;
+  margin: 1px 0;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: rgba(22, 42, 60, 0.7);
+  border: 1px solid rgba(115, 205, 227, 0.35);
+  border-radius: 3px;
+  color: #b5e7f3;
+  line-height: 1.4;
+}
+
+/* Shared tool presentation. Keep map graphics, data colors and behavior intact. */
+body {
+ --tool-font:Inter,"Segoe UI",Arial,sans-serif;
+ --tool-panel:#111a25ed;
+ --tool-card:#16232f;
+ --tool-field:#0c1520;
+ --tool-button:#1b2b38;
+ --tool-hover:#243a46;
+ --tool-on-accent:#12312d;
+ --tool-accent-soft:#9fe4cf14;
+ --tool-success:#a1e6c8;
+ --tool-caution:#f0c77e;
+ --tool-danger:#ff9da7;
+ --tool-info:#9ad9e5;
+}
+body.ui-expedition {
+ --tool-panel:#f9f8f4;
+ --tool-card:#f0efe9;
+ --tool-field:#fff;
+ --tool-button:#e7ece5;
+ --tool-hover:#dce7de;
+ --tool-on-accent:#fff;
+ --tool-accent-soft:#237f7310;
+ --tool-success:#21674f;
+ --tool-caution:#835714;
+ --tool-danger:#a33345;
+ --tool-info:#246878;
+}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) {
+ font-family:var(--tool-font);
+ font-size:12px;
+ line-height:1.65;
+ color:var(--ui-text);
+}
+body :is(#appearance-panel,#measure-panel,#route-panel,#walk-panel,#mission-panel,#moons-panel,#assistant-panel,#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) {
+ background:var(--tool-panel);
+ border-color:var(--ui-border);
+ border-left-width:1px;
+ border-radius:14px;
+}
+/* Older science tools did not receive the shared drawer placement rules. */
+body :is(#solar-panel,#dust-panel,#seismic-panel) {
+ position:fixed;
+ left:100px;
+ right:auto;
+ top:100px;
+ bottom:104px;
+ width:var(--ui-panel-width);
+ max-width:calc(100vw - 122px);
+ height:auto;
+ max-height:none;
+ padding:24px;
+ z-index:1000;
+ overflow:auto;
+ overscroll-behavior:contain;
+ scrollbar-gutter:stable;
+ backdrop-filter:blur(24px);
+ box-shadow:0 15px 55px #0005;
+}
+body.ui-expedition :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) {left:auto;right:16px;top:88px;bottom:15px;max-width:calc(100vw - 32px);padding:22px;backdrop-filter:none;box-shadow:0 4px 20px #273f3210}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) :is(button,input,select,textarea,summary) {
+ font-family:var(--tool-font);
+}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) h2 {
+ font-size:25px;
+ font-weight:550;
+ line-height:1.25;
+ letter-spacing:-.6px;
+ color:var(--ui-text);
+ margin:0 30px 22px 0;
+}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) :is(h3,h4) {
+ color:var(--ui-text);
+ font-weight:600;
+ line-height:1.5;
+}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) h3 {font-size:14px}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) h4 {font-size:12px}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) :is(p,li,label,summary) {font-size:12px;line-height:1.65;letter-spacing:0}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) :is(p,small,dt) {color:var(--ui-secondary)}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) small {font-size:11px;line-height:1.5}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) a {color:var(--ui-accent)}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) :is(input,select,textarea) {
+ color:var(--ui-text);
+ accent-color:var(--ui-accent);
+ border-color:var(--ui-border);
+ font-size:12px;
+}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea) {
+ background:var(--tool-field);
+ border-radius:6px;
+ padding:10px;
+ min-height:38px;
+}
+body :is(#sidebar,.map-tool-panel,#walk-panel,.ui-drawer) :is(input,textarea)::placeholder {color:var(--ui-secondary);opacity:.85}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) button:not(.tool-close) {
+ background:var(--tool-button);
+ border:1px solid var(--ui-border);
+ border-radius:6px;
+ color:var(--ui-text);
+ font-size:12px;
+ font-weight:500;
+ min-height:36px;
+ line-height:1.5;
+ padding:8px 10px;
+}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) button:not(.tool-close):hover:not(:disabled) {background:var(--tool-hover);border-color:var(--ui-accent)}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) :is(button[aria-pressed=true],button[aria-selected=true],button.active,.active-pilot,button.primary,.focus-station-btn,.dust-btn-primary,.seismic-btn-primary) {
+ background:var(--ui-accent)!important;
+ color:var(--tool-on-accent)!important;
+ border-color:var(--ui-accent);
+ box-shadow:none;
+ font-weight:600;
+}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) :is(button[aria-pressed=true],button[aria-selected=true],button.active,.active-pilot) :is(strong,small) {color:inherit}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) :is(button,input,select,textarea,summary):focus-visible {
+ outline:2px solid var(--ui-accent);
+ outline-offset:3px;
+}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) :is(.deploy-section,.deploy-route-actions,.telemetry-header,.telemetry-citation,.base-hud-header,.base-hud-footer,.deploy-controls-row) {border-color:var(--ui-border)}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel,#site-evaluation-panel) :is(.equipment-card,.telemetry-card,.base-hud-card,.location-briefing-card,.deployed-item,.dust-card,.seismic-card,.site-eval-card,.base-sub-metric) {
+ background:var(--tool-card);
+ color:var(--ui-text);
+ border-color:var(--ui-border);
+ border-radius:8px;
+ box-shadow:none;
+}
+body #plan-mission-panel :is(.telemetry-card,.base-hud-card,.cluster-contribution-banner,.deployed-item.selected) {border-left:2px solid var(--ui-accent)}
+body #plan-mission-panel :is(.equipment-thumb,.loc-spec-grid,.fleet-cluster-summary,.mission-tab-nav,.conduit-toggle-bar,.base-progress-track) {background:var(--tool-field);border-color:var(--ui-border);border-radius:6px}
+body #plan-mission-panel :is(.location-card-btn strong,.equipment-card-info strong,.deployed-info strong,.telemetry-item strong,.base-hud-title strong,.base-metric-val strong,.base-sub-metric strong,.loc-spec-row strong) {color:var(--ui-text);font-family:var(--tool-font)}
+body #plan-mission-panel :is(.equip-sub-badge,.base-metric-val,.net-pill,.base-sub-metric strong,.telemetry-item strong) {font-family:var(--tool-font);font-variant-numeric:tabular-nums;letter-spacing:0}
+body #plan-mission-panel :is(.equip-desc,.equip-dims,.drag-hint-pill,.telemetry-citation,.base-metric-val .dim,.base-sub-metric .sub-dim) {font-size:11px;line-height:1.55;color:var(--ui-secondary)}
+body #plan-mission-panel :is(.deploy-section h3,.route-action-title,.equip-sub-badge,.conduit-count-pill,.comms-status-pill) {color:var(--ui-accent);text-transform:none;letter-spacing:0}
+body #plan-mission-panel :is(.mission-pilot-tag,.base-hud-badge,.loc-badge,.official-nasa-badge,.cluster-pill,.tab-counter) {
+ background:var(--tool-accent-soft);
+ color:var(--ui-accent);
+ border-color:var(--ui-border);
+ border-radius:5px;
+ font-size:10px;
+ line-height:1.5;
+ letter-spacing:.2px;
+}
+body #plan-mission-panel .mission-tab-btn {gap:5px}
+body #plan-mission-panel .mission-tab-btn.active .tab-counter {background:var(--tool-on-accent);color:var(--ui-accent)}
+body #plan-mission-panel .active-pilot .loc-badge {background:var(--tool-on-accent);color:var(--ui-accent)}
+body #plan-mission-panel .equipment-card:hover {border-color:var(--ui-accent)}
+body #plan-mission-panel .equipment-card[aria-pressed=true] {border:2px solid var(--ui-accent);background:var(--tool-accent-soft)}
+body #plan-mission-panel .cluster-contribution-banner {background:var(--tool-accent-soft)}
+body #plan-mission-panel .cluster-contribution-banner :is(small,strong) {color:var(--ui-text)}
+/* These two values are inline presentation from the original tool template. */
+body #plan-mission-panel #loc-briefing-title {color:var(--ui-accent)!important}
+body #plan-mission-panel #mission-deploy-here-btn {background:var(--tool-accent-soft)!important;border-color:var(--ui-accent)!important}
+body #plan-mission-panel .deploy-placement-banner {background:var(--tool-accent-soft);color:var(--ui-text);border-color:var(--ui-accent);animation:none}
+body :is(#dust-panel,#seismic-panel) :is(.dust-metric strong,.seismic-metric strong,.dust-card-header h3,.seismic-card-header h3) {color:var(--ui-text);font-variant-numeric:tabular-nums}
+body :is(#dust-panel,#seismic-panel) :is(.dust-drivers-box,.seismic-canvas-wrap,.seismic-canvas-legend) {border-color:var(--ui-border)}
+body #seismic-panel .seismic-canvas-wrap {background:var(--tool-field)}
+body #seismic-panel .seismic-canvas-legend {background:var(--tool-card);color:var(--ui-secondary)}
+body #site-evaluation-panel .site-evaluator {background:var(--tool-accent-soft);border-color:var(--ui-border)}
+body #site-evaluation-panel :is(.site-eval-score,.site-eval-choices strong) {color:var(--ui-accent)}
+body #site-evaluation-panel :is(.site-eval-card td,.site-eval-card th,.site-eval-save) {border-color:var(--ui-border)}
+body #user-sites-menu :is(input:not([type=checkbox]),textarea,select) {background:var(--tool-field);color:var(--ui-text);border-color:var(--ui-border)}
+body #user-sites-menu :is(label,.user-site-coordinates label,.user-site-card small) {color:var(--ui-secondary)}
+body #user-sites-menu .user-site-card {background:var(--tool-card);border-color:var(--ui-border)}
+body #user-sites-menu .user-site-card h3 {color:var(--ui-text)}
+body #user-sites-menu #user-site-form button[type=submit] {background:var(--ui-accent);color:var(--tool-on-accent)}
+/* Status meanings stay distinct; route/overlay/sensor visualization colors are untouched. */
+body #plan-mission-panel :is(.telemetry-status-badge,.hud-status-pill,.net-pill,.base-sub-metric strong).nominal {color:var(--tool-success)}
+body #plan-mission-panel :is(.telemetry-status-badge,.base-sub-metric strong).caution {color:var(--tool-caution)}
+body #plan-mission-panel :is(.telemetry-status-badge,.hud-status-pill,.net-pill,.base-sub-metric strong).warning {color:var(--tool-danger)}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) :is(.telemetry-status-badge.nominal,.hud-status-pill.nominal,.net-pill.nominal,.dust-badge[data-tier=low],.seismic-trigger-badge[data-status=quiet]) {background:color-mix(in srgb,var(--tool-success) 12%,var(--tool-card));border-color:color-mix(in srgb,var(--tool-success) 35%,transparent);color:var(--tool-success)}
+body :is(#plan-mission-panel,#dust-panel) :is(.telemetry-status-badge.caution,.dust-badge[data-tier=moderate]) {background:color-mix(in srgb,var(--tool-caution) 12%,var(--tool-card));border-color:color-mix(in srgb,var(--tool-caution) 35%,transparent);color:var(--tool-caution)}
+body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) :is(.telemetry-status-badge.warning,.hud-status-pill.warning,.net-pill.warning,.dust-badge[data-tier=severe],.seismic-trigger-badge[data-status=triggered]) {background:color-mix(in srgb,var(--tool-danger) 12%,var(--tool-card));border-color:color-mix(in srgb,var(--tool-danger) 35%,transparent);color:var(--tool-danger)}
+@media(prefers-reduced-motion:reduce) {
+ body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) :is(button,.equipment-card) {transition:none;transform:none}
+}
+@media(max-width:650px) {
+ body :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel),body.ui-expedition :is(#plan-mission-panel,#solar-panel,#dust-panel,#seismic-panel) {left:8px!important;right:8px!important;top:auto!important;bottom:80px!important;width:auto;max-width:none;max-height:62dvh;min-height:0;height:auto;padding:20px;border-radius:13px;z-index:1040}
+}
+
+/* Camp navigation shares the existing Explore header and mission home. */
+body #sidebar .ui-drawer-top .camp-shortcut{display:flex;align-items:center;gap:5px;margin-left:auto;margin-right:8px;min-height:30px;padding:5px 8px;font-size:10px;letter-spacing:0;color:var(--ui-accent)}
+.explore-camp{padding:12px;margin:0 0 14px;border:1px solid var(--ui-border);border-radius:8px;background:var(--tool-card)}
+.explore-camp strong,.explore-camp small{display:block;margin-bottom:8px;overflow-wrap:anywhere}.explore-camp small{font-size:11px;color:var(--ui-secondary)}.explore-camp button{width:100%;font-size:12px}
+
+body #ground-help .ground-sky-control{display:flex;align-items:center;gap:7px;margin:10px 0 5px;font-size:11px;color:var(--ui-text)}
+#ground-simulate-sky{width:15px;height:15px;accent-color:var(--ui-accent)}#ground-sky-note{display:block;font-size:10px;line-height:1.5;color:var(--ui-secondary)}
+#ui-mission-menu .mission-camp-shortcut{position:absolute;right:52px;top:17px;min-height:30px;padding:5px 8px;font-size:11px;color:var(--ui-accent)}

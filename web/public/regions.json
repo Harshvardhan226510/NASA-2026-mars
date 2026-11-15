@@ -1,0 +1,520 @@
+{
+  "schema": "mars-atlas-regions/1",
+  "body": "Mars",
+  "coordinateConvention": "planetocentric latitude; signed east-positive longitude",
+  "regions": [
+    {
+      "id": "VALLES_MARINERIS",
+      "name": "Valles Marineris",
+      "category": "Featured",
+      "center": [
+        -59.2,
+        -13.74
+      ],
+      "bbox": [
+        -92.7,
+        -19.09,
+        -28.9,
+        -2.96
+      ],
+      "description": "Canyon-system context. High-detail archive presently covers selected western windows; full detailed coverage remains incomplete.",
+      "archiveUrl": "https://drive.google.com/drive/folders/130glERGlm6jsqIwdYg_MKGZ0kLkphfjD",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available"
+    },
+    {
+      "id": "ARCADIA_PLANITIA",
+      "name": "Arcadia Planitia",
+      "category": "Featured",
+      "center": [
+        -167.4,
+        40.0
+      ],
+      "bbox": [
+        -180,
+        33.87,
+        -143,
+        64.2
+      ],
+      "description": "Featured ice/landing study view inside the broader named plain. The archive bounds are not a complete named-feature boundary.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1BK2vnnyK47qcBDMu2krQLKRx_HRE36Sb",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available"
+    },
+    {
+      "id": "AP1",
+      "name": "AP1",
+      "category": "Landing studies",
+      "center": [
+        -157.9,
+        39.79431678965193
+      ],
+      "bbox": [
+        -159.58013756236065,
+        38.521658291649125,
+        -156.21986243763936,
+        41.06697528765473
+      ],
+      "description": "AP-1 ground-defined >=150 km window, based on a published study candidate, not NASA selected.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1eTd8CZn2SDSi72Nvojl4mfbcbQZrFBiv",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending"
+    },
+    {
+      "id": "AP9",
+      "name": "AP9",
+      "category": "Landing studies",
+      "center": [
+        -156.64999999999998,
+        40.01427269500623
+      ],
+      "bbox": [
+        -158.3357869263055,
+        38.74157015882953,
+        -154.96421307369448,
+        41.28697523118292
+      ],
+      "description": "AP-9 ground-defined >=150 km window, based on a published study candidate, not NASA selected.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1fOsHWgsY_wkAoJ8l5SAe6XohStxZGmU_",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending"
+    },
+    {
+      "id": "PM1",
+      "name": "PM1",
+      "category": "Landing studies",
+      "center": [
+        163.95,
+        35.22517715465901
+      ],
+      "bbox": [
+        162.37419685169147,
+        33.95337792632235,
+        165.5258031483085,
+        36.49697638299567
+      ],
+      "description": "PM-1 ground-defined >=150 km window, based on a published study candidate, not NASA selected.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1LQpwD10ELXV4XjUvIk1EeVPNlu_qI3QD",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "EM16",
+      "name": "EM16",
+      "category": "Landing studies",
+      "center": [
+        -167.97000000000003,
+        39.88429878362466
+      ],
+      "bbox": [
+        -169.65244108848898,
+        38.61162230265085,
+        -166.28755891151104,
+        41.15697526459846
+      ],
+      "description": "EM-16 ground-defined >=150 km window, based on a published study candidate, not NASA selected.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1-VE4BNkl2cwAJUDxiqm4nYWfy12awSjW",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "AP8",
+      "name": "AP8",
+      "category": "Landing studies",
+      "center": [
+        -158.7,
+        40.74412440728981
+      ],
+      "bbox": [
+        -160.40498925315634,
+        39.47127377354901,
+        -156.99501074684363,
+        42.01697504103061
+      ],
+      "description": "AP-8 ground-defined >=150 km window, based on a published study candidate, not NASA selected.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1_HCypuCiIKf4zUnN208bs0E7E6m2qMpC",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending"
+    },
+    {
+      "id": "ARCADIA_REGIONAL",
+      "name": "Arcadia study region",
+      "category": "Resources & terrain",
+      "center": [
+        -158.5,
+        40.0
+      ],
+      "bbox": [
+        -169,
+        34,
+        -148,
+        46
+      ],
+      "description": "Expanded Arcadia mid-latitude study surroundings and approach terrain around the five published windows. Ice evidence needs independent spectral/radar/thermal layers.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1BK2vnnyK47qcBDMu2krQLKRx_HRE36Sb",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending"
+    },
+    {
+      "id": "DEUTERONILUS_REGIONAL",
+      "name": "Deuteronilus Regional",
+      "category": "Resources & terrain",
+      "center": [
+        35.0,
+        40.0
+      ],
+      "bbox": [
+        20,
+        30,
+        50,
+        50
+      ],
+      "description": "Expanded Deuteronilus glacial networks, scarps and transition terrain. Ice-resource evidence is not a surveyed excavation reserve.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1a1dXIoKKenHktLPwlaCul_1w_t-yWOSv",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "UTOPIA_ICE_REGIONAL",
+      "name": "Utopia Ice Regional",
+      "category": "Resources & terrain",
+      "center": [
+        163.0,
+        39.0
+      ],
+      "bbox": [
+        150,
+        30,
+        176,
+        48
+      ],
+      "description": "Utopia ice-related landforms and mid-latitude approaches. Discovery envelope, not a landing ellipse or complete ice deposit boundary.",
+      "archiveUrl": "https://drive.google.com/drive/folders/12PRDyJN_U52o2YBlXkVl8PUk0Jf4bmYI",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "JEZERO",
+      "name": "Jezero",
+      "category": "Science",
+      "center": [
+        77.25,
+        18.5
+      ],
+      "bbox": [
+        75.5,
+        16.5,
+        79,
+        20.5
+      ],
+      "description": "Expanded Jezero crater, delta and approach terrain around Perseverance. Habitability and past water do not establish life.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1ZhkoXqskUw3IdslcOUE2m1KqA2n4y06H",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending"
+    },
+    {
+      "id": "GALE",
+      "name": "Gale",
+      "category": "Science",
+      "center": [
+        137.5,
+        -4.5
+      ],
+      "bbox": [
+        135,
+        -7,
+        140,
+        -2
+      ],
+      "description": "Expanded Gale crater and layered deposits around Curiosity; supports rover/geology registration work.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1byo0j_JgWF91j3FDol-YMMP5p046yMaG",
+      "detailStatus": "Native terrain and paired orthoimages verified; local 3D sample available",
+      "terrainStatus": "Local HiRISE pilot plus coarse global context; absolute registration pending"
+    },
+    {
+      "id": "OLYMPUS_SUMMIT",
+      "name": "Olympus Summit",
+      "category": "Landmarks",
+      "center": [
+        -132.5,
+        18.85
+      ],
+      "bbox": [
+        -134.0,
+        17.3,
+        -131.0,
+        20.4
+      ],
+      "description": "Olympus caldera and summit volcanic terrain; primary anchor 18.858N,227.289E.",
+      "archiveUrl": "https://drive.google.com/drive/folders/18KnPqRP55U3LF5146IqHk_51aBl98Pkg",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "OLYMPUS_FLANKS",
+      "name": "Olympus Flanks",
+      "category": "Landmarks",
+      "center": [
+        -132.0,
+        19.5
+      ],
+      "bbox": [
+        -138.0,
+        14.0,
+        -126.0,
+        25.0
+      ],
+      "description": "Broad Olympus flank/scarp discovery envelope around the caldera; finest useful available footprints outside already archived summit coverage. Envelope is not a measured volcano boundary.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1VU5RFrOlNwpWCkd8439MttuaJKDEFaTo",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "VALLES_COPRATES",
+      "name": "Valles western study A",
+      "category": "Science",
+      "center": [
+        -71.1,
+        -5.9
+      ],
+      "bbox": [
+        -73.2,
+        -7.5,
+        -69.0,
+        -4.3
+      ],
+      "description": "Eastern Coprates layered sediments and steep canyon terrain; primary anchor -5.954N,289.480E. Depositional origin remains uncertain.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1ZQhYAzdC9iR2HTAJGLXwWDRnxk2O32dR",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "VALLES_CANDOR",
+      "name": "Candor study region",
+      "category": "Science",
+      "center": [
+        -71.7,
+        -7.0
+      ],
+      "bbox": [
+        -73.0,
+        -8.3,
+        -70.4,
+        -5.7
+      ],
+      "description": "Candor Chasma canyon study window around -7.026N,288.292E; overlaps Coprates envelope, originals deduplicated.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1ytoDV7khnC1c7YEWzIl-ZtoJrt2S2L1g",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "TITHONIUM_SULFATES",
+      "name": "Tithonium science region",
+      "category": "Resources & terrain",
+      "center": [
+        -89.85,
+        -5.4
+      ],
+      "bbox": [
+        -91.5,
+        -7.0,
+        -88.2,
+        -3.8
+      ],
+      "description": "Tithonium sulfate-outcrop study window around -5.415N,270.106E. Imagery supplies morphology; mineral presence/abundance needs spectral evidence.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1nyzdEkIeiJC4Jxm_gOHLYAcSRfM-rfRe",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "EBERSWALDE_DELTA",
+      "name": "Eberswalde Delta",
+      "category": "Science",
+      "center": [
+        -33.4,
+        -23.75
+      ],
+      "bbox": [
+        -35.0,
+        -25.2,
+        -31.8,
+        -22.3
+      ],
+      "description": "Eberswalde preserved distributary channels, delta and layered deposits around -23.835N,326.381E; no evidence of life is asserted.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1OqnrPKheE3a2ZU8paJa0ahafiyFuktQ3",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "NILI_FOSSAE",
+      "name": "Nili Fossae",
+      "category": "Science",
+      "center": [
+        74.0,
+        18.75
+      ],
+      "bbox": [
+        72.0,
+        16.5,
+        76.0,
+        21.0
+      ],
+      "description": "Clay-rich older sedimentary terrain and iron/magnesium-bearing lavas near Nili Fossae, west of Jezero; primary anchor18.189N,73.978E. Does not establish economically recoverable metal deposits.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1__qBXjn3eoidtLOb_p-jXAKKmWSgsrMJ",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "MAWRTH_REGIONAL",
+      "name": "Mawrth Regional",
+      "category": "Science",
+      "center": [
+        -19.0,
+        24.5
+      ],
+      "bbox": [
+        -21.0,
+        22.5,
+        -17.0,
+        26.5
+      ],
+      "description": "Mawrth ancient channel, layered exposures and clay-bearing terrain around24.453N,341.200E; expands earlier seed coverage.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1A0OpihrgA9Zce-p5VG-EFD6wM7GiVPAn",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "OXIA_PLANUM",
+      "name": "Oxia Planum",
+      "category": "Science",
+      "center": [
+        -24.25,
+        18.25
+      ],
+      "bbox": [
+        -26.5,
+        15.5,
+        -22,
+        21
+      ],
+      "description": "Oxia stratigraphy and ExoMars exploration terrain, anchored by published HiRISE observations; not a proposed NASA human landing.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1YrwzzJXLHw8z3sZrqrWK5wl5saKlBSBZ",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "HOLDEN_CRATER",
+      "name": "Holden Crater",
+      "category": "Science",
+      "center": [
+        -34.0,
+        -26.25
+      ],
+      "bbox": [
+        -36.5,
+        -29,
+        -31.5,
+        -23.5
+      ],
+      "description": "Holden layered lake deposits, alluvial fans and crater walls. Full original imagery supports stratigraphy and terrain work.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1esm5mE--NbK3z-yzhMh8Hbt2BvV5xXR_",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "MERIDIANI_REGIONAL",
+      "name": "Meridiani Regional",
+      "category": "Resources & terrain",
+      "center": [
+        0.0,
+        1.0
+      ],
+      "bbox": [
+        -8,
+        -5,
+        8,
+        7
+      ],
+      "description": "Meridiani layered sediments, hematite evidence and Opportunity context; ore abundance and recoverability remain unverified.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1MLWKxsAKgSatgiNYkHEcLluakXYBOl6g",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "ARAM_CHAOS",
+      "name": "Aram Chaos",
+      "category": "Resources & terrain",
+      "center": [
+        -21.0,
+        2.5
+      ],
+      "bbox": [
+        -24,
+        0,
+        -18,
+        5
+      ],
+      "description": "Aram disrupted crater sediments and published hematite detections; morphology is distinct from mineral abundance.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1HQwsX4nuDVoX9k70z47sgaByPf1V8hfr",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "ARSIA_MONS",
+      "name": "Arsia Mons",
+      "category": "Landmarks",
+      "center": [
+        -119.5,
+        -8.5
+      ],
+      "bbox": [
+        -123,
+        -13,
+        -116,
+        -4
+      ],
+      "description": "Arsia volcanic flanks, caldera approaches and rough volcanic terrain; this envelope is not a mapped volcano boundary.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1UdFkcrX1mGAmFlXg5JKs007IRva7O7QT",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "PAVONIS_MONS",
+      "name": "Pavonis Mons",
+      "category": "Landmarks",
+      "center": [
+        -113.0,
+        0.5
+      ],
+      "bbox": [
+        -117,
+        -5,
+        -109,
+        6
+      ],
+      "description": "Pavonis volcanic stratigraphy, flanks and approach terrain, anchored by published observations.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1SUZ_7T5F4gNdGJMJGg8oMmakO1h9mRDe",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    },
+    {
+      "id": "ELYSIUM_MONS",
+      "name": "Elysium Mons",
+      "category": "Landmarks",
+      "center": [
+        148.0,
+        24.0
+      ],
+      "bbox": [
+        142,
+        18,
+        154,
+        30
+      ],
+      "description": "Elysium volcanic caldera, flanks and approach terrain, anchored by published HiRISE observations.",
+      "archiveUrl": "https://drive.google.com/drive/folders/1RLofsFcN-aLZW91tyrw9ImejizBZPh3y",
+      "detailStatus": "Native HiRISE archive; fine terrain integration pending",
+      "terrainStatus": "Global MOLA context; not high-detail navigation terrain"
+    }
+  ]
+}

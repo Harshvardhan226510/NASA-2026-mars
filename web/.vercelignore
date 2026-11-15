@@ -1,0 +1,14 @@
+.git/
+.vercel/
+.env*
+node_modules/
+tests/
+dev-server.mjs
+pipelines/
+tools/
+scripts/
+docs/
+
+
+public/overlay-readiness.*
+dist/overlay-readiness.*

@@ -1,0 +1,3 @@
+
+# Upstream provenance tests hash these exact source bytes on every platform.
+web/routing/upstream/*.py text eol=lf

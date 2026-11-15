@@ -1,0 +1,10 @@
+{
+  "product": "Mars Odyssey Neutron Spectrometer % WEH",
+  "publication": "https://doi.org/10.1016/j.icarus.2017.07.028",
+  "capabilities_url": "http://ms-mars.mars.asu.edu/?SERVICE=WMS&REQUEST=GetCapabilities",
+  "complete_capabilities_sha256": "485a60a9f4478b033e2799b44895fc7f3f76001e601c37f430bea8a803de3d08",
+  "metadata_excerpt": "service-layer.xml",
+  "metadata_excerpt_sha256": "d1b17f2fd8d94e7eaa378347f522ebeaf65f403ea69b13447f03d597a36ff100",
+  "coordinate_check": "A second EPSG:4326 global request equals the longitude-rolled JMARS:4 grid exactly. Independent EPSG:4326 MOLA peak: 17.5 N, 133.5 W, 21120 m.",
+  "registration_check_sha256": "81974907fd102c1e113160275105597e8db4cad262ca5e5c35e5cb31c5d81ff4"
+}

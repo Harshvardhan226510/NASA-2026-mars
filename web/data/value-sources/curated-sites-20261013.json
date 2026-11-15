@@ -1,0 +1,913 @@
+{
+  "schema": "mars-value-sites/1",
+  "reviewed": "2026-10-13",
+  "coordinateConvention": "Planetocentric latitude; signed east-positive longitude",
+  "categories": {
+    "science": "Scientific interest",
+    "minerals": "Mineral prospects",
+    "resources": "Crew resource candidates"
+  },
+  "boundaryPolicy": "Study windows are chosen mapping targets; they do not map reserve extent. Known features and source observations anchor the vicinity; exact rover/outcrop positions require source geometry.",
+  "sites": [
+    {
+      "id": "JEZERO_DELTA",
+      "name": "Jezero · western delta",
+      "category": "science",
+      "center": [
+        77.41,
+        18.46
+      ],
+      "radiusKm": 2,
+      "type": "Ancient river / lake",
+      "summary": "River-fed sediments are a target for ancient-environment and organic-preservation research. Habitable conditions do not establish life.",
+      "evidence": "Orbital and rover geology",
+      "coordinateNote": "Delta vicinity; approximate anchor",
+      "regionKey": "JEZERO",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA/JPL · Jezero lake and delta",
+          "url": "https://www.jpl.nasa.gov/news/press_kits/mars_2020/launch/mission/landing_site/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "BRIGHT_ANGEL",
+      "name": "Neretva Vallis · Bright Angel",
+      "category": "science",
+      "center": [
+        77.3,
+        18.5
+      ],
+      "radiusKm": 3,
+      "type": "Potential biosignature",
+      "summary": "Cheyava Falls research identified potential biosignatures in river-valley mudstone. Abiotic explanations and further validation remain relevant.",
+      "evidence": "Rover measurements; interpretation under study",
+      "coordinateNote": "Neretva/Bright Angel vicinity; not the exact rock",
+      "regionKey": "JEZERO",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA/JPL · Cheyava Falls potential biosignature",
+          "url": "https://www.jpl.nasa.gov/news/nasa-says-mars-rover-discovered-potential-biosignature-last-year/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "YELLOWKNIFE",
+      "name": "Gale · Yellowknife Bay",
+      "category": "science",
+      "center": [
+        137.45,
+        -4.59
+      ],
+      "radiusKm": 1,
+      "type": "Ancient habitable lake",
+      "summary": "Mudstones and stream deposits preserve an ancient environment suitable for microbial life. No organism is identified by this pin.",
+      "evidence": "Rover mineralogy and sedimentology",
+      "coordinateNote": "Rover-workplace vicinity",
+      "regionKey": "GALE",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Yellowknife Bay lake and stream deposits",
+          "url": "https://science.nasa.gov/resource/view-of-yellowknife-bay-formation-with-drilling-sites/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "GALE_METHANE",
+      "name": "Gale · methane monitoring",
+      "category": "science",
+      "center": [
+        137.44,
+        -4.62
+      ],
+      "radiusKm": 3,
+      "type": "Atmospheric chemistry",
+      "summary": "Curiosity measured variable near-surface methane. The source is unresolved and orbital measurements differ; this is a monitoring zone, not a located gas vent.",
+      "evidence": "Near-surface SAM detections",
+      "coordinateNote": "Gale monitoring vicinity; emission source unlocated",
+      "regionKey": "GALE",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Gale methane measurements and unresolved origin",
+          "url": "https://science.nasa.gov/solar-system/planets/mars/why-is-methane-seeping-on-mars-nasa-scientists-have-new-ideas/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "HOME_PLATE",
+      "name": "Gusev · Home Plate silica",
+      "category": "science",
+      "center": [
+        175.47,
+        -14.6
+      ],
+      "radiusKm": 2,
+      "type": "Hydrothermal environment",
+      "summary": "Spirit found silica-rich material consistent with an ancient hot-spring or steam-vent environment. Investigate preservation and volcanic history.",
+      "evidence": "Rover measurements",
+      "coordinateNote": "Columbia Hills/Home Plate vicinity",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Spirit silica and volcanic investigations",
+          "url": "https://science.nasa.gov/mission/mer-spirit/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "EBERSWALDE",
+      "name": "Eberswalde · delta sediments",
+      "category": "science",
+      "center": [
+        -33.5,
+        -24.1
+      ],
+      "radiusKm": 8,
+      "type": "Ancient river delta",
+      "summary": "A preserved delta is a target for river sediment transport, lake history and possible preservation of organic material.",
+      "evidence": "Orbital geomorphology",
+      "coordinateNote": "Published stereo-study centre vicinity",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA Ames · Eberswalde delta image catalogue",
+          "url": "https://marsoweb.nas.nasa.gov/landingsites/msl/topsites/eberswalde/"
+        },
+        {
+          "title": "HiRISE team · Published stereo terrain catalogue",
+          "url": "https://www.uahirise.org/hiwish/maps/dtms.jsp"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "HOLDEN",
+      "name": "Holden · lake beds and fans",
+      "category": "science",
+      "center": [
+        -34.7,
+        -26.8
+      ],
+      "radiusKm": 5,
+      "type": "Lake / flood deposits",
+      "summary": "Layered floor materials, fans and water-cut gullies provide targets for ancient lake and flood research.",
+      "evidence": "HiRISE geological interpretation",
+      "coordinateNote": "Published NASA image centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Holden lake beds and alluvial fans",
+          "url": "https://science.nasa.gov/photojournal/color-image-of-layers-in-holden-crater-a-candidate-msl-landing-site/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "OXIA_CLAYS",
+      "name": "Oxia Planum · clay succession",
+      "category": "science",
+      "center": [
+        -24.6,
+        18.2
+      ],
+      "radiusKm": 10,
+      "type": "Water-altered clay",
+      "summary": "Clay-bearing layered terrain is an astrobiology and water-history target. The pin is a study window, not an approved human camp.",
+      "evidence": "OMEGA/CRISM spectroscopy",
+      "coordinateNote": "Approximate ExoMars study vicinity",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Oxia and Mawrth clay stratigraphy",
+          "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/ExoMars_rover_targets_vast_bed_of_clay_in_search_for_life"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "MAWRTH_CLAYS",
+      "name": "Mawrth Vallis · clay stratigraphy",
+      "category": "science",
+      "center": [
+        -19.311,
+        24.5834
+      ],
+      "radiusKm": 8,
+      "type": "Ancient water alteration",
+      "summary": "Layered clays help investigate early aqueous environments and preservation potential.",
+      "evidence": "Orbital mineral spectra",
+      "coordinateNote": "NASA HiRISE catalogue image centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Global hydrated-mineral survey",
+          "url": "https://www.esa.int/ESA_Multimedia/Images/2022/08/Global_map_of_hydrated_minerals_on_Mars"
+        },
+        {
+          "title": "NASA Ames · Mawrth HiRISE coordinates",
+          "url": "https://marsoweb.nas.nasa.gov/landingsites/msl/topsites/mawrth_vallis/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "ERIDANIA",
+      "name": "Eridania · hydrothermal deposits",
+      "category": "science",
+      "center": [
+        177.5,
+        -37
+      ],
+      "radiusKm": 25,
+      "type": "Possible ancient seafloor",
+      "summary": "Mineral assemblages and thick deposits support an ancient seafloor-hydrothermal interpretation, a target for origins-of-life research.",
+      "evidence": "CRISM and geological interpretation",
+      "coordinateNote": "Approximate basin study anchor",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA/JPL · Eridania possible hydrothermal seafloor",
+          "url": "https://www.jpl.nasa.gov/news/mars-study-yields-clues-to-possible-cradle-of-life/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "CERBERUS",
+      "name": "Cerberus · fault and flow research",
+      "category": "science",
+      "center": [
+        156.501,
+        9.43635
+      ],
+      "radiusKm": 8,
+      "type": "Seismic / volcanic geology",
+      "summary": "Young faulting and channels intersect volcanic plains. Study active-region seismic history and competing water/lava formation models.",
+      "evidence": "Orbital morphology and seismic context",
+      "coordinateNote": "NASA THEMIS image centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Cerberus and Athabasca geology",
+          "url": "https://science.nasa.gov/photojournal/cerberus-fossaeathabasca-valles/"
+        },
+        {
+          "title": "NASA · Cerberus seismic region",
+          "url": "https://www.nasa.gov/missions/insight/nasas-insight-finds-marsquakes-from-meteoroids-go-deeper-than-expected/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "NILI_HYDROTHERMAL",
+      "name": "Nili Patera · hydrated silica",
+      "category": "science",
+      "center": [
+        67,
+        8.9
+      ],
+      "radiusKm": 8,
+      "type": "Ancient hydrothermal setting",
+      "summary": "Hydrated silica near a volcanic cone indicates a former hydrothermal microenvironment. No current hot spring is established.",
+      "evidence": "CRISM mineral spectra",
+      "coordinateNote": "Named-caldera centre; deposit vicinity",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA/JPL · Nili Patera hydrothermal silica",
+          "url": "https://www.jpl.nasa.gov/news/silica-on-a-mars-volcano-tells-of-wet-and-cozy-past/"
+        },
+        {
+          "title": "USGS/IAU · Nili Patera position",
+          "url": "https://planetarynames.wr.usgs.gov/Feature/4272"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "NORTH_LAYERS",
+      "name": "North pole · layered ice research",
+      "category": "science",
+      "center": [
+        92.8,
+        87.1
+      ],
+      "radiusKm": 5,
+      "type": "Climate archive",
+      "summary": "Layered ice records past climate cycles. This high-latitude study window is anchored to a published HiRISE stereo observation.",
+      "evidence": "HiRISE imaging/stereo",
+      "coordinateNote": "Published DTEPC_045474_2730_045618_2730_U01 centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · North-polar ice and climate layers",
+          "url": "https://science.nasa.gov/photojournal/icy-layers-and-climate-fluctuations-near-the-martian-north-pole/"
+        },
+        {
+          "title": "HiRISE team · Published stereo terrain catalogue",
+          "url": "https://www.uahirise.org/hiwish/maps/dtms.jsp"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "SOUTH_SPIDERS",
+      "name": "South pole · seasonal gas landforms",
+      "category": "science",
+      "center": [
+        -55.9,
+        -79.8
+      ],
+      "radiusKm": 5,
+      "type": "Seasonal CO₂ processes",
+      "summary": "Araneiform landforms are targets for seasonal frost and gas-driven surface-process research; the boundary is a monitoring window.",
+      "evidence": "Published polar morphology / stereo",
+      "coordinateNote": "Published DTEPC_048808_1000_048650_1000_A01 centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Seasonal CO₂ gas and spider landforms",
+          "url": "https://science.nasa.gov/photojournal/south-polar-spiders-on-mars/"
+        },
+        {
+          "title": "HiRISE team · Published stereo terrain catalogue",
+          "url": "https://www.uahirise.org/hiwish/maps/dtms.jsp"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "MEDUSAE_ICE",
+      "name": "Medusae Fossae · deep-ice hypothesis",
+      "category": "science",
+      "center": [
+        -180,
+        -2
+      ],
+      "radiusKm": 30,
+      "type": "Deep subsurface research",
+      "summary": "Radar is consistent with thick ice-rich layers beneath hundreds of metres of dry cover. This is not an immediate crew water source.",
+      "evidence": "MARSIS interpretation; unconfirmed ice composition",
+      "coordinateNote": "Approximate MFF study anchor",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Medusae Fossae suspected deeply buried ice",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Buried_water_ice_at_Mars_s_equator"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "NILI_CARBONATE",
+      "name": "Nili Fossae · carbonate / olivine",
+      "category": "minerals",
+      "center": [
+        78.8,
+        21.7
+      ],
+      "radiusKm": 12,
+      "type": "Carbonates / mafic silicates",
+      "summary": "Carbonate-bearing, altered mafic terrain is a mineralogical prospect. Extraction grade, tonnage and processing are unmeasured.",
+      "evidence": "Orbital spectroscopy",
+      "coordinateNote": "Published Nili carbonate science-study coordinate; not an exact outcrop",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA/JPL · Nili Fossae magnesium carbonate",
+          "url": "https://www.jpl.nasa.gov/news/scientists-find-missing-mineral-and-clues-to-mars-mysteries/"
+        },
+        {
+          "title": "MEPAG joint science working group · Nili carbonate study coordinate",
+          "url": "https://www.lpi.usra.edu/mepag/reports/reports/JSWG_Report_final_26March2012.pdf"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "COMANCHE",
+      "name": "Gusev · Comanche carbonates",
+      "category": "minerals",
+      "center": [
+        175.45,
+        -14.59
+      ],
+      "radiusKm": 2,
+      "type": "Magnesium / iron carbonate",
+      "summary": "Rover data identify magnesium-iron carbonate in Comanche rock. Use for mineral and processing assessment, not as a mapped reserve.",
+      "evidence": "Rover spectroscopy",
+      "coordinateNote": "Columbia Hills outcrop vicinity",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Comanche magnesium/iron carbonate",
+          "url": "https://science.nasa.gov/resource/carbonate-containing-martian-rocks/?site=insight"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "JUVENTAE",
+      "name": "Juventae · sulfate mounds",
+      "category": "minerals",
+      "center": [
+        -63,
+        -5
+      ],
+      "radiusKm": 15,
+      "type": "Hydrated sulfates",
+      "summary": "Light-toned layered mounds have sulfate signatures. Hydration and possible later material use need local sampling and process tests.",
+      "evidence": "OMEGA spectroscopy",
+      "coordinateNote": "ESA image-region centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Juventae sulfate mounds and position",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Sulphate_deposits_in_Juventae_Chasma"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "CANDOR_SULFATES",
+      "name": "Candor · sulfate-bearing layers",
+      "category": "minerals",
+      "center": [
+        -75,
+        -6
+      ],
+      "radiusKm": 15,
+      "type": "Sulfates / iron oxides",
+      "summary": "Layered canyon deposits show hydrated sulfates and ferric signatures. The study zone is not a continuous ore body.",
+      "evidence": "OMEGA spectroscopy",
+      "coordinateNote": "Approximate western Candor study anchor",
+      "regionKey": "VALLES",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Candor mineral spectra",
+          "url": "https://www.esa.int/ESA_Multimedia/Images/2005/11/Mars_Express_s_OMEGA_instrument_adds_detail_to_Candor_Chasma3"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "ARAM_MINERALS",
+      "name": "Aram Chaos · iron / sulfate strata",
+      "category": "minerals",
+      "center": [
+        -21.416,
+        3.643
+      ],
+      "radiusKm": 8,
+      "type": "Iron oxides / sulfates",
+      "summary": "Layered hematite and hydrated-sulfate assemblages are targets for mineral sampling and aqueous-history work. Mineability is unknown.",
+      "evidence": "TES/OMEGA/CRISM stratigraphy",
+      "coordinateNote": "HiRISE PSP_008311_1835 image centre",
+      "regionKey": "ARAM_CHAOS",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "HiRISE · Aram sulfate image and coordinates",
+          "url": "https://www.uahirise.org/PSP_008311_1835"
+        },
+        {
+          "title": "Published research · Aram hydrated sulfate stratigraphy",
+          "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2009JE003353"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "SIRENUM_SALTS",
+      "name": "Terra Sirenum · chloride salts",
+      "category": "minerals",
+      "center": [
+        -139,
+        -38.8
+      ],
+      "radiusKm": 8,
+      "type": "Chloride feedstock",
+      "summary": "Bright chloride-bearing deposits are later chemical-feedstock prospects. Purity, contaminants and extraction viability are untested.",
+      "evidence": "THEMIS/HiRISE mineral interpretation",
+      "coordinateNote": "Published NASA image coordinates",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Terra Sirenum chloride deposits and coordinates",
+          "url": "https://science.nasa.gov/resource/bright-exposures-of-chloride-salt-on-southern-mars/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "SIRENUM_RIVER",
+      "name": "Terra Sirenum · saline riverbed",
+      "category": "science",
+      "center": [
+        -154.8,
+        -32.9
+      ],
+      "radiusKm": 5,
+      "type": "Evaporites / past brines",
+      "summary": "Chloride deposits associated with a dried riverbed help investigate past brines and habitability.",
+      "evidence": "CaSSIS colour-infrared interpretation",
+      "coordinateNote": "Published CaSSIS MY36_021144_325_0 centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Terra Sirenum chloride riverbed and coordinates",
+          "url": "https://www.esa.int/ESA_Multimedia/Images/2024/08/Mermaid_on_salty_Mars"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "NILI_DACITE",
+      "name": "Nili Patera · basalt / dacite",
+      "category": "minerals",
+      "center": [
+        67.15,
+        8.9
+      ],
+      "radiusKm": 8,
+      "type": "Construction-material research",
+      "summary": "Mapped volcanic compositions include basaltic and dacitic material. Aggregate or glass use is a processing-study possibility, not proven feedstock.",
+      "evidence": "THEMIS multispectral mineral mapping",
+      "coordinateNote": "Approximate caldera flow-study anchor",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Nili Patera dacite versus basalt",
+          "url": "https://science.nasa.gov/resource/nili-patera-and-dacite-lava-flow"
+        },
+        {
+          "title": "USGS/IAU · Nili Patera position",
+          "url": "https://planetarynames.wr.usgs.gov/Feature/4272"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "VERA_HEMATITE",
+      "name": "Gale · Vera Rubin Ridge",
+      "category": "minerals",
+      "center": [
+        137.41,
+        -4.72
+      ],
+      "radiusKm": 3,
+      "type": "Iron-bearing sediment",
+      "summary": "Hematite-bearing bedrock is a mineralogical target. An iron signature alone does not establish a usable iron ore deposit.",
+      "evidence": "Orbital and rover mineralogy",
+      "coordinateNote": "Approximate ridge vicinity",
+      "regionKey": "GALE",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Vera Rubin Ridge hematite",
+          "url": "https://science.nasa.gov/resource/looking-up-at-layers-of-vera-rubin-ridge-on-sol-1790-figure-1/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "ACIDALIA_THORIUM",
+      "name": "Acidalia · trace-thorium survey",
+      "category": "minerals",
+      "center": [
+        -25,
+        45
+      ],
+      "radiusKm": 80,
+      "type": "Regional nuclear-material survey",
+      "summary": "Odyssey found a regional thorium-abundance signal. It does not locate ore, demonstrate fuel-grade concentration or identify mineable uranium.",
+      "evidence": "Regional gamma-ray map; coarse location",
+      "coordinateNote": "Broad northern Acidalia anchor; not a deposit location",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Regional Odyssey thorium map",
+          "url": "https://science.nasa.gov/photojournal/map-of-martian-thorium-at-mid-latitudes/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "HOMESTAKE",
+      "name": "Endeavour · Homestake vein",
+      "category": "minerals",
+      "center": [
+        -5.35,
+        -2.14
+      ],
+      "radiusKm": 2,
+      "type": "Calcium sulfate / gypsum",
+      "summary": "A rover-observed calcium/sulfur-rich vein is a sulfate-material study target. The small outcrop is not a reserve.",
+      "evidence": "Opportunity measurements",
+      "coordinateNote": "Cape York/Endeavour vicinity",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Homestake calcium-sulfate vein",
+          "url": "https://science.nasa.gov/photojournal/close-up-view-of-homestake-vein/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "MELAS_SULFATES",
+      "name": "Melas · hydrated canyon deposits",
+      "category": "minerals",
+      "center": [
+        -76.4,
+        -9.8
+      ],
+      "radiusKm": 12,
+      "type": "Sulfates / paleolake",
+      "summary": "Water-cut channels and sulfate-bearing deposits support a former-lake investigation and mineral sampling.",
+      "evidence": "HRSC/OMEGA geology",
+      "coordinateNote": "Approximate Melas study anchor",
+      "regionKey": "VALLES",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Melas former lake and sulfates",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Mars_how_low_can_you_go"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "ARCADIA_ICE",
+      "name": "Arcadia · shallow-ice candidate",
+      "category": "resources",
+      "center": [
+        -157.9,
+        39.8
+      ],
+      "radiusKm": 10,
+      "type": "Water / life-support feedstock",
+      "summary": "Thermal and orbital ice mapping make Arcadia a shallow-water-ice prospect. Local ice depth, access and purification need verification.",
+      "evidence": "Thermal/orbital inference",
+      "coordinateNote": "AP-1 study vicinity; not a certified ice borehole",
+      "regionKey": "ARCADIA",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Shallow ice prospects in Arcadia",
+          "url": "https://www.nasa.gov/solar-system/nasas-treasure-map-for-water-ice-on-mars/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "UTOPIA_ICE",
+      "name": "Utopia · radar ice deposit",
+      "category": "resources",
+      "center": [
+        118,
+        45
+      ],
+      "radiusKm": 20,
+      "type": "Water / life-support feedstock",
+      "summary": "Radar supports an ice-rich subsurface layer. It is a water prospect; overburden, access and treatment remain to be surveyed.",
+      "evidence": "SHARAD subsurface interpretation",
+      "coordinateNote": "Approximate radar-survey region anchor",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA/JPL · Utopia radar ice deposit",
+          "url": "https://www.jpl.nasa.gov/news/mars-ice-deposit-holds-as-much-water-as-lake-superior/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "DEUTERONILUS_ICE",
+      "name": "Deuteronilus · debris-covered ice",
+      "category": "resources",
+      "center": [
+        24.7,
+        42.2
+      ],
+      "radiusKm": 15,
+      "type": "Water / buried glacier",
+      "summary": "Radar detects glacier-like ice protected by rocky debris. Local excavation and safe access require a site survey.",
+      "evidence": "SHARAD detections",
+      "coordinateNote": "Published NASA map centre; wide-region anchor",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Deuteronilus radar ice and map centre",
+          "url": "https://science.nasa.gov/photojournal/glacial-ice-deposits-in-mid-latitudes-of-mars/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "PHLEGRA_ICE",
+      "name": "Phlegra · buried-ice prospect",
+      "category": "resources",
+      "center": [
+        160,
+        31
+      ],
+      "radiusKm": 12,
+      "type": "Water / buried ice",
+      "summary": "Radar and debris-apron morphology support buried ice. Depth and usable yield at the selected window are not confirmed.",
+      "evidence": "Radar plus geomorphology",
+      "coordinateNote": "Published ESA image centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Phlegra buried ice and image coordinates",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Mars_hills_hide_icy_past"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "KOROLEV_ICE",
+      "name": "Korolev · exposed water ice",
+      "category": "resources",
+      "center": [
+        165,
+        73
+      ],
+      "radiusKm": 12,
+      "type": "Water / surface ice",
+      "summary": "A permanent water-ice mound is visible in this cold-trap crater. High-latitude conditions complicate crew access and extraction.",
+      "evidence": "Orbital imaging and thermal context",
+      "coordinateNote": "Named-crater centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Korolev permanent water ice",
+          "url": "https://www.esa.int/ESA_Multimedia/Videos/2020/07/Flight_over_Korolev_Crater_on_Mars"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "LOUTH_ICE",
+      "name": "Louth · ice mound",
+      "category": "resources",
+      "center": [
+        103.3,
+        70.2
+      ],
+      "radiusKm": 3,
+      "type": "Water / ice mound",
+      "summary": "A published HiRISE stereo target covers an ice mound. Treat it as a water prospect with cold-environment access constraints.",
+      "evidence": "HiRISE stereo target",
+      "coordinateNote": "Published DTEPC_045439_2505_045887_2505_A01 centre",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "HiRISE team · Published stereo terrain catalogue",
+          "url": "https://www.uahirise.org/hiwish/maps/dtms.jsp"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "PHOENIX_ICE",
+      "name": "Phoenix · shallow ice and salts",
+      "category": "resources",
+      "center": [
+        -125.75,
+        68.22
+      ],
+      "radiusKm": 2,
+      "type": "Water / chemical processing",
+      "summary": "Phoenix directly sampled subsurface water ice and detected perchlorate. Water treatment and chemical handling are required; raw material is not potable.",
+      "evidence": "Lander sampling",
+      "coordinateNote": "Published NASA landing coordinates",
+      "regionKey": null,
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Phoenix ice, perchlorate and landing coordinates",
+          "url": "https://science.nasa.gov/mission/mars-phoenix/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "ROCKNEST_WATER",
+      "name": "Gale · Rocknest bound water",
+      "category": "resources",
+      "center": [
+        137.44,
+        -4.59
+      ],
+      "radiusKm": 1,
+      "type": "Water / heated regolith",
+      "summary": "SAM released water from sampled fine material during heating. Assess energy and contaminants before considering it a crew water feedstock.",
+      "evidence": "Rover thermal analysis",
+      "coordinateNote": "Rover-workplace vicinity",
+      "regionKey": "GALE",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "NASA · Rocknest bound water and volatiles",
+          "url": "https://www.nasa.gov/solar-system/curiositys-sam-instrument-finds-water-and-more-in-surface-sample/"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    },
+    {
+      "id": "CANDOR_HYDROGEN",
+      "name": "Candor · hydrogen-rich prospect",
+      "category": "resources",
+      "center": [
+        -72.8,
+        -6.8
+      ],
+      "radiusKm": 20,
+      "type": "Possible water / hydrogen",
+      "summary": "FREND mapped hydrogen-rich material. Ice versus hydrated minerals and local recoverable water require ground verification.",
+      "evidence": "Neutron-instrument inference",
+      "coordinateNote": "Approximate Candor survey anchor; coarse footprint",
+      "regionKey": "VALLES",
+      "perimeterMeaning": "Mapping study window, not a surveyed deposit or hazard boundary",
+      "sources": [
+        {
+          "title": "ESA · Candor near-surface hydrogen anomaly",
+          "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Exploration/ExoMars/ExoMars_discovers_hidden_water_in_Mars_Grand_Canyon"
+        }
+      ],
+      "detailTargetM": 0.35,
+      "detailStatus": "Coverage audit required; do not infer HiRISE coverage from this pin"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"name":"mars-field-atlas","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"node --env-file-if-exists=.env.local dev-server.mjs","build":"vite build","test":"node --test tests/*.test.mjs"},"dependencies":{"@vercel/functions":"3.9.11","geotiff":"3.0.5","leaflet":"1.9.4","lerc":"3.0.0","proj4":"2.22.0"},"devDependencies":{"vite":"8.3.4"}}

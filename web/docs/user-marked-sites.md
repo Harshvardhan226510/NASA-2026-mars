@@ -1,0 +1,25 @@
+# User-marked sites
+
+Open **Explore → My sites**, or use **Mark a site** under Places. Choose **Pick on map** (3D or 2D), **Use map crosshair**, or enter latitude/longitude. Add a name and optional description. Select **Mark as a site of value** and choose Science, Minerals or Resources to make the site available to nearby-route selection. Save the site, then use **View & edit** or click its pin to change its notes, position or value category. Removing the value designation keeps the ordinary marked site.
+
+Sites use their own **My marked sites** layer, separate from published research pins, and appear on the globe, 2D map and overview. Names and descriptions render as text. The browser stores up to 200 sites with names up to 80 characters and descriptions up to 2,000 characters. Saving an ordinary note does not invalidate an existing route. Changing a site-of-value collection invalidates old route calculations so updated targets can be applied.
+
+Named sites persist in this browser. Mission autosaves, downloads and links include their site records; older mission files remain readable. Loading a mission adds its site records to the local library and updates matching site IDs. It preserves other library sites. Browser-storage failures keep the draft visible and report that saving failed.
+
+User-defined value sites are labelled as user supplied, with no published source or scientific detection inferred. They can guide route preferences. They are excluded from published resource-evidence scoring in landing/base evaluation. The published `value-sites.json` remains unchanged.
+
+Implementation: `user-sites.js` validates and normalizes bounded site records; `user-sites-ui.js` provides the editor and Cesium/Leaflet markers. `ValueSites` combines user value records with the research list without drawing duplicate markers. Mission serialization includes the bounded records. Layer visibility, click dispatch and route invalidation connect through `app.js`.
+
+## Landing and base evaluation
+
+**Missions → Landing & base sites** opens a choice of **Landing site** and **Base station**, each with its own subsection, settings and candidate results. **Plan Mission → Evaluate a base station site** opens the base subsection directly. Switching types preserves the other form. Each type supports four candidates; recalculation applies only to that type and retains the candidate centres.
+
+Landing uses the ellipse dimensions, heading, slope, roughness, vehicle elevation ceiling, connected usable area and outer terrain buffer. Its default score weights are 35% slope, 20% roughness, 25% connected area and 20% surrounding terrain. Base uses a buildable footprint, terrain limits, operating date/period, resource search radius and the existing solar-supported weights: 10% slope, 10% roughness, 15% connected area, 30% sunlight, 20% ice evidence and 15% resource proximity. Default footprints are 5 × 3 km for landing and 2 × 2 km for base. Defaults are editable project scenarios, not NASA or vehicle safety limits. Physical DEM sampling, missing evidence, unresolved hazards and score bounds remain visible.
+
+Both subsections offer **Use map crosshair**, direct coordinates and **Pick site on map**. Picking on the globe or 2D map fills the centre; it does not run an evaluation until the user clicks Evaluate. Escape, closing the panel or changing evaluation type cancels picking. Other map tools are cancelled before picking to avoid conflicting actions.
+
+Every evaluated result has **Mark & save landing site/base station** plus an optional **Also make this a site of value** choice. The saved personal pin includes the candidate name, exact centre, evaluation type, score bounds, evidence coverage, terrain-screening status, footprint/settings and source sampling in its editable description. Failed/unknown candidates can be saved for comparison and keep those statuses explicitly. The full report remains available for complete evidence. **Edit marked site** opens My sites. Repeated saves update the same ID; recalculation prompts an explicit marker update so it does not silently replace saved notes. Removing a comparison candidate keeps its saved marker. Saved markers persist in browser storage and mission files/links; evaluation comparisons themselves remain session-only.
+
+`site-evaluation-settings.js` defines independent defaults, visible parameter groups and saved summary conversion. `site-evaluation-ui.js` constructs separate editors, map picking and candidate saving. Existing scoring equations, research sources, uncertainty treatment and source-aware terrain sampling are preserved. Personal resource annotations never become scientific resource evidence.
+
+Validation: automated tests cover independent presets, landing/base priorities, provenance and uncertainty in saved summaries, ID-preserving updates, resource-evidence exclusion and backwards-compatible mission serialization. Browser checks exercise separate forms, 3D/2D picking, real terrain evaluations, saving both candidate types, optional value labels, editing and persistence after reload.

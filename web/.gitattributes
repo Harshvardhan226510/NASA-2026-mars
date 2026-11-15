@@ -1,0 +1,14 @@
+# Source checksums cover the publisher's exact bytes, including line endings.
+data/value-sources/hydrous_sites_geo_map.csv -text
+data/value-sources/hydrous_sites_geo_map.lbl -text
+data/value-sources/dtm_catalogue.json -text
+
+# Preserve the exact upstream Git blob bytes on Windows and Linux.
+routing/upstream/*.py -text
+public/partner-pathfinding-sandbox.html -text
+# Fixed-width source records keep their publisher byte formatting.
+tools/data/grs/* -text -diff
+# Space-weather provenance hashes cover exact upstream response bytes.
+data/space-weather/raw/* -text -diff
+data/wind/raw/* -text -diff
+data/environment/raw/* -text -diff

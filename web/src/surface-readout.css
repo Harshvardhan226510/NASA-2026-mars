@@ -1,0 +1,34 @@
+body.ui-orbit #readout{display:none}
+body.ui-orbit #surface-readout{position:absolute;left:110px;bottom:48px;width:360px;max-width:calc(100% - 140px);box-sizing:border-box;padding:13px 15px;background:#101e2af0;border:1px solid #a9c8d238;border-left:2px solid #9fe4cf;border-radius:10px;z-index:616;box-shadow:0 6px 22px #0003;font-family:"Segoe UI",sans-serif;pointer-events:none;color:#f0f7fa}
+#surface-readout[hidden]{display:none!important}
+#surface-centre-label{letter-spacing:.3px}
+.surface-coordinate-row,.surface-quality-row{display:grid;grid-template-columns:55px 1fr;align-items:baseline;gap:12px}
+.surface-coordinate-row+.surface-coordinate-row{margin-top:10px}
+#surface-readout output{display:block;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.4}
+#surface-readout .surface-readout-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#b3c9d5;font-weight:650}
+#surface-centre,#surface-cursor{font-size:14px;font-weight:600;color:#f1f8fa}
+#surface-cursor-height,#surface-terrain-quality{font-size:11px;color:#b7ccd6;margin-top:3px}
+.surface-quality-row{margin-top:11px;border-top:1px solid #b4d2da26;padding-top:9px}
+#surface-image-quality{font-size:12px;font-weight:600;color:#a9ead7}
+#surface-readout :is(#surface-image-quality,#surface-terrain-quality){white-space:normal;overflow-wrap:anywhere}
+body.ui-orbit:not(.moon-view) :is(#elevation-legend,#magnetic-legend,#science-legend,#mineral-legend,#wind-legend,#environment-legend,#space-weather-hud,#source-legend){bottom:calc(60px + var(--surface-readout-height,160px))}
+body.ui-orbit.ui-pane-open #surface-readout{left:476px}
+body.ui-orbit:not(.moon-view) #busy{bottom:calc(60px + var(--surface-readout-height,160px))}
+@media(max-width:1150px){body.ui-orbit.ui-pane-open #surface-readout{left:auto;right:28px;bottom:205px;width:335px;max-width:calc(100% - 500px)}body.ui-orbit.ui-pane-open:not(.moon-view) :is(#elevation-legend,#magnetic-legend,#science-legend,#mineral-legend,#wind-legend,#environment-legend,#space-weather-hud,#source-legend){bottom:calc(217px + var(--surface-readout-height,160px))}}
+@media(max-width:900px){body.ui-orbit.ui-pane-open #surface-readout{display:none}}
+@media(max-width:650px){
+ body.ui-orbit #surface-readout{left:17px;right:17px;bottom:77px;width:auto;max-width:none;padding:10px 12px}
+ #surface-centre,#surface-cursor{font-size:13px}.surface-coordinate-row+.surface-coordinate-row{margin-top:7px}.surface-quality-row{margin-top:8px;padding-top:7px}.surface-coordinate-row,.surface-quality-row{grid-template-columns:49px 1fr;gap:9px}
+ body.ui-orbit:not(.moon-view) #altitude{bottom:calc(91px + var(--surface-readout-height,150px))}
+ body.ui-orbit:not(.moon-view) :is(#elevation-legend,#magnetic-legend,#science-legend,#mineral-legend,#wind-legend,#environment-legend,#space-weather-hud,#source-legend){bottom:calc(168px + var(--surface-readout-height,150px))}
+ body.ui-orbit:not(.moon-view) #ui-data-details{bottom:74px;left:auto;right:17px}
+}
+@media(max-width:360px){#surface-centre,#surface-cursor{font-size:12px}#surface-cursor-height,#surface-terrain-quality{font-size:10px}.surface-coordinate-row,.surface-quality-row{grid-template-columns:43px 1fr;gap:6px}body.ui-orbit #surface-readout{left:12px;right:12px;padding:10px}}
+
+#surface-relief-scale{font-size:10px;color:#e5c59a;margin-top:5px}
+.terrain-relief-control{border:0;border-top:1px solid #a9c8d238;margin:16px 0 0;padding:14px 0 0}
+.terrain-relief-control legend{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted,#a9b9c5);padding:0 7px 0 0}
+.terrain-relief-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;cursor:pointer;padding:3px 0}
+.terrain-relief-row small{margin-left:6px;color:var(--accent,#9fe4cf);font-variant-numeric:tabular-nums}
+.terrain-relief-row input{accent-color:var(--accent,#9fe4cf);width:16px;height:16px}
+#terrain-relief-help{margin:9px 0 0}

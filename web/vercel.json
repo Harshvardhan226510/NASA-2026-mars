@@ -1,0 +1,65 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/*.mjs": {
+      "maxDuration": 120
+    },
+    "api/route.py": {
+      "maxDuration": 300,
+      "includeFiles": "data/moons/**",
+      "excludeFiles": "{node_modules/**,tests/**,public/**,data/environment/**,data/space-weather/**,data/spacecraft/**,data/value-sources/**,data/wind/**,pipelines/**,scripts/**,dist/**,.env*,tools/**}"
+    }
+  },
+  "rewrites": [{"source": "/api/moons", "destination": "/api/route?service=moons"}],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/prepared/tiles/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/eva-elevation/(.*)",
+      "headers": [{"key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800"}]
+    },
+    {
+      "source": "/tile-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/prepared/tiles/(.*).bin",
+      "headers": [
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        }
+      ]
+    }
+  ]
+}
