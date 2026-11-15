@@ -53,4 +53,11 @@
 .assistant-model-option{display:flex;gap:8px;align-items:center;font-size:12px;margin-top:14px}.assistant-model-option input{width:auto;margin:0}
 .return-route-card{border-left-style:dashed}.route-map-legend{position:absolute;right:24px;top:220px;z-index:450;max-width:265px;padding:10px 12px;border:1px solid #81959b55;border-radius:8px;background:#142029ed;color:#e8eef1;font:11px/1.5 sans-serif;pointer-events:none}.route-map-legend[hidden]{display:none}.route-map-legend>div{display:flex;align-items:center;gap:8px;margin:3px 0}.route-line-swatch{display:inline-block;width:26px;flex:none;border-top:3px solid}.return-line-swatch{border-top-style:dashed}@media(max-width:650px){.route-map-legend{right:12px;top:210px;max-width:210px;font-size:10px}}
 .route-card>h3{margin:4px 0 8px;color:var(--route-color);font-size:13px}
+.route-risk-marker{pointer-events:none!important;display:grid;place-items:center}
+.route-risk-marker span{padding:2px 6px;border:1px solid #78929c65;border-radius:7px;background:#142029ed;font:600 11px/1.2 system-ui;white-space:nowrap}
+.route-legend-risk{margin-left:auto;white-space:nowrap;font-size:10px}
+.route-risk-details p{margin:6px 0;font-size:11px}
+.tars-mission-sources{display:flex;flex-wrap:wrap;gap:5px 10px;margin:8px 0}
+.tars-mission-sources a{color:#9fe4cf;font-size:11px;text-decoration:underline}
+.assistant-msg .tars-mission-sources + button{margin-top:3px}
 .route-visibility-controls{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;border:1px solid #94d8c066;border-radius:7px;background:#122c2b;margin:12px 0 8px}.route-visibility-controls>button{font-size:11px;padding:9px 7px}.route-visibility-controls>button:first-child{grid-column:1/-1}.route-visibility-controls>button[aria-pressed=true]{background:#9fe2cd;color:#102621;border-color:#9fe2cd}.route-visibility-status{font-size:11px;line-height:1.5;color:#c1d9d0}.route-card>button{display:flex;align-items:center;justify-content:space-between;gap:8px}.route-title-action{font-size:10px;font-weight:400;text-align:right}.route-card>button[aria-pressed=true]{background:#a8dfcc}.route-card>button:focus-visible,.route-visibility-controls>button:focus-visible{outline:2px solid #fff;outline-offset:2px}

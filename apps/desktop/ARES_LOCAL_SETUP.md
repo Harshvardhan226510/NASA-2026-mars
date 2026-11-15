@@ -18,14 +18,10 @@ Qwen GGUFs can store duplicated tied embedding tensors; storedTensorScalars is n
 
 Original mars_eva_q8.gguf / mars_eva_q4_k_m.gguf weights, licence and checksum have not been provided. Original domain accuracy, Q8 footprint, Pi coexistence and operational EVA rule certification remain pending. The real official-base test validates runtime transport and generation, not Mars expertise. See TEST_REPORT.md for actual measurements.
 
-Desktop voice input is now drafted as offline English push-to-talk using a private whisper.cpp tiny.en runtime. Click once to record, click Stop recording (or reach 30 seconds), review the transcript, and press Send. Closing/hiding/reloading or losing window focus cancels recording. No audio is uploaded; temporary WAV/transcript files are deleted after completion/cancellation and app-owned leftovers are removed on next startup. This source draft has not been built or acceptance-tested. Existing v0.1.1 installers retain the disabled microphone. Speech synthesis uses only locally installed voices; missing voices produce an explanation instead of silent failure. An independent offline output pack now has optional Windows installer/Pi first-launch setup and playback integration in source; archive preparation, testing, hosting and catalogue approval remain pending. See docs/ARES_OPTIONAL_VOICE.md. See docs/ARES_VOICE_REVIEW.md.
+Desktop voice input supports offline English push-to-talk with whisper.cpp tiny.en. Review the transcript before sending. Optional offline spoken replies use the platform voice pack. See [offline voice setup](docs/ARES_OPTIONAL_VOICE.md).
 
 ## Training (developer only)
 
 No training starts implicitly. tools/train_mars_slm.py --inspect-data audits the existing JSONL without importing GPU libraries. The observed train/validation sets contain 5,824/648 records (5,817/648 unique pairs); provenance labels do not establish individual factual authenticity.
 
 The explicit GPU training configuration uses QLoRA rank/alpha 16, dropout 0, all seven specified attention/MLP projections, NF4 base + FP16 compute, adamw_8bit, learning rate 2e-4, cosine schedule, batch 4 with accumulation 4, one epoch and 2,048-token sequences. Export records real discovered Q8_0/Q4_K_M files and hashes; an adapter-only result is not called a completed GGUF. No GPU training, new fine-tune, accuracy evaluation or T4 timing was performed here. Modelfile and tools/run_mars_offline_slm.py remain optional legacy developer recipes.
-
-## User-supplied Q8 weights received — 3 November 2026
-
-The previously missing mars_eva_q8.gguf is now present locally in artifacts/models. Metadata and SHA-256 were inspected, and the supplied training notebook was read. See docs/ARES_MODEL_PROVENANCE.md for the exact file identity, notebook configuration, official base licence and remaining evidence gaps. The file is not bundled, automatically imported or uploaded. Actual inference and platform acceptance remain deferred with the user's final testing/packaging gate.

@@ -10,7 +10,7 @@ In physical mode, the visible disk fills a 256-pixel texture, drawn in world met
 
 The Sun has a dedicated data source so its astronomical bounding volume and scale do not affect map-pin billboard collections. Only the camera far plane is extended enough to include the actual Sun, with a small margin; the near plane is unchanged. Disabling sunlight restores the prior far plane unless another feature has subsequently changed it. Depth testing stays enabled, allowing Mars and foreground terrain to hide the Sun.
 
-Sunlight controls show physical diameter, the calculated distance in millions of kilometres, and the apparent diameter as seen from Mars. At the manual check's fixed time, 2026-11-03 00:00 UTC, the model gives approximately 238.8 million km and 0.334°. Over Mars's orbit, the expected angular diameter is roughly 0.32–0.39°.
+Sunlight controls show physical diameter, the calculated distance in millions of kilometres, and the apparent diameter as seen from Mars. Over Mars's orbit, the expected angular diameter is roughly 0.32–0.39°.
 
 ## Verification
 

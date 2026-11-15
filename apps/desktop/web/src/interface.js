@@ -17,6 +17,8 @@ const icons = {
  plan:'<rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 5V3h6v2 M9 11h6 M9 15h6"/>',
  saved:'<path d="M5 3h12l3 3v15H4V3Z M8 3v6h8V3 M8 21v-7h8v7"/>',
  system:'<circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="11" ry="5" transform="rotate(-35 12 12)"/>',
+ skyline:'<path d="m2 16 6-6 4 4 6-8 4 6"/><circle cx="18" cy="6" r="2"/>',
+ close:'<path d="m6 6 12 12 M18 6 6 18"/>',
  focus:'<path d="M9 3H3v6 M15 3h6v6 M3 15v6h6 M21 15v6h-6"/>',
  help:'<circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 4 3v2 M12 17v.1"/>',
  perimeter:'<path d="m5 7 11-3 4 12-9 4-6-5Z" stroke-dasharray="2 2"/><circle cx="5" cy="7" r="1"/><circle cx="16" cy="4" r="1"/><circle cx="20" cy="16" r="1"/><circle cx="11" cy="20" r="1"/>',
@@ -26,10 +28,10 @@ const icons = {
  chevron:'<path d="m9 5 7 7-7 7"/>',
 };
 const svg = key => key==='close'?closeIcon:`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icons[key] || icons.explore}</svg>`;
-const panels = ['comms-panel','assistant-panel','appearance-panel','measure-panel','route-panel','walk-panel','mission-panel','moons-panel','solar-panel','dust-panel','seismic-panel','plan-mission-panel','site-evaluation-panel'];
-const closers = ['comms-close','assistant-close','appearance-close','measure-close','route-close','walk-close','mission-close','moons-close','solar-close','dust-close','seismic-close','plan-mission-close','site-evaluation-close'];
-const targets = {comms:'comms-toggle',assistant:'assistant-toggle',layers:'appearance-toggle',measure:'measure-toggle',routes:'route-toggle',plan:'walk-toggle',saved:'mission-toggle',system:'moons-open',solar:'solar-toggle',dust:'dust-toggle',seismic:'seismic-toggle',deploy:'plan-mission-toggle'};
-const panelActions = {'comms-panel':'comms','assistant-panel':'assistant','appearance-panel':'layers','measure-panel':'measure','route-panel':'routes','walk-panel':'plan','mission-panel':'saved','moons-panel':'system','solar-panel':'solar','dust-panel':'dust','seismic-panel':'seismic','plan-mission-panel':'deploy','site-evaluation-panel':'sites'};
+const panels = ['comms-panel','assistant-panel','appearance-panel','measure-panel','route-panel','walk-panel','mission-panel','moons-panel','solar-panel','dust-panel','seismic-panel','plan-mission-panel','site-evaluation-panel','skyline-panel'];
+const closers = ['comms-close','assistant-close','appearance-close','measure-close','route-close','walk-close','mission-close','moons-close','solar-close','dust-close','seismic-close','plan-mission-close','site-evaluation-close','skyline-close'];
+const targets = {comms:'comms-toggle',assistant:'assistant-toggle',layers:'appearance-toggle',measure:'measure-toggle',routes:'route-toggle',plan:'walk-toggle',saved:'mission-toggle',system:'moons-open',solar:'solar-toggle',dust:'dust-toggle',seismic:'seismic-toggle',deploy:'plan-mission-toggle',skyline:'skyline-toggle'};
+const panelActions = {'comms-panel':'comms','assistant-panel':'assistant','appearance-panel':'layers','measure-panel':'measure','route-panel':'routes','walk-panel':'plan','mission-panel':'saved','moons-panel':'system','solar-panel':'solar','dust-panel':'dust','seismic-panel':'seismic','plan-mission-panel':'deploy','site-evaluation-panel':'sites','skyline-panel':'skyline'};
 
 export function initInterface() {
  const variant=new URLSearchParams(location.search).get('ui')??import.meta.env?.VITE_ATLAS_INTERFACE??'pyxis';
@@ -54,8 +56,8 @@ export function initInterface() {
  const nav = document.createElement('nav');
  nav.id = 'ui-rail'; nav.setAttribute('aria-label','Main tools');
  const choices = orbit
-  ? [['explore','Explore','Places, research sites and spacecraft'],['layers','Layers','Scientific overlays and map appearance'],['deploy','Plan Mission','Deploy 3D scientific instruments with offline telemetry'],['measure','Measure','Distance and area'],['routes','Routes','Compare terrain-aware routes'],['solar','Sunlight','Mars sunlight & shadows'],['dust','Dust ML','NASA context and experimental dust-model inputs'],['seismic','Seismic Lab','Planetary seismology & InSight marsquakes'],['assistant','ARES AI','Map and route assistant'],['missions','Missions','Marswalk plans and saved missions'],['system','System','Moons, orbiters and time']]
-  : [['explore','Explore Mars','Places & spacecraft'],['layers','Scientific layers','Understand the surface'],['deploy','Plan Mission','Deploy 3D scientific instruments'],['measure','Measure','Distance & area'],['routes','Routes','Compare terrain-aware paths'],['solar','Sunlight','Mars sunlight & shadows'],['dust','Dust ML','NASA context and experimental dust-model inputs'],['seismic','Seismic Lab','Planetary seismology & InSight marsquakes'],['assistant','ARES AI','Map and route assistant'],['plan','Marswalk','Plan, audit & record'],['saved','Saved missions','Save, share & reopen'],['system','Mars system','Moons & orbiters']];
+  ? [['explore','Explore','Places, research sites and spacecraft'],['layers','Layers','Scientific overlays and map appearance'],['deploy','Plan Mission','Deploy 3D scientific instruments with offline telemetry'],['measure','Measure','Distance and area'],['routes','Routes','Compare terrain-aware routes'],['solar','Sunlight','Mars sunlight & shadows'],['dust','Dust ML','NASA context and experimental dust-model inputs'],['seismic','Seismic Lab','Planetary seismology & InSight marsquakes'],['skyline','Skyline VPR','Rank skyline candidates'],['assistant','ARES AI','Map and route assistant'],['missions','Missions','Marswalk plans and saved missions'],['system','System','Moons, orbiters and time']]
+  : [['explore','Explore Mars','Places & spacecraft'],['layers','Scientific layers','Understand the surface'],['deploy','Plan Mission','Deploy 3D scientific instruments'],['measure','Measure','Distance & area'],['routes','Routes','Compare terrain-aware paths'],['solar','Sunlight','Mars sunlight & shadows'],['dust','Dust ML','NASA context and experimental dust-model inputs'],['seismic','Seismic Lab','Planetary seismology & InSight marsquakes'],['skyline','Skyline VPR','Rank skyline candidates'],['assistant','ARES AI','Map and route assistant'],['plan','Marswalk','Plan, audit & record'],['saved','Saved missions','Save, share & reopen'],['system','Mars system','Moons & orbiters']];
  nav.innerHTML = (!orbit ? '<div class="ui-nav-caption">YOUR WORKSPACE</div>' : '') + choices.map(([id,title,note],i)=>`${!orbit && i===3?'<div class="ui-nav-caption">MISSION PLANNING</div>':''}${!orbit && id==='system'?'<div class="ui-nav-caption">BEYOND THE SURFACE</div>':''}<button data-action="${id}" aria-pressed="false" title="${note}">${svg(id==='missions'?'plan':id)}<span>${title}${!orbit?`<small>${note}</small>`:''}</span></button>`).join('') + `<button data-action="help" class="ui-rail-help">${svg('help')}<span>Quick guide</span></button>`;
  document.body.append(nav);
 
@@ -149,7 +151,7 @@ export function initInterface() {
   if(startupFailed){$('graphics-recovery')?.querySelector('a')?.focus();return;}
   if(!ready){queued=action;note.textContent='The map is connecting. Your tool will open when it is ready.';note.hidden=false;return;}
   focusMode(false);lastFocus=document.activeElement;
-  if(document.body.classList.contains('moon-view')&&['measure','routes','plan','assistant','solar','dust','seismic','deploy','perimeter','comms'].includes(action))$('home').click();
+  if(document.body.classList.contains('moon-view')&&['measure','routes','plan','assistant','solar','dust','seismic','deploy','perimeter','comms','skyline'].includes(action))$('home').click();
   if(action==='sites'||action==='base-sites'||action==='camp-setup'){
    if(document.body.classList.contains('moon-view'))$('home').click();
    closeTools('site-evaluation-panel');
@@ -167,6 +169,7 @@ export function initInterface() {
   sync();
  };
  $('site-evaluation-close').onclick=()=>{$('site-evaluation-panel').hidden=true;};
+ if($('skyline-close'))$('skyline-close').onclick=()=>{$('skyline-panel').hidden=true;};
  document.addEventListener('click',e=>{
   const action=e.target.closest('[data-action]');if(action)perform(action.dataset.action);
   const tab=e.target.closest('[data-directory]');if(tab&&ready)directory(tab.dataset.directory);

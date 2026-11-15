@@ -29,7 +29,7 @@ The API validates UTC inputs and rejects dates outside 2025–2035. Missing or i
 The original source kernel remains outside the web app. `scripts/prepare-moons.py` reproduces the bounded subset from the three official kernel downloads. Production uses pinned `spiceypy==8.3.0`; no third-party service is contacted to calculate each visitor’s moon positions.
 
 
-## Current-time orbiters — 21 October 2026
+## Current-time orbiters
 
 The spacecraft endpoint requests NASA/JPL Horizons geometric ICRF vectors relative to Mars center 499, with UTC epochs, metre positions and metre/second velocities. Minute position/velocity samples feed cubic Hermite interpolation on the same UTC clock as the moons and IAU Mars rotation. Missing positions are hidden; there is no extrapolation or artificial circular orbit.
 
@@ -41,7 +41,7 @@ Mars system → Orbit display offers **Path**, **Trail**, and **Hidden**. Path d
 
 The reproduced Cesium 1.145 zoom failure came from dynamic environment-map GPU cleanup being replayed during translucent depth picking. All Mars GLB viewers now use stable environment lighting, and map navigation excludes translucent paths and overlays from depth picking. Orbital navigation uses Mars terrain or the reference sphere instead of rendering another depth pass. These changes preserve opaque surface depth picking. The optional `?motion-debug=1` diagnostic records camera, canvas and invalid command bounds if an unrelated renderer failure occurs.
 
-The current-source check returned MRO, Odyssey, Mars Express, TGO and Hope. All five have prediction portions in their JPL descriptions. They are **current-time modeled positions from published trajectory solutions**, not live tracking observations or navigation guarantees. MAVEN stays unavailable after JPL's 4 December 2025 reliability cutoff. This is not a complete inventory of every object at Mars. Spacecraft mesh attitudes remain illustrative and models remain enlarged; distances and position coordinates are not enlarged.
+The current-source check returned MRO, Odyssey, Mars Express, TGO and Hope. All five have prediction portions in their JPL descriptions. They are **current-time modeled positions from published trajectory solutions**, not live tracking observations or navigation guarantees. MAVEN stays unavailable after JPL’s published reliability cutoff. This is not a complete inventory of every object at Mars. Spacecraft mesh attitudes remain illustrative and models remain enlarged; distances and position coordinates are not enlarged.
 
 The independent ten-second MRO fixture validates minute-state interpolation to within one metre at the tested times. This checks numerical interpolation only: it does not establish equivalent physical accuracy for predicted trajectories. The existing native-SPICE tests independently check moon positions and frame transforms.
 

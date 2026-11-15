@@ -80,11 +80,12 @@ import './planetary-seismology.css';
 import './interface-horizon.css';
 import {MissionDeployer} from './mission-deployer.js';
 import './mission-deployer.css';
+import {SkylineVPRUI} from './skyline-vpr-ui.js';
 const $=id=>document.getElementById(id),rad=Math.PI/180;
 let perimeterTool,retainedPerimeters,commsCoverage,pointTools;
 const keys={ARCADIA_PLANITIA:'ARCADIA',ARCADIA_REGIONAL:'ARCADIA',AP1:'ARCADIA',AP8:'ARCADIA',AP9:'ARCADIA',PM1:'ARCADIA',EM16:'ARCADIA',VALLES_MARINERIS:'VALLES',VALLES_REGIONAL:'VALLES',VALLES_COPRATES:'VALLES',VALLES_CANDOR:'VALLES',TITHONIUM_SULFATES:'VALLES',JEZERO:'JEZERO',GALE:'GALE'};
 let viewer,map,mini,navigation,comparison,compareCentre,compareLinked=true,lastDetail,regions=[],catalog,region,dataset,raster,surface,mainLayer,miniLayer,outline,miniOutline,miniCenter,view='3d',filter='All',changing=0,mapFitted=false,popupRegion,footprintEntities=[],values,places,userSites,siteEvaluator,groundSky;
-let desktopOverlays,terrainRelief,polarContext=false,measurement,layers,elevation,magnetic,scienceMenu,graticule,routePlanner,altitude,overview,spacecraft,missions,moons,colorMap,assistant,solarLighting,dustPredictor,seismology,missionDeployer,appearanceMode='color';
+let desktopOverlays,terrainRelief,polarContext=false,measurement,layers,elevation,magnetic,scienceMenu,graticule,routePlanner,altitude,overview,spacecraft,missions,moons,colorMap,assistant,solarLighting,dustPredictor,seismology,missionDeployer,skylineVPR,appearanceMode='color';
 const appearancePreference='mars-atlas-appearance-v2';
 const globeContext=[],flatContext=[],miniContext=[];
 const loadingWork={native:0,retrying:false,prefetch:false,globe:0};
@@ -279,16 +280,9 @@ function updateFootprints(visible=layers?.state.footprints&&!moons?.exploring){
      .bindTooltip(name,{permanent:true,direction:'top',className:'observation-label'}).addTo(group);
    }
    const ink=C.Color.fromCssColorString(color);
-   const [horizontal,vertical]=spanMeters(observation.bounds);
-   const corners=[[west,south],[east,south],[east,north],[west,north]];
-   const points=corners.flatMap(([lon,lat],i)=>{
-    const [nextLon,nextLat]=corners[(i+1)%corners.length];
-    const segments=Math.max(1,Math.ceil((i%2?vertical:horizontal)/60));
-    return Array.from({length:segments},(_,j)=>[lon+(nextLon-lon)*j/segments,lat+(nextLat-lat)*j/segments]);
-   });
-   points.push(corners[0]);
+   const corners=[west,south,east,south,east,north,west,north,west,south];
    const entity=viewer.entities.add({
-    polyline:{positions:new C.CallbackProperty(measurementPositions(C,viewer.scene,points,()=>surface,1.6),false),arcType:C.ArcType.NONE,width,material:ink},
+    polyline:{positions:C.Cartesian3.fromDegreesArray(corners,ellipsoid),arcType:C.ArcType.RHUMB,width,material:ink,clampToGround:true},
     position:C.Cartesian3.fromDegrees((west+east)/2,north,0,ellipsoid),
     label:{text:name,font:'12px sans-serif',fillColor:ink,outlineColor:C.Color.BLACK,outlineWidth:3,style:C.LabelStyle.FILL_AND_OUTLINE,heightReference:C.HeightReference.CLAMP_TO_GROUND,pixelOffset:new C.Cartesian2(0,-8),distanceDisplayCondition:new C.DistanceDisplayCondition(0,60000)}
    });
@@ -520,7 +514,21 @@ async function boot(){
  });
  values.onUserEdit=site=>{const saved=userSites.sites.find(s=>s.id===site.id);if(saved)userSites.edit(saved);};
  values.setUserSites(userSites.sites);userSites.setVisible(layers.state.userSites);routePlanner.render();
- places=new PlaceContext(viewer,map,{regions:()=>regions,onEnter:enter,view:()=>view,focus:current3DCameraFocus,onPosition:updatePolarContext});await places.load();viewer.scene.postRender.addEventListener(syncWalkOverview);viewer.camera.changed.addEventListener(()=>{navigation.sync();if(navigation.mode==='ground'&&view!=='split'||dataset)return;const focus=current3DCameraFocus();if(focus?.point&&view==='split')comparison.from3D({focus:focus.point,perPixel:focus.width*1000/Math.max(1,viewer.canvas.clientWidth)});syncGlobeOverview(focus);});
+ places=new PlaceContext(viewer,map,{regions:()=>regions,onEnter:enter,view:()=>view,focus:current3DCameraFocus,onPosition:updatePolarContext});await places.load();
+ viewer.scene.postRender.addEventListener(syncWalkOverview);
+ let cameraSyncScheduled=false;
+ viewer.camera.changed.addEventListener(()=>{
+  navigation.sync();
+  if(navigation.mode==='ground'&&view!=='split'||dataset)return;
+  if(cameraSyncScheduled)return;
+  cameraSyncScheduled=true;
+  requestAnimationFrame(()=>{
+   cameraSyncScheduled=false;
+   const focus=current3DCameraFocus();
+   if(focus?.point&&view==='split')comparison.from3D({focus:focus.point,perPixel:focus.width*1000/Math.max(1,viewer.canvas.clientWidth)});
+   syncGlobeOverview(focus);
+  });
+ });
  const pointImageCoverage=point=>{
    const downloaded=desktopOverlays?.qualityAt(point,view==='2d');
    if(downloaded)return downloaded;
@@ -531,20 +539,31 @@ async function boot(){
  new SurfaceReadout(viewer,map,{view:()=>view,focus:currentSurfaceFocus,active:()=>!moons?.exploring||view==='2d',surface:()=>surface,
   pickPreview:pickSurfacePreview,imageAt:pointImageCoverage});
  await spacecraft.load();
- solarLighting=new SolarLighting(viewer,{currentFocus:current3DCameraFocus,getRegion:()=>region,onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);dustPredictor?.open(false);seismology?.open(false);missionDeployer?.open(false);$('region-popup').hidden=true;}});
- dustPredictor=new DustPredictor(viewer,{currentFocus:currentSurfaceFocus,map,elevation:async point=>{const height=surface?.sourceElevation?.(...point);if(Number.isFinite(height))return {height,source:'HiRISE physical DEM'};const overview=await overviewElevation();return {height:overview.heightAt(...point),source:'NASA MOLA · ≈15 km overview'};},getRegion:()=>region,onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);seismology?.open(false);missionDeployer?.open(false);$('region-popup').hidden=true;}});
- seismology=new PlanetarySeismology(viewer,{onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);dustPredictor?.open(false);$('region-popup').hidden=true;}});
- missionDeployer=new MissionDeployer({viewer,map,leaflet:L,routePlanner,terrainRelief,solarLighting,scienceMenu,dustPredictor,seismology,spacecraft,surface:()=>surface,getRegion:()=>region,openCoverage:point=>commsCoverage.openMast(point),onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);dustPredictor?.open(false);seismology?.open(false);$('region-popup').hidden=true;}});
- assistant=new EVAssistant(viewer,map,mini,{name:pyxis?'Tars AI':'ARES',routePlanner,values,places,setView,navigation,measurement,appearance,enter,fitFootprint,regionOverview,home,getRegion:()=>region,getDataset:()=>dataset,regions:()=>regions,currentFocus:currentSurfaceFocus,spacecraft,moons,solarLighting,dustPredictor,seismology,missionDeployer,atlas:{layer:async(key,show,variant)=>{layers.set(key,show);if(variant){$('science-variant').value=variant;$('science-variant').dispatchEvent(new Event('change'));}},all:show=>layers.all(show),focus:show=>{const button=$('ui-focus');if(button?.getAttribute('aria-pressed')!==String(show))button?.click();},feature:(id,show)=>{const input=$(id);if(!input)throw Error('Feature unavailable');input.checked=show;input.dispatchEvent(new Event('change'));},dust:target=>dustPredictor.predictForTarget(target),context:query=>atlasDataDescription({query,point:currentSurfaceFocus()?.point,item:scienceMenu.active,reference:scienceMenu.raster.grid,wind:scienceMenu.wind.packet,environment:scienceMenu.environment.packet,environmentItem:scienceMenu.environment.item,quality:$('coverage-state')?.textContent})+(scienceMenu.dynamic.item?'\nSelected space-weather record: '+scienceMenu.dynamic.item.name+'. '+$('space-weather-controls').textContent:'')},onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);solarLighting?.open(false);dustPredictor?.open(false);seismology?.open(false);missionDeployer?.open(false);$('region-popup').hidden=true;}});
+ solarLighting=new SolarLighting(viewer,{currentFocus:current3DCameraFocus,getRegion:()=>region,onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);dustPredictor?.open(false);seismology?.open(false);missionDeployer?.open(false);skylineVPR?.open(false);$('region-popup').hidden=true;}});
+ dustPredictor=new DustPredictor(viewer,{currentFocus:currentSurfaceFocus,map,elevation:async point=>{const height=surface?.sourceElevation?.(...point);if(Number.isFinite(height))return {height,source:'HiRISE physical DEM'};const overview=await overviewElevation();return {height:overview.heightAt(...point),source:'NASA MOLA · ≈15 km overview'};},getRegion:()=>region,onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);seismology?.open(false);missionDeployer?.open(false);skylineVPR?.open(false);$('region-popup').hidden=true;}});
+ seismology=new PlanetarySeismology(viewer,{onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);dustPredictor?.open(false);skylineVPR?.open(false);$('region-popup').hidden=true;}});
+ missionDeployer=new MissionDeployer({viewer,map,leaflet:L,routePlanner,terrainRelief,solarLighting,scienceMenu,dustPredictor,seismology,spacecraft,surface:()=>surface,getRegion:()=>region,openCoverage:point=>commsCoverage.openMast(point),onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);dustPredictor?.open(false);seismology?.open(false);skylineVPR?.open(false);$('region-popup').hidden=true;}});
  commsCoverage=new CommsCoverage({viewer,map,mini,navigation,catalog:()=>catalog,dataset:()=>dataset,focus:()=>currentSurfaceFocus()?.point,inSpace:()=>Boolean(moons?.exploring),
   onAnalysisChange:()=>routePlanner.workbench.renderSafety(),
   mast:()=>missionDeployer.deployed.find(record=>record.id===missionDeployer.selectedDeployedId&&record.typeId==='comms_mast')??missionDeployer.deployed.find(record=>record.typeId==='comms_mast'),
   openPanel:()=>document.querySelector('#ui-mission-menu [data-action="comms"]').click(),
   focusMap:focusPerimeter,
-  onOpen:()=>{if(navigation.mode==='ground')navigation.setMode('pan');perimeterTool?.pick(false);siteEvaluator?.cancelPick();userSites?.cancelPick();missionDeployer?.cancelPlacement();routePlanner.picking=null;routePlanner.renderPicking();$('region-popup').hidden=true;}
+  onOpen:()=>{if(navigation.mode==='ground')navigation.setMode('pan');perimeterTool?.pick(false);siteEvaluator?.cancelPick();userSites?.cancelPick();missionDeployer?.cancelPlacement();routePlanner.picking=null;routePlanner.renderPicking();skylineVPR?.open(false);$('region-popup').hidden=true;}
  });
+ skylineVPR=new SkylineVPRUI({viewer,map,mini,surface:()=>surface,getElevationSampler:async()=>{const o=await overviewElevation();return o.heightAt;},setStart:p=>routePlanner.setPoint('start',p),openRoute:b=>routePlanner.open(b),routePlanner,onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);assistant?.open(false);solarLighting?.open(false);dustPredictor?.open(false);seismology?.open(false);missionDeployer?.open(false);$('region-popup').hidden=true;}});
+ $('skyline-toggle')?.addEventListener('click',()=>skylineVPR.open($('skyline-panel').hidden));
+ assistant=new EVAssistant(viewer,map,mini,{name:pyxis?'TARS AI':'ARES',routePlanner,values,places,setView,navigation,measurement,appearance,enter,fitFootprint,regionOverview,home,getRegion:()=>region,getDataset:()=>dataset,regions:()=>regions,currentFocus:currentSurfaceFocus,spacecraft,moons,solarLighting,dustPredictor,seismology,missionDeployer,skylineVPR,atlas:{layer:async(key,show,variant)=>{layers.set(key,show);if(variant){$('science-variant').value=variant;$('science-variant').dispatchEvent(new Event('change'));}},all:show=>layers.all(show),focus:show=>{const button=$('ui-focus');if(button?.getAttribute('aria-pressed')!==String(show))button?.click();},feature:(id,show)=>{const input=$(id);if(!input)throw Error('Feature unavailable');input.checked=show;input.dispatchEvent(new Event('change'));},dust:target=>dustPredictor.predictForTarget(target),context:query=>atlasDataDescription({query,point:currentSurfaceFocus()?.point,item:scienceMenu.active,reference:scienceMenu.raster.grid,wind:scienceMenu.wind.packet,environment:scienceMenu.environment.packet,environmentItem:scienceMenu.environment.item,quality:$('coverage-state')?.textContent})+(scienceMenu.dynamic.item?'\nSelected space-weather record: '+scienceMenu.dynamic.item.name+'. '+$('space-weather-controls').textContent:'')},onOpen:()=>{moons?.open(false);missions?.open(false);appearance(false);measurement?.open(false);routePlanner?.open(false);solarLighting?.open(false);dustPredictor?.open(false);seismology?.open(false);missionDeployer?.open(false);skylineVPR?.open(false);$('region-popup').hidden=true;}});
  for(const r of regions){const marker=viewer.entities.add({position:C.Cartesian3.fromDegrees(...r.center,0,ellipsoid),...regionMarkerGraphics(C,r,R)});marker.region=r;}
- updateRegionMarkers();viewer.camera.changed.addEventListener(updateRegionMarkers);
+ let regionMarkersScheduled=false;
+ const scheduleRegionMarkers=()=>{
+  if(regionMarkersScheduled)return;
+  regionMarkersScheduled=true;
+  requestAnimationFrame(()=>{
+   regionMarkersScheduled=false;
+   updateRegionMarkers();
+  });
+ };
+ updateRegionMarkers();viewer.camera.changed.addEventListener(scheduleRegionMarkers);
  if(pyxis&&desktopState&&window.marsDesktop.inspectPoint){
   pointTools=installPointTools({viewer,map,mini,api:window.marsDesktop,inSpace:()=>Boolean(moons?.exploring),
    places,values,spacecraft,deployer:missionDeployer,comms:commsCoverage,camp:currentCamp,

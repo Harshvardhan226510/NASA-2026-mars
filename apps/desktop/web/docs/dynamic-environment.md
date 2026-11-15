@@ -33,7 +33,7 @@ EMARS and the “Most similar MY” historical climate analogue. The verified so
 label was `EMARS MY32 Moderate dust`; it is taken from each response, never
 hard-coded as the current Mars year. NASA describes the app as testing software.
 
-`GET /api/environment?parameter=Tsurf&at=2026-10-18T21:00:00.000Z`
+`GET /api/environment?parameter=Tsurf&at=<archived-UTC-timestamp>`
 serves a validated grid. Only the documented parameters `Tsurf`, `Tair`,
 `Psurf`, `Dust`, `Ice`, `Vapor`, `Frost`, `Snow`, and `Rad` are accepted.
 Requests use the complete provider form, Scientific units, explicit UTC and

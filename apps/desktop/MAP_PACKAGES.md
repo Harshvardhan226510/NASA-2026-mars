@@ -18,7 +18,7 @@ The downloader requires Online Mode, checks disk space, streams bounded data, re
 
 ## Review-stage quality picker metadata
 
-The Map Manager customisation changes are an untested source draft. See docs/MAP_MANAGER_REVIEW.md. The existing 0.1.1 installer does not include them.
+See [Map Manager and the local map API](docs/DEVELOPER_MAP_API.md) for current download options.
 
 Optional presentation metadata supplies scope (global or regional), qualityLabel, imageryMetersPerPixel, optional terrainMetersPerPixel, optional description, and, for regional packages, placeId and placeName. Values describe actual stored sampling; they must not claim finer imagery or terrain than the native source grids. A regional presentation requires the existing verified native dataset/sourceFiles structure. Packages without presentation remain supported by the installed library and legacy approved-package list.
 

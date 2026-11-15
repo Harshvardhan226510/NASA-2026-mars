@@ -13,14 +13,19 @@ export function simplifyRouteDisplay(points,tolerance){
 // Display geometry only. Scientific route coordinates and costs stay unchanged.
 export function addTerrainRoute(C,viewer,source,points,{surface=()=>null,color,width=3,dashed=false,priority=0}={}){
  const ink=C.Color.fromCssColorString(color);
- for(const leg of terrainMeasurementLegs(points)){
-  const positions=measurementPositions(C,viewer.scene,leg,surface,1+priority*.5);let cached,last=-Infinity;
-  const display=()=>{const now=performance.now();if(!cached||now-last>250){const p=positions(),scene=viewer.scene,camera=scene.camera,distance=camera?.positionWC&&C.Cartesian3.distance?Math.min(C.Cartesian3.distance(camera.positionWC,p[0]),C.Cartesian3.distance(camera.positionWC,p.at(-1))):0,tolerance=distance*2*Math.tan((camera?.frustum?.fovy??1)/2)/Math.max(1,scene.canvas?.clientHeight??1)*.75;cached=simplifyRouteDisplay(p,tolerance);last=now;}return cached;};
-  source.entities.add({polyline:{
+ const legs=terrainMeasurementLegs(points);
+ const combined=[];
+ for(const leg of legs){
+  if(!combined.length){combined.push(...leg);}
+  else{combined.push(...leg.slice(1));}
+ }
+ const getPositions=measurementPositions(C,viewer.scene,combined,surface,1+priority*.5);
+ const display=()=>getPositions();
+ source.entities.add({polyline:{
   positions:new C.CallbackProperty(display,false),
   arcType:C.ArcType.NONE,clampToGround:false,width,
   material:dashed?new C.PolylineDashMaterialProperty({color:ink,dashLength:16}):ink
- }});}
+ }});
 }
 export const ROUTE_WIDTHS=[3,3,3];
 // Visual precedence only; not a ranking of route safety or scientific value.

@@ -117,7 +117,7 @@ registration check. See `tools/data/mons/` for the metadata excerpt and provenan
   1σ statistical uncertainty is selectable separately, in matching units.
   Correction-factor errors are not silently added. Spatial bins are not
   instrument resolving power; this is neither radiation dose nor ice reserves.
-* PSI/JPL SWIM4IMIM August 2025 reference composites:
+* PSI/JPL SWIM4IMIM reference composites:
   https://swim.psi.edu/SWIM4MIMProducts.php . Full 7200×2400 source arrays span
   60°S–60°N at 20 pixels/degree. Depth bands are 0–1 m, 1–5 m and >5 m sensing
   composites. Signed consistency −1…+1 is not calibrated likelihood, measured

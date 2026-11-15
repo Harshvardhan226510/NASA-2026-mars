@@ -34,7 +34,9 @@ body.ui-pyxis #pyxis-controls button:is([aria-pressed=true],[aria-expanded=true]
 }
 body.ui-pyxis #pyxis-controls button:hover,body.ui-pyxis #ui-rail button:hover{border-color:#a9ecd8c4}
 body.ui-pyxis #pyxis-controls button svg{width:21px;height:21px;stroke:currentColor;stroke-width:1.5}
-body.ui-pyxis #pyxis-tars svg{width:25px;height:25px}
+body.ui-pyxis .tars-logo{display:block;object-fit:contain;flex:none}
+body.ui-pyxis #pyxis-tars .tars-logo{margin:-3px 0}
+body.ui-pyxis #assistant-panel h2{display:flex;align-items:center;gap:8px}
 body.ui-pyxis #pyxis-right{
  position:absolute;right:var(--pyxis-inset);top:76px;bottom:20px;display:grid;
  grid-template-columns:minmax(0,1fr) var(--pyxis-control);grid-template-rows:auto minmax(min-content,1fr) auto;

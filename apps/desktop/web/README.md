@@ -119,7 +119,7 @@ checkpoints observations, and reuses verified output after reconnection.
 Colab maximum duration is not guaranteed. The archive collector is a separate
 job; avoid launching duplicate builders against the same catalogue.
 
-## Source gaps and elevation integrity — 16 October 2026
+## Source gaps and elevation integrity
 
 The reported Sacra Fossae black strips reproduced with both our custom mesh and
 Cesium's heightmap mesh, but disappeared with an ellipsoid. The official

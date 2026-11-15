@@ -115,6 +115,7 @@ export class MissionWorkbench{
    this.returns=expeditionReturns(result,this.state.profile,this.budget,this.pendingReports?null:this.returnField,this.state);
   }catch(e){this.budget=null;this.analysis=null;this.returns=null;this.message(e.message);}
   this.render();
+  this.host.refreshRiskReadouts?.();
  }
  render(){
   this.syncBusy();const c=this.state.config;$('walk-profile').value=this.state.profile;$('walk-departure').value=c.departure.slice(0,16);for(const [id] of WALK_FIELDS){const input=$('walk-'+id);if(input)input.value=c[id]??'';}

@@ -10,7 +10,7 @@ The optional official Qwen base weights are not shipped in the installer. Their 
 
 ## Bundled offline speech input in 0.2.0
 
-whisper.cpp v1.9.5 (MIT) and tiny.en converted Whisper model (publisher MIT) are pinned in runtime/speech-config.json. The explicit preparation recipe retains engine/model licences and the model card. The 0.2.0 app bundles both; the historical v0.1.1 app did not. See docs/ARES_VOICE_REVIEW.md.
+whisper.cpp v1.9.5 (MIT) and tiny.en converted Whisper model (publisher MIT) are pinned in runtime/speech-config.json. The explicit preparation recipe retains engine/model licences and the model card. The 0.2.0 app bundles both; the historical v0.1.1 app did not. See [ARES setup](ARES_LOCAL_SETUP.md).
 
 ## Optional offline spoken replies in 0.2.0
 

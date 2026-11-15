@@ -339,6 +339,166 @@ body #assistant-panel .assistant-audio-controls button{width:auto;min-width:0}
 
 .solar-space-weather {margin:18px 0;border-top:1px solid #52616d;padding-top:16px}.solar-space-weather>summary{font-weight:700;cursor:pointer}.solar-space-weather .science-option{margin-top:8px}
 
+/* Traverse Risk Index (TRI) & Route Blinking Safety Badge */
+.route-tri-badge {
+  margin: 9px 0 6px;
+}
+.tri-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tri-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background: rgba(14, 23, 34, 0.85);
+  border: 1px solid var(--tri-color, #4ade80);
+  color: var(--tri-color, #4ade80);
+  text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@keyframes safetyPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+  }
+  50% {
+    opacity: 0.38;
+    transform: scale(0.96);
+    box-shadow: 0 0 2px rgba(74, 222, 128, 0.1);
+  }
+}
+
+.route-safety-badge-wrapper {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.route-safety-blink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  animation: safetyPulse 1.6s ease-in-out infinite;
+  background: rgba(8, 14, 22, 0.94);
+  border: 1.5px solid var(--tri-color, #4ade80);
+  color: var(--tri-color, #4ade80);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 2px #000;
+  letter-spacing: 0.5px;
+}
+
+/* Agentic Step-by-Step Execution Drawer & Citations */
+.ares-trace-drawer {
+  margin-top: 8px;
+  border: 1px solid rgba(115, 205, 227, 0.3);
+  border-radius: 6px;
+  background: rgba(7, 14, 22, 0.7);
+  font-size: 10.5px;
+  overflow: hidden;
+}
+.ares-trace-drawer summary {
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-weight: 600;
+  color: #9fe4cf;
+  background: rgba(18, 30, 44, 0.85);
+  user-select: none;
+  transition: background 0.15s ease;
+}
+.ares-trace-drawer summary:hover {
+  background: rgba(28, 45, 65, 0.95);
+}
+.ares-trace-drawer summary::-webkit-details-marker {
+  display: none;
+}
+.trace-pill {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid #4ade80;
+  color: #4ade80;
+  text-transform: uppercase;
+}
+.trace-steps {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 18, 27, 0.5);
+}
+.trace-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 10px;
+  line-height: 1.45;
+  color: #b8c9d4;
+}
+.trace-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 8.5px;
+  font-weight: bold;
+  border-radius: 50%;
+  background: #193144;
+  color: #73cde3;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.trace-step-content strong {
+  color: #e2f1f5;
+  display: inline-block;
+  margin-right: 4px;
+}
+.trace-citations {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ares-citation-badge {
+  display: inline-block;
+  margin: 1px 0;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: rgba(22, 42, 60, 0.7);
+  border: 1px solid rgba(115, 205, 227, 0.35);
+  border-radius: 3px;
+  color: #b5e7f3;
+  line-height: 1.4;
+}
+
 /* Shared tool presentation. Keep map graphics, data colors and behavior intact. */
 body {
  --tool-font:Inter,"Segoe UI",Arial,sans-serif;

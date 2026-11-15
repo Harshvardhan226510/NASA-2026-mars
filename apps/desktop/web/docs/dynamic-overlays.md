@@ -1,6 +1,6 @@
 # Dynamic observations and forecasts
 
-The 18 October 2026 scientific handoff was reviewed against fresh requests to
+The scientific handoff was reviewed against fresh requests to
 the official services before integration. Seven selectable views now connect
 six source services in the initial release. The 20 October source expansion now provides **35 of 62 dynamic views**; see [weather, solar and context additions](dynamic-environment.md) and the [full remaining-dependency audit](dynamic-overlay-audit.md). Find the initial feeds in **Layers → More overlays → Radiation &
 Exposure** and **Space Weather & Solar Activity**. The four recommended layers

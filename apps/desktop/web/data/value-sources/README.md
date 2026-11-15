@@ -18,7 +18,7 @@ Sources:
   AP9 is converted from its declared 3,396,190 m spherical equirectangular CRS.
   https://zenodo.org/records/13647425
 - HiRISE published digital terrain model catalogue: a 1,338-record structured
-  metadata snapshot retrieved 15 October 2026 IST. Catalogue centres are rounded
+  metadata snapshot. Catalogue centres are rounded
   to 0.1 degrees. Captions identify research targets, not independent mineral assays.
   https://www.uahirise.org/hiwish/maps/dtms.jsp
 - Andres & Smith (2025), DOI 10.1029/2024JE008830: nine Phlegra study centres

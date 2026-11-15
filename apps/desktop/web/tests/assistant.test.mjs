@@ -432,3 +432,53 @@ test('EVAssistant executes equipment deployment commands with authentic telemetr
  assert.ok(message.includes("SOLAR ARRAY"));
  assert.ok(message.includes("Instantaneous Solar Flux"));
 });
+
+test('EVAssistant executes skyline visual place recognition intent to localize kidnapped astronaut', async () => {
+ let message = '';
+ let agentTrace = null;
+ let opened = false;
+ let loadedPreset = '';
+ let localized = false;
+
+ const mockSkylineVPR = {
+  open(val) { opened = val; },
+  loadPreset(preset) { loadedPreset = preset; },
+  runLocalization() {
+   localized = true;
+   this.lastResult = {
+    bestMatch: {
+     id: 'VALLES_MARINERIS_IUS',
+     name: 'Valles Marineris · Ius Chasma / Geryon Montes',
+     lon: -76.5824,
+     lat: -9.8072,
+     confidence: 0.985,
+     geomorphology: 'High vertical relief (>6 km); steep north and south towering cliff horizon with deep east-west canyon trench.'
+    },
+    matchedHeadingDeg: 42
+   };
+  },
+  lastResult: null
+ };
+
+ const assistant = new EVAssistant(null, null, null, {
+  skylineVPR: mockSkylineVPR
+ });
+ assistant.muted = true;
+ assistant.addMessage = (_sender, text, _speak, trace) => {
+  message = text;
+  agentTrace = trace;
+ };
+
+ await assistant.handleQuery("Where am I? Localize my position from horizon photo in Valles Marineris without GPS");
+
+ assert.strictEqual(opened, true, 'Skyline panel should be opened');
+ assert.strictEqual(loadedPreset, 'VALLES_MARINERIS_IUS', 'Target preset should be loaded');
+ assert.strictEqual(localized, true, 'Localization engine should be executed');
+ assert.ok(message.includes('SKYLINE VISUAL PLACE RECOGNITION'), 'Response should announce Skyline VPR');
+ assert.ok(message.includes('candidate; positional uncertainty unavailable'), 'Response keeps positional uncertainty explicit');
+ assert.ok(message.includes('Valles Marineris'), 'Response should mention Valles Marineris');
+ assert.ok(message.includes('42°'), 'Response should mention recovered camera heading');
+ assert.ok(message.includes('Cozman & Krotkov'), 'Response should cite seminal academic literature');
+ assert.strictEqual(agentTrace?.intent, 'SKYLINE_VISUAL_PLACE_RECOGNITION');
+ assert.strictEqual(agentTrace?.status, 'CANDIDATE SEARCH');
+});

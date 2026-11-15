@@ -1,6 +1,6 @@
 # Mars Field Atlas: expanded research catalogue
 
-Reviewed 15 October 2026. The map now contains **2,494 research records**:
+The map contains **2,494 research records**:
 522 science, 1,912 mineral occurrences / investigation targets, and 60 crew-resource candidates.
 This replaces the previous 36-record catalogue. Counts represent source-linked investigations,
 including individual mapped landforms; nearby records can refer to overlapping geology.

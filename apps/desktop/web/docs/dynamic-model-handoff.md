@@ -1,6 +1,6 @@
 # Dynamic overlays: implementation and model handoff
 
-Prepared 20 October 2026 for Mars Field Atlas. This replaces the blanket explanation that pending entries lack endpoints. Sources, archive adapters, physical models, operational data and validation are different dependencies.
+This replaces the blanket explanation that pending entries lack endpoints. Sources, archive adapters, physical models, operational data and validation are different dependencies.
 
 ## Implemented in this change
 
@@ -16,7 +16,7 @@ These are five **scoped selectable views**, bringing the catalogue from 30 to 35
 
 Dust PNGs retain every native member-ID/missing-value pixel, are round-trip checked against the published masks and SHA-256 checked in the browser. Source tar files are checked against publisher MD5 and additionally SHA-256 hashed. No mask enlargement or invented intermediate observations is used. The source repeats some day labels for all-zero slots: each array frame retains its own index, so a later blank cannot overwrite an earlier storm mask. All-zero slots have unverified observation coverage and are not interpreted as observed clear.
 
-The UV adapter streams all 724,717 source records, checks the source label and produces 15-minute LMST summaries. Each channel retains mean, observed min/max, count and the range/count of published systematic uncertainties. Missing `-999` and zenith >55° remain unavailable. Uncertainty is never reduced by √N. Bands are never summed. The filename and XML label nominally span sols 3401–3500 / 1 March–6 June 2022, but all 724,717 retrieved rows end at sol 3423. The UI uses the actual 3401–3423 row coverage and discloses that metadata discrepancy; it does not claim observations through the label end date. Other REMS product families may extend later. The source response and label hashes are retained. The Gale marker is a regional reference, not an invented historical rover position.
+The UV adapter streams all 724,717 source records, checks the source label and produces 15-minute LMST summaries. Each channel retains mean, observed min/max, count and the range/count of published systematic uncertainties. Missing `-999` and zenith >55° remain unavailable. Uncertainty is never reduced by √N. Bands are never summed. The filename and XML label nominally span sols 3401–3500, but all 724,717 retrieved rows end at sol 3423. The UI uses the actual 3401–3423 row coverage and discloses that metadata discrepancy; it does not claim observations through the label end date. Other REMS product families may extend later. The source response and label hashes are retained. The Gale marker is a regional reference, not an invented historical rover position.
 
 ## Sources you can use without inventing a new physical model
 

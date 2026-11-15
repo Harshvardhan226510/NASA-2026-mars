@@ -1,6 +1,6 @@
 # Color display decisions
 
-Update, 19 October 2026: the Color switch now offers labelled NASA Ames/USGS
+The Color switch offers labelled NASA Ames/USGS
 colorized Viking context. Native collected HiRISE color still requires the
 publication checks described below. See [the implementation notes](atlas-improvements-20261019.md).
 

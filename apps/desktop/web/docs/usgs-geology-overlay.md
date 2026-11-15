@@ -22,7 +22,7 @@ For atlas level z >= 1, source level is z + 1, x is unchanged and source y is y 
 
 The existing latitude/longitude checkbox and its help/spacing display now sit immediately below Grayscale and Color. Its identifier and layer binding are preserved. The control is outside the list that the compact interface relocates into the deeper labels disclosure.
 
-## Verification, 2026-11-03
+## Verification
 
 - All 421 JavaScript tests passed, including eight geology tests covering geographic origins, both hemispheres, longitude wrapping, root stitching, all 44 units, catalogue/restoration, control placement, tile composition/cache reuse and proxy validation/retry.
 - Production build passed.

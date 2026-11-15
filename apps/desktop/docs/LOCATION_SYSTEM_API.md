@@ -40,7 +40,7 @@ The listener binds to **127.0.0.1 only**. Requests need `Authorization: Bearer <
   "sourceId": "eva-nav-1",
   "frame": "mars-east-planetocentric",
   "point": [77.43, 18.44],
-  "at": "2026-11-08T12:00:00.000Z",
+  "at": "2026-11-15T08:00:00.000Z",
   "accuracyMeters": 2.5
 }
 ```

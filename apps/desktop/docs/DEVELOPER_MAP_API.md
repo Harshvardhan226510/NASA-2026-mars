@@ -15,7 +15,7 @@ Enable the localhost listener with the port and token in [Dead reckoning](DEAD_R
 Example instrument reading.
 
 ```json
-{"id":"pi-thermometer-0042","kind":"measurement","label":"Air temperature","frame":"mars-east-planetocentric","point":[77.43,18.44],"at":"2026-11-06T12:00:00Z","source":"pi-thermometer","parameter":"Tair","value":220,"units":"K","dataKind":"measured"}
+{"id":"pi-thermometer-0042","kind":"measurement","label":"Air temperature","frame":"mars-east-planetocentric","point":[77.43,18.44],"at":"2026-11-15T08:00:00Z","source":"pi-thermometer","parameter":"Tair","value":220,"units":"K","dataKind":"measured"}
 ```
 
 Terrain slopes describe the sampled grid. Route lengths use the Atlas Mars radius. Route evaluation samples the great-circle path between supplied points and checks the resulting segments against caller-provided polygons, including short crossings of the date line.

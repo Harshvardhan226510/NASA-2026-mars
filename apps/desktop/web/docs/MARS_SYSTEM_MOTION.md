@@ -20,10 +20,10 @@ navigation and terrain clamping are suspended while exploring the space view.
   geometric position/velocity vectors relative to Mars centre (499), ICRF,
   kilometres/second converted to metres/second, and explicitly requested UTC time.
 - Supported targets: MRO −74, Odyssey −53, Mars Express −41, TGO −143, Hope −62,
-  and historical MAVEN −202. A 19 October 2026 deployed-service check returned
+  and historical MAVEN −202. A deployed-service check returned
   361 valid samples each for the five current-date targets. These are dated
   trajectory solutions, including provider planning predictions, not live tracking.
-- JPL warns that MAVEN predictions after 4 December 2025 may be inaccurate.
+- JPL warns that MAVEN predictions may be inaccurate beyond its published cutoff.
   The application conservatively excludes windows crossing that cutoff. Other
   catalogue spacecraft remain unplotted until their dated trajectories are sourced.
 - Six-hour windows contain one-minute spacecraft states. Cubic Hermite interpolation
@@ -56,9 +56,9 @@ The existing moon/model/surface-position checks remain applicable. Browser check
 cover overview playback, pause/axis removal, dated-orbiter selection, model viewing,
 and return to the surface view.
 
-### Release status, 20 October 2026
+### Release status
 
-The motion feature was explicitly approved and published on 20 October 2026 at
+The motion feature was published at
 [Mars Field Atlas](https://mars-field-atlas.vercel.app/#moon=system). Production
 deployment `dpl_3bah2igj5EN4tH2rLiPSStSaY9cQ` uses runtime source commit `f493bf8`.
 All 218 tests passed. The public site serves the tested client bundle; production

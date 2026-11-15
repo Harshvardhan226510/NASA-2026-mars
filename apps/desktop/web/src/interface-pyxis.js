@@ -2,9 +2,9 @@ import {mountThinkingOrb} from './thinking-orb.js';
 import './interface-pyxis.css';
 
 const $=id=>document.getElementById(id);
-const tools=[['measure','Measure'],['solar','Sunlight'],['dust','Dust ML'],['seismic','Seismic Lab']];
+const tools=[['measure','Measure'],['solar','Sunlight'],['dust','Dust ML'],['seismic','Seismic Lab'],['skyline','Skyline VPR']];
 const planLabels={deploy:'Equipment',sites:'Sites',plan:'Marswalk',comms:'Comms',saved:'Saved'};
-const tarsIcon='<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="5" y="6" width="7" height="22" rx="2"/><rect x="12" y="4" width="8" height="24" rx="2"/><rect x="20" y="6" width="7" height="22" rx="2"/><path d="M15 10h2m-2 4h2m-9 7h2m12 0h2"/></svg>';
+const tarsIcon='<img class="tars-logo" src="/tars-logo.png" alt="" width="34" height="34">';
 const make=(tag,id,markup)=>Object.assign(document.createElement(tag),{id,innerHTML:markup});
 
 function mountSectionNav(menu,panelActions,perform){
@@ -87,19 +87,19 @@ export function initPyxisInterface({svg,registerDrawer,panelActions,perform}){
  registerDrawer('quick-guide',quickGuide);
  const guide=$('ui-help');guide.querySelector('.ui-kicker').remove();guide.querySelector('h2').textContent='Field guide';
  guide.querySelector(':scope > p').textContent='Use the left rail for fieldwork. Layers, map controls and the Tools menu sit on the right.';
- for(const section of guide.querySelectorAll('p, li span, summary'))for(const child of section.childNodes)if(child.nodeType===Node.TEXT_NODE)child.textContent=child.textContent.replace(/\bARES(?: AI)?\b/g,'Tars AI').replace(/\bMissions →/g,'Plan →').replace(/in the Missions header/g,'in Plan').replace(/Rotate\/right-drag/g,'Tilt/right-drag').replace('Ground opens','Walk opens').replace('Ground view','Walk mode');
+ for(const section of guide.querySelectorAll('p, li span, summary'))for(const child of section.childNodes)if(child.nodeType===Node.TEXT_NODE)child.textContent=child.textContent.replace(/\bARES(?: AI)?\b/g,'TARS AI').replace(/\bMissions →/g,'Plan →').replace(/in the Missions header/g,'in Plan').replace(/Rotate\/right-drag/g,'Tilt/right-drag').replace('Ground opens','Walk opens').replace('Ground view','Walk mode');
  const perimeterGuide=make('details','pyxis-guide-perimeter','<summary>Draw a perimeter</summary><p>Choose Perimeter and tap to add vertices, or use Lasso and drag around an area. Name and save the boundary. You can link it to a marked site or the declared camp. Use View to return to it or Edit to change it.</p>');
  guide.querySelector('.ui-shortcuts').before(perimeterGuide);
  const menu=$('ui-mission-menu');menu.querySelector('.ui-kicker').remove();menu.querySelector('h2').textContent='Plan';
  menu.querySelector(':scope > p').remove();menu.querySelector('[data-action="routes"]').remove();
- document.querySelector('#assistant-panel h2').textContent='Tars AI';
- $('assistant-panel').setAttribute('aria-label','Tars AI Mars EVA assistant');$('assistant-input').setAttribute('aria-label','Ask Tars AI');$('assistant-mute').title='Mute or unmute Tars AI';
- for(const label of $('assistant-panel').querySelectorAll('.msg-sender,.assistant-msg p,.tool-note'))label.textContent=label.textContent.replace(/\bARES(?: AI)?\b/g,'Tars AI');
+ document.querySelector('#assistant-panel h2').innerHTML=`${tarsIcon}<span>TARS AI</span>`;
+ $('assistant-panel').setAttribute('aria-label','TARS AI Mars EVA assistant');$('assistant-input').setAttribute('aria-label','Ask TARS AI');$('assistant-mute').title='Mute or unmute TARS AI';
+ for(const label of $('assistant-panel').querySelectorAll('.msg-sender,.assistant-msg p,.tool-note'))label.textContent=label.textContent.replace(/\bARES(?: AI)?\b/g,'TARS AI');
 
  const right=make('div','pyxis-right',`<div id="pyxis-location"><div id="pyxis-location-name"></div></div><div id="pyxis-controls"><div id="pyxis-navigation-stack">${control('layers','Layers')}<div id="pyxis-navigator"></div></div>
   <div id="pyxis-actions"><div id="pyxis-tools"><button type="button" id="pyxis-tools-button" aria-expanded="false" aria-controls="pyxis-tool-list">${svg('tools')}<span>Tools</span></button>
   <nav id="pyxis-tool-list" aria-label="Map tools" hidden>${tools.map(([id,name])=>control(id,name)).join('')}</nav></div>
-  <button type="button" id="pyxis-tars" data-action="assistant" aria-controls="assistant-panel" aria-pressed="false">${tarsIcon}<span>Tars AI</span></button></div></div><div id="pyxis-overview"></div>`);
+  <button type="button" id="pyxis-tars" data-action="assistant" aria-controls="assistant-panel" aria-pressed="false">${tarsIcon}<span>TARS AI</span></button></div></div><div id="pyxis-overview"></div>`);
  workspace.append(right);
  $('pyxis-location-name').append($('location-context'));$('pyxis-navigator').append($('navigation'),$('ground-help'));
  $('pyxis-overview').append($('ui-view-host'),$('mini-wrap'));

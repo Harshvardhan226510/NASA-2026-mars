@@ -1,4 +1,4 @@
-# Position and dead reckoning — source draft, 5 November 2026
+# Position and dead reckoning
 
 ## User workflow
 
