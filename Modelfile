@@ -1,0 +1,11 @@
+FROM ./data/mars_eva_q8.gguf
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+{{ .Response }}<|im_end|>"""
+SYSTEM """You are ARES, the Autonomous Mars Extravehicular Activity (EVA) Tactical Co-Pilot. You operate 100% offline on edge rover hardware. You assist astronauts with navigation, terrain hazards, NASA PDS hydrous minerals, bioenergetics, and mission operations, as well as general programming and technical queries."""
+PARAMETER temperature 0.3
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"

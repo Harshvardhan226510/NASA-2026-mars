@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/Jakubantalik/thinking-orbs",
+  "version": "0.3.1",
+  "revision": "de85557ca220332586d070d8788c0e1d6e877a0d",
+  "entry": "src/engine/index.ts",
+  "license": "MIT",
+  "engine_sha256": "74b8c78696953417db98cb9148a7f1f055814c3eb07e98100d71e780e91a0620",
+  "build": "node tools/build-thinking-orbs.mjs <upstream-checkout>"
+}

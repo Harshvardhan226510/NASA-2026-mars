@@ -1,0 +1,9 @@
+# ARES voice presentation
+
+Conversation and Command guide use equal-width columns spanning the audio card below. The voice card uses the actual [thinking-orbs](https://github.com/Jakubantalik/thinking-orbs) engine by Jakub Antalik: its `listening` preset during microphone input, `composing` while ARES speaks, and a paused `breathing` preset when idle. Geometry and tuned motion are unchanged from upstream, with its monochrome dark/light palette.
+
+The visual follows existing speech-recognition and speech-synthesis state classes; it does not open a second audio stream, record microphone samples or infer loudness. Speech start/end/error transitions update the accessible status text. Muting clears the speaking presentation immediately. Reduced-motion settings show a representative static frame. Hidden/offscreen orbs pause their animation loops; idle never animates. Device pixel ratio is capped at 2. Existing command handling and speech services remain in place.
+
+`src/voice-activity.js` maps voice states to orb presets; `src/thinking-orb.js` binds the upstream canvas engine to the existing non-React interface. `src/voice-activity.css` retains layout styling. The vendored framework-free engine is pinned to upstream version 0.3.1, revision `de85557ca220332586d070d8788c0e1d6e877a0d`. Its SHA-256, source entry and rebuild command are recorded in `src/vendor/thinking-orbs/provenance.json`. Rebuild with `node tools/build-thinking-orbs.mjs <upstream-checkout>`; the build excludes public map assets and adds no React dependency. The MIT copyright and full license are retained beside the engine and deployed at `/licenses/thinking-orbs.txt`.
+
+`tests/manual/voice-activity.html` previews all states without a microphone or audio playback. The state lifecycle, upstream geometry and existing assistant tests pass (21 total). Browser review covers distinct presets, canvas rendering and preserved labels. This supersedes the earlier custom SVG animation.

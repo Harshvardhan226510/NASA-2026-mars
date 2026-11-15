@@ -1,0 +1,9 @@
+/* Equal-width navigation aligns with the audio card underneath it. */
+body #assistant-panel [role=tablist]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;gap:6px;box-sizing:border-box}
+body #assistant-panel [role=tab]{width:100%;min-width:0;margin:0;white-space:normal;line-height:1.4}
+body #assistant-panel .assistant-audio-box{width:100%;box-sizing:border-box;background:var(--tool-card,var(--ui-surface-2));border-color:var(--ui-border)}
+body #assistant-panel #assistant-waveform{display:flex;width:100%;height:auto;min-height:86px;gap:16px;padding:8px 14px;justify-content:flex-start;border-radius:40px;background:var(--tool-field,#0c1520);overflow:hidden}
+#assistant-waveform .voice-thinking-orb{display:block;width:64px;height:64px;flex:none}
+#assistant-waveform .voice-activity-label{font:500 13px/1.5 Inter,"Segoe UI",Arial,sans-serif;letter-spacing:.1px;color:var(--ui-text)}
+#assistant-waveform[data-voice-state=idle] .voice-thinking-orb{opacity:.55}
+#assistant-panel .mic-icon svg{display:inline-block;width:16px;height:16px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
