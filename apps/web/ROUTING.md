@@ -6,8 +6,8 @@ logging/replanning and geometric communications interface are documented in
 
 The Atlas runs Harshvardhan226510/mars-mapping's original Python engine at
 commit `2d3713a2a44183a154e7d0e9fd15fef5a4500215`. The two files in
-`routing/upstream/` are byte-for-byte copies of `algorithms/src/grid.py` and
-`algorithms/src/pathfinder.py`. Their SHA-256 hashes are in
+`routing/upstream/` are byte-for-byte copies of the partner's original
+`algorithms/src/grid.py` and `algorithms/src/pathfinder.py`. Their SHA-256 hashes are in
 `routing/upstream-source.json`; regression tests verify this attribution and
 compare all three profiles with the original engine.
 
@@ -86,7 +86,7 @@ DEM. These are user example checkpoints, not a claimed mission plan.
 
 ## Running and deployment
 
-From `web/` in the shared repository (or this standalone app directory):
+From `apps/web/` in the shared repository (or this standalone app directory):
 
 ```text
 npm ci
@@ -99,7 +99,7 @@ executable if it is not on PATH. Existing read-only Drive API settings belong
 in `.env.local` locally and Vercel environment settings in production. Never put
 Drive credentials in browser source or commit `.env*` files.
 
-Vercel Root Directory is `web/` for the shared repository. `vercel.json` builds
+Vercel Root Directory is `apps/web/` for the shared repository. `vercel.json` builds
 Vite and exposes the existing Node APIs plus `api/route.py`. The Python function
 uses `requirements.txt`, takes at most 4 MB of JSON and has a 300-second limit.
 Colab is not required to use published map data or compute routes.
@@ -128,8 +128,8 @@ the 2D distance scale. In 2D it labels the retained 3D camera explicitly.
 
 ## Repository boundaries
 
-The app is added under `web/`. Existing root `algorithms/` and `data/` remain
-unchanged. Drive originals, personal account files, dependency folders and
+The web app lives under `apps/web/`. The Python prototype and shared datasets
+live under `packages/`. Drive originals, personal account files, dependency folders and
 deployment credentials are excluded. The checked-in source inventory and
 small measured global fallback are application assets, not copies of the
 multi-terabyte archives.

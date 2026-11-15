@@ -147,13 +147,13 @@ ARES opens the Skyline VPR drawer, triggers localization, and responds with a BL
 
 The Skyline-VPR engine is validated by an automated test suite:
 
-- `web/tests/skyline-vpr.test.mjs`:
+- `apps/web/tests/skyline-vpr.test.mjs`:
   - `calculateElevationAngle`: validates spherical curvature drop $d(r) \approx r^2 / (2 R_{\text{Mars}})$.
   - `zScoreNormalize`: validates pitch and zoom affine invariance.
   - `medianFilter3`: validates noise and single-pixel spike rejection.
   - `extractSkylineFromImage`: validates top-down luminance gradient edge detection on canvas ImageData.
   - `matchSkylineProfile`: validates 360° circular cross-correlation and recovery of unknown camera heading $\alpha$.
-- `web/tests/assistant.test.mjs`:
+- `apps/web/tests/assistant.test.mjs`:
   - `EVAssistant executes skyline visual place recognition intent to localize kidnapped astronaut`: validates end-to-end ARES voice/text integration, BLUF formatting, and telemetry tracing.
 
 Run the test suite:

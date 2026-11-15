@@ -16,4 +16,4 @@ The 2D overview retains fractional zoom and supports global Compare without a se
 
 ## Validation
 
-Run `npm ci`, `npm test`, `python -m pip install -r requirements.txt`, `python -m unittest discover -s tests -p test_routing.py`, and `npm run build` from `web/`. Python uses the pinned requirements. Local startup: `npm run dev`. Remote archive APIs require their existing deployment configuration; the repository's display catalogue can be used for local inspection.
+Run `npm ci`, `npm test`, `python -m pip install -r requirements.txt`, `python -m unittest discover -s tests -p test_routing.py`, and `npm run build` from `apps/web/`. Python uses the pinned requirements. Local startup: `npm run dev`. Remote archive APIs require their existing deployment configuration; the repository's display catalogue can be used for local inspection.

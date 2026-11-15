@@ -74,4 +74,4 @@ Rather than hardcoding waypoints, the algorithm chains safe corridors to priorit
 ## 5. Live Interactive Sandbox
 
 To test this visually with real-time sliders and click-to-place waypoints, open:
-`algorithms/interactive_visualizer.html` in your browser.
+`packages/algorithms/interactive_visualizer.html` in your browser.

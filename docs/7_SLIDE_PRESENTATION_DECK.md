@@ -131,7 +131,7 @@ $$\text{Metabolic Oxygen } V_{O_2} = \frac{W}{20,900} + (\text{Suit Leakage} \ti
   - **Foundation:** `Qwen/Qwen2.5-1.5B-Instruct` (1.54 Billion Parameters).
   - **Quantization:** **GGUF Q8_0 (1.64 GB)** and **Q4_K_M (980 MB)** executed locally via Ollama (`ares-mars`) or llama.cpp — zero cloud latency, zero data leakage.
 - **Domain Fine-Tuning Pipeline (`tools/train_mars_slm.py`):**
-  - Fine-tuned with **Unsloth 4-bit QLoRA** on **5,800+ authentic NASA/USGS conversational pairs** (`data/nasa_mars_authentic_train.jsonl`).
+  - Fine-tuned with **Unsloth 4-bit QLoRA** on **5,800+ authentic NASA/USGS conversational pairs** (`packages/data/nasa_mars_authentic_train.jsonl`).
   - Grounded in NASA Planetary Data System (PDS) mineral catalogues, USGS planetary gazetteer coordinates, and NASA HLS2 EVA flight rules.
   - **Strict Anti-Hallucination Guard:** Penalizes speculative responses; refuses to declare unmeasured terrain safe.
 - **Multimodal Voice & UI Interaction:**

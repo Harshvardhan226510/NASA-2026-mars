@@ -66,18 +66,18 @@ Designed to operate under extreme communication constraints (interplanetary radi
 When the project was initially established (Commits `739aa4e` through `a690ac3`), it provided a prototype foundation consisting of an early route planning script and a basic web-based globe:
 
 ### 2.1 Initial Components & Architecture
-- **Navigation & Pathfinding Engine (`algorithms/`)**:
-  - Python prototype (`algorithms/src/pathfinder.py`) implementing a standard A* search over an elevation grid.
+- **Navigation & Pathfinding Engine (`packages/algorithms/`)**:
+  - Python prototype (`packages/algorithms/src/pathfinder.py`) implementing a standard A* search over an elevation grid.
   - Basic slope thresholding: Slopes $> 22^\circ$ marked strictly impassable; slopes $\le 22^\circ$ penalized with a rudimentary quadratic walking fatigue multiplier.
   - Science target reward scoring: Greedy mineral waypoint gathering for hydrated sulfates and hematite.
   - Output: Standalone matplotlib map rendering (`marswalk_mission_map.png`) and local JSON trajectory (`route_output.json`).
-- **Initial Web Viewer (`web/`)**:
+- **Initial Web Viewer (`apps/web/`)**:
   - Built on **CesiumJS v1.145** loaded via CDN.
   - Basic 3D Mars globe streaming tiles from Esri's Mars services:
     - Context imagery: Murray Lab global Context Camera (CTX) photographic mosaic (~5 m/px).
     - Optical gap fallback: USGS Viking Orbiter MDIM 2.1 grayscale imagery (~232 m/px).
     - Elevation: Coarse HRSC/MOLA digital elevation models delivered via Esri ImageServer using **LERC (Limited Error Raster Compression)**.
-    - Anchor topography: Bundled coarse MOLA binary grid (`web/public/mola-topography.dat`, ~15 km grid spacing) for gross elevation correction.
+    - Anchor topography: Bundled coarse MOLA binary grid (`apps/web/public/mola-topography.dat`, ~15 km grid spacing) for gross elevation correction.
   - HiRISE observation strips: 8 prepared observation strips across Arcadia Planitia, Valles Marineris, Jezero Crater, and Gale Crater streamed via Google Drive/Colab pipelines.
   - Split 2D Map: Secondary map powered by **Leaflet v1.9.4** with manual view synchronization.
   - Simple Value Sites Directory: 36 research windows (16 science, 11 minerals, 9 resources) derived from USGS/PDS records.
@@ -161,7 +161,7 @@ sequenceDiagram
 - **Prompt Format:** ChatML standard (`<|im_start|>system ... <|im_end|>`).
 
 ### 4.2 Fine-Tuning Pipeline (`tools/train_mars_slm.py`)
-- **Dataset:** `data/nasa_mars_authentic_train.jsonl` containing **5,800+ authentic NASA/USGS conversational pairs** grounded strictly in:
+- **Dataset:** `packages/data/nasa_mars_authentic_train.jsonl` containing **5,800+ authentic NASA/USGS conversational pairs** grounded strictly in:
   1. NASA PDS CRISM & OMEGA hyperspectral mineral spectra.
   2. USGS Astrogeology Planetary Nomenclature Gazetteer.
   3. NASA Human Landing System (HLS2) EVA Flight Rules.
@@ -171,7 +171,7 @@ sequenceDiagram
   - Optimizer: `adamw_8bit`, Learning Rate: $2.0 \times 10^{-4}$ with Cosine Scheduler.
   - Zero Hallucination Guard: Model is penalized for speculating beyond confirmed PDS measurements or violating terrain slope ceilings.
 
-### 4.3 Deterministic Offline Tactical Engine (`web/src/eva-assistant.js`)
+### 4.3 Deterministic Offline Tactical Engine (`apps/web/src/eva-assistant.js`)
 When running entirely in the browser without local Ollama, TARS executes a ~115 KB deterministic expert system covering:
 - Instant telemetry queries (camera altitude, reticle coordinates, elevation datum, resolution).
 - Dynamic solar geometry (solar elevation, azimuth, local true solar time).
@@ -284,15 +284,15 @@ Every layer, model, and dataset in Pyxis is grounded in official, peer-reviewed 
 
 ### 6.4 Atmospheric Wind Vectors & Particle Flow Field
 - **Source:** NASA Goddard Space Flight Center (GSFC) Mars Explorer & Ensemble Mars Atmosphere Reanalysis System (EMARS MY32, [DOI: 10.1002/gdj3.77](https://doi.org/10.1002/gdj3.77)).
-- **Implementation:** Live client-side particle advection engine (`web/src/wind-flow.js`). Emits thousands of screen-space white velocity streaks flowing along real-time interpolated eastward ($u$) and northward ($v$) wind vectors, color-coded to NASA's 0–100 km/h meteorological palette.
+- **Implementation:** Live client-side particle advection engine (`apps/web/src/wind-flow.js`). Emits thousands of screen-space white velocity streaks flowing along real-time interpolated eastward ($u$) and northward ($v$) wind vectors, color-coded to NASA's 0–100 km/h meteorological palette.
 
-### 6.5 Machine Learning Dust Storm Predictor (`web/src/dust-storm-ml.js`)
+### 6.5 Machine Learning Dust Storm Predictor (`apps/web/src/dust-storm-ml.js`)
 - **Dataset:** NASA MRO MARCI Mars Dust Activity Database (MDAD v1.1, Battalio & Wang 2021).
 - **Model:** 12-tree Boosted Decision Tree (XGBoost representation) computing local dust lift log-odds from 6 physical features:
   $$P(\text{storm}) = \sigma\left(\text{base} + \sum_{i=1}^{12} f_i(L_s, \text{Elev}, |\text{Lat}|, V_{\text{wind}}, \text{Basin}_{\text{factor}}, \text{LTST})\right)$$
 - Evaluates major storm nucleation basins: Hellas ($70^\circ\text{E}, -42.5^\circ\text{N}$), Argyre ($-42^\circ\text{E}, -50^\circ\text{N}$), Chryse, Isidis, and Acidalia.
 
-### 6.6 Planetary Seismology Lab (`web/src/planetary-seismology.js`)
+### 6.6 Planetary Seismology Lab (`apps/web/src/planetary-seismology.js`)
 - **Data Source:** NASA InSight SEIS (Seismic Experiment for Interior Structure) and Apollo PSE.
 - **Event Catalogue:** Historical quakes from Mw 2.9 to 4.7, including event **S1222a** (Sol 1222, May 4, 2022) — the Mw 4.7 monster marsquake that reverberated across Mars for over 4 hours.
 - **On-Device Algorithms:**
@@ -304,7 +304,7 @@ Every layer, model, and dataset in Pyxis is grounded in official, peer-reviewed 
 
 ## 7. Astrodynamics, Celestial Mechanics & Ephemerides
 
-### 7.1 NASA/JPL NAIF SPICE Orbital Mechanics (`web/src/mars-moons.md`)
+### 7.1 NASA/JPL NAIF SPICE Orbital Mechanics (`apps/web/src/mars-moons.md`)
 - **Kernels Used:**
   - `mar099s.bsp`: JPL Mars satellite ephemeris for Phobos (ID 401) and Deimos (ID 402) relative to Mars center (499).
   - `pck00011.tpc`: High-precision IAU rotational orientation constants.
@@ -312,7 +312,7 @@ Every layer, model, and dataset in Pyxis is grounded in official, peer-reviewed 
 - **Interpolation:** Browser implements **Cubic Hermite Spline Interpolation** on 120-second state vectors with quaternion slerp, maintaining $< 1\text{ meter}$ numerical deviation from raw SPICE evaluations.
 - **Spacecraft Tracking:** Current-time ICRF geometric state vectors from JPL Horizons for active spacecraft: Mars Reconnaissance Orbiter (MRO), 2001 Mars Odyssey, Mars Express, Trace Gas Orbiter (TGO), and Hope Probe.
 
-### 7.2 NASA GISS Mars24 Solar Position & Shadow Engine (`web/src/solar-geometry.js`)
+### 7.2 NASA GISS Mars24 Solar Position & Shadow Engine (`apps/web/src/solar-geometry.js`)
 - Built on the Allison & McEwen (2000) NASA GISS Mars24 formulation.
 - Computes:
   - Allocentric Solar Longitude ($L_s$) defining Martian seasons (Perihelion $L_s \approx 251^\circ$, Aphelion $L_s \approx 71^\circ$).
@@ -321,7 +321,7 @@ Every layer, model, and dataset in Pyxis is grounded in official, peer-reviewed 
   - Solar elevation ($\alpha_{\odot}$) and solar azimuth ($\beta_{\odot}$).
   - Topographic ray-traced shadows using DEM elevation slopes to determine real-time direct vs. diffuse insolation ($W/m^2$).
 
-### 7.3 Ground-Mode Procedural Skybox (`web/src/ground-sky.js`)
+### 7.3 Ground-Mode Procedural Skybox (`apps/web/src/ground-sky.js`)
 - Replaces generic space black with an analytically simulated Martian atmosphere when in ground exploration view:
   - Daytime: Warm ochre/butterscotch sky created by atmospheric airborne dust scattering.
   - Twilight: Distinctive Martian blue sunset/sunrise glow around the solar disk caused by forward Mie scattering by micron-sized ferric oxide dust particles.
@@ -329,7 +329,7 @@ Every layer, model, and dataset in Pyxis is grounded in official, peer-reviewed 
 
 ---
 
-## 8. Interactive 3D Mission Equipment Workbench (`web/src/mission-deployer.js`)
+## 8. Interactive 3D Mission Equipment Workbench (`apps/web/src/mission-deployer.js`)
 
 Pyxis provides an interactive tactical workbench for placing 3D hardware on the terrain with physical constraint checks:
 - **Surface Assets:**

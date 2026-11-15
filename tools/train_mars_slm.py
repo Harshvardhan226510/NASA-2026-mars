@@ -87,7 +87,7 @@ def train_pipeline(
 
     # Load authentic NASA train dataset
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    train_file = os.path.join(project_root, "data", "nasa_mars_authentic_train.jsonl")
+    train_file = os.path.join(project_root, "packages", "data", "nasa_mars_authentic_train.jsonl")
 
     if not os.path.exists(train_file):
         raise FileNotFoundError(f"Training data not found at {train_file}. Run tools/extract_nasa_pds_dataset.py first.")

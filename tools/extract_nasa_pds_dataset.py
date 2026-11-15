@@ -7,16 +7,16 @@ Primary Sources Used:
 1. NASA PDS3 OMEGA / CRISM Hydrated Mineral Global Map:
    Dataset ID: MEX-M-OMEGA-5-DDR-GLOBAL-MAPS-V1.0
    Product: HYDROUS_SITES_GEO_MAP (Carter et al., JGR 2013)
-   Files: web/data/value-sources/hydrous_sites_geo_map.csv & .lbl
+   Files: apps/web/data/value-sources/hydrous_sites_geo_map.csv & .lbl
 2. USGS / IAU Gazetteer of Planetary Nomenclature:
    Official Mars Feature Catalogue (IAU Working Group for Planetary System Nomenclature)
-   File: web/public/mars-gazetteer.json
+   File: apps/web/public/mars-gazetteer.json
 3. NASA Landing Study & Mineral Prospects:
-   Files: web/public/value-sites.json & data/samples/sample_minerals.json
+   Files: apps/web/public/value-sites.json & packages/data/samples/sample_minerals.json
 4. NASA HLS2 Rover Mobility & Martian EVA Bioenergetics:
    Constants: Mars g = 0.38g (3.728 m/s^2), 125 kg astronaut+suit, 20.9 kJ/L O2,
    Slope cutoff 22.0 deg, Safe corridor <= 15.0 deg (Minetti biomechanical walking equation).
-   File: algorithms/src/pathfinder.py & algorithms/algorithm_deep_dive.md
+   File: packages/algorithms/src/pathfinder.py & packages/algorithms/algorithm_deep_dive.md
 """
 
 import os
@@ -54,7 +54,7 @@ def make_sample(instruction: str, user_input: str, response: str, source: str, r
 
 
 def extract_pds_hydrous(project_root: str) -> List[Dict[str, Any]]:
-    csv_path = os.path.join(project_root, "web", "data", "value-sources", "hydrous_sites_geo_map.csv")
+    csv_path = os.path.join(project_root, "apps", "web", "data", "value-sources", "hydrous_sites_geo_map.csv")
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found.")
         return []
@@ -120,7 +120,7 @@ def extract_pds_hydrous(project_root: str) -> List[Dict[str, Any]]:
 
 
 def extract_usgs_gazetteer(project_root: str) -> List[Dict[str, Any]]:
-    gazetteer_path = os.path.join(project_root, "web", "public", "mars-gazetteer.json")
+    gazetteer_path = os.path.join(project_root, "apps", "web", "public", "mars-gazetteer.json")
     if not os.path.exists(gazetteer_path):
         print(f"Warning: {gazetteer_path} not found.")
         return []
@@ -177,7 +177,7 @@ def extract_usgs_gazetteer(project_root: str) -> List[Dict[str, Any]]:
 
 
 def extract_sample_minerals_and_sites(project_root: str) -> List[Dict[str, Any]]:
-    minerals_path = os.path.join(project_root, "data", "samples", "sample_minerals.json")
+    minerals_path = os.path.join(project_root, "packages", "data", "samples", "sample_minerals.json")
     samples = []
 
     if os.path.exists(minerals_path):
@@ -211,7 +211,7 @@ def extract_sample_minerals_and_sites(project_root: str) -> List[Dict[str, Any]]
                 ))
 
     # Also extract verified landing study sites from regions.json
-    regions_path = os.path.join(project_root, "web", "public", "regions.json")
+    regions_path = os.path.join(project_root, "apps", "web", "public", "regions.json")
     if os.path.exists(regions_path):
         with open(regions_path, "r", encoding="utf-8") as f:
             regions_data = json.load(f)
@@ -244,11 +244,11 @@ def extract_sample_minerals_and_sites(project_root: str) -> List[Dict[str, Any]]
 def extract_hls2_eva_bioenergetics() -> List[Dict[str, Any]]:
     """
     Authentic NASA HLS2 rover mobility guidelines and Minetti biomechanical metabolic
-    walking equations implemented in algorithms/src/pathfinder.py.
+    walking equations implemented in packages/algorithms/src/pathfinder.py.
     """
     samples = []
 
-    # Bioenergetic facts from algorithms/src/pathfinder.py
+    # Bioenergetic facts from packages/algorithms/src/pathfinder.py
     scenarios = [
         {
             "query": "What are the biomechanical metabolic parameters for astronaut walking on Martian terrain?",
@@ -282,7 +282,7 @@ def extract_hls2_eva_bioenergetics() -> List[Dict[str, Any]]:
                 "3. Profile 3 (Deep Science Expedition): Permutation-based Traveling Salesperson Problem (TSP) optimizing "
                 "direct physical core-sampling intercepts of all priority mineral targets, then solving safe A* legs between them."
             ),
-            "ref": "algorithms/src/pathfinder.py Mission Profile Specification"
+            "ref": "packages/algorithms/src/pathfinder.py Mission Profile Specification"
         }
     ]
 
@@ -574,7 +574,7 @@ def extract_nasa_environmental_and_eva_standards() -> List[Dict[str, Any]]:
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
-    data_dir = os.path.join(project_root, "data")
+    data_dir = os.path.join(project_root, "packages", "data")
     os.makedirs(data_dir, exist_ok=True)
 
     print("=" * 72)

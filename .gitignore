@@ -36,7 +36,7 @@ wheels/
 *.zip
 *.7z
 *.gguf
-data/raw/
+packages/data/raw/
 
 # Node / Web
 node_modules/
@@ -59,17 +59,17 @@ scratch/
 
 # Small, source-verified magnetic display assets (under 2 MB combined),
 # plus their 85 KB public coefficient source for reproducible checks.
-!web/public/magnetic/crustal-field-0km.f32.gz
-!web/public/magnetic/crustal-field-150km.f32.gz
-!web/tools/data/Langlais2019.sh.gz
+!apps/web/public/magnetic/crustal-field-0km.f32.gz
+!apps/web/public/magnetic/crustal-field-150km.f32.gz
+!apps/web/tools/data/Langlais2019.sh.gz
 
 # Compact, verified scientific reference grids (not source archives).
-!web/public/scientific/*.f32.gz
-!web/tools/data/grs/*.lbl
+!apps/web/public/scientific/*.f32.gz
+!apps/web/tools/data/grs/*.lbl
 
 # Compact source fixtures for scientific overlay regression checks.
-!web/tools/data/extended/*.vic.gz
+!apps/web/tools/data/extended/*.vic.gz
 
 # Personal planning reports are not website or repository deliverables.
-web/public/overlay-readiness.*
-web/docs/overlay-readiness*
+apps/web/public/overlay-readiness.*
+apps/web/docs/overlay-readiness*

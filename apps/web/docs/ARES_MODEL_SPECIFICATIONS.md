@@ -58,7 +58,7 @@ ARES was fine-tuned specifically to eliminate hallucinations and enforce strict 
 - **Epochs:** 1 full pass over curated domain dataset
 - **Training Duration:** ~15 to 25 minutes on a standard NVIDIA T4 (15 GB VRAM) or RTX 3060 (12 GB VRAM).
 
-#### B. Verified Training Datasets (`data/nasa_mars_authentic_train.jsonl`)
+#### B. Verified Training Datasets (`packages/data/nasa_mars_authentic_train.jsonl`)
 The model was fine-tuned on **5,800+ authentic NASA/USGS conversational pairs**:
 1. **NASA PDS CRISM & OMEGA Hyperspectral Data:**
    - Signatures for hydrous phyllosilicates (nontronite, saponite, montmorillonite), hydrated sulfates (kieserite, polyhydrated sulfate, gypsum), olivine, and pyroxene across Valles Marineris, Jezero, Gale, and Mawrth Vallis.
@@ -114,7 +114,7 @@ To ensure deployment on edge hardware (e.g., rover on-board computers, wearable 
 
 ---
 
-### 6. Web Application Integration & Action Dispatcher (`web/src/eva-assistant.js`)
+### 6. Web Application Integration & Action Dispatcher (`apps/web/src/eva-assistant.js`)
 
 ARES uses a **Dual-Engine Architecture** inside the Mars Field Atlas web app:
 

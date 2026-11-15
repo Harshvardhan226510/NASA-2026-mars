@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 import numpy as np
 
-OUTPUT_DIR = Path("web/public/equipment/models")
+OUTPUT_DIR = Path(__file__).resolve().parent.parent / "apps/web/public/equipment/models"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 class GLBBuilder:
