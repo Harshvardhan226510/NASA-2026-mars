@@ -1,0 +1,57 @@
+{
+  "schema": "mars-spacecraft-positions/1",
+  "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+  "positions": {
+    "curiosity": {
+      "lon_east": 137.3876138,
+      "lat_planetocentric": -4.82466475,
+      "classification": "last_published_localization",
+      "uncertainty_m": null,
+      "source": "https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_waypoints_current.json",
+      "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+      "file_last_modified": "Fri, 16 Oct 2026 18:10:23 GMT",
+      "raw_sha256": "b825144037fcb3fe87e1470e0d3adcd2d630990371ef3a592eaaaad3bb06c5af",
+      "sol": 5045,
+      "earth_date": null,
+      "elevation_m": -3487.995,
+      "elevation_datum": "source geoid; not WGS84 ellipsoidal altitude",
+      "record_id": "125_1326",
+      "flight": null
+    },
+    "perseverance": {
+      "lon_east": 77.23287535999998,
+      "lat_planetocentric": 18.43559464,
+      "classification": "last_published_localization",
+      "uncertainty_m": null,
+      "source": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_waypoints_current.json",
+      "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+      "file_last_modified": "Thu, 15 Oct 2026 15:36:20 GMT",
+      "raw_sha256": "b5559203ec655c67c426dcc8ab9ca8c5666b2d2b5772439762bfaa0a67fd5026",
+      "sol": 2009,
+      "earth_date": null,
+      "elevation_m": -1937.453125,
+      "elevation_datum": "source geoid; not WGS84 ellipsoidal altitude",
+      "record_id": "92_0",
+      "flight": null
+    },
+    "ingenuity": {
+      "lon_east": 77.32253449000001,
+      "lat_planetocentric": 18.49726866,
+      "classification": "last_published_localization",
+      "uncertainty_m": null,
+      "source": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_waypoints_current.json",
+      "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+      "file_last_modified": "Mon, 11 May 2026 21:15:37 GMT",
+      "raw_sha256": "3608fe586d2c4d8b0266beec38fc47c6922cffcabb73a51e91d15ca23dc66066",
+      "sol": 1036,
+      "earth_date": "Jan. 18, 2024",
+      "elevation_m": -2398.77,
+      "elevation_datum": "source geoid; not WGS84 ellipsoidal altitude",
+      "record_id": null,
+      "flight": 72
+    }
+  },
+  "health": {
+    "state": "snapshot"
+  }
+}

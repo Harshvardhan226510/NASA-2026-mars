@@ -1,0 +1,1366 @@
+{
+  "verified_at_date": "2026-10-18",
+  "objects": [
+    {
+      "id": "curiosity",
+      "name": "Curiosity",
+      "kind": "rover",
+      "domain": "mars_surface",
+      "status": "active_rover_public_localization",
+      "model_ids": [
+        "curiosity"
+      ],
+      "location": {
+        "lon_east": 137.3876138,
+        "lat_planetocentric": -4.82466475,
+        "classification": "last_published_localization",
+        "uncertainty_m": null,
+        "source": "https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_waypoints_current.json",
+        "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+        "file_last_modified": "Fri, 16 Oct 2026 18:10:23 GMT",
+        "raw_sha256": "b825144037fcb3fe87e1470e0d3adcd2d630990371ef3a592eaaaad3bb06c5af",
+        "sol": 5045,
+        "earth_date": null,
+        "elevation_m": -3487.995,
+        "elevation_datum": "source geoid; not WGS84 ellipsoidal altitude",
+        "record_id": "125_1326",
+        "flight": null
+      },
+      "notes": "Latest public localization, not real-time telemetry. A Last-Modified timestamp is not an observation timestamp.",
+      "source": null,
+      "track": {
+        "url": "/spacecraft/tracks/curiosity.json",
+        "source": "https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_traverse.json",
+        "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+        "file_last_modified": "Fri, 16 Oct 2026 18:10:19 GMT",
+        "raw_sha256": "f98d8ce4603b4ce3b0cb5a26fdea9b09358b4084726531f4daad2f47b825c34a"
+      },
+      "status_label": "Published rover positions"
+    },
+    {
+      "id": "perseverance",
+      "name": "Perseverance",
+      "kind": "rover",
+      "domain": "mars_surface",
+      "status": "active_rover_public_localization",
+      "model_ids": [
+        "perseverance"
+      ],
+      "location": {
+        "lon_east": 77.23287535999998,
+        "lat_planetocentric": 18.43559464,
+        "classification": "last_published_localization",
+        "uncertainty_m": null,
+        "source": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_waypoints_current.json",
+        "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+        "file_last_modified": "Thu, 15 Oct 2026 15:36:20 GMT",
+        "raw_sha256": "b5559203ec655c67c426dcc8ab9ca8c5666b2d2b5772439762bfaa0a67fd5026",
+        "sol": 2009,
+        "earth_date": null,
+        "elevation_m": -1937.453125,
+        "elevation_datum": "source geoid; not WGS84 ellipsoidal altitude",
+        "record_id": "92_0",
+        "flight": null
+      },
+      "notes": "Latest public localization, not real-time telemetry. A Last-Modified timestamp is not an observation timestamp.",
+      "source": null,
+      "track": {
+        "url": "/spacecraft/tracks/perseverance.json",
+        "source": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_traverse.json",
+        "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+        "file_last_modified": "Thu, 15 Oct 2026 15:36:15 GMT",
+        "raw_sha256": "93914bcc0a4dce34652db2c1922aabf95f6debed846e7dc229a40c720bb34317"
+      },
+      "status_label": "Published rover positions"
+    },
+    {
+      "id": "ingenuity",
+      "name": "Ingenuity",
+      "kind": "helicopter",
+      "domain": "mars_surface",
+      "status": "flight_ended_2024",
+      "model_ids": [
+        "ingenuity"
+      ],
+      "location": {
+        "lon_east": 77.32253449000001,
+        "lat_planetocentric": 18.49726866,
+        "classification": "last_published_localization",
+        "uncertainty_m": null,
+        "source": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_waypoints_current.json",
+        "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+        "file_last_modified": "Mon, 11 May 2026 21:15:37 GMT",
+        "raw_sha256": "3608fe586d2c4d8b0266beec38fc47c6922cffcabb73a51e91d15ca23dc66066",
+        "sol": 1036,
+        "earth_date": "Jan. 18, 2024",
+        "elevation_m": -2398.77,
+        "elevation_datum": "source geoid; not WGS84 ellipsoidal altitude",
+        "record_id": null,
+        "flight": 72
+      },
+      "notes": "Latest public localization, not real-time telemetry. A Last-Modified timestamp is not an observation timestamp.",
+      "source": null,
+      "track": {
+        "url": "/spacecraft/tracks/ingenuity.json",
+        "source": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_flight_path.json",
+        "retrieved_at": "2026-10-18T18:37:45.341573+00:00",
+        "file_last_modified": "Mon, 11 May 2026 21:15:43 GMT",
+        "raw_sha256": "f0b19df6290a4d26c6618188d8986774b01c509e3d98841e410e8168f868240a"
+      },
+      "status_label": "Flights ended \u00b7 2024"
+    },
+    {
+      "id": "spirit",
+      "name": "Spirit",
+      "kind": "rover",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "mer",
+        "mer_simplified"
+      ],
+      "location": {
+        "lon_east": 175.525377,
+        "lat_planetocentric": -14.600366,
+        "classification": "final_recorded_traverse_endpoint",
+        "source": "https://an.rsl.wustl.edu/mera/AN/meri/MER/traverse/MERA_traverse.zip",
+        "uncertainty_m": null,
+        "sol_start": 2169.0,
+        "sol_end": 2209.0,
+        "frame": "Mars_2000_Sphere",
+        "raw_lon": 175.525377,
+        "provider_properties": {
+          "SITE": 138.0,
+          "DRIVE": 1230.0,
+          "START_SOL": 2169.0,
+          "END_SOL": 2209.0,
+          "RAW_X": 3104.828,
+          "RAW_Y": -2034.281,
+          "RAW_Z": 0.0,
+          "CORRECTEDX": 1504.19,
+          "CORRECTEDY": -865432.27,
+          "LON": 175.525377,
+          "LAT": -14.600366
+        }
+      },
+      "notes": "Corrected/interpolated traverse from science team/PDS Geosciences Analyst Notebook; label explicitly says not a PDS-archived product. Do not replace with landing-site coordinate. Map-tie uncertainty not numerically established here.",
+      "source": null,
+      "track": {
+        "url": "/spacecraft/tracks/spirit.json",
+        "source": "https://an.rsl.wustl.edu/mera/AN/meri/MER/traverse/MERA_traverse.zip",
+        "retrieved_at": "2026-10-18",
+        "frame": "Mars_2000_Sphere",
+        "note": "Corrected science-team traverse; some interpolated positions; not a PDS-archived product."
+      },
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "opportunity",
+      "name": "Opportunity",
+      "kind": "rover",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "mer",
+        "mer_simplified"
+      ],
+      "location": {
+        "lon_east": -5.348977147716937,
+        "lat_planetocentric": -2.33092538811649,
+        "classification": "final_recorded_traverse_endpoint",
+        "source": "https://an.rsl.wustl.edu/mera/AN/meri/MER/traverse/MERB_traverse_5130.zip",
+        "uncertainty_m": null,
+        "sol_start": 5076.0,
+        "sol_end": 5081.0,
+        "frame": "Mars_2000_Sphere",
+        "raw_lon": -5.34897714771696,
+        "provider_properties": {
+          "SITE": 210.0,
+          "DRIVE": 277.0,
+          "START_SOL": 5076.0,
+          "END_SOL": 5081.0,
+          "RAW_X": 10095.09384,
+          "RAW_Y": -21852.31031,
+          "RAW_Z": 0.0,
+          "CORRECTEDX": 10464.54901,
+          "CORRECTEDY": -22687.55553,
+          "LON": -5.348977,
+          "LAT": -2.330925
+        }
+      },
+      "notes": "Corrected/interpolated traverse from science team/PDS Geosciences Analyst Notebook; label explicitly says not a PDS-archived product. Do not replace with landing-site coordinate. Map-tie uncertainty not numerically established here.",
+      "source": null,
+      "track": {
+        "url": "/spacecraft/tracks/opportunity.json",
+        "source": "https://an.rsl.wustl.edu/mera/AN/meri/MER/traverse/MERB_traverse_5130.zip",
+        "retrieved_at": "2026-10-18",
+        "frame": "Mars_2000_Sphere",
+        "note": "Corrected science-team traverse; some interpolated positions; not a PDS-archived product."
+      },
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "viking1",
+      "name": "Viking 1 lander",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "viking"
+      ],
+      "location": {
+        "lon_east": -47.95100000000002,
+        "lat_planetocentric": 22.269,
+        "classification": "published_radio_tracking_site",
+        "source": "https://ode.rsl.wustl.edu/mars/pagehelp/Content/Missions_Instruments/Landing_Sites.htm",
+        "uncertainty_m": null
+      },
+      "notes": "Published reference solution; verify map tie against actual HiRISE basemap before meter-scale placement.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "viking2",
+      "name": "Viking 2 lander",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "viking"
+      ],
+      "location": {
+        "lon_east": 134.27999999999997,
+        "lat_planetocentric": 47.668,
+        "classification": "published_radio_tracking_site",
+        "source": "https://ode.rsl.wustl.edu/mars/pagehelp/Content/Missions_Instruments/Landing_Sites.htm",
+        "uncertainty_m": null
+      },
+      "notes": "Published reference solution; older planetographic values must not be mixed with planetocentric coordinates.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "pathfinder",
+      "name": "Mars Pathfinder lander",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "pathfinder_community"
+      ],
+      "location": {
+        "lon_east": -33.252999999999986,
+        "lat_planetocentric": 19.095,
+        "classification": "published_radio_tracking_site",
+        "source": "https://ode.rsl.wustl.edu/mars/pagehelp/Content/Missions_Instruments/Landing_Sites.htm",
+        "uncertainty_m": null
+      },
+      "notes": "Reference solution differs from later image-control/older published coordinates. Register to Atlas imagery before close placement.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "sojourner",
+      "name": "Sojourner",
+      "kind": "rover",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "sojourner_cc0",
+        "sojourner_cad"
+      ],
+      "location": {
+        "classification": "final_global_coordinate_not_verified",
+        "lon_east": null,
+        "lat_planetocentric": null,
+        "site_reference": {
+          "lon_east": 326.747,
+          "lat_planetocentric": 19.095,
+          "classification": "pathfinder_site_reference_only",
+          "source": "https://ode.rsl.wustl.edu/mars/pagehelp/Content/Missions_Instruments/Landing_Sites.htm",
+          "uncertainty_m": null
+        }
+      },
+      "notes": "Separate rover from Pathfinder lander. Last-known local position must be transformed from rover/lander geometry; do not assign the lander coordinate as an exact rover position.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "phoenix_cc0",
+        "phoenix_paid"
+      ],
+      "location": {
+        "lon_east": -125.75,
+        "lat_planetocentric": 68.22,
+        "classification": "rounded_published_surface_site",
+        "source": "https://ode.rsl.wustl.edu/mars/pagehelp/Content/Missions_Instruments/Landing_Sites.htm",
+        "uncertainty_m": null
+      },
+      "notes": "Rounded position only; final hardware state differs from intact model.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "insight",
+      "name": "InSight",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "insight"
+      ],
+      "location": {
+        "lon_east": 135.623447,
+        "lat_planetocentric": 4.502384,
+        "classification": "published_HiRISE_MOLA_map_tie",
+        "source": "https://www.nature.com/articles/s41467-020-14679-1",
+        "uncertainty_m": null,
+        "elevation_m": -2613.426,
+        "elevation_datum": "MOLA geoid"
+      },
+      "notes": "Published paper reports ~220m map-tie offset relative to radio-tracking solution. Do not mistake decimal precision for global accuracy.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "tianwen1_lander",
+      "name": "Tianwen-1 landing platform",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [],
+      "location": {
+        "lon_east": 109.92500000000001,
+        "lat_planetocentric": 25.066,
+        "classification": "published_landing_platform_site",
+        "source": "https://doi.org/10.1109/JSTARS.2025.3540377",
+        "uncertainty_m": null
+      },
+      "notes": "A separate object from Zhurong. No independently verified free deployed-platform model found.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "zhurong",
+      "name": "Zhurong",
+      "kind": "rover",
+      "domain": "mars_surface",
+      "status": "hibernation_last_reported_no_current_telemetry_verified",
+      "model_ids": [
+        "zhurong_paid"
+      ],
+      "location": {
+        "classification": "final_global_coordinate_not_verified",
+        "lon_east": null,
+        "lat_planetocentric": null,
+        "site_reference": {
+          "lon_east": 109.925,
+          "lat_planetocentric": 25.066,
+          "classification": "landing_site_only",
+          "source": "https://doi.org/10.1109/JSTARS.2025.3540377",
+          "uncertainty_m": null
+        },
+        "orbital_localization_source": "https://hirise.lpl.arizona.edu/ESP_077511_2055"
+      },
+      "notes": "Mission paper describes May18,2022 hibernation; HiRISE confirms stationary Sep2022-Feb2023. No current public position API verified. Image center25.125N109.927E is NOT rover coordinate; do not reuse landing point.",
+      "source": null,
+      "track": null,
+      "status_label": "Last reported in hibernation"
+    },
+    {
+      "id": "beagle2",
+      "name": "Beagle 2",
+      "kind": "lander",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [
+        "beagle_paid"
+      ],
+      "location": {
+        "lon_east": 90.43138999999996,
+        "lat_planetocentric": 11.52879,
+        "classification": "published_HiRISE_identification",
+        "source": "https://doi.org/10.1098/rsos.170785",
+        "uncertainty_m": null
+      },
+      "notes": "Paper image-control solution; other published coordinates differ. Partially deployed hardware, not a fully opened operational lander.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "schiaparelli",
+      "name": "Schiaparelli",
+      "kind": "failed_lander",
+      "domain": "mars_surface",
+      "status": "impact_debris",
+      "model_ids": [
+        "schiaparelli_esa"
+      ],
+      "location": {
+        "lon_east": -6.210000000000036,
+        "lat_planetocentric": -2.07,
+        "classification": "rounded_initial_CTX_impact_localization",
+        "source": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Exploration/ExoMars/Mars_Reconnaissance_Orbiter_views_Schiaparelli_landing_site",
+        "uncertainty_m": null
+      },
+      "notes": "Initial2016 official rounded location; later HiRISE refinement needed before close placement. Intact 3D model is a pre-impact reference.",
+      "source": null,
+      "track": null,
+      "status_label": "Impact debris"
+    },
+    {
+      "id": "mars2",
+      "name": "Mars 2 lander",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [
+        "mars3_community"
+      ],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Reached surface by impact; exact site not verified.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "mars3",
+      "name": "Mars 3 lander",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [
+        "mars3_community"
+      ],
+      "location": {
+        "classification": "predicted_region_unconfirmed_candidate",
+        "reference_lon_east": 202.0,
+        "reference_lat": -45.0
+      },
+      "notes": "1971 soft landing. HiRISE candidate identification remains tentative; reference region is not confirmed spacecraft coordinate.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "mars6",
+      "name": "Mars 6 lander",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Contact lost during descent/landing; no confirmed hardware coordinate verified.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "mars_polar_lander",
+      "name": "Mars Polar Lander",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [
+        "mpl_community"
+      ],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Lost on arrival1999; exact surface site unconfirmed.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "ds2_amundsen",
+      "name": "Deep Space2 Amundsen",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Penetrator lost with MPL; location unconfirmed.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "ds2_scott",
+      "name": "Deep Space2 Scott",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Separate penetrator; location unconfirmed.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "prop_m_mars2",
+      "name": "PrOP-M carried by Mars2",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Carried by crashed lander; not a deployed rover with its own known position.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "prop_m_mars3",
+      "name": "PrOP-M carried by Mars3",
+      "kind": "failed_or_unlocated_surface_hardware",
+      "domain": "mars_surface",
+      "status": "historical_location_unconfirmed",
+      "model_ids": [],
+      "location": {
+        "classification": "unlocated",
+        "lon_east": null,
+        "lat_planetocentric": null
+      },
+      "notes": "Deployment not verified; do not plot as a separate mobile rover.",
+      "source": "https://www.jpl.nasa.gov/news/press_kits/insight/landing/appendix/history/",
+      "track": null,
+      "status_label": "Location unconfirmed"
+    },
+    {
+      "id": "spirit_platform",
+      "name": "Spirit landing platform",
+      "kind": "landing_platform",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [],
+      "location": {
+        "lon_east": 175.475837,
+        "lat_planetocentric": -14.565828,
+        "classification": "traverse_origin_site_reference",
+        "source": "https://an.rsl.wustl.edu/mera/AN/meri/MER/traverse/MERA_traverse.zip",
+        "uncertainty_m": null
+      },
+      "notes": "Platform/petal geometry not contained in the MER rover model. Image registration still required.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "opportunity_platform",
+      "name": "Opportunity landing platform",
+      "kind": "landing_platform",
+      "domain": "mars_surface",
+      "status": "historical",
+      "model_ids": [],
+      "location": {
+        "lon_east": -5.525520419083023,
+        "lat_planetocentric": -1.94817260357331,
+        "classification": "traverse_origin_site_reference",
+        "source": "https://an.rsl.wustl.edu/mera/AN/meri/MER/traverse/MERB_traverse_5130.zip",
+        "uncertainty_m": null
+      },
+      "notes": "Platform/petal geometry not contained in the MER rover model. Image registration still required.",
+      "source": null,
+      "track": null,
+      "status_label": "Mission ended"
+    },
+    {
+      "id": "mro",
+      "name": "Mars Reconnaissance Orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "mro"
+      ],
+      "status": "operational_status_and_current_ephemeris_must_be_checked",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Orbital position unavailable"
+    },
+    {
+      "id": "odyssey",
+      "name": "2001 Mars Odyssey",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "odyssey"
+      ],
+      "status": "operational_status_and_current_ephemeris_must_be_checked",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Orbital position unavailable"
+    },
+    {
+      "id": "mars_express",
+      "name": "Mars Express",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "mars_express_esa"
+      ],
+      "status": "operational_status_and_current_ephemeris_must_be_checked",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Orbital position unavailable"
+    },
+    {
+      "id": "tgo",
+      "name": "ExoMars Trace Gas Orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "tgo"
+      ],
+      "status": "operational_status_and_current_ephemeris_must_be_checked",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Orbital position unavailable"
+    },
+    {
+      "id": "tianwen1_orbiter",
+      "name": "Tianwen-1 orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "tianwen_orbiter_paid"
+      ],
+      "status": "operational_status_and_current_ephemeris_must_be_checked",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Orbital position unavailable"
+    },
+    {
+      "id": "hope",
+      "name": "Hope / Emirates Mars Mission",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "operational_status_and_current_ephemeris_must_be_checked",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Orbital position unavailable"
+    },
+    {
+      "id": "maven",
+      "name": "MAVEN",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "maven"
+      ],
+      "status": "mission_ended_2026_historical_geometry_only",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://www.nasa.gov/news-release/nasa-says-farewell-to-maven-mars-mission-hosts-media-call-today/",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Mission ended \u00b7 2026"
+    },
+    {
+      "id": "mgs",
+      "name": "Mars Global Surveyor",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [
+        "mgs"
+      ],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "mom",
+      "name": "Mangalyaan / Mars Orbiter Mission",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "viking1_orbiter",
+      "name": "Viking1 orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "viking2_orbiter",
+      "name": "Viking2 orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "mariner9",
+      "name": "Mariner9",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "mars2_orbiter",
+      "name": "Mars2 orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "mars3_orbiter",
+      "name": "Mars3 orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "mars5_orbiter",
+      "name": "Mars5 orbiter",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    },
+    {
+      "id": "phobos2",
+      "name": "Phobos2",
+      "kind": "orbiter",
+      "domain": "mars_orbit_historical_or_current_candidate",
+      "model_ids": [],
+      "status": "historical_mission_no_current_position_verified",
+      "location": null,
+      "position_method": "SPICE/mission ephemeris at explicit UTC epoch; Mars-centered body-fixed transform; enforce kernel coverage",
+      "source": "https://naif.jpl.nasa.gov/naif/data_mars.html",
+      "notes": "Historical spacecraft may have decayed or have untracked present orbits. Do not extrapolate old kernels or put orbiter on surface. Current ephemeris availability not tested in this task.",
+      "track": null,
+      "status_label": "Historical orbiter"
+    }
+  ],
+  "excluded_from_surface": [
+    "Mars7 missed Mars",
+    "Mars Climate Orbiter has no confirmed surface site",
+    "Mars Observer no confirmed Mars arrival location",
+    "Nozomi failed Mars insertion",
+    "Mars96 and Phobos-Grunt did not reach Mars",
+    "Future Rosalind Franklin not on Mars",
+    "Earth test rovers and generic concept models excluded"
+  ],
+  "schema": "mars-spacecraft-catalog/1",
+  "refreshed_at": "2026-10-18T18:37:45.341573+00:00",
+  "models": [
+    {
+      "id": "perseverance",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/3d-resources/mars-2020-perseverance-rover/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Mars%202020%20Perseverance%20Rover/Mars%202020%20Perseverance%20Rover.glb",
+      "source_request_id": "perseverance_github_glb",
+      "packaged_path": "models/nasa/perseverance.glb",
+      "bytes": 4987176,
+      "sha256": "10db7c03a5e63a5a3b3e7baa6243aa4918ba045fa8ff0a731d0217491adc727f",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 199521,
+      "meshes": 68,
+      "nodes": 88,
+      "animations": 23,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Animated variant; Draco required. Match landed pose before use.",
+      "url": "/spacecraft/models/perseverance.glb",
+      "derived_sha256": "898aad32bc2a59c81a8cd2039c439c8e5fecacb3915fef2a965cf23032f5dac6",
+      "derived_bytes": 4987332,
+      "bounds_size": [
+        2.704580783843994,
+        1.8455446587927327,
+        3.1082734010638973
+      ],
+      "normalization": {
+        "translation": [
+          -0.0,
+          -0.0007781386375427246,
+          0.18218540439892916
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "curiosity",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/resource/curiosity-rover-3d-model/",
+      "download_url": "https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/gltf_files/24584_Curiosity_static.glb",
+      "source_request_id": "curiosity_model_glb",
+      "packaged_path": "models/nasa/curiosity.glb",
+      "bytes": 11860016,
+      "sha256": "86a8ee6d39fb1711ae549ba99951d2f52b44a7b8367ce4814cc81aec60e94b31",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 51305,
+      "meshes": 1,
+      "nodes": 1,
+      "animations": 0,
+      "required_extensions": [],
+      "external_uris": [],
+      "credit": "NASA/JPL-Caltech",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Static landed rover.",
+      "url": "/spacecraft/models/curiosity.glb",
+      "derived_sha256": "28460fd7e97936904829753ec1113b516bf2b3bd0c2e70f7ca36433a725b3f69",
+      "derived_bytes": 11860184,
+      "bounds_size": [
+        2.7818071842193604,
+        2.215166911482811,
+        3.944692373275757
+      ],
+      "normalization": {
+        "translation": [
+          -0.004125714302062988,
+          -0.007619485259056091,
+          -0.31309938430786133
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "mer",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/resource/spirit-and-opportunity-rover-3d-model/",
+      "download_url": "https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/gltf_files/24883_MER_static.glb",
+      "source_request_id": "mer_model_glb",
+      "packaged_path": "models/nasa/mer.glb",
+      "bytes": 11910084,
+      "sha256": "efad9c6275d832d86e7232d63520e48628797d9a7f7c7ff870b28d175ac8b250",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 31450,
+      "meshes": 1,
+      "nodes": 1,
+      "animations": 0,
+      "required_extensions": [],
+      "external_uris": [],
+      "credit": "NASA/JPL-Caltech",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Shared reference geometry for Spirit and Opportunity; not their final dust/damage state.",
+      "url": "/spacecraft/models/mer.glb",
+      "derived_sha256": "9ffdb35a492238e6624cf70923b85a991e87ec905d528c9cfb5776d948a04e52",
+      "derived_bytes": 11910252,
+      "bounds_size": [
+        2.279022216796875,
+        1.5845496656838804,
+        1.64761084318161
+      ],
+      "normalization": {
+        "translation": [
+          5.841255187988281e-06,
+          0.0026026966515928507,
+          0.08690342307090759
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "mer_simplified",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/3d-resources/mars-exploration-rover-opportunity-mer-b/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Mars%20Exploration%20Rover%20-%20Opportunity%20%28MER-B%29/Mars%20Exploration%20Rover%20-%20Opportunity%20%28MER-B%29.glb",
+      "source_request_id": "opportunity_low_github_glb",
+      "packaged_path": "models/nasa/mer_simplified.glb",
+      "bytes": 36668,
+      "sha256": "95c852efb385b55bea3104a0fca2730cd2ef25353af4d38273d3f0bda5c68c31",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 3845,
+      "meshes": 1,
+      "nodes": 1,
+      "animations": 0,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Small, simplified alternative; Draco required.",
+      "url": "/spacecraft/models/mer_simplified.glb",
+      "derived_sha256": "16b966c1f4e0db114747c320255f0115ff5f11808fd8e1aece9aa4c2207505ed",
+      "derived_bytes": 36828,
+      "bounds_size": [
+        8.690670667919903,
+        7.30548755167781,
+        12.708211819005689
+      ],
+      "normalization": {
+        "translation": [
+          -0.0621927116344807,
+          2.4069024938135164,
+          -2.17015275350101
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "ingenuity",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/resource/mars-ingenuity-helicopter-3d-model/",
+      "download_url": "https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/gltf_files/25043_Ingenuity_v3.glb",
+      "source_request_id": "ingenuity_model_glb",
+      "packaged_path": "models/nasa/ingenuity.glb",
+      "bytes": 1809044,
+      "sha256": "d9ebff90d0475d0be0f9dc241e69bb1700d86c702a1f289578c35f4fefc9f19f",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 9092,
+      "meshes": 11,
+      "nodes": 11,
+      "animations": 0,
+      "required_extensions": [],
+      "external_uris": [],
+      "credit": "NASA/JPL-Caltech",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Intact reference model; does not depict final damaged rotors.",
+      "url": "/spacecraft/models/ingenuity.glb",
+      "derived_sha256": "9a62146ee1301f20f96e92a632afefba2b5aa4a4618d8eb5758b20f3ca410bc3",
+      "derived_bytes": 1809216,
+      "bounds_size": [
+        1.006306629260844,
+        0.5819550414009727,
+        1.1784958945161144
+      ],
+      "normalization": {
+        "translation": [
+          0.001825959765995644,
+          0.025952090838473274,
+          -0.0003115036553070216
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "insight",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/3d-resources/insight-cruise-lander/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/InSight%20Cruise%20Lander/InSight%20Cruise%20Lander%20%28arm%20deployed%29.glb",
+      "source_request_id": "insight_low_github_glb",
+      "packaged_path": "models/nasa/insight.glb",
+      "bytes": 3949036,
+      "sha256": "298434c885069f49b9e4f1d178e019c7ec2771fe1a9ce21278c70521eb9caac5",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 146890,
+      "meshes": 100,
+      "nodes": 101,
+      "animations": 0,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA/Brian E. Kumanchik; verify item-specific credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Arm-deployed variant; Draco required. Check deployed surface configuration/instrument placement.",
+      "url": "/spacecraft/models/insight.glb",
+      "derived_sha256": "17eddb01d7113f4d803d36ce9ad4c7894ed026005575c6b0909fd3b502aa6d0b",
+      "derived_bytes": 3949208,
+      "bounds_size": [
+        6.1418155006541255,
+        2.187926984016222,
+        3.50106985207251
+      ],
+      "normalization": {
+        "translation": [
+          -0.00022985534548691788,
+          0.6358910063281655,
+          -0.04603646122892813
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "viking",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/3d-resources/viking-lander/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Viking%20Lander/Viking%20Lander.glb",
+      "source_request_id": "viking_github_glb",
+      "packaged_path": "models/nasa/viking.glb",
+      "bytes": 1849384,
+      "sha256": "1233dc2c96a1c0b08ca9a20f7ed9c09e0223f06f14f6ae6371349504c1929149",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 99526,
+      "meshes": 2,
+      "nodes": 3,
+      "animations": 2,
+      "required_extensions": [],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Shared reference model for Viking 1/2; includes animations.",
+      "url": "/spacecraft/models/viking.glb",
+      "derived_sha256": "bab50849c576f4f73723a87cd1d810243b77478e8c804d4f121167cc47c3040f",
+      "derived_bytes": 1849604,
+      "bounds_size": [
+        3.7313959232614544,
+        2.0,
+        2.7978671717030577
+      ],
+      "normalization": {
+        "translation": [
+          -0.5341287976237473,
+          -0.04623601640534929,
+          0.18227569040423622
+        ],
+        "scale": 0.22291077626874542,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork; approximate size and pose, not surveyed geometry. Viking height normalized to approximately 2 m."
+    },
+    {
+      "id": "mro",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/3d-resources/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Mars%20Reconnaissance%20Orbiter%20%28MRO%29%20%28A%29/Mars%20Reconnaissance%20Orbiter%20%28MRO%29%20%28A%29.glb",
+      "source_request_id": "mro_github_glb",
+      "packaged_path": "models/nasa/mro.glb",
+      "bytes": 2652460,
+      "sha256": "b195c566d227dec8e42ca2fafcc2a8cc26a127e04ed577e4b9515199d2002d9e",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 124062,
+      "meshes": 6,
+      "nodes": 7,
+      "animations": 6,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Orbiter. Draco required; includes animations.",
+      "url": "/spacecraft/models/mro.glb",
+      "derived_sha256": "a13a9d2fa828cd579f1c4a51e8769fe6fabb0f2e3160ac5b6e05b5832137a14e",
+      "derived_bytes": 2652608,
+      "bounds_size": [
+        32.764312744140625,
+        61.00631332397461,
+        89.74043655395508
+      ],
+      "normalization": {
+        "translation": [
+          -0.0,
+          33.52304458618164,
+          0.6850185394287109
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "odyssey",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/3d-resources/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Mars%20Odyssey/Mars%20Odyssey.glb",
+      "source_request_id": "odyssey_github_glb",
+      "packaged_path": "models/nasa/odyssey.glb",
+      "bytes": 5801372,
+      "sha256": "ac0faa8dbfb54aabcbe3d06886c3d98dd29d120fd49b1c9fa6abbfbed22b049a",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 8642,
+      "meshes": 11,
+      "nodes": 11,
+      "animations": 0,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Orbiter; Draco required.",
+      "url": "/spacecraft/models/odyssey.glb",
+      "derived_sha256": "210264c0349fb4df60b25b75610a333aa498a87e00c1446025f17fd53621854e",
+      "derived_bytes": 5801536,
+      "bounds_size": [
+        6.914988900241079,
+        5.66416517001925,
+        8.221435785293579
+      ],
+      "normalization": {
+        "translation": [
+          -0.13987455203829113,
+          1.4967067057445582,
+          -1.3939547538757324
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "tgo",
+      "format": "glb",
+      "source_page": "https://science.nasa.gov/resource/trace-gas-orbiter-3d-model/",
+      "download_url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/t/TGO.glb",
+      "source_request_id": "tgo_model_glb",
+      "packaged_path": "models/nasa/tgo.glb",
+      "bytes": 5911208,
+      "sha256": "8d65a22cdbf29b9192506a7c31eafbdc25676db163849251e30683b45aaf536f",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 10179,
+      "meshes": 16,
+      "nodes": 16,
+      "animations": 0,
+      "required_extensions": [
+        "KHR_texture_transform"
+      ],
+      "external_uris": [],
+      "credit": "NASA Visualization Technology Applications and Development (VTAD)",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Orbiter; KHR_texture_transform required.",
+      "url": "/spacecraft/models/tgo.glb",
+      "derived_sha256": "29143dba1b8996d0e32c1dd9f9bfc10b74681ec8404a8dee794cd2d194f9d9b0",
+      "derived_bytes": 5911376,
+      "bounds_size": [
+        17.534319639205933,
+        4.132494520395994,
+        5.298223972320557
+      ],
+      "normalization": {
+        "translation": [
+          5.960464477539062e-07,
+          2.5210938453674316,
+          -1.3924509286880493
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "maven",
+      "format": "glb",
+      "source_page": "https://github.com/nasa/NASA-3D-Resources",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Mars%20Atmosphere%20and%20Volatile%20EvolutioN%20%28MAVEN%29%20%28A%29/Mars%20Atmosphere%20and%20Volatile%20EvolutioN%20%28MAVEN%29%20%28A%29.glb",
+      "source_request_id": "maven_github_glb",
+      "packaged_path": "models/nasa/maven.glb",
+      "bytes": 10465800,
+      "sha256": "167484bdb26900ace3185389089f419a4cf9eb04e62f595049fdb4b0968283da",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 1746023,
+      "meshes": 1,
+      "nodes": 1,
+      "animations": 0,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Historical mission; model availability does not establish present tracking.",
+      "url": "/spacecraft/models/maven.glb",
+      "derived_sha256": "1ff67059aea93d91171221b30b35172f865854e21a28fef7e8b88abb2623f121",
+      "derived_bytes": 10465964,
+      "bounds_size": [
+        13.457475662231445,
+        7.689759816770386,
+        5.36786982024176
+      ],
+      "normalization": {
+        "translation": [
+          0.055167198181152344,
+          2.8121956663871943,
+          1.0025669891900593
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    },
+    {
+      "id": "mgs",
+      "format": "glb",
+      "source_page": "https://github.com/nasa/NASA-3D-Resources",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/Mars%20Global%20Surveyor/Mars%20Global%20Surveyor.glb",
+      "source_request_id": "mgs_github_glb",
+      "packaged_path": "models/nasa/mgs.glb",
+      "bytes": 1921268,
+      "sha256": "8812c97f2c147e409e883d5196377d596df84de87c08c1453e9e3cfaf082052f",
+      "download_verified": true,
+      "validation": "GLB2 header, byte length, JSON chunk, referenced counts and external dependencies checked; browser rendering and scientific geometry/scale validation not performed",
+      "triangles_unique_primitives": 6194,
+      "meshes": 8,
+      "nodes": 8,
+      "animations": 0,
+      "required_extensions": [
+        "KHR_draco_mesh_compression"
+      ],
+      "external_uris": [],
+      "credit": "NASA; see item-specific contributor credit",
+      "terms_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "license_summary": "NASA media-use guidelines; retain credits; do not imply endorsement; check third-party components",
+      "notes": "Historical mission; no current orbit inferred.",
+      "url": "/spacecraft/models/mgs.glb",
+      "derived_sha256": "ce9fa026e7583fa32a1a17a8b6b96703268da193bdb6d18c7b6eda5cb9c3d488",
+      "derived_bytes": 1921440,
+      "bounds_size": [
+        1.750157379311357,
+        5.145226621388827,
+        10.516718616187806
+      ],
+      "normalization": {
+        "translation": [
+          -0.04760840123901555,
+          3.1966766413201784,
+          -3.462059159353714e-07
+        ],
+        "scale": 1,
+        "up_axis": "Y",
+        "bottom_y": 0
+      },
+      "scale_note": "Reference artwork in source units, approximately metre scale for surface vehicles. Pose and attitude are illustrative."
+    }
+  ],
+  "source_commit": "11ebb4ee043715aefbba6aeec8a61746fad67fa7"
+}
