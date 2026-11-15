@@ -1,0 +1,679 @@
+{
+  "status": "success",
+  "metadata": {
+    "mass_kg": 125.0,
+    "gravity": 0.38,
+    "model": "Minetti (2002) + Khatib APF"
+  },
+  "routes": {
+    "direct_safe": {
+      "summary": {
+        "total_distance_km": 7.02,
+        "elevation_gain_m": 1410.0,
+        "elevation_loss_m": 0.0,
+        "max_slope_deg": 19.0,
+        "minetti_energy_kj": 17567.2,
+        "minetti_calories_kcal": 4198.7,
+        "est_o2_consumed_liters": 840.54,
+        "minerals_visited_count": 0,
+        "total_science_score": 0
+      },
+      "waypoints": [
+        {
+          "lon": 283.07333,
+          "lat": -9.84667,
+          "elevation_m": -2578.68,
+          "slope_deg": 10.0
+        },
+        {
+          "lon": 283.14667,
+          "lat": -9.8,
+          "elevation_m": -2456.82,
+          "slope_deg": 7.7
+        },
+        {
+          "lon": 283.22667,
+          "lat": -9.72667,
+          "elevation_m": -2345.61,
+          "slope_deg": 8.9
+        },
+        {
+          "lon": 283.22667,
+          "lat": -9.66,
+          "elevation_m": -2204.81,
+          "slope_deg": 19.0
+        },
+        {
+          "lon": 283.29333,
+          "lat": -9.6,
+          "elevation_m": -2091.62,
+          "slope_deg": 8.5
+        },
+        {
+          "lon": 283.38667,
+          "lat": -9.60667,
+          "elevation_m": -1967.87,
+          "slope_deg": 17.3
+        },
+        {
+          "lon": 283.46667,
+          "lat": -9.56667,
+          "elevation_m": -1810.58,
+          "slope_deg": 11.1
+        },
+        {
+          "lon": 283.53333,
+          "lat": -9.52,
+          "elevation_m": -1665.52,
+          "slope_deg": 16.8
+        },
+        {
+          "lon": 283.58,
+          "lat": -9.44,
+          "elevation_m": -1510.25,
+          "slope_deg": 12.9
+        },
+        {
+          "lon": 283.63333,
+          "lat": -9.36,
+          "elevation_m": -1360.38,
+          "slope_deg": 9.1
+        },
+        {
+          "lon": 283.67333,
+          "lat": -9.28667,
+          "elevation_m": -1211.57,
+          "slope_deg": 16.4
+        },
+        {
+          "lon": 283.72,
+          "lat": -9.28,
+          "elevation_m": -1168.65,
+          "slope_deg": 10.4
+        }
+      ]
+    },
+    "apf_survey": {
+      "summary": {
+        "total_distance_km": 8.17,
+        "elevation_gain_m": 1479.0,
+        "elevation_loss_m": 69.0,
+        "max_slope_deg": 20.7,
+        "minetti_energy_kj": 15973.0,
+        "minetti_calories_kcal": 3817.7,
+        "est_o2_consumed_liters": 764.26,
+        "minerals_visited_count": 4,
+        "total_science_score": 340
+      },
+      "waypoints": [
+        {
+          "lon": 283.07333,
+          "lat": -9.84667,
+          "elevation_m": -2578.68,
+          "slope_deg": 10.0
+        },
+        {
+          "lon": 283.08,
+          "lat": -9.84,
+          "elevation_m": -2563.98,
+          "slope_deg": 10.0
+        },
+        {
+          "lon": 283.09333,
+          "lat": -9.83333,
+          "elevation_m": -2536.05,
+          "slope_deg": 6.8
+        },
+        {
+          "lon": 283.1,
+          "lat": -9.82,
+          "elevation_m": -2510.4,
+          "slope_deg": 12.5
+        },
+        {
+          "lon": 283.10667,
+          "lat": -9.81333,
+          "elevation_m": -2502.12,
+          "slope_deg": 12.7
+        },
+        {
+          "lon": 283.12,
+          "lat": -9.80667,
+          "elevation_m": -2489.44,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.13333,
+          "lat": -9.79333,
+          "elevation_m": -2454.52,
+          "slope_deg": 15.1
+        },
+        {
+          "lon": 283.14667,
+          "lat": -9.78,
+          "elevation_m": -2432.99,
+          "slope_deg": 8.5
+        },
+        {
+          "lon": 283.14667,
+          "lat": -9.76667,
+          "elevation_m": -2426.16,
+          "slope_deg": 7.0
+        },
+        {
+          "lon": 283.16,
+          "lat": -9.76,
+          "elevation_m": -2407.15,
+          "slope_deg": 3.4
+        },
+        {
+          "lon": 283.17333,
+          "lat": -9.76,
+          "elevation_m": -2395.69,
+          "slope_deg": 9.1
+        },
+        {
+          "lon": 283.18667,
+          "lat": -9.74667,
+          "elevation_m": -2379.25,
+          "slope_deg": 9.3
+        },
+        {
+          "lon": 283.2,
+          "lat": -9.74667,
+          "elevation_m": -2377.38,
+          "slope_deg": 1.8
+        },
+        {
+          "lon": 283.21333,
+          "lat": -9.74,
+          "elevation_m": -2371.71,
+          "slope_deg": 8.1
+        },
+        {
+          "lon": 283.22667,
+          "lat": -9.72667,
+          "elevation_m": -2345.61,
+          "slope_deg": 8.9
+        },
+        {
+          "lon": 283.24,
+          "lat": -9.72,
+          "elevation_m": -2327.89,
+          "slope_deg": 2.9
+        },
+        {
+          "lon": 283.25333,
+          "lat": -9.71333,
+          "elevation_m": -2314.56,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.26,
+          "lat": -9.7,
+          "elevation_m": -2290.02,
+          "slope_deg": 10.9
+        },
+        {
+          "lon": 283.27333,
+          "lat": -9.69333,
+          "elevation_m": -2264.73,
+          "slope_deg": 6.0
+        },
+        {
+          "lon": 283.28667,
+          "lat": -9.68667,
+          "elevation_m": -2236.87,
+          "slope_deg": 16.0
+        },
+        {
+          "lon": 283.29333,
+          "lat": -9.67333,
+          "elevation_m": -2223.34,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.3,
+          "lat": -9.66,
+          "elevation_m": -2170.83,
+          "slope_deg": 17.4
+        },
+        {
+          "lon": 283.30667,
+          "lat": -9.65333,
+          "elevation_m": -2155.26,
+          "slope_deg": 11.2
+        },
+        {
+          "lon": 283.32,
+          "lat": -9.64667,
+          "elevation_m": -2126.74,
+          "slope_deg": 17.7
+        },
+        {
+          "lon": 283.33333,
+          "lat": -9.64667,
+          "elevation_m": -2114.13,
+          "slope_deg": 20.7
+        },
+        {
+          "lon": 283.34,
+          "lat": -9.63333,
+          "elevation_m": -2079.43,
+          "slope_deg": 12.4
+        },
+        {
+          "lon": 283.34,
+          "lat": -9.62,
+          "elevation_m": -2075.72,
+          "slope_deg": 10.6
+        },
+        {
+          "lon": 283.35333,
+          "lat": -9.61333,
+          "elevation_m": -2029.95,
+          "slope_deg": 10.7
+        },
+        {
+          "lon": 283.36667,
+          "lat": -9.60667,
+          "elevation_m": -1992.92,
+          "slope_deg": 17.6
+        },
+        {
+          "lon": 283.38,
+          "lat": -9.61333,
+          "elevation_m": -1977.67,
+          "slope_deg": 8.0
+        },
+        {
+          "lon": 283.38667,
+          "lat": -9.61333,
+          "elevation_m": -1991.07,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.4,
+          "lat": -9.6,
+          "elevation_m": -1933.07,
+          "slope_deg": 7.9
+        },
+        {
+          "lon": 283.41333,
+          "lat": -9.59333,
+          "elevation_m": -1915.73,
+          "slope_deg": 7.1
+        },
+        {
+          "lon": 283.42667,
+          "lat": -9.58667,
+          "elevation_m": -1883.66,
+          "slope_deg": 13.4
+        },
+        {
+          "lon": 283.44,
+          "lat": -9.58667,
+          "elevation_m": -1868.15,
+          "slope_deg": 6.6
+        },
+        {
+          "lon": 283.44667,
+          "lat": -9.59333,
+          "elevation_m": -1882.4,
+          "slope_deg": 11.9
+        },
+        {
+          "lon": 283.46,
+          "lat": -9.59333,
+          "elevation_m": -1859.88,
+          "slope_deg": 14.0
+        },
+        {
+          "lon": 283.47333,
+          "lat": -9.58,
+          "elevation_m": -1818.94,
+          "slope_deg": 15.7
+        },
+        {
+          "lon": 283.46667,
+          "lat": -9.56667,
+          "elevation_m": -1810.58,
+          "slope_deg": 11.1
+        },
+        {
+          "lon": 283.46,
+          "lat": -9.55333,
+          "elevation_m": -1814.71,
+          "slope_deg": 9.8
+        },
+        {
+          "lon": 283.47333,
+          "lat": -9.55333,
+          "elevation_m": -1800.87,
+          "slope_deg": 11.9
+        },
+        {
+          "lon": 283.48,
+          "lat": -9.54667,
+          "elevation_m": -1777.13,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.49333,
+          "lat": -9.54,
+          "elevation_m": -1756.37,
+          "slope_deg": 13.1
+        },
+        {
+          "lon": 283.50667,
+          "lat": -9.52667,
+          "elevation_m": -1707.86,
+          "slope_deg": 13.0
+        },
+        {
+          "lon": 283.51333,
+          "lat": -9.52,
+          "elevation_m": -1682.09,
+          "slope_deg": 15.2
+        },
+        {
+          "lon": 283.52,
+          "lat": -9.51333,
+          "elevation_m": -1668.59,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.52667,
+          "lat": -9.50667,
+          "elevation_m": -1651.19,
+          "slope_deg": 19.4
+        },
+        {
+          "lon": 283.54,
+          "lat": -9.5,
+          "elevation_m": -1624.1,
+          "slope_deg": 11.8
+        },
+        {
+          "lon": 283.55333,
+          "lat": -9.49333,
+          "elevation_m": -1607.66,
+          "slope_deg": 15.3
+        },
+        {
+          "lon": 283.55333,
+          "lat": -9.48,
+          "elevation_m": -1584.64,
+          "slope_deg": 14.1
+        },
+        {
+          "lon": 283.56,
+          "lat": -9.46667,
+          "elevation_m": -1558.16,
+          "slope_deg": 9.3
+        },
+        {
+          "lon": 283.56667,
+          "lat": -9.45333,
+          "elevation_m": -1531.51,
+          "slope_deg": 10.9
+        },
+        {
+          "lon": 283.57333,
+          "lat": -9.44667,
+          "elevation_m": -1530.57,
+          "slope_deg": 14.3
+        },
+        {
+          "lon": 283.57333,
+          "lat": -9.43333,
+          "elevation_m": -1516.13,
+          "slope_deg": 15.1
+        },
+        {
+          "lon": 283.58,
+          "lat": -9.42,
+          "elevation_m": -1478.05,
+          "slope_deg": 14.0
+        },
+        {
+          "lon": 283.59333,
+          "lat": -9.40667,
+          "elevation_m": -1454.93,
+          "slope_deg": 8.8
+        },
+        {
+          "lon": 283.60667,
+          "lat": -9.40667,
+          "elevation_m": -1442.54,
+          "slope_deg": 9.8
+        },
+        {
+          "lon": 283.62,
+          "lat": -9.4,
+          "elevation_m": -1422.5,
+          "slope_deg": 11.5
+        },
+        {
+          "lon": 283.63333,
+          "lat": -9.38667,
+          "elevation_m": -1392.25,
+          "slope_deg": 15.5
+        },
+        {
+          "lon": 283.63333,
+          "lat": -9.37333,
+          "elevation_m": -1372.53,
+          "slope_deg": 18.9
+        },
+        {
+          "lon": 283.63333,
+          "lat": -9.36,
+          "elevation_m": -1360.38,
+          "slope_deg": 9.1
+        },
+        {
+          "lon": 283.62667,
+          "lat": -9.35333,
+          "elevation_m": -1350.61,
+          "slope_deg": 14.5
+        },
+        {
+          "lon": 283.62667,
+          "lat": -9.34,
+          "elevation_m": -1335.06,
+          "slope_deg": 10.6
+        },
+        {
+          "lon": 283.63333,
+          "lat": -9.32667,
+          "elevation_m": -1304.63,
+          "slope_deg": 10.4
+        },
+        {
+          "lon": 283.64667,
+          "lat": -9.32667,
+          "elevation_m": -1304.9,
+          "slope_deg": 13.2
+        },
+        {
+          "lon": 283.65333,
+          "lat": -9.32667,
+          "elevation_m": -1294.64,
+          "slope_deg": 10.9
+        },
+        {
+          "lon": 283.64667,
+          "lat": -9.32,
+          "elevation_m": -1290.05,
+          "slope_deg": 19.3
+        },
+        {
+          "lon": 283.64667,
+          "lat": -9.30667,
+          "elevation_m": -1278.23,
+          "slope_deg": 15.4
+        },
+        {
+          "lon": 283.66,
+          "lat": -9.30667,
+          "elevation_m": -1260.58,
+          "slope_deg": 15.9
+        },
+        {
+          "lon": 283.66667,
+          "lat": -9.29333,
+          "elevation_m": -1234.4,
+          "slope_deg": 15.8
+        },
+        {
+          "lon": 283.66,
+          "lat": -9.28667,
+          "elevation_m": -1219.12,
+          "slope_deg": 15.5
+        },
+        {
+          "lon": 283.66667,
+          "lat": -9.27333,
+          "elevation_m": -1196.89,
+          "slope_deg": 12.8
+        },
+        {
+          "lon": 283.66,
+          "lat": -9.26,
+          "elevation_m": -1198.29,
+          "slope_deg": 14.6
+        },
+        {
+          "lon": 283.66667,
+          "lat": -9.24667,
+          "elevation_m": -1177.65,
+          "slope_deg": 14.3
+        },
+        {
+          "lon": 283.68,
+          "lat": -9.25333,
+          "elevation_m": -1155.89,
+          "slope_deg": 13.1
+        },
+        {
+          "lon": 283.69333,
+          "lat": -9.24667,
+          "elevation_m": -1133.08,
+          "slope_deg": 8.0
+        },
+        {
+          "lon": 283.70667,
+          "lat": -9.26,
+          "elevation_m": -1153.2,
+          "slope_deg": 5.9
+        },
+        {
+          "lon": 283.72,
+          "lat": -9.27333,
+          "elevation_m": -1162.98,
+          "slope_deg": 13.1
+        },
+        {
+          "lon": 283.72,
+          "lat": -9.28,
+          "elevation_m": -1168.65,
+          "slope_deg": 10.4
+        }
+      ]
+    },
+    "deep_science": {
+      "summary": {
+        "total_distance_km": 7.05,
+        "elevation_gain_m": 1410.0,
+        "elevation_loss_m": 0.0,
+        "max_slope_deg": 20.5,
+        "minetti_energy_kj": 18506.1,
+        "minetti_calories_kcal": 4423.1,
+        "est_o2_consumed_liters": 885.46,
+        "minerals_visited_count": 4,
+        "total_science_score": 340
+      },
+      "waypoints": [
+        {
+          "lon": 283.07333,
+          "lat": -9.84667,
+          "elevation_m": -2578.68,
+          "slope_deg": 10.0
+        },
+        {
+          "lon": 283.14667,
+          "lat": -9.8,
+          "elevation_m": -2456.82,
+          "slope_deg": 7.7
+        },
+        {
+          "lon": 283.22667,
+          "lat": -9.72667,
+          "elevation_m": -2345.61,
+          "slope_deg": 8.9
+        },
+        {
+          "lon": 283.22667,
+          "lat": -9.66,
+          "elevation_m": -2204.81,
+          "slope_deg": 19.0
+        },
+        {
+          "lon": 283.29333,
+          "lat": -9.6,
+          "elevation_m": -2091.62,
+          "slope_deg": 8.5
+        },
+        {
+          "lon": 283.37333,
+          "lat": -9.6,
+          "elevation_m": -1987.1,
+          "slope_deg": 9.1
+        },
+        {
+          "lon": 283.45333,
+          "lat": -9.59333,
+          "elevation_m": -1855.34,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.48,
+          "lat": -9.54667,
+          "elevation_m": -1777.13,
+          "slope_deg": 13.9
+        },
+        {
+          "lon": 283.55333,
+          "lat": -9.49333,
+          "elevation_m": -1607.66,
+          "slope_deg": 15.3
+        },
+        {
+          "lon": 283.6,
+          "lat": -9.40667,
+          "elevation_m": -1455.72,
+          "slope_deg": 10.6
+        },
+        {
+          "lon": 283.64667,
+          "lat": -9.34667,
+          "elevation_m": -1328.91,
+          "slope_deg": 16.6
+        },
+        {
+          "lon": 283.68,
+          "lat": -9.28667,
+          "elevation_m": -1215.69,
+          "slope_deg": 20.5
+        },
+        {
+          "lon": 283.72,
+          "lat": -9.28,
+          "elevation_m": -1168.65,
+          "slope_deg": 10.4
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/Harshvardhan226510/mars-mapping",
+  "commit": "814c8a44d8df4a89fd4674d74265052105f368d4",
+  "source_directory": "algorithms/src",
+  "sha256": {
+    "grid.py": "46bb23f965e9875e57c982989fc96af4cc6c28984bf444ea4d3ab4191c9b0dff",
+    "pathfinder.py": "29c643ec8e292e6be6c62e5742f296dd1c42067e602ba0e14cb58b8df532a10c"
+  },
+  "policy": "Original engine files are byte-for-byte copies. Integration adaptations live in routing/adapters.py."
+}
